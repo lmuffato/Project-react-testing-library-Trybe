@@ -27,7 +27,7 @@ describe('este o componente <About.js />', () => {
   test('Se a página contém a seguinte imagem de uma Pokédex:', () => {
     const { getByRole, history } = renderWithRouter(<About />);
     history.push('/about');
-    const src = 'https://cdn2.bulbagarden.netw/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
+    const src = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
     const searchImg = getByRole('img');
     expect(searchImg.src).toBe(src);
   });
