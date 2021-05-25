@@ -32,4 +32,14 @@ describe('test mutations for about page', () => {
     expect(pOne).toBeInTheDocument();
     expect(pTwo).toBeInTheDocument();
   });
+  test('renders image with the correct src', () => {
+    const targetImgUrl = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
+    const { getByRole } = render(
+      <MemoryRouter>
+        <About />
+      </MemoryRouter>,
+    );
+    const img = getByRole('img');
+    expect(img).toHaveAttribute('src', targetImgUrl);
+  });
 });
