@@ -18,5 +18,8 @@ describe('Component About tests', () => {
     const secondParag = getByText('One can filter Pokémons by type, '
     + 'and see more details for each one of them');
     expect(secondParag).toBeInTheDocument();
+
+    const pokedexImg = getByRole('img');
+    expect(pokedexImg.src).toBe('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 }); // describe
