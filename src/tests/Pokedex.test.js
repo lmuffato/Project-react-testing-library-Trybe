@@ -35,7 +35,7 @@ describe('Pokedex test', () => {
   it('pokemon type button', () => {
     const { getByRole, getByText, getAllByTestId } = renderWithRouter(<App />);
     const typeBtn = getAllByTestId('pokemon-type-button');
-    expect(typeBtn.length).toBe(7);
+    expect(typeBtn[0]).toHaveTextContent('Electric');
     const poison = getByRole('button', {
       name: 'Poison',
     });
@@ -45,5 +45,13 @@ describe('Pokedex test', () => {
     });
     expect(nextBtn.disabled).toBe(true);
     expect(getByText('Ekans')).toBeInTheDocument();
+  });
+  it('button all reset type filter', () => {
+    const { getByRole, getByText } = renderWithRouter(<App />);
+    const allBtn = getByRole('button', {
+      name: /all/i,
+    });
+    userEvent.click(allBtn);
+    expect(getByText('Pikachu')).toBeInTheDocument();
   });
 });
