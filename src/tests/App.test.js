@@ -28,13 +28,13 @@ describe('Testando o componente App.js', () => {
     const aboutLink = screen.getByRole('link', {
       name: /About/i,
     });
-    const favoriteLink = screen.getByRole('link', {
+    const favoritePokemonLink = screen.getByRole('link', {
       name: /Favorite Pokémon/i,
     });
 
     expect(homeLink).toBeInTheDocument();
     expect(aboutLink).toBeInTheDocument();
-    expect(favoriteLink).toBeInTheDocument();
+    expect(favoritePokemonLink).toBeInTheDocument();
   });
 
   it('Ao clicar no link Home, é redirecionado para pagina inicial URL /', () => {
@@ -64,7 +64,16 @@ describe('Testando o componente App.js', () => {
   });
 
   it('Ao clicar no link Favorite Pokémons, é redirecionado para URL /favorites', () => {
-    // Escreva o teste aqui
+    const { history } = renderWithRouter(<App />);
+
+    const favoritePokemonLink = screen.getByRole('link', {
+      name: /Favorite Pokémon/i,
+    });
+
+    userEvent.click(favoritePokemonLink);
+
+    const { pathname } = history.location;
+    expect(pathname).toBe('/favorites');
   });
 
   it('URL desconhecida redireciona para página Not Found', () => {
