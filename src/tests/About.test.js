@@ -1,7 +1,7 @@
 import React from 'react';
+import { fireEvent } from '@testing-library/dom';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
-import { fireEvent } from '@testing-library/dom';
 
 describe('`About` component', () => {
   it('Test if \'About\'\'s title is rendered', () => {

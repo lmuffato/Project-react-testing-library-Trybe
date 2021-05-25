@@ -1,15 +1,17 @@
 import React from 'react';
 import renderWithRouter from '../renderWithRouter';
-import NotFound from '../components/NotFound';
+import App from '../App';
 
 describe('Test \'Not Found\' page', () => {
   it('Test if \'Not Found\' page contains title', () => {
-    const { getByText } = renderWithRouter(<NotFound />);
+    const { getByText, history } = renderWithRouter(<App />);
+    history.push('/not-found');
     expect(getByText(/Page requested not found/i)).toBeInTheDocument();
   });
 
   it('Test if \'Not Found\' page contains image', () => {
-    const { getByAltText } = renderWithRouter(<NotFound />);
+    const { getByAltText, history } = renderWithRouter(<App />);
+    history.push('/not-found');
     const notFoundImage = getByAltText(
       'Pikachu crying because the page requested was not found',
     );

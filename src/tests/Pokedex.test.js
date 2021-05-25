@@ -27,7 +27,7 @@ describe('Test \'Pokedex\' component', () => {
       + 'with electricity to make them tender enough to eat.',
   }];
   const isPokemonFavoriteById = { 25: false };
-  
+
   it('Test heading \'Encountered pokémons\'', async () => {
     const { getByText, getByRole } = await renderWithRouter(
       <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ isPokemonFavoriteById } />,
