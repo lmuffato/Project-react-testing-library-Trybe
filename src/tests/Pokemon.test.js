@@ -3,8 +3,6 @@ import userEvent from '@testing-library/user-event';
 import { screen } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
-import Data from '../data';
-import { FavoritePokemons } from '../components';
 
 test('pokemon card', () => {
   const { getByRole, history, getByText, getByAltText } = renderWithRouter(<App />);
