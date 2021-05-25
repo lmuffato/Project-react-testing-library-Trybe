@@ -6,9 +6,7 @@ import NotFound from '../components/NotFound';
 test('testes gerais do componente', () => {
   renderWithRouter(<NotFound />);
 
-  const notFoundText = screen.getByRole('heading', {
-    level: 2,
-  });
+  const notFoundText = screen.getByText('Page requested not found');
   expect(notFoundText).toBeInTheDocument();
   const gifUrl = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
   const pageGifUrl = screen.getByAltText(/pikachu/i);
