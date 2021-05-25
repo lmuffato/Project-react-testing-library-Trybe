@@ -44,7 +44,7 @@ describe('App.js', () => {
   test('testing not found', () => {
     const { getByRole, history } = renderWithRouter(<App />);
 
-    history.push('/Qualquer pagina/');
+    history.push('/Qualquerpagina/');
 
     const notFound = getByRole('heading', {
       level: 2,
