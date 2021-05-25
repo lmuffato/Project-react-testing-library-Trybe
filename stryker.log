@@ -1,0 +1,249 @@
+16:02:38 (25459) INFO ConfigReader Using stryker.conf.json
+16:02:38 (25459) DEBUG BroadcastReporter Broadcasting to reporters ["progress","clear-text","html"]
+16:02:38 (25459) DEBUG ConfigReader Loading config /home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/stryker.conf.json
+16:02:38 (25459) DEBUG ConfigReader Loaded config: {
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "mutate": [
+    "src/components/About.js",
+    "src/App.js",
+    "src/components/FavoritePokemons.js",
+    "src/components/NotFound.js",
+    "src/components/Pokedex.js",
+    "src/components/Pokemon.js",
+    "src/components/PokemonDetails.js"
+  ],
+  "mutator": {
+    "name": "javascript",
+    "excludedMutations": [
+      "ArithmeticOperator",
+      "ArrayDeclaration",
+      "ArrowFunction",
+      "BlockStatement",
+      "BooleanLiteral",
+      "ConditionalExpression",
+      "EqualityOperator",
+      "LogicalOperator",
+      "ObjectLiteral",
+      "UnaryOperator",
+      "UpdateOperator"
+    ]
+  },
+  "testRunner": "jest",
+  "reporters": [
+    "progress",
+    "clear-text",
+    "html"
+  ],
+  "coverageAnalysis": "off",
+  "jest": {
+    "projectType": "create-react-app"
+  },
+  "allowConsoleColors": true,
+  "commandRunner": {
+    "command": "npm test"
+  },
+  "clearTextReporter": {
+    "allowColor": true,
+    "logTests": true,
+    "maxTestsToLog": 3
+  },
+  "dashboard": {
+    "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+    "reportType": "full"
+  },
+  "eventReporter": {
+    "baseDir": "reports/mutation/events"
+  },
+  "fileLogLevel": "trace",
+  "logLevel": "debug",
+  "maxConcurrentTestRunners": 9007199254740991,
+  "plugins": [
+    "@stryker-mutator/*"
+  ],
+  "symlinkNodeModules": true,
+  "tempDirName": ".stryker-tmp",
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": null
+  },
+  "timeoutFactor": 1.5,
+  "timeoutMS": 5000,
+  "transpilers": [],
+  "warnings": true,
+  "configFile": "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/stryker.conf.json"
+}
+16:02:38 (25459) DEBUG PluginLoader Loading @stryker-mutator/* from /home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/@stryker-mutator
+16:02:38 (25459) DEBUG PluginLoader Loading plugin "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator" (matched with expression @stryker-mutator/*)
+16:02:38 (25459) DEBUG PluginLoader Loading plugin "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/@stryker-mutator/jest-runner" (matched with expression @stryker-mutator/*)
+16:02:38 (25459) DEBUG PluginLoader Loading plugins /home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator
+16:02:38 (25459) DEBUG PluginLoader Loading plugins /home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/@stryker-mutator/jest-runner
+16:02:38 (25459) DEBUG PluginLoader Loading plugins /home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/@stryker-mutator/core/src/reporters/index.js
+16:02:38 (25459) DEBUG buildSchemaWithPluginContributions Contributing 1 schemas from plugins to options validation.
+16:02:38 (25459) INFO InputFileResolver Found 7 of 62 file(s) to be mutated.
+16:02:38 (25459) DEBUG InputFileResolver All input files: [
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/stryker.log",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/.babelrc.json",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/.eslintignore",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/.eslintrc.json",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/.github/CODEOWNERS",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/.github/workflows/main.yml",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/.gitignore",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/.stylelintignore",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/.stylelintrc.json",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/.trybe/requirements.json",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/README.md",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/package-lock.json",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/package.json",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/public/favicon.ico",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/public/index.html",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/public/logo192.png",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/public/logo512.png",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/public/manifest.json",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/public/robots.txt",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/public/star-icon.svg",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/App.css",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/App.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/components/About.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/components/Button.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/components/FavoritePokemons.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/components/NotFound.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/components/Pokedex.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/components/Pokemon.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/components/PokemonDetails.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/components/about.css",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/components/button.css",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/components/favorite-pokemons.css",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/components/index.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/components/not-found.css",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/components/pokedex.css",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/components/pokemon-details.css",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/components/pokemon.css",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/data.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/index.css",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/index.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/logo.svg",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/serviceWorker.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/services/pokedexService.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/setupTests.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/tests/About.test.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/tests/App.test.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/tests/FavoritePokemons.test.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/tests/NotFound.test.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/tests/Pokedex.test.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/tests/Pokemon.test.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/tests/PokemonDetails.test.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/types/index.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/stryker.conf.json",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/stryker/About.conf.json",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/stryker/App.conf.json",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/stryker/FavoritePokemons.conf.json",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/stryker/NotFound.conf.json",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/stryker/Pokedex.conf.json",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/stryker/Pokemon.conf.json",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/stryker/PokemonDetails.conf.json",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/testefalhando.png",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/testepassando.png"
+]
+16:02:38 (25459) DEBUG InputFileResolver Files to mutate: [
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/App.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/components/About.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/components/FavoritePokemons.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/components/NotFound.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/components/Pokedex.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/components/Pokemon.js",
+  "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/src/components/PokemonDetails.js"
+]
+16:02:38 (25459) DEBUG TemporaryDirectory Using temp directory "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/.stryker-tmp"
+16:02:38 (25459) DEBUG TestFrameworkOrchestrator The `coverageAnalysis` setting is "off", not hooking into the test framework to achieve performance benefits.
+16:02:38 (25459) INFO InitialTestExecutor Starting initial test run. This may take a while.
+16:02:38 (25459) DEBUG Sandbox Creating a sandbox for files in /home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/.stryker-tmp/sandbox2146509
+16:02:38 (25459) DEBUG Sandbox Creating test runner 0
+16:02:38 (25459) DEBUG ChildProcessProxy Starting /home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/@stryker-mutator/core/src/test-runner/ChildProcessTestRunnerWorker.js in child process 25475
+16:02:39 (25475) DEBUG ChildProcessProxyWorker Changing current working directory for this process to /home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/.stryker-tmp/sandbox2146509
+16:02:39 (25475) DEBUG PluginLoader Loading @stryker-mutator/* from /home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/@stryker-mutator
+16:02:39 (25475) DEBUG PluginLoader Loading plugin "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator" (matched with expression @stryker-mutator/*)
+16:02:39 (25475) DEBUG PluginLoader Loading plugin "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/@stryker-mutator/jest-runner" (matched with expression @stryker-mutator/*)
+16:02:39 (25475) DEBUG PluginLoader Loading plugins /home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator
+16:02:39 (25475) DEBUG PluginLoader Loading plugins /home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/@stryker-mutator/jest-runner
+16:02:40 (25475) DEBUG PluginLoader Loading plugins /home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/@stryker-mutator/core/src/reporters/index.js
+16:02:40 (25475) TRACE JestTestRunner Merging file-based config {
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "collectCoverageFrom": [
+    "**/*.{js,jsx}",
+    "!src/index.js",
+    "!src/serviceWorker.js"
+  ],
+  "setupFiles": [
+    "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/react-app-polyfill/jsdom.js"
+  ],
+  "setupFilesAfterEnv": [
+    "<rootDir>/src/setupTests.js"
+  ],
+  "testMatch": [
+    "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+    "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+  ],
+  "testEnvironment": "jest-environment-jsdom-fourteen",
+  "transform": {
+    "^.+\\.(js|jsx|ts|tsx)$": "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/react-scripts/config/jest/babelTransform.js",
+    "^.+\\.css$": "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/react-scripts/config/jest/cssTransform.js",
+    "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/react-scripts/config/jest/fileTransform.js"
+  },
+  "transformIgnorePatterns": [
+    "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
+    "^.+\\.module\\.(css|sass|scss)$"
+  ],
+  "modulePaths": [],
+  "moduleNameMapper": {
+    "^react-native$": "react-native-web",
+    "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+  },
+  "moduleFileExtensions": [
+    "web.js",
+    "js",
+    "web.ts",
+    "ts",
+    "web.tsx",
+    "tsx",
+    "json",
+    "web.jsx",
+    "jsx",
+    "node"
+  ],
+  "watchPlugins": [
+    "jest-watch-typeahead/filename",
+    "jest-watch-typeahead/testname"
+  ],
+  "rootDir": "/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/.stryker-tmp/sandbox2146509"
+} 
+      with custom config {}
+      and default (internal) stryker config [object Object]
+16:02:40 (25475) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+16:02:40 (25459) DEBUG TimeoutDecorator Starting timeout timer (300000 ms) for a test run
+16:02:40 (25475) DEBUG JestTestRunner Project root is /home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/.stryker-tmp/sandbox2146509
+16:02:40 (25475) TRACE JestLessThan25TestAdapter Invoking Jest with config {"roots":["<rootDir>/src"],"collectCoverageFrom":["**/*.{js,jsx}","!src/index.js","!src/serviceWorker.js"],"setupFiles":["/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/react-app-polyfill/jsdom.js"],"setupFilesAfterEnv":["<rootDir>/src/setupTests.js"],"testMatch":["<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}","<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"],"testEnvironment":"jest-environment-jsdom-fourteen","transform":{"^.+\\.(js|jsx|ts|tsx)$":"/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/react-scripts/config/jest/babelTransform.js","^.+\\.css$":"/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/react-scripts/config/jest/cssTransform.js","^(?!.*\\.(js|jsx|ts|tsx|css|json)$)":"/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/react-scripts/config/jest/fileTransform.js"},"transformIgnorePatterns":["[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$","^.+\\.module\\.(css|sass|scss)$"],"modulePaths":[],"moduleNameMapper":{"^react-native$":"react-native-web","^.+\\.module\\.(css|sass|scss)$":"identity-obj-proxy"},"moduleFileExtensions":["web.js","js","web.ts","ts","web.tsx","tsx","json","web.jsx","jsx","node"],"watchPlugins":["jest-watch-typeahead/filename","jest-watch-typeahead/testname"],"rootDir":"/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/.stryker-tmp/sandbox2146509","collectCoverage":false,"verbose":false,"bail":false,"notify":false,"reporters":[]}
+16:02:44 (25459) DEBUG ChildProcessProxy Disposing of worker process 25475
+16:02:44 (25459) DEBUG ChildProcessProxy Kill 25475
+16:02:44 (25459) ERROR InitialTestExecutor One or more tests failed in the initial test run:
+	redirects to "/" when render and click on "home"
+		ReferenceError: getByRole is not defined
+    at Object.<anonymous>.test (/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/.stryker-tmp/sandbox2146509/src/tests/App.test.js:33:21)
+    at Object.asyncJestTest (/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
+    at resolve (/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/jest-jasmine2/build/queueRunner.js:43:12)
+    at new Promise (<anonymous>)
+    at mapper (/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
+    at promise.then (/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/jest-jasmine2/build/queueRunner.js:73:41)
+	redirects to "/about" when render and click on "About"
+		ReferenceError: getByRole is not defined
+    at Object.<anonymous>.test (/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/.stryker-tmp/sandbox2146509/src/tests/App.test.js:52:23)
+    at Object.asyncJestTest (/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
+    at resolve (/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/jest-jasmine2/build/queueRunner.js:43:12)
+    at new Promise (<anonymous>)
+    at mapper (/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
+    at promise.then (/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/jest-jasmine2/build/queueRunner.js:73:41)
+16:02:44 (25459) ERROR StrykerCli an error occurred Error: There were failed tests in the initial test run.
+    at InitialTestExecutor.validateResult (/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/@stryker-mutator/core/src/process/InitialTestExecutor.js:69:27)
+    at InitialTestExecutor.run (/home/bruno/Documents/Projects/Front-End/ProjetoBloco15/sd-010-a-project-react-testing-library/node_modules/@stryker-mutator/core/src/process/InitialTestExecutor.js:41:14)
