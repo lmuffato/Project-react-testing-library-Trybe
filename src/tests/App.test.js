@@ -1,27 +1,20 @@
 import React from 'react';
+import { screen } from '@testing-library/react';
+// import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
-import { render, screen, getByRole } from '@testing-library/react';
 import App from '../App';
 
-describe('test of the app', () => {
+describe('Test of app, render and nav', () => {
   test('Rendeniza na tela', () => {
     renderWithRouter(<App />);
     const title = screen.getByText('Pokédex');
     expect(title).toBeInTheDocument();
   });
-
-/*   test('renders a reading with the text `Pokédex`', () => {
-    const { getByRole } = render(<App />);
-    const h1 = getByRole(heading);
-    expect(screen.getByRole(heading)).toBeInTheDocument();
-  }); */
-  /* test('shows the Pokédex when the route is `/`', () => {
-    const { getByText } = render(
-      <MemoryRouter initialEntries={ ['/'] }>
-        <App />
-      </MemoryRouter>,
-    );
-
-    expect(getByText('Encountered pokémons')).toBeInTheDocument();
-  }); */
+  test('Encontra os links de navegação', () => {
+    renderWithRouter(<App />);
+    const links = screen.getAllByRole('link');
+    expect(links[0]).toHaveTextContent('Home');
+    expect(links[1]).toHaveTextContent('About');
+    expect(links[2]).toHaveTextContent('Favorite Pokémons');
+  });
 });
