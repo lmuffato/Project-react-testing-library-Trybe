@@ -1,14 +1,28 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from '../App';
 
-test('Renders a reading with the text `Pokédex`', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const heading = getByText(/Pokédex/i);
-  expect(heading).toBeInTheDocument();
+describe('Testando o componente <App.js />', () => {
+  it('Testando se a página e carregada no caminho de URL /, e os links', () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    const linkHome = screen.getByRole('link', {
+      name: /home/i,
+    });
+    expect(linkHome).toBeInTheDocument();
+
+    const linkAbout = screen.getByRole('link', {
+      name: /about/i,
+    });
+    expect(linkAbout).toBeInTheDocument();
+
+    const linkFavorite = screen.getByRole('link', {
+      name: /favorite pokémons/i,
+    });
+    expect(linkFavorite).toBeInTheDocument();
+  });
 });
