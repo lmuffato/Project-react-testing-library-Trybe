@@ -18,6 +18,8 @@ describe('tests the pokedex component', () => {
     151: false,
   };
   const pokemons = data;
+
+  const POKEMON_NAME = 'pokemon-name';
   const NEXT_POKEMON = 'Próximo pokémon';
 
   test('tests whether the heading is rendered with the correct text', () => {
@@ -42,7 +44,7 @@ describe('tests the pokedex component', () => {
 
     let currentPokemon;
     pokemons.forEach((pokemon) => {
-      currentPokemon = getByTestId('pokemon-name');
+      currentPokemon = getByTestId(POKEMON_NAME);
       expect(currentPokemon).toBeInTheDocument();
       expect(currentPokemon).toHaveTextContent(pokemon.name);
       userEvent.click(nextPokemon);
@@ -61,7 +63,7 @@ describe('tests the pokedex component', () => {
 
     let pokemon;
     try {
-      pokemon = getAllByTestId('pokemon-name');
+      pokemon = getAllByTestId(POKEMON_NAME);
     } catch (e) {
       pokemon = 0;
     }
@@ -115,7 +117,7 @@ describe('tests the pokedex component', () => {
 
     let currentPokemon;
     pokemons.forEach((pokemon) => {
-      currentPokemon = getByTestId('pokemon-name');
+      currentPokemon = getByTestId(POKEMON_NAME);
       expect(currentPokemon).toHaveTextContent(pokemon.name);
       userEvent.click(nextPokemon);
     });
