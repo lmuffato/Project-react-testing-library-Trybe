@@ -47,12 +47,20 @@ describe('Testando o componente App.js', () => {
     userEvent.click(homeLink);
 
     const { pathname } = history.location;
-
     expect(pathname).toBe('/');
   });
 
   it('Ao clicar no link About, é redirecionado para URL /about', () => {
-    // Escreva o teste aqui
+    const { history } = renderWithRouter(<App />);
+
+    const aboutLink = screen.getByRole('link', {
+      name: /About/i,
+    });
+
+    userEvent.click(aboutLink);
+
+    const { pathname } = history.location;
+    expect(pathname).toBe('/about');
   });
 
   it('Ao clicar no link Favorite Pokémons, é redirecionado para URL /favorites', () => {
