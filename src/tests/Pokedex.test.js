@@ -101,4 +101,14 @@ describe('tests the pokedex component', () => {
       expect(pokemonType).toHaveTextContent('Electric');
     }
   });
+  test('tests if the filter buttons reset work correctly', () => {
+    const { getByRole } = render(
+      <MemoryRouter>
+        <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ pokemonsFavorites } />
+      </MemoryRouter>,
+    );
+    const buttonReset = getByRole('button', { name: 'All' });
+    expect(buttonReset).toBeInTheDocument();
+    expect(buttonReset).toHaveTextContent('All');
+  });
 });
