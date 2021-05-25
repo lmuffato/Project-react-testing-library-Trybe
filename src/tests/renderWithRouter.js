@@ -17,3 +17,6 @@ export default function renderWithRouter(component) {
     history: historyMock, // router aqui é history
   };
 }
+
+// Referência: PR da aula do Instrutor Ícaro Harry
+// https://github.com/tryber/sd-10a-live-lectures/blob/lecture/15.3/portfolio_example/src/tests/renderWithRouter.js

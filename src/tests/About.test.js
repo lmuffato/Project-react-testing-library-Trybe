@@ -48,3 +48,7 @@ test('click on link redirects to About page', () => {
   });
   expect(aboutPage).toBeInTheDocument();
 });
+
+// Referências p/ queries de prioridade, encontrar tags p e img:
+// --> https://testing-library.com/docs/queries/about/#priority
+// --> https://stackoverflow.com/questions/60509527/jestreact-native-testing-library-how-to-test-an-image-src

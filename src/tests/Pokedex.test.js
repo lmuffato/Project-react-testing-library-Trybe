@@ -69,3 +69,9 @@ test('Pokédex has a button to reset filters', () => {
   history.push('/');
   expect(btnReset).not.toBeDisabled();
 });
+
+// Referência para erro do lint ('no magic numbers'):
+// --> https://www.apimirror.com/eslint/rules/no-magic-numbers
+// Referências para o uso de new Set -- linha 49:
+// https://github.com/tryber/sd-09-project-react-testing-library/pull/106/files
+// https://dev.to/clairecodes/how-to-create-an-array-of-unique-values-in-javascript-using-sets-5dg6

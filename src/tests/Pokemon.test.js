@@ -67,3 +67,5 @@ test('Renders a star icon on favorite Pokémons', () => {
   const imagePath = screen.getByAltText(`${mockPkm.name} is marked as favorite`);
   expect(imagePath.src).toBe('http://localhost/star-icon.svg');
 });
+
+// Referência consultada p/ mock: https://github.com/tryber/sd-09-project-react-testing-library/pull/101/files
