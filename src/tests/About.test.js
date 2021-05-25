@@ -17,4 +17,11 @@ describe('About Component', () => {
     });
     expect(title).toBeInTheDocument();
   });
+
+  test('There ara two paragraph about pokedex', () => {
+    render(<About />);
+
+    const paragraphs = screen.getAllByText(/pokémon/i);
+    expect(paragraphs.length).toBe(2);
+  });
 });
