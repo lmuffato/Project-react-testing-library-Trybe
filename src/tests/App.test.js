@@ -1,4 +1,6 @@
 import React from 'react';
+import userEvent from '@testing-library/user-event';
+import createMemoryHistory from 'history/createMemoryHistory';
 import { screen } from '@testing-library/react';
 import renderWithRouter from '../helpers/renderWithRouter';
 import App from '../App';
@@ -41,5 +43,15 @@ describe('Tests whether the navbar and its links are being rendered', () => {
     renderWithRouter(<App />);
     const favoritePokemons = screen.getByRole('link', { name: /favorite pokémons/i });
     expect(favoritePokemons).toBeInTheDocument();
+  });
+});
+
+describe('Tests click event on navbar links', () => {
+  it('link home redirects to /', () => {
+    const { history } = renderWithRouter(<App />);
+    const home = screen.getByRole('link', { name: /home/i });
+    userEvent.click(home);
+    const pathResource = history.location.pathname;
+    expect(pathResource).toBe('/');
   });
 });
