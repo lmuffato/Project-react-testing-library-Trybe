@@ -26,4 +26,19 @@ describe('Requisite 1', () => {
       const { pathname } = history.location;
       expect(pathname).toBe('/');
     });
+
+  test('Req-1.2 - O topo da aplicação contém um conjunto fixo de links de navegação.',
+    () => {
+      const { history } = renderWithRouter(
+        <App />,
+      );
+
+      const navbar = screen.getByRole('navigation');
+      expect(navbar).toBeInTheDocument();
+
+      const [linkHome, linkAbout, linkFavorites] = screen.getAllByRole('link');
+      expect(linkHome).toHaveTextContent('Home');
+      expect(linkAbout).toHaveTextContent('About');
+      expect(linkFavorites).toHaveTextContent('Favorite Pokémons');
+    });
 });
