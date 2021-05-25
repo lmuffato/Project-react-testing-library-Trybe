@@ -26,6 +26,17 @@ describe('2. Testando componente <About />', () => {
     console.log(pageTitle);
     expect(pageTitle).toHaveTextContent('About Pokédex');
   });
-  test('Teste se a página contém dois parágrafos com texto sobre a Pokédex.', () => {});
+
+  test('Teste se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
+    const { container } = render(
+      <MemoryRouter>
+        <About />
+      </MemoryRouter>,
+    );
+
+    const paragraphs = container.querySelectorAll('p');
+    expect(paragraphs).toHaveLength(2);
+  });
+
   test('Teste se a página contém a imagem de uma Pokédex:', () => {});
 });
