@@ -27,7 +27,7 @@ class PokemonDetails extends React.Component {
     return (
       <section>
         <h2>{`Summary`}</h2>
-        <p>{`${summary}`}</p>
+        <p data-testid="summary-p">{`${summary}`}</p>
       </section>
     );
   }
