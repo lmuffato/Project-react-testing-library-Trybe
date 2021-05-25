@@ -1,21 +1,11 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
-test('shows the Pokédex when the route is `/`', () => {
-  const { getByText } = render(
-    <MemoryRouter initialEntries={ ['/'] }>
-      <App />
-    </MemoryRouter>,
-  );
-
-  expect(getByText('Encountered pokémons')).toBeInTheDocument();
-});
-
 describe('test nav links at the home page', () => {
+
   it('test home link', () => {
     const { history } = renderWithRouter(<App />);
     let { pathname } = history.location;
@@ -26,6 +16,7 @@ describe('test nav links at the home page', () => {
     expect(pathname).toBe('/');
     expect(screen.getByText('Encountered pokémons')).toBeInTheDocument();
   });
+
   it('test About link', () => {
     const { history } = renderWithRouter(<App />);
     let { pathname } = history.location;
@@ -36,6 +27,7 @@ describe('test nav links at the home page', () => {
     expect(pathname).toBe('/about');
     expect(screen.getByText('About Pokédex')).toBeInTheDocument();
   });
+
   it('test Favorite Pokémons link', () => {
     const { history } = renderWithRouter(<App />);
     let { pathname } = history.location;
