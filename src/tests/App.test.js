@@ -1,31 +1,26 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
+import renderWithRouter from '../renderWithRouter/';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 
 describe('Testando o componente App.js', () => {
   it('A página Pokédex é renderizada no caminho de URL /', () => {
-    render(
-      <MemoryRouter initialEntries={ ['/'] }>
-        <App />
-      </MemoryRouter>
-    );
+    const { history } = renderWithRouter(<App />);
 
+    const { pathname } = history.location;
     const heading = screen.getByRole('heading', {
       name: /Pokédex/i,
       level: 1,
     });
 
+    expect(pathname).toBe('/');
     expect(heading).toBeInTheDocument();
   });
 
   it('A pagina contém links de navegação Home, About e Favorite Pokémons', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
-    );
+    renderWithRouter(<App />);
 
     const homeLink = screen.getByRole('link', {
       name: /Home/i,
@@ -43,7 +38,17 @@ describe('Testando o componente App.js', () => {
   });
 
   it('Ao clicar no link Home, é redirecionado para pagina inicial URL /', () => {
-    // Escreva o teste aqui
+    const { history } = renderWithRouter(<App />);
+
+    const homeLink = screen.getByRole('link', {
+      name: /Home/i,
+    });
+
+    userEvent.click(homeLink);
+
+    const { pathname } = history.location;
+
+    expect(pathname).toBe('/');
   });
 
   it('Ao clicar no link About, é redirecionado para URL /about', () => {
@@ -55,6 +60,10 @@ describe('Testando o componente App.js', () => {
   });
 
   it('URL desconhecida redireciona para página Not Found', () => {
-    // Escreva o teste aqui
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
   });
 });
