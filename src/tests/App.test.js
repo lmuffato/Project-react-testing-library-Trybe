@@ -16,7 +16,6 @@ test('renders a reading with the text `Pokédex`', () => {
 });
 
 test('Teste se a aplicação esta redirecionando para as rotas determinadas.', () => {
-
   const { getByRole } = renderWithRouter(
     <MemoryRouter>
       <App />
