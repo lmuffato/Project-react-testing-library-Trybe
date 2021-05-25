@@ -46,7 +46,7 @@ export const aboutData = {
     getRegex('One can filter Pokémons by type'),
   ],
   imgSrc:
-    'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png',
+    'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png',
 };
 
 export const favoritedPokemonsData = {
@@ -55,7 +55,7 @@ export const favoritedPokemonsData = {
     getRegex('Electric'), 
     getRegex('Average weight: 6.0 kg')
   ],
-  imgSrc: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
+  imgSrc: 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
 }
 
 export const notFoundData = {
@@ -105,7 +105,7 @@ export const pokemonData = {
     ],
     pokemonImg: {
       alt: getRegex('pikachu sprite'),
-      src: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
+      src: 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
     }
   },
 }
@@ -120,12 +120,12 @@ export const pokemonDetailsData = {
     {
       mapName: getRegex('Kanto Viridian Forest'),
       alt: 'Pikachu location',
-      src: 'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png'
+      src: 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png'
     },
     {
       mapName: getRegex('Kanto Power Plant'),
       alt: 'Pikachu location',
-      src: 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png'
+      src: 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png'
     }
   ]
 }
