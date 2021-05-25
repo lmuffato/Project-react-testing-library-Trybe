@@ -1,9 +1,7 @@
-import userEvent from '@testing-library/user-event';
 import React from 'react';
-/* import { render } from '@testing-library/react';
-import userEvent from '@testing-library/user-event'; */
-import App from '../App';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../services/renderWithRouter';
+import App from '../App';
 
 describe('testando a App', () => {
   it('renders a reading with the text `Pokédex`', () => {
