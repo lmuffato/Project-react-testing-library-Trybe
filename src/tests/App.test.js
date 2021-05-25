@@ -1,6 +1,4 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
@@ -11,13 +9,13 @@ describe('Requisito 1 - Teste o componente <App.js />',
     ao carregar a aplicação no caminho de URL /.`,
     () => {
       const { getByText } = renderWithRouter(<App />);
-      const heading = getByText(/Pokédex/i);
+      const heading = getByText(/pokédex/i);
       expect(heading).toBeInTheDocument();
     });
     it(`Teste se o topo da aplicação contém um conjunto fixo de links de navegação
-    O primeiro link deve possuir o texto Home.
-    O segundo link deve possuir o texto About.
-    O terceiro link deve possuir o texto Favorite Pokémons.`,
+    O primeiro link deve possuir o texto Home
+    O segundo link deve possuir o texto About
+    O terceiro link deve possuir o texto Favorite Pokémons`,
     () => {
       const { getByRole } = renderWithRouter(<App />);
       const nav = getByRole('navigation');
@@ -28,7 +26,7 @@ describe('Requisito 1 - Teste o componente <App.js />',
       expect(navLinks[2]).toHaveTextContent('Favorite Pokémons');
     });
     it(`Teste se a aplicação é redirecionada para a página inicial,
-    na URL / ao clicar no link Home da barra de navegação.`,
+    na URL / ao clicar no link Home da barra de navegação`,
     () => {
       const { getByRole, history } = renderWithRouter(<App />);
       const home = getByRole('link', { name: 'Home' });
@@ -36,7 +34,7 @@ describe('Requisito 1 - Teste o componente <App.js />',
       expect(history.location.pathname).toBe('/');
     });
     it(`Teste se a aplicação é redirecionada para a página de About,
-    na URL /about, ao clicar no link About da barra de navegação.`,
+    na URL /about, ao clicar no link About da barra de navegação`,
     () => {
       const { getByRole, history } = renderWithRouter(<App />);
       const about = getByRole('link', { name: 'About' });
@@ -44,7 +42,7 @@ describe('Requisito 1 - Teste o componente <App.js />',
       expect(history.location.pathname).toBe('/about');
     });
     it(`Teste se a aplicação é redirecionada para a página de Pokémons Favoritados,
-    na URL /favorites, ao clicar no link Favorite Pokémons da barra de navegação.`,
+    na URL /favorites, ao clicar no link Favorite Pokémons da barra de navegação`,
     () => {
       const { getByRole, history } = renderWithRouter(<App />);
       const favorites = getByRole('link', { name: 'Favorite Pokémons' });
@@ -52,7 +50,7 @@ describe('Requisito 1 - Teste o componente <App.js />',
       expect(history.location.pathname).toBe('/favorites');
     });
     it(`Teste se a aplicação é redirecionada para a página Not Found
-    ao entrar em uma URL desconhecida.`,
+    ao entrar em uma URL desconhecida`,
     () => {
       const { getByRole, history } = renderWithRouter(<App />);
       history.push('/paginaquenaoexiste');
