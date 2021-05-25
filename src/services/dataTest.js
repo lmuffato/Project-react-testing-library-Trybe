@@ -34,3 +34,7 @@ export const favoritedPokemonsData = {
   ],
   imgSrc: 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
 }
+
+export const notFoundData = {
+  imgSrc: 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif'
+}
