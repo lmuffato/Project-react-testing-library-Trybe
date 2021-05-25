@@ -28,77 +28,79 @@ const mockPkm = {
   ],
 };
 
-test('Detailed information about selected Pokémon are rendered on screen', () => {
-  const { history, getByRole } = renderWithRouter(<App />);
+describe('PokemonDetails component', () => {
+  test('Detailed information about selected Pokémon are rendered on screen', () => {
+    const { history, getByRole } = renderWithRouter(<App />);
 
-  const linkDetailsPage = getByRole('link', {
-    name: /more details/i,
+    const linkDetailsPage = getByRole('link', {
+      name: /more details/i,
+    });
+    userEvent.click(linkDetailsPage);
+
+    expect(history.location.pathname).toBe(`/pokemons/${mockPkm.id}`);
+
+    expect(linkDetailsPage).not.toBeInTheDocument();
+
+    const headingDetailsPage = getByRole('heading', {
+      name: `${mockPkm.name} Details`,
+      level: 2,
+    });
+    expect(headingDetailsPage).toBeInTheDocument();
+
+    const headingSummary = getByRole('heading', {
+      name: 'Summary',
+      level: 2,
+    });
+    expect(headingSummary).toBeInTheDocument();
+
+    const paragraph = screen
+      .getByText(
+        (content, element) => element.tagName.toLowerCase() === 'p'
+        && content.includes('Pokémon'),
+      );
+    expect(paragraph).toBeInTheDocument();
   });
-  userEvent.click(linkDetailsPage);
 
-  expect(history.location.pathname).toBe(`/pokemons/${mockPkm.id}`);
+  test('Page renders a section with maps and locations of pokémon', () => {
+    const { history, getByRole } = renderWithRouter(<App />);
+    history.push(`/pokemons/${mockPkm.id}`);
 
-  expect(linkDetailsPage).not.toBeInTheDocument();
+    const headingGameLocations = getByRole('heading', {
+      name: `Game Locations of ${mockPkm.name}`,
+      level: 2,
+    });
+    expect(headingGameLocations).toBeInTheDocument();
 
-  const headingDetailsPage = getByRole('heading', {
-    name: `${mockPkm.name} Details`,
-    level: 2,
-  });
-  expect(headingDetailsPage).toBeInTheDocument();
+    const altText = `${mockPkm.name} location`;
+    const imageAlt = screen.getAllByAltText(altText);
+    expect(imageAlt).toHaveLength(2);
+    expect(imageAlt[0].src).toBe(mockPkm.foundAt[0].map);
+    expect(imageAlt[1].src).toBe(mockPkm.foundAt[1].map);
 
-  const headingSummary = getByRole('heading', {
-    name: 'Summary',
-    level: 2,
-  });
-  expect(headingSummary).toBeInTheDocument();
-
-  const paragraph = screen
-    .getByText(
-      (content, element) => element.tagName.toLowerCase() === 'p'
-      && content.includes('Pokémon'),
+    const emElement = screen.getAllByText(
+      (content, element) => element.tagName.toLowerCase() === 'em'
+      && content.includes('Kanto'),
     );
-  expect(paragraph).toBeInTheDocument();
-});
-
-test('Page renders a section with maps and locations of pokémon', () => {
-  const { history, getByRole } = renderWithRouter(<App />);
-  history.push(`/pokemons/${mockPkm.id}`);
-
-  const headingGameLocations = getByRole('heading', {
-    name: `Game Locations of ${mockPkm.name}`,
-    level: 2,
+    expect(emElement).toHaveLength(2);
   });
-  expect(headingGameLocations).toBeInTheDocument();
 
-  const altText = `${mockPkm.name} location`;
-  const imageAlt = screen.getAllByAltText(altText);
-  expect(imageAlt).toHaveLength(2);
-  expect(imageAlt[0].src).toBe(mockPkm.foundAt[0].map);
-  expect(imageAlt[1].src).toBe(mockPkm.foundAt[1].map);
+  test('User can mark a pokémon as favorite through the PokémonDetails page', () => {
+    const { history } = renderWithRouter(<App />);
 
-  const emElement = screen.getAllByText(
-    (content, element) => element.tagName.toLowerCase() === 'em'
-    && content.includes('Kanto'),
-  );
-  expect(emElement).toHaveLength(2);
-});
+    history.push(`/pokemons/${mockPkm.id}`);
 
-test('User can mark a pokémon as favorite through the PokémonDetails page', () => {
-  const { history } = renderWithRouter(<App />);
+    const checkbox = screen.getByText('Pokémon favoritado?');
+    const checkboxLabel = screen.getByLabelText('Pokémon favoritado?');
 
-  history.push(`/pokemons/${mockPkm.id}`);
+    userEvent.click(checkbox);
+    expect(checkboxLabel).toBeChecked();
 
-  const checkbox = screen.getByText('Pokémon favoritado?');
-  const checkboxLabel = screen.getByLabelText('Pokémon favoritado?');
+    history.push('/favorites');
+    const pokemonName = screen.getByTestId('pokemon-name');
+    expect(pokemonName).toBeInTheDocument();
 
-  userEvent.click(checkbox);
-  expect(checkboxLabel).toBeChecked();
-
-  history.push('/favorites');
-  const pokemonName = screen.getByTestId('pokemon-name');
-  expect(pokemonName).toBeInTheDocument();
-
-  history.push(`/pokemons/${mockPkm.id}`);
-  userEvent.click(checkbox);
-  expect(checkboxLabel).not.toBeChecked();
+    history.push(`/pokemons/${mockPkm.id}`);
+    userEvent.click(checkbox);
+    expect(checkboxLabel).not.toBeChecked();
+  });
 });
