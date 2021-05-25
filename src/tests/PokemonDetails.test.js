@@ -6,7 +6,7 @@ import App from '../App';
 const rotaDetails = '/pokemons/23';
 
 test('Testa si contem informações de um pokemon espesifico', () => {
-  const { getByRole, getByTestId, history } = renderWithRouter(<App />);
+  const { getByRole, getByTestId, getByText, history } = renderWithRouter(<App />);
 
   history.push(rotaDetails);
 
@@ -27,7 +27,7 @@ test('Testa si contem informações de um pokemon espesifico', () => {
 
   const string = /It can freely detach its jaw to swallow large prey whole/i;
 
-  const textSumary = getByTestId('text-summary');
+  const textSumary = getByText(string);
 
   const name = getByTestId('pokemon-name');
   const type = getByTestId('pokemon-type');
