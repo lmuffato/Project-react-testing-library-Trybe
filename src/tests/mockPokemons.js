@@ -19,6 +19,8 @@ const pokemons = [
         map: 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
       },
     ],
+    summary: 'This intelligent Pokémon roasts hard berries'
+    + ' with electricity to make them tender enough to eat.',
   },
   {
     id: 4,
