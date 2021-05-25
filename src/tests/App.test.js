@@ -30,4 +30,17 @@ describe('tenting App', () => {
     expect(secondLink).toBeInTheDocument();
     expect(thirdLink).toBeInTheDocument();
   });
+
+  test('Home renders app', () => {
+    const { getByText } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+
+    const link = getByText(/home/i);
+    userEvent.click(link);
+    const pokedex = getByText(/encountered pokémons/i);
+    expect(pokedex).toBeInTheDocument();
+  });
 });
