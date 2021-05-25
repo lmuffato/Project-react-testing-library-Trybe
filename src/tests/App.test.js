@@ -21,3 +21,30 @@ test('página principal é renderizada ao carregar a aplicação no caminho de U
   );
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
+
+test('O primeiro link deve possuir o texto Home', () => {
+  const { getByText } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
+  expect(getByText(/Home/i)).toBeInTheDocument();
+});
+
+test('O segundo link deve possuir o texto About', () => {
+  const { getByText } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
+  expect(getByText(/About/i)).toBeInTheDocument();
+});
+
+test('O terceiro link deve possuir o texto Favorite Pokémons', () => {
+  const { getByText } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
+  expect(getByText(/Favorite Pokémons/i)).toBeInTheDocument();
+});
