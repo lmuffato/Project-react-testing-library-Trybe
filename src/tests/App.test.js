@@ -25,7 +25,7 @@ test('shows the Pokédex when the route is `/`', () => {
 });
 
 describe('Teste  de redenrização da página principal da Pokédex /', () => {
-  test('vErifica se redenrizou o App', () => {
+  test('Verifica se redenrizou o App', () => {
     const { getByText } = renderWithRouter(<App />);
     const text = getByText('Pokédex');
     expect(text).toBeInTheDocument();
