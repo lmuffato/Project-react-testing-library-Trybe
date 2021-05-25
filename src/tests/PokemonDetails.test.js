@@ -13,7 +13,9 @@ describe('Testes para o componente "PokemonDetails.js"', () => {
     userEvent.click(link(/more details/i));
 
     expect(screen.queryByRole(/more details/i)).toBeNull();
-    const summary = screen.getByTestId('summary-p');
+    const pikachuSummary = 'This intelligent Pokémon roasts hard'
+    + ' berries with electricity to make them tender enough to eat.';
+    const summary = screen.getByText(pikachuSummary);
     expectToBeInTheDocument(
       screen.getByText('Pikachu Details'),
       screen.getByRole('heading', {
@@ -23,8 +25,7 @@ describe('Testes para o componente "PokemonDetails.js"', () => {
       summary,
     );
 
-    expect(summary.textContent).toBe('This intelligent Pokémon roasts hard'
-    + ' berries with electricity to make them tender enough to eat.');
+    expect(summary.textContent).toBe(pikachuSummary);
   });
 
   test('Existe na página uma seção com os mapas contendo as'
