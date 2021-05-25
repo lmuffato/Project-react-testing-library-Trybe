@@ -27,7 +27,7 @@ describe('test the pokemon component', () => {
       isFavorite={ false }
     />);
     const pokemonType = getByTestId('pokemon-weight');
-    expect(pokemonType).toHaveTextContent(/6.0 kg/i);
+    expect(pokemonType).toHaveTextContent(/average weight: 6.0 kg/i);
   });
   test('if the image of the pokemon is in the document', () => {
     const { getByRole } = renderWithRouter(<Pokemon
