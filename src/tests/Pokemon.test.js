@@ -39,7 +39,8 @@ test('page renders a card with information of one Pokémon', () => {
   expect(imagePath.src).toBe(mockPkm.image);
 });
 
-test('card contains a navigation link to PokemonDetails page', () => {
+test('card contains a navigation link to PokemonDetails page'
+ + ', correct URl path and click on the link redirects to PokemonDetails page', () => {
   const { history, getByRole } = renderWithRouter(<App />);
 
   const linkDetailsPage = getByRole('link', {
@@ -47,4 +48,22 @@ test('card contains a navigation link to PokemonDetails page', () => {
   });
   userEvent.click(linkDetailsPage);
   expect(history.location.pathname).toBe(`/pokemons/${mockPkm.id}`);
+
+  const headingDetailsPage = getByRole('heading', {
+    name: /pikachu details/i,
+    level: 2,
+  });
+  expect(headingDetailsPage).toBeInTheDocument();
+});
+
+test('Renders a star icon on favorite Pokémons', () => {
+  const { history } = renderWithRouter(<App />);
+
+  history.push(`/pokemons/${mockPkm.id}`);
+
+  userEvent.click(screen.getByText('Pokémon favoritado?'));
+  expect(screen.getByLabelText('Pokémon favoritado?')).toBeChecked();
+
+  const imagePath = screen.getByAltText(`${mockPkm.name} is marked as favorite`);
+  expect(imagePath.src).toBe('http://localhost/star-icon.svg');
 });
