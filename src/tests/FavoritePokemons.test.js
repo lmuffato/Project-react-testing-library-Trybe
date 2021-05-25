@@ -1,8 +1,6 @@
 import React from 'react';
-import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
-import renderWithRouter from './renderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
 
 test('show "No favorite pokemon found" if there are no favorite pokemons', () => {
