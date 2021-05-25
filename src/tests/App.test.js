@@ -9,6 +9,13 @@ describe('Tests whether headings are being rendered', () => {
     const heading = screen.getByRole('heading', { level: 1, name: /Pokédex/i });
     expect(heading).toBeInTheDocument();
   });
+
+  it('renders a heading with the text `Encountered pokémons`', () => {
+    renderWithRouter(<App />);
+    const heading = screen
+      .getByRole('heading', { level: 2, name: /Encountered Pokémons/i });
+    expect(heading).toBeInTheDocument();
+  });
 });
 
 describe('Tests whether the navbar and its links are being rendered', () => {
