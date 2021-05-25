@@ -102,7 +102,7 @@ describe('tests the pokedex component', () => {
     }
   });
   test('tests if the filter buttons reset work correctly', () => {
-    const { getByRole } = render(
+    const { getByRole, getByTestId } = render(
       <MemoryRouter>
         <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ pokemonsFavorites } />
       </MemoryRouter>,
@@ -110,5 +110,16 @@ describe('tests the pokedex component', () => {
     const buttonReset = getByRole('button', { name: 'All' });
     expect(buttonReset).toBeInTheDocument();
     expect(buttonReset).toHaveTextContent('All');
+
+    const nextPokemon = getByRole('button', { name: NEXT_POKEMON });
+
+    let currentPokemon;
+    pokemons.forEach((pokemon) => {
+      currentPokemon = getByTestId('pokemon-name');
+      expect(currentPokemon).toHaveTextContent(pokemon.name);
+      userEvent.click(nextPokemon);
+    });
+
+    userEvent.click(buttonReset);
   });
 });
