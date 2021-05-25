@@ -2,8 +2,6 @@ import React from 'react';
 import { About } from '../components';
 import renderWithRouter from '../components/helper';
 
-// Refatorar este Teste, não esquecer!!
-
 describe('Testa a tela de about', () => {
   it('As informações sobre a pokedex são exibidas', () => {
     const { getByRole } = renderWithRouter(<About />);
