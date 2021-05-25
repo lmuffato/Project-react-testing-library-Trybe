@@ -15,8 +15,7 @@ test('renders a reading with the text `Pokédex`', () => {
   expect(heading).toBeInTheDocument();
 });
 
-test(`Teste se a aplicação é redirecionada para a página inicial, na URL "/" 
-ao clicar no link "Home" da barra de navegação.`, () => {
+test('Teste se a aplicação esta redirecionando para as rotas determinadas.', () => {
 
   const { getByRole } = renderWithRouter(
     <MemoryRouter>
@@ -32,5 +31,9 @@ ao clicar no link "Home" da barra de navegação.`, () => {
   const linkAbout = getByRole('link', {
     name: /about/i,
   });
+  const linkFavorite = getByRole('link', {
+    name: /favorite/i,
+  });
   expect(linkAbout).toBeInTheDocument();
+  expect(linkFavorite).toBeInTheDocument();
 });
