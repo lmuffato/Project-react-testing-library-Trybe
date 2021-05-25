@@ -1,8 +1,8 @@
 import React from 'react';
-import { About } from '../components';
 import renderWithRouter from './renderWithRouter';
+import { About } from '../components';
 
-describe('Teste o componente <About.js /',
+describe('Requisito 2 - Teste o componente <About.js /',
   () => {
     it('Teste se a página contém um heading h2 com o texto About Pokédex',
       () => {

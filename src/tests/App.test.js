@@ -1,7 +1,7 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import App from '../App';
 import renderWithRouter from './renderWithRouter';
+import App from '../App';
 
 describe('Requisito 1 - Teste o componente <App.js />',
   () => {
