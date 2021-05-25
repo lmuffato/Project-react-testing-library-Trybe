@@ -11,7 +11,10 @@ describe('About Component', () => {
 
   test('Title is About Pokédex', () => {
     render(<About />);
-    const title = screen.getByRole('heading', { name: /about pokédex/i });
+    const title = screen.getByRole('heading', {
+      name: /about pokédex/i,
+      level: 2,
+    });
     expect(title).toBeInTheDocument();
   });
 });
