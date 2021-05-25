@@ -9,7 +9,6 @@ it('Testa a pagina notFound', () => {
   history.push('/nada');
   const subtitle = getByRole('heading', { level: 2, name: /Page requested not found/i });
   const image = getByAltText(altText);
-  console.log(image);
 
   expect(subtitle).toBeInTheDocument();
   expect(image.src).toBe(imgSrc);
