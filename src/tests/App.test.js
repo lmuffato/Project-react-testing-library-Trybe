@@ -29,7 +29,7 @@ describe('Requisite 1', () => {
 
   test('Req-1.2 - O topo da aplicação contém um conjunto fixo de links de navegação.',
     () => {
-      const { history } = renderWithRouter(
+      renderWithRouter(
         <App />,
       );
 
@@ -41,4 +41,26 @@ describe('Requisite 1', () => {
       expect(linkAbout).toHaveTextContent('About');
       expect(linkFavorites).toHaveTextContent('Favorite Pokémons');
     });
+
+  test('Req-1.2 - Teste se a aplicação é redirecionada para a página de About,'
+      + 'na URL /about, ao clicar no link About da barra de navegação.',
+  () => {
+    const { history } = renderWithRouter(
+      <App />,
+    );
+    const [linkHome, linkAbout, linkFavorites] = screen.getAllByRole('link');
+    userEvent.click(linkAbout);
+    const { pathname: about } = history.location;
+    expect(about).toBe('/about');
+
+    userEvent.click(linkHome);
+    userEvent.click(linkFavorites);
+    const { pathname: favorite } = history.location;
+    expect(favorite).toBe('/favorites');
+
+    history.push('/xablau');
+
+    expect(screen.getByRole('heading', { level: 2 }))
+      .toHaveTextContent(/Page requested not found/i);
+  });
 });
