@@ -83,4 +83,15 @@ describe('tests the pokemon component', () => {
     userEvent.click(linkDetails);
     expect(testLocation.pathname).toBe(`/pokemons/${pokemon.id}`);
   });
+  test('if there is a star icon on favorite Pokémon', () => {
+    const { getByRole } = render(
+      <MemoryRouter>
+        <Pokemon pokemon={ pokemon } isFavorite />
+      </MemoryRouter>,
+    );
+    const { name } = pokemon;
+    const favoriteIcon = getByRole('img', { name: `${name} is marked as favorite` });
+    expect(favoriteIcon).toBeInTheDocument();
+    expect(favoriteIcon).toHaveAttribute('src', '/star-icon.svg');
+  });
 });
