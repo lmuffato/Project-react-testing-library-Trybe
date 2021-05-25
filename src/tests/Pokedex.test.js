@@ -66,4 +66,18 @@ describe('tests the pokedex component', () => {
     }
     expect(pokemon).toHaveLength(1);
   });
+  test('if the Pokédex has the filter buttons.', () => {
+    const { getAllByTestId } = render(
+      <MemoryRouter>
+        <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ pokemonsFavorites } />
+      </MemoryRouter>,
+    );
+
+    const buttonsFilter = getAllByTestId('pokemon-type-button');
+    buttonsFilter.forEach((button) => {
+      const { type } = pokemons.find((pokemon) => pokemon.type === button.textContent);
+      expect(button).toBeInTheDocument();
+      expect(button).toHaveTextContent(type);
+    });
+  });
 });
