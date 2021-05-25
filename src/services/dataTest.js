@@ -1,4 +1,27 @@
+import pokemons from '../data';
+
 const getRegex = (pattern) => new RegExp(pattern, 'i');
+const pokemonsDisplayed = (pokemon) => {
+  const { name, type, averageWeight, image } = pokemon;
+  const { value, measurementUnit } = averageWeight
+  
+  const pokemonObj = {
+    name: getRegex(name),
+    type: getRegex(type),
+    averageWeight: getRegex(`average weight: ${value} ${measurementUnit}`),
+    img: getRegex(`${name} sprite`),
+    imgSrc: image,
+  }
+
+  return pokemonObj;
+}
+
+const filterPokemonsByType = (typePokemon) => {
+  const filteredByType = pokemons.filter(({ type }) => type === typePokemon);
+  return filteredByType.map(pokemonsDisplayed);
+};
+
+const allPokemons = pokemons.map(pokemonsDisplayed);
 
 export const appData = {
   links: [
@@ -23,7 +46,7 @@ export const aboutData = {
     getRegex('One can filter Pokémons by type'),
   ],
   imgSrc:
-    'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png',
+    'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png',
 };
 
 export const favoritedPokemonsData = {
@@ -32,9 +55,34 @@ export const favoritedPokemonsData = {
     getRegex('Electric'), 
     getRegex('Average weight: 6.0 kg')
   ],
-  imgSrc: 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
+  imgSrc: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
 }
 
 export const notFoundData = {
   imgSrc: 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif'
+}
+
+export const pokedexData = {
+  filteredPokemons: {
+    All: allPokemons,
+    Electric: filterPokemonsByType('Electric'),
+    Fire: filterPokemonsByType('Fire'),
+    Bug: filterPokemonsByType('Bug'),
+    Poison: filterPokemonsByType('Poison'),
+    Psychic: filterPokemonsByType('Psychic'),
+    Normal: filterPokemonsByType('Normal'),
+    Dragon: filterPokemonsByType('Dragon'),
+  },
+  types: [
+    'All', 'Electric', 
+    'Fire', 'Bug', 
+    'Poison', 'Psychic', 
+    'Normal', 'Dragon',
+  ],
+  typesRegex: [
+    getRegex('all'), getRegex('electric'), 
+    getRegex('fire'), getRegex('bug'), 
+    getRegex('poison'), getRegex('psychic'), 
+    getRegex('normal'), getRegex('dragon'),
+  ]
 }

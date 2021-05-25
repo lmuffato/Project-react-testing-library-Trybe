@@ -15,6 +15,10 @@ describe('Requirement 4 - renders the NotFound', () => {
       name: /page requested not found/i,
     });
     expect(headingNotFound).toBeInTheDocument();
+  });
+
+  it('renders notFound img', () => {
+    const { getByRole } = renderWithRouter(<NotFound />);
 
     const imageNotFound = getByRole('img', {
       name: /pikachu crying because the page requested was not found/i,
