@@ -86,3 +86,26 @@ export const pokedexData = {
     getRegex('normal'), getRegex('dragon'),
   ]
 }
+
+export const pokemonData = {
+  pokemonDisplayed: {
+    pokemonInfo: [
+      {
+        testId: 'pokemon-name',
+        textContent: getRegex('Pikachu'),
+      },
+      {
+        testId: 'pokemon-type',
+        textContent: getRegex('Electric'),
+      },
+      {
+        testId: 'pokemon-weight',
+        textContent: getRegex('Average weight: 6.0 kg'),
+      }
+    ],
+    pokemonImg: {
+      alt: getRegex('pikachu sprite'),
+      src: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
+    }
+  },
+}
