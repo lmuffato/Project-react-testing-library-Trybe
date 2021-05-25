@@ -3,10 +3,9 @@ import React from 'react';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
-//  Requisito 1: Teste do componete App;
 describe('Request 1: test component App', () => {
   // Renderiza um título com o texto Pokedex;
-  it('renders a reading with the text `Pokédex`', () => {
+  it('renders a heading with the text `Pokédex`', () => {
     const { getByRole } = renderWithRouter(<App />);
     const heading = getByRole('heading', {
       name: 'Pokédex',
