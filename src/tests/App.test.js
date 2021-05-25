@@ -1,24 +1,19 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
-test('renders a reading with the text `Pokédex`', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const heading = getByText(/Pokédex/i);
-  expect(heading).toBeInTheDocument();
-});
+describe('Testes para o componente "App.js"', () => {
+  test('Renderiza um heading com o texto "Pokédex"', () => {
+    const { getByText } = renderWithRouter(<App />);
+    const heading = getByText(/Pokédex/i);
+    expect(heading).toBeInTheDocument();
+  });
 
-test('shows the Pokédex when the route is `/`', () => {
-  const { getByText } = render(
-    <MemoryRouter initialEntries={ ['/'] }>
-      <App />
-    </MemoryRouter>,
-  );
+  test('A página principal da Pokédex é renderizada ao carregar a'
+  + ' aplicação no caminho de URL "/"', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    history.push('/');
 
-  expect(getByText('Encountered pokémons')).toBeInTheDocument();
+    expect(getByText('Encountered pokémons')).toBeInTheDocument();
+  });
 });
