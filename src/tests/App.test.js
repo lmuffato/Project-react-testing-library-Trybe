@@ -17,4 +17,13 @@ describe('Requisite 1', () => {
     expect(headingPokedex).toBeInTheDocument();
     expect(headingPokedex).toHaveTextContent(/pokédex/i);
   });
+
+  test('Req-1.1 - Pokédex é renderizada ao carregar a aplicação no caminho de URL /',
+    () => {
+      const { history } = renderWithRouter(
+        <App />,
+      );
+      const { pathname } = history.location;
+      expect(pathname).toBe('/');
+    });
 });
