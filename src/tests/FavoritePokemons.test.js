@@ -22,7 +22,7 @@ const getAllFavorites = (getByRole, getAllByRole) => {
   const favoritePokemons = getAllByRole('img', { name: /is marked as favorite/i });
   return favoritePokemons;
 };
-describe('Teste o componente <FavoritePokemons.js />',
+describe('Requisito 3 - Teste o componente <FavoritePokemons.js />',
   () => {
     it(`Teste se é exibido na tela a mensagem No favorite pokemon found,
     se a pessoa não tiver pokémons favoritos`,

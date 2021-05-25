@@ -1,9 +1,8 @@
 import React from 'react';
-import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import { NotFound } from '../components';
 
-describe('Teste o componente <NotFound.js />',
+describe('Requisito 4 - Teste o componente <NotFound.js />',
   () => {
     it('Teste se página contém um heading h2 com o texto Page requested not found 😭',
       () => {
