@@ -47,11 +47,19 @@ describe('Tests whether the navbar and its links are being rendered', () => {
 });
 
 describe('Tests click event on navbar links', () => {
-  it('link home redirects to /', () => {
+  it('link Home redirects to /about', () => {
     const { history } = renderWithRouter(<App />);
     const home = screen.getByRole('link', { name: /home/i });
     userEvent.click(home);
     const pathResource = history.location.pathname;
     expect(pathResource).toBe('/');
+  });
+
+  it('link About redirects to /', () => {
+    const { history } = renderWithRouter(<App />);
+    const home = screen.getByRole('link', { name: /about/i });
+    userEvent.click(home);
+    const pathResource = history.location.pathname;
+    expect(pathResource).toBe('/about');
   });
 });
