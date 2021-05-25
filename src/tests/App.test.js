@@ -5,7 +5,6 @@ import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
 describe('test nav links at the home page', () => {
-
   it('test home link', () => {
     const { history } = renderWithRouter(<App />);
     let { pathname } = history.location;
