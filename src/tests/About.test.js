@@ -4,7 +4,8 @@ import React from 'react';
 import renderWithRouter from './renderWithRouter';
 import About from '../components/About';
 
-test('page contains information about Pokédex', () => {
+test('page contains information about Pokédex, and '
+ + 'contains 2 paragraphs about Pokédex', () => {
   const { history } = renderWithRouter(<About />);
 
   history.push('/about');
@@ -25,6 +26,9 @@ test('page contains a h2 heading with text `About Pokédex`', () => {
   expect(aboutPage).toBeInTheDocument();
 });
 
-test('', () => {
-  
-})
+test('page contains image of a Pokédex', () => {
+  const { history } = renderWithRouter(<About />);
+  history.push('/about');
+  const imagePath = screen.getByAltText('Pokédex');
+  expect(imagePath.src).toBe('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+});
