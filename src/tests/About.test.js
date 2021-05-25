@@ -32,11 +32,9 @@ describe('testing the component About', () => {
   it('Test if the page contains the Pokédex image', () => {
     const { getByAltText, getByRole } = renderWithRouter(<About />);
     const image = getByAltText('Pokédex');
-    const srcImage = getByRole('img', {
-      src: 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png.',
-    });
+    const srcImage = getByRole('img');
 
     expect(image).toBeInTheDocument();
-    expect(srcImage).toBeInTheDocument();
+    expect(srcImage).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 });
