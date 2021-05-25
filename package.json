@@ -16,7 +16,7 @@
     "react-scripts": "^3.4.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "BROWSER='microsoft-edge-dev' react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test-coverage": "react-scripts test --coverage --watchAll=false",
