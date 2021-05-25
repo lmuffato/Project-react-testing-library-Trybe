@@ -1,6 +1,7 @@
 import React from 'react';
+import userEvent from '@testing-library/user-event';
 import { render } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Route } from 'react-router-dom';
 import { Pokemon } from '../components';
 
 describe('tests the pokemon component', () => {
@@ -63,5 +64,23 @@ describe('tests the pokemon component', () => {
     );
     const linkDetails = getByRole('link', { name: /More details/i });
     expect(linkDetails).toHaveAttribute('href', `/pokemons/${pokemon.id}`);
+  });
+  test('if you click on the navigation link, you are redirected to details', () => {
+    let testLocation;
+    const { getByRole } = render(
+      <MemoryRouter>
+        <Pokemon pokemon={ pokemon } isFavorite={ false } />
+        <Route
+          path="/"
+          render={ ({ location }) => {
+            testLocation = location;
+            return null;
+          } }
+        />
+      </MemoryRouter>,
+    );
+    const linkDetails = getByRole('link', { name: /More details/i });
+    userEvent.click(linkDetails);
+    expect(testLocation.pathname).toBe(`/pokemons/${pokemon.id}`);
   });
 });
