@@ -18,6 +18,7 @@ describe('tests the pokedex component', () => {
     151: false,
   };
   const pokemons = data;
+  const NEXT_POKEMON = 'Próximo pokémon';
 
   test('tests whether the heading is rendered with the correct text', () => {
     const { getByRole } = render(
@@ -36,7 +37,7 @@ describe('tests the pokedex component', () => {
       </MemoryRouter>,
     );
 
-    const nextPokemon = getByRole('button', { name: 'Próximo pokémon' });
+    const nextPokemon = getByRole('button', { name: NEXT_POKEMON });
     expect(nextPokemon).toHaveTextContent('Próximo pokémon');
 
     let currentPokemon;
@@ -79,5 +80,25 @@ describe('tests the pokedex component', () => {
       expect(button).toBeInTheDocument();
       expect(button).toHaveTextContent(type);
     });
+  });
+  test('tests if the filter buttons work correctly', () => {
+    const { getAllByTestId, getByTestId, getByRole } = render(
+      <MemoryRouter>
+        <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ pokemonsFavorites } />
+      </MemoryRouter>,
+    );
+
+    let pokemonType;
+
+    const buttonsFilter = getAllByTestId('pokemon-type-button');
+    userEvent.click(buttonsFilter[0]);
+
+    const nextPokemon = getByRole('button', { name: NEXT_POKEMON });
+
+    for (let i = 0; i < pokemons.length; i += 1) {
+      pokemonType = getByTestId('pokemon-type');
+      userEvent.click(nextPokemon);
+      expect(pokemonType).toHaveTextContent('Electric');
+    }
   });
 });
