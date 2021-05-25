@@ -51,4 +51,19 @@ describe('tests the pokedex component', () => {
     expect(currentPokemon).toHaveTextContent(pokemons[0].name);
     userEvent.click(nextPokemon);
   });
+  test('if only one Pokémon is shown at a time', () => {
+    const { getAllByTestId } = render(
+      <MemoryRouter>
+        <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ pokemonsFavorites } />
+      </MemoryRouter>,
+    );
+
+    let pokemon;
+    try {
+      pokemon = getAllByTestId('pokemon-name');
+    } catch (e) {
+      pokemon = 0;
+    }
+    expect(pokemon).toHaveLength(1);
+  });
 });
