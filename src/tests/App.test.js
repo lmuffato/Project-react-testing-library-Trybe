@@ -1,9 +1,10 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
+// import { createMemoryHistory } from 'history';
+// import userEvent from '@testing-library/user-event';
 import App from '../App';
-import userEvent from '@testing-library/user-event';
+import renderWithRouter from './renderWithRouter';
 
 test('renders a reading with the text `Pokédex`', () => {
   const { getByText } = render(
@@ -15,19 +16,19 @@ test('renders a reading with the text `Pokédex`', () => {
   expect(heading).toBeInTheDocument();
 });
 
-it('testa se o primeiro link contém o texto "Home"', () => {
+test('testa se o primeiro link contém o texto "Home"', () => {
   const { getByText } = renderWithRouter(<App />);
   const home = getByText(/Home/i);
   expect(home).toBeInTheDocument();
 });
 
-it('testa se o primeiro link contém o texto "About"', () => {
+test('testa se o primeiro link contém o texto "About"', () => {
   const { getByText } = renderWithRouter(<App />);
   const home = getByText(/About/i);
   expect(home).toBeInTheDocument();
 });
 
-it('testa se o primeiro link contém o texto "Favorite Pokémons"', () => {
+test('testa se o primeiro link contém o texto "Favorite Pokémons"', () => {
   const { getByText } = renderWithRouter(<App />);
   const home = getByText(/Favorite Pokémons/i);
   expect(home).toBeInTheDocument();
