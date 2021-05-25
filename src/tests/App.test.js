@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import App from '../App';
 
-test('renders a reading with the text `Pokédex`', () => {
+test('Renders a reading with the text `Pokédex`', () => {
   const { getByText } = render(
     <MemoryRouter>
       <App />
