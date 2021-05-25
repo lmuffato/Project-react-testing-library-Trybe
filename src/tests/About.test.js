@@ -1,6 +1,5 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../services/renderWithRouter';
 import About from '../components/About';
 
