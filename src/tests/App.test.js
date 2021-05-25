@@ -21,4 +21,9 @@ describe('Tests the <App> component', () => {
     const home = screen.getByRole('link', { name: /about/i });
     expect(home).toBeInTheDocument();
   });
+
+  it('renders a link with text favorite pokémons', () => {
+    renderWithRouter(<App />);
+    const favoritePokemons = screen.getByRole('link', { name: /favorite pokémons/i });
+  });
 });
