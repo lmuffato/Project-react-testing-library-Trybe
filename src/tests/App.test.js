@@ -59,4 +59,13 @@ describe('Testando o componente App', () => {
     });
     expect(titlePage).toBeInTheDocument();
   });
+  test('redirecionada para a pag not found ao digitar link desconhecido.', () => {
+    const { getByRole, history } = renderWithRouter(<App />);
+    history.push('/jkjlkjlk');
+    const titlePage = getByRole('heading', {
+      name: /Page requested not found/i,
+      level: 2,
+    });
+    expect(titlePage).toBeInTheDocument();
+  });
 });
