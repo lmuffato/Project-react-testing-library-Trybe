@@ -18,4 +18,21 @@ describe('testing the component App', () => {
     expect(heading).toBeInTheDocument();
   });
 
+  it('testing fixed set of navegation links', () => {
+    const { getByRole } = renderWithRouter(<App />);
+    const linkHome = getByRole('link', {
+      name: /home/i,
+    });
+    expect(linkHome).toBeInTheDocument();
+
+    const linkAbout = getByRole('link', {
+      name: /about/i,
+    });
+    expect(linkAbout).toBeInTheDocument();
+
+    const linkFavorites = getByRole('link', {
+      name: /favorite pokémons/i,
+    });
+    expect(linkFavorites).toBeInTheDocument();
+  });
 });
