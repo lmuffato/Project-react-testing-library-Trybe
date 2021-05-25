@@ -4,9 +4,12 @@ import About from '../components/About';
 
 describe('`About` component', () => {
   it('Test if \'About\'\'s title is rendered', () => {
-    const { getByText } = renderWithRouter(<About />);
+    const { getByText, getByRole } = renderWithRouter(<About />);
+    const title = getByRole('heading', { level: 2 });
+    expect(title).toBeInTheDocument();
     expect(getByText(/About Pokédex/i)).toBeInTheDocument();
   });
+
   it('Test \'About\'\'s image is rendered', () => {
     const { getByRole } = renderWithRouter(<About />);
     const pokedexImg = getByRole('img');
