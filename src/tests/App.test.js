@@ -1,5 +1,5 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import App from '../App';
 
@@ -13,4 +13,23 @@ test('renders a reading with the text `Pokédex`', () => {
   expect(heading).toBeInTheDocument();
 });
 
-// first commit
+test('renders home, about and favorite pokémons links', () => {
+  const { getByRole } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
+
+  const homeLink = getByRole('link', {
+    name: /home/i,
+  });
+  const aboutLink = getByRole('link', {
+    name: /about/i,
+  });
+  const favoriteLink = getByRole('link', {
+    name: /favorite pokémons/i,
+  });
+  expect(homeLink).toBeInTheDocument();
+  expect(aboutLink).toBeInTheDocument();
+  expect(favoriteLink).toBeInTheDocument();
+});
