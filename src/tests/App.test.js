@@ -1,6 +1,5 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import createMemoryHistory from 'history/createMemoryHistory';
 import { screen } from '@testing-library/react';
 import renderWithRouter from '../helpers/renderWithRouter';
 import App from '../App';
@@ -46,20 +45,29 @@ describe('Tests whether the navbar and its links are being rendered', () => {
   });
 });
 
-describe('Tests click event on navbar links', () => {
-  it('link Home redirects to /about', () => {
+describe('Tests if you click on the navbar link the page is redirected', () => {
+  it('link About redirects to /about', () => {
     const { history } = renderWithRouter(<App />);
-    const home = screen.getByRole('link', { name: /home/i });
-    userEvent.click(home);
-    const pathResource = history.location.pathname;
-    expect(pathResource).toBe('/');
-  });
-
-  it('link About redirects to /', () => {
-    const { history } = renderWithRouter(<App />);
-    const home = screen.getByRole('link', { name: /about/i });
-    userEvent.click(home);
+    const about = screen.getByRole('link', { name: /about/i });
+    userEvent.click(about);
     const pathResource = history.location.pathname;
     expect(pathResource).toBe('/about');
+    const heading = screen.getByRole('heading', { level: 2, name: /about pokédex/i });
+    expect(heading).toBeInTheDocument();
   });
 });
+
+// it('link Home redirects to /', () => {
+//   const { history } = renderWithRouter(<App />);
+//   const home = screen.getByRole('link', { name: /home/i });
+//   userEvent.click(home);
+//   const pathResource = history.location.pathname;
+//   expect(pathResource).toBe('/');
+// });
+// it('link Favorite Pokemons redirects to /favorites', () => {
+//   const { history } = renderWithRouter(<App />);
+//   const home = screen.getByRole('link', { name: /favorite pokémons/i });
+//   userEvent.click(home);
+//   const pathResource = history.location.pathname;
+//   expect(pathResource).toBe('/about');
+// });
