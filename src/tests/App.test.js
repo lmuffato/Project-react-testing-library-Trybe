@@ -10,9 +10,15 @@ describe('Tests the <App> component', () => {
     expect(heading).toBeInTheDocument();
   });
 
-  it('renders a heading with the text `Pokédex`', () => {
+  it('renders a link with text home', () => {
     renderWithRouter(<App />);
     const home = screen.getByRole('link', { name: /home/i });
+    expect(home).toBeInTheDocument();
+  });
+
+  it('renders a link with text about', () => {
+    renderWithRouter(<App />);
+    const home = screen.getByRole('link', { name: /about/i });
     expect(home).toBeInTheDocument();
   });
 });
