@@ -6,7 +6,7 @@ import App from '../App';
 describe('Tests whether headings are being rendered', () => {
   it('renders a heading with the text `Pokédex`', () => {
     renderWithRouter(<App />);
-    const heading = screen.getByText(/Pokédex/i);
+    const heading = screen.getByRole('heading', { level: 1, name: /Pokédex/i });
     expect(heading).toBeInTheDocument();
   });
 });
