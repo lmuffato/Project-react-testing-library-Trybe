@@ -14,7 +14,18 @@ describe('2. Testando componente <About />', () => {
     const aboutHeading = getByText('About Pokédex');
     expect(aboutHeading).toBeInTheDocument();
   });
-  test('Teste se a página contém um heading h2 com o texto About Pokédex', () => {});
+
+  test('Teste se a página contém um heading h2 com o texto About Pokédex', () => {
+    const { getByRole } = render(
+      <MemoryRouter>
+        <About />
+      </MemoryRouter>,
+    );
+
+    const pageTitle = getByRole('heading', { level: 2 });
+    console.log(pageTitle);
+    expect(pageTitle).toHaveTextContent('About Pokédex');
+  });
   test('Teste se a página contém dois parágrafos com texto sobre a Pokédex.', () => {});
   test('Teste se a página contém a imagem de uma Pokédex:', () => {});
 });
