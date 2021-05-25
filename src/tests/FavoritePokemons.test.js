@@ -24,4 +24,18 @@ describe('with render correct results to favorites pokemons', () => {
     const pokemonsName = getAllByTestId('pokemon-name');
     expect(pokemonsName).toHaveLength(pokemons.length);
   });
+  test('test if no Pokémon card is displayed, if it is not favored.', () => {
+    const { getAllByTestId } = render(
+      <MemoryRouter>
+        <FavoritePokemons pokemons={ [] } />
+      </MemoryRouter>,
+    );
+    let pokemonName;
+    try {
+      pokemonName = getAllByTestId('pokemon-name');
+    } catch (e) {
+      pokemonName = undefined;
+    }
+    expect(pokemonName).toBe(undefined);
+  });
 });
