@@ -1,6 +1,6 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import renderWithRouter from './renderWithRouter';
+import renderWithRouter from './renderWithHistory';
 import App from '../App';
 
 describe('testes do component App.js', () => {
