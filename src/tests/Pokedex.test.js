@@ -5,7 +5,7 @@ import App from '../App';
 import renderWithRouter from './renderWithRouter';
 import pokemons from '../data';
 
-test('page renders a h2 heading with text `Encountered pokémons`', () => {
+test('Page renders a h2 heading with text `Encountered pokémons`', () => {
   const { getByRole, history } = renderWithRouter(<App />);
   history.push('/');
   const encounteredPkms = getByRole('heading', {
@@ -15,7 +15,7 @@ test('page renders a h2 heading with text `Encountered pokémons`', () => {
   expect(encounteredPkms).toBeInTheDocument();
 });
 
-test('click on button `next-pokémon` renders the next pokémon of the list'
+test('Click on button `next-pokémon` renders the next pokémon of the list'
  + ' and only one Pokémon is shown each time', () => {
   const { history } = renderWithRouter(<App />);
 
@@ -40,7 +40,8 @@ test('click on button `next-pokémon` renders the next pokémon of the list'
   expect(pokemonWeight).toHaveLength(1);
 });
 
-test('pokédex has filter buttons', () => {
+test('Pokédex has filter buttons'
+ + ' and if there is one button for each Pokémon type', () => {
   const { history } = renderWithRouter(<App />);
 
   history.push('/');
@@ -54,8 +55,8 @@ test('pokédex has filter buttons', () => {
   });
 });
 
-test('pokédex has a button to reset filters', () => {
-  const { history } = renderWithRouter(<App />);
+test('Pokédex has a button to reset filters', () => {
+  const { history, getByRole } = renderWithRouter(<App />);
 
   history.push('/');
 
@@ -64,4 +65,7 @@ test('pokédex has a button to reset filters', () => {
   });
   expect(btnReset).toBeInTheDocument();
   userEvent.click(btnReset);
+
+  history.push('/');
+  expect(btnReset).not.toBeDisabled();
 });
