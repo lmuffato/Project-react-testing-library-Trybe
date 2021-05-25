@@ -21,4 +21,11 @@ describe('Requisito 2', () => {
     expect(tagP[0]).toHaveTextContent(/digital encyclopedia/i);
     expect(tagP[1]).toHaveTextContent(/see more details for each/i);
   });
+
+  test('A página contém a imagem 800px-Gen_I_Pok%C3%A9dex.png', () => {
+    renderWithRouter(<About />);
+
+    const img = screen.getByAltText(/pokédex/i);
+    expect(img.src).toBe('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+  });
 });
