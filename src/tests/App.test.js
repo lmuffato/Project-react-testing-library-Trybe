@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
 
-describe('Testes do componente "App.js" (requirement 1)', () => {
+describe('Requirement 1)', () => {
   it('Shows the Pokédex when the route is `/`', () => {
     const { renderApp } = renderWithRouter(<App />);
     render(renderApp);
