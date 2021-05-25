@@ -1,9 +1,9 @@
 import React from 'react';
-import { MemoryRouter, Router } from 'react-router-dom';
-import { fireEvent, render } from '@testing-library/react';
-import App from '../App';
-import userEvent from '@testing-library/user-event';
+import { Router } from 'react-router-dom';
+import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
+import userEvent from '@testing-library/user-event';
+import App from '../App';
 
 const renderWithRouter = (component) => {
   const history = createMemoryHistory();
