@@ -109,3 +109,23 @@ export const pokemonData = {
     }
   },
 }
+
+export const pokemonDetailsData = {
+  headings: [
+  getRegex('pokédex'), getRegex('pikachu details'), 
+  getRegex('summary'), getRegex('game locations of pikachu')
+],
+  resume: 'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
+  maps: [
+    {
+      mapName: getRegex('Kanto Viridian Forest'),
+      alt: 'Pikachu location',
+      src: 'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png'
+    },
+    {
+      mapName: getRegex('Kanto Power Plant'),
+      alt: 'Pikachu location',
+      src: 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png'
+    }
+  ]
+}
