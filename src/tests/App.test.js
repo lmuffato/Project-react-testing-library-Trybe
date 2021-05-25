@@ -3,11 +3,19 @@ import { screen } from '@testing-library/react';
 import renderWithRouter from '../helpers/renderWithRouter';
 import App from '../App';
 
-describe('Tests the <App> component', () => {
+describe('Tests whether headings are being rendered', () => {
   it('renders a heading with the text `Pokédex`', () => {
     renderWithRouter(<App />);
     const heading = screen.getByText(/Pokédex/i);
     expect(heading).toBeInTheDocument();
+  });
+});
+
+describe('Tests whether the navbar and its links are being rendered', () => {
+  it('renders a navbar', () => {
+    renderWithRouter(<App />);
+    const navbar = screen.getByRole('navigation');
+    expect(navbar).toBeInTheDocument();
   });
 
   it('renders a link with text home', () => {
