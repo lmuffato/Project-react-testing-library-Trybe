@@ -1,5 +1,4 @@
 import React from 'react';
-import userEvent from '@testing-library/react';
 import { FavoritePokemons } from '../components';
 import renderWithRouter from './renderWithRouter';
 
