@@ -24,7 +24,6 @@ describe('test nav links at the home page', () => {
     userEvent.click(aboutLink);
     pathname = history.location.pathname;
     expect(pathname).toBe('/about');
-    expect(screen.getByText('About Pokédex')).toBeInTheDocument();
   });
 
   it('test Favorite Pokémons link', () => {
