@@ -55,4 +55,13 @@ describe('tests the pokemon component', () => {
     expect(imgElement).toHaveAttribute('src', image);
     expect(imgElement).toHaveAttribute('alt', `${name} sprite`);
   });
+  test('whether the card contains a link to pokemon details', () => {
+    const { getByRole } = render(
+      <MemoryRouter>
+        <Pokemon pokemon={ pokemon } isFavorite={ false } />
+      </MemoryRouter>,
+    );
+    const linkDetails = getByRole('link', { name: /More details/i });
+    expect(linkDetails).toHaveAttribute('href', `/pokemons/${pokemon.id}`);
+  });
 });
