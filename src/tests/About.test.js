@@ -24,4 +24,13 @@ describe('About Component', () => {
     const paragraphs = screen.getAllByText(/pokémon/i);
     expect(paragraphs.length).toBe(2);
   });
+
+  test('Has Image tag', () => {
+    render(<About />);
+    const imgTag = screen.getByRole('img');
+    const imagePath = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
+
+    expect(imgTag).toBeInTheDocument();
+    expect(imgTag.src).toBe(imagePath);
+  });
 });
