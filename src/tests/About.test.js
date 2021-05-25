@@ -23,7 +23,6 @@ describe('2. Testando componente <About />', () => {
     );
 
     const pageTitle = getByRole('heading', { level: 2 });
-    console.log(pageTitle);
     expect(pageTitle).toHaveTextContent('About Pokédex');
   });
 
@@ -38,5 +37,15 @@ describe('2. Testando componente <About />', () => {
     expect(paragraphs).toHaveLength(2);
   });
 
-  test('Teste se a página contém a imagem de uma Pokédex:', () => {});
+  test('Teste se a página contém a imagem de uma Pokédex:', () => {
+    const { getByAltText } = render(
+      <MemoryRouter>
+        <About />
+      </MemoryRouter>,
+    );
+
+    const imagePath = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
+    const image = getByAltText('Pokédex');
+    expect(image.src).toContain(imagePath);
+  });
 });
