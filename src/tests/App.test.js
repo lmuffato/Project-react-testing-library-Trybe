@@ -1,14 +1,15 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
+import renderWithRouter from '../renderWithRouter'
 import { render } from '@testing-library/react';
 import App from '../App';
 
-test('renders a reading with the text `Pokédex`', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const heading = getByText(/Pokédex/i);
-  expect(heading).toBeInTheDocument();
+describe('Testes componente app', ()=> {
+  test('renderiza o titulo  `Pokédex`', () => {
+    const { getByRole } = renderWithRouter(<App />);
+    const heading = getByRole('heading', {
+      name:/Pokédex/i,
+      level:1
+    });
+    expect(heading).toBeInTheDocument();
+  });
 });
