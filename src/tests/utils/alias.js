@@ -11,4 +11,14 @@ function checkIfIsRedirected({ from, to, event, history }) {
   expect(history.location.pathname).toBe(to);
 }
 
-export default { link, checkIfIsRedirected };
+function expectToBeInTheDocument(...elements) {
+  elements.forEach((element) => {
+    expect(element).toBeInTheDocument();
+  });
+}
+
+export default {
+  link,
+  checkIfIsRedirected,
+  expectToBeInTheDocument,
+};
