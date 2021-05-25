@@ -2,6 +2,7 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import App from '../App';
+import renderWithRouter from './renderWithRouter';
 
 test('renders a reading with the text `Pokédex`', () => {
   const { getByText } = render(
@@ -14,11 +15,7 @@ test('renders a reading with the text `Pokédex`', () => {
 });
 
 test('renders home, about and favorite pokémons links', () => {
-  const { getByRole } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
+  const { getByRole } = renderWithRouter(<App />);
 
   const homeLink = getByRole('link', {
     name: /home/i,
