@@ -33,4 +33,3 @@ describe('Testando o componente App', () => {
     expect(link).toHaveLength(1);
   });
 });
-
