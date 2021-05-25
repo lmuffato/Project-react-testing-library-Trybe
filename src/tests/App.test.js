@@ -6,9 +6,18 @@ import App from '../App';
 test('renders a reading with the text `Pokédex`', () => {
   const { getByText } = render(
     <MemoryRouter>
-      <App />aa
+      <App />
     </MemoryRouter>,
   );
   const heading = getByText(/Pokédex/i);
   expect(heading).toBeInTheDocument();
+});
+
+test('página principal é renderizada ao carregar a aplicação no caminho de URL /', () => {
+  const { getByText } = render(
+    <MemoryRouter initialEntries={ ['/'] }>
+      <App />
+    </MemoryRouter>,
+  );
+  expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
