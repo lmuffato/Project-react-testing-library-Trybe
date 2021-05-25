@@ -19,28 +19,36 @@ describe('Test of app, render and nav', () => {
   });
 });
 
-describe('Test of redirec', () => {
+describe('Testes de redirecionamento', () => {
   test('Teste se a aplicação é redirecionada para a página inicial, na URL /'
   + 'ao clicar no link Home da barra de navegação.', () => {
     const { history, getByText } = renderWithRouter(<App />);
     const { pathname } = history.location;
-    const about = getByText('Home');
-    userEvent.click(about);
+    const home = getByText('Home');
+    userEvent.click(home);
     expect(pathname).toBe('/');
   });
   test(`Teste se a aplicação é redirecionada para a página de About, na URL /about,
   ao clicar no link About da barra de navegação.`, () => {
-    const { history, getByText } = renderWithRouter(<App />);
+    const { history } = renderWithRouter(<App />);
+    const linkAbout = screen.getByRole('link', { name: /about/i });
+    userEvent.click(linkAbout);
     const { pathname } = history.location;
-    const favPokemons = getByText('Favorite Pokémons');
-    userEvent.click(favPokemons);
+    expect(pathname).toBe('/about');
+  });
+  test(`Teste se a aplicação é redirecionada para a página de Pokémons Favoritados, na URL
+  /favorites, ao clicar no link Favorite Pokémons da barra de navegação.`, () => {
+    const { history } = renderWithRouter(<App />);
+    const linkFavPokemons = screen.getByRole('link', { name: /favorite/i });
+    userEvent.click(linkFavPokemons);
+    const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
   });
   test(`Teste se a aplicação é redirecionada para a página Not Found
   ao entrar em uma URL desconhecida.`, () => {
     const { history, getByText } = renderWithRouter(<App />);
-    const notFound = getByText('Not Found');
     history.push('/xablau');
-    expect(notFound).toBeInTheDocument();
+    const notFound = getByText('Page requested not found');
+    expect(notFound).toBeDefined();
   });
 });
