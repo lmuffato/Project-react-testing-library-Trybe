@@ -5,7 +5,7 @@ import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
 describe('App component', () => {
-  test('renders a reading with the text `Pokédex`', () => {
+  test('Renders a reading with the text `Pokédex`', () => {
     const { getByText } = render(
       <MemoryRouter>
         <App />
@@ -15,7 +15,7 @@ describe('App component', () => {
     expect(heading).toBeInTheDocument();
   });
 
-  test('heading is rendered with text Pokédex', () => {
+  test('Heading is rendered with text Pokédex', () => {
     const { getByRole, history } = renderWithRouter(<App />);
     history.push('/');
 
@@ -26,7 +26,7 @@ describe('App component', () => {
     expect(heading).toBeInTheDocument();
   });
 
-  test('navbar contains a fixed set of navigation links', () => {
+  test('Navbar contains a fixed set of navigation links', () => {
     const { getByRole, history } = renderWithRouter(<App />);
     history.push('/');
 
@@ -49,7 +49,7 @@ describe('App component', () => {
     expect(linkFavoritePokemons).toBeInTheDocument();
   });
 
-  test('application is redirected to About, NotFound or Favorite Pokémons pages', () => {
+  test('Application is redirected to About, NotFound or Favorite Pokémons pages', () => {
     const { getByRole, history } = renderWithRouter(<App />);
 
     history.push('/about');

@@ -6,7 +6,7 @@ import About from '../components/About';
 import App from '../App';
 
 describe('About component', () => {
-  test('page contains information about Pokédex, and '
+  test('Page contains information about Pokédex, and '
     + 'contains 2 paragraphs about Pokédex', () => {
     const { history } = renderWithRouter(<About />);
 
@@ -19,7 +19,7 @@ describe('About component', () => {
     expect(paragraphs).toHaveLength(2);
   });
 
-  test('page contains a h2 heading with text `About Pokédex`', () => {
+  test('Page contains a h2 heading with text `About Pokédex`', () => {
     const { getByRole } = renderWithRouter(<About />);
     const aboutPage = getByRole('heading', {
       name: 'About Pokédex',
@@ -28,14 +28,14 @@ describe('About component', () => {
     expect(aboutPage).toBeInTheDocument();
   });
 
-  test('page contains image of a Pokédex', () => {
+  test('Page contains image of a Pokédex', () => {
     const { history } = renderWithRouter(<About />);
     history.push('/about');
     const imagePath = screen.getByAltText('Pokédex');
     expect(imagePath.src).toBe('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 
-  test('click on link redirects to About page', () => {
+  test('Click on link redirects to About page', () => {
     const { getByRole } = renderWithRouter(<App />);
 
     const linkAbout = getByRole('link', {

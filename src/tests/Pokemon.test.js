@@ -19,7 +19,7 @@ const mockPkm = {
 };
 
 describe('Pokemon component', () => {
-  test('page renders a card with information of one Pokémon', () => {
+  test('Page renders a card with information of one Pokémon', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/');
 
@@ -40,7 +40,7 @@ describe('Pokemon component', () => {
     expect(imagePath.src).toBe(mockPkm.image);
   });
 
-  test('card contains a navigation link to PokemonDetails page'
+  test('Card contains a navigation link to PokemonDetails page'
    + ', correct URl path and click on the link redirects to PokemonDetails page', () => {
     const { history, getByRole } = renderWithRouter(<App />);
 
