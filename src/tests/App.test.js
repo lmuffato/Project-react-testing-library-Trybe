@@ -32,30 +32,29 @@ describe('App', () => {
   });
 
   it('render a home when a click in link home', () => {
-    const { getByText, history } = renderWithRouter(<App />)
+    const { getByText, history } = renderWithRouter(<App />);
 
     history.push('/');
 
     fireEvent.click(getByText(/Home/));
     expect(history.location.pathname).toBe('/');
-  })
+  });
 
   it('render a home when a click in link about', () => {
-    const { getByText, history } = renderWithRouter(<App />)
+    const { getByText, history } = renderWithRouter(<App />);
 
     history.push('/');
 
     fireEvent.click(getByText(/About/));
     expect(history.location.pathname).toBe('/about');
-  })
+  });
 
   it('render a home when a click in home favorite pokemons', () => {
-    const { getByText, history } = renderWithRouter(<App />)
+    const { getByText, history } = renderWithRouter(<App />);
 
     history.push('/');
 
     fireEvent.click(getByText(/Favorite Pokémons/));
     expect(history.location.pathname).toBe('/favorites');
-  })
-}
-)
+  });
+});
