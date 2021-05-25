@@ -32,4 +32,31 @@ describe('Testando o componente App', () => {
     });
     expect(link).toHaveLength(1);
   });
+  test('Se a aplicação é redirecionada pag home ao clicar no link Home.', () => {
+    const { getByRole, history } = renderWithRouter(<App />);
+    history.push('/');
+    const titlePage = getByRole('heading', {
+      name: /Encountered pokémons/i,
+      level: 2,
+    });
+    expect(titlePage).toBeInTheDocument();
+  });
+  test('Se a aplic. é redirecionada para a pág. About ao clicar no link About.', () => {
+    const { getByRole, history } = renderWithRouter(<App />);
+    history.push('/About');
+    const titlePage = getByRole('heading', {
+      name: /About Pokédex/i,
+      level: 2,
+    });
+    expect(titlePage).toBeInTheDocument();
+  });
+  test('redirecionada para a pag favorites ao clicar no link Favorite pokémons.', () => {
+    const { getByRole, history } = renderWithRouter(<App />);
+    history.push('/Favorites');
+    const titlePage = getByRole('heading', {
+      name: /Favorite pokémons/i,
+      level: 2,
+    });
+    expect(titlePage).toBeInTheDocument();
+  });
 });
