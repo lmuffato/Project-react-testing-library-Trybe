@@ -5,6 +5,8 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 import Data from '../data';
 
+const btnNext = 'Próximo pokémon';
+
 it('contains h2 with the following text "Encountered pokémons"', () => {
   const { getByRole } = renderWithRouter(<App />);
 
@@ -20,7 +22,7 @@ test('next button', () => {
   const { getByRole } = renderWithRouter(<App />);
 
   const nextButton = getByRole('button', {
-    name: 'Próximo pokémon',
+    name: btnNext,
   });
   expect(nextButton).toBeInTheDocument();
 
@@ -53,7 +55,7 @@ test('filter options', () => {
   expect(pokemonType).toHaveTextContent('Psychic');
 
   const nextButton = getByRole('button', {
-    name: 'Próximo pokémon',
+    name: btnNext,
   });
   expect(nextButton).toBeInTheDocument();
 
@@ -77,7 +79,7 @@ test('filter "All" exists', () => {
   expect(buttonAll).toBeInTheDocument();
 
   const buttonNext = getByRole('button', {
-    name: 'Próximo pokémon',
+    name: btnNext,
   });
 
   userEvent.click(buttonAll);
@@ -92,7 +94,7 @@ it('page loads with no filters selected', () => {
   const { getByRole } = renderWithRouter(<App />);
 
   const buttonNext = getByRole('button', {
-    name: 'Próximo pokémon',
+    name: btnNext,
   });
 
   expect(screen.getByText('Pikachu')).toBeInTheDocument();
@@ -124,7 +126,7 @@ it('next button disabled if has only 1 pokemon filtered', () => {
   userEvent.click(bugTypeButton);
 
   const buttonNext = getByRole('button', {
-    name: 'Próximo pokémon',
+    name: btnNext,
   });
 
   expect(buttonNext).toBeDisabled();
