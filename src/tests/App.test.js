@@ -41,4 +41,30 @@ describe('Requisito 1', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/');
   });
+
+  it('Link about works', () => {
+    const { getByRole, history } = renderWithRouter(<App />);
+    const aboutLink = getByRole('link', {
+      name: /about/i,
+    });
+    userEvent.click(aboutLink);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/about');
+  });
+
+  it('Link favorite pokemon works', () => {
+    const { getByRole, history } = renderWithRouter(<App />);
+    const favoritesLink = getByRole('link', {
+      name: /favorite pokémons/i,
+    });
+    userEvent.click(favoritesLink);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/favorites');
+  });
+
+  it('Page not found working', () => {
+    const { history, getByText } = renderWithRouter(<App />);
+    history.push('/teste');
+    expect(getByText('Page requested not found')).toBeInTheDocument();
+  });
 }); // Describe
