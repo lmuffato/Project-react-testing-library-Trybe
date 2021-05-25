@@ -1,8 +1,7 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render, screen } from '@testing-library/react';
-import renderWithRouter from '../renderWithRouter/';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
 describe('Testando o componente App.js', () => {
@@ -77,10 +76,14 @@ describe('Testando o componente App.js', () => {
   });
 
   it('URL desconhecida redireciona para página Not Found', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
-    );
+    const { history } = renderWithRouter(<App />);
+
+    history.push('/rota-que-nao-existe');
+
+    const notFoundPageText = screen.getByRole('heading', {
+      name: /Page requested not found/i,
+    });
+
+    expect(notFoundPageText).toBeInTheDocument();
   });
 });
