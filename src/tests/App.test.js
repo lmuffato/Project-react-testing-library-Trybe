@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import App from '../App';
 
-describe('Testando o componente <App.js />', () => {
+describe('Teste o componente <App.js />', () => {
   it('Testando se a página e carregada no caminho de URL /, e os links', () => {
     render(
       <MemoryRouter>
