@@ -3,8 +3,8 @@ import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { NotFound } from '../components';
 
-describe('', () => {
-  test('', () => {
+describe('tests the notFound component', () => {
+  test('tests whether the heading is rendered with the correct text', () => {
     const { getByRole } = render(
       <MemoryRouter>
         <NotFound />
