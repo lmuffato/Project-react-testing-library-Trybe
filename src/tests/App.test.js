@@ -1,7 +1,7 @@
 import React from 'react';
-import renderWithRouter from '../renderWithRouter';
-import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { screen } from '@testing-library/react';
+import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('Teste do componente App', () => {
@@ -14,7 +14,7 @@ describe('Teste do componente App', () => {
     expect(pathname).toBe('/');
     const navTexts = ['Home', 'About', 'Favorite Pokémons'];
     const navMenu = screen.getAllByRole('link');
-    for (let i = 0; i < 3; i +=1) {
+    for (let i = 0; i < navMenu.length - 1; i += 1) {
       expect(navMenu[i].innerHTML).toBe(navTexts[i]);
     }
     const homeLink = screen.getByText('Home');
@@ -32,7 +32,7 @@ describe('Teste do componente App', () => {
     history.push('/invalido');
     const errorText = screen.getByRole('heading', {
       level: 2,
-      name: /Page requested not found/i
+      name: /Page requested not found/i,
     });
     expect(errorText).toBeInTheDocument();
   });
