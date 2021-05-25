@@ -25,5 +25,6 @@ describe('Tests the <App> component', () => {
   it('renders a link with text favorite pokémons', () => {
     renderWithRouter(<App />);
     const favoritePokemons = screen.getByRole('link', { name: /favorite pokémons/i });
+    expect(favoritePokemons).toBeInTheDocument();
   });
 });
