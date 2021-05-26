@@ -17,7 +17,8 @@ describe('testando componente PokemonDetails', () => {
     expect(pokemonName).toHaveTextContent('Pikachu');
   });
   test('testando se renderiza detalhes do mapa referente ao pokemon', () => {
-    const { getByRole, getAllByAltText, getByLabelText, getByText } = renderWithRouter(<App />);
+    const { getByRole,
+      getAllByAltText, getByLabelText, getByText } = renderWithRouter(<App />);
     const detailsButton = getByRole('link', { name: 'More details' });
     expect(detailsButton).toBeInTheDocument();
     userEvent.click(detailsButton);
