@@ -76,12 +76,14 @@ describe('Tests if you click on the navbar link the page is redirected', () => {
     const heading = screen.getByRole('heading', { level: 2, name: /favorite pokémons/i });
     expect(heading).toBeInTheDocument();
   });
-});
 
-// it('link Favorite Pokemons redirects to /favorites', () => {
-//   const { history } = renderWithRouter(<App />);
-//   const home = screen.getByRole('link', { name: /favorite pokémons/i });
-//   userEvent.click(home);
-//   const pathResource = history.location.pathname;
-//   expect(pathResource).toBe('/about');
-// });
+  it('tests application redirection to the Not Found page when entering an unknown URL.',
+    () => {
+      const { history } = renderWithRouter(<App />);
+      history.push('/not-found');
+      const noMatch = screen
+        .getByRole('heading', {
+          level: 2, name: /page requested not found/i });
+      expect(noMatch).toBeInTheDocument();
+    });
+});
