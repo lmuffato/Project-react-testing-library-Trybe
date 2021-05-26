@@ -14,6 +14,7 @@ describe('testing the component "Not Found"', () => {
     const { getByAltText } = renderWithRouter(<NotFound />);
     const image = getByAltText('Pikachu crying because the page requested was not found');
 
+    expect(image.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
     expect(image).toBeInTheDocument();
   });
 });
