@@ -120,11 +120,18 @@ describe('Test \'Pokedex\' component', () => {
       summary: 'The flame on its tail shows the strength of'
       + 'its life force. If it is weak, the flame also burns weakly.',
     }];
-    const { getAllByTestId } = renderWithRouter(
+    const { queryByRole, getByRole, getAllByTestId } = renderWithRouter(
       <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ { 25: false, 4: false } } />,
     );
     const typeButtons = getAllByTestId('pokemon-type-button');
     const typeBtnsQty = 2;
+    const electricBtn = getByRole('button', { name: /electric/i });
+    const fireBtn = getByRole('button', { name: /fire/i });
+    const bugBtn = queryByRole('button', { name: /bug/i });
+
     expect(typeButtons.length).toBe(typeBtnsQty);
+    expect(electricBtn).toBeInTheDocument();
+    expect(fireBtn).toBeInTheDocument();
+    expect(bugBtn).not.toBeInTheDocument();
   });
 });
