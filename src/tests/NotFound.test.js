@@ -11,4 +11,13 @@ describe('NotFound Component', () => {
     });
     expect(h2).toBeInTheDocument();
   });
+
+  test('Show pikachu crying image', () => {
+    render(<NotFount />);
+    const image = screen.getByAltText(/pikachu crying/i);
+    const imagePath = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
+
+    expect(image).toBeInTheDocument();
+    expect(image.src).toBe(imagePath);
+  });
 });
