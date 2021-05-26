@@ -67,3 +67,11 @@ test('Teste se a aplicação é redirecionada para a página de Pokémons Favori
   const { pathname } = history.location;
   expect(pathname).toBe('/favorites');
 });
+
+test('NotFound when not have a know url', () => {
+  const { history, getByText } = renderWithRouter(<App />);
+
+  history.push('/pageFail/');
+  const textFail = getByText(/Page requested not found/i);
+  expect(textFail).toBeInTheDocument();
+});
