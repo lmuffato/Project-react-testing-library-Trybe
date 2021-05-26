@@ -28,7 +28,7 @@ describe('Pokemon component test', () => {
     const { innerHTML: pokemonType } = screen.getByTestId('pokemon-type');
     const { innerHTML: pokemonWeight } = screen.getByTestId('pokemon-weight');
     const { value, measurementUnit } = myPokemon.averageWeight;
-    const pokemonImage = screen.getByRole('img');
+    const pokemonImage = screen.getByAltText(`${myPokemon.name} sprite`);
 
     expect(pokemonName).toBe(myPokemon.name);
     expect(pokemonType).toBe(myPokemon.type);
