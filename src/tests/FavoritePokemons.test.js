@@ -15,14 +15,22 @@ describe('test all screen application of the FavoritePokemons', () => {
 
 describe('Check card favorite pokémon', () => {
   it('screen card favorites', () => {
-    const { getByText } = renderWithRouter(<App />);
+    const { getByText, getByAltText, getByTestId } = renderWithRouter(<App />);
     const details = getByText('More details');
     userEvent.click(details);
     const checkbox = getByText('Pokémon favoritado?');
     userEvent.click(checkbox);
     const favorite = getByText('Favorite Pokémons');
     userEvent.click(favorite);
+    const pikachu = getByTestId('pokemon-name');
+    const type = getByTestId('pokemon-type');
+    const weight = getByTestId('pokemon-weight');
+    const pikachuImg = getByAltText('Pikachu sprite');
+    const pikachuAsFavorite = getByAltText('Pikachu is marked as favorite');
+    expect(pikachu).toBeInTheDocument();
+    expect(type).toBeInTheDocument();
+    expect(weight).toBeInTheDocument();
+    expect(pikachuImg).toBeInTheDocument();
+    expect(pikachuAsFavorite).toBeInTheDocument();
   });
-  const cardPokemon = getByText('Average weight:');
-  expect(cardPokemon).toBeInTheDocument();
 });
