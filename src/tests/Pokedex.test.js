@@ -64,10 +64,11 @@ describe('Pokedex', () => {
   test('There are type filter buttons', () => {
     renderWithRouter(<App />);
     const filterButtons = screen.getAllByTestId('pokemon-type-button');
-    const typesAmount = 7;
-    expect(filterButtons).toHaveLength(typesAmount);
-    expect(filterButtons[0].innerHTML).toBe('Electric');
-    expect(filterButtons[5].innerHTML).toBe('Normal');
+    const typesAmount = 6;
+    const types = ['Fire', 'Psychic', 'Electric', 'Bug', 'Poison', 'Dragon', 'Normal'];
+    const buttonsValue = filterButtons.map(({ innerHTML }) => innerHTML);
+    expect(filterButtons.length).toBeGreaterThanOrEqual(typesAmount);
+    expect(buttonsValue.sort()).toEqual(types.sort());
   });
 
   test('Click in one filter button will show only the same type pokemons', () => {
@@ -83,5 +84,30 @@ describe('Pokedex', () => {
     expect(pokemon.innerHTML).toBe('Normal');
     userEvent.click(nextPokemonBtn());
     expect(pokemon.innerHTML).toBe('Normal');
+  });
+
+  test('reset filter button', () => {
+    renderWithRouter(<App />);
+    const allButton = screen.getByRole('button', { name: /all/i });
+    const psychicButton = screen.getByRole('button', { name: /psychic/i });
+
+    const pokemon = screen.getByTestId('pokemon-type');
+    expect(allButton).toBeInTheDocument();
+
+    userEvent.click(psychicButton);
+    expect(pokemon.innerHTML).toBe('Psychic');
+
+    userEvent.click(allButton);
+    expect(pokemon.innerHTML).toBe('Electric');
+  });
+
+  test('disable next pokemon button when has one in the list', () => {
+    renderWithRouter(<App />);
+    const allButton = screen.getByRole('button', { name: /all/i });
+    const normalButton = screen.getByRole('button', { name: /normal/i });
+    userEvent.click(normalButton);
+    expect(nextPokemonBtn()).toBeDisabled();
+    userEvent.click(allButton);
+    expect(nextPokemonBtn()).not.toBeDisabled();
   });
 });
