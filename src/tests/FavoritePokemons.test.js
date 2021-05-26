@@ -1,6 +1,5 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
 
@@ -25,11 +24,12 @@ const favoritePokemonsOn = [
         map: 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
       },
     ],
-    summary: 'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
+    summary: `This intelligent Pokémon roasts hard berries with electricity
+    to make them tender enough to eat.`,
   },
 ];
 
-const favoritePokemonsNone= [];
+const favoritePokemonsNone = [];
 
 describe('testes do componente Favorite Pokemons', () => {
   test('testes gerais da página de favoritos', () => {
@@ -43,8 +43,7 @@ describe('testes do componente Favorite Pokemons', () => {
     renderWithRouter(<FavoritePokemons pokemons={ favoritePokemonsOn } />);
 
     const favPokemons = screen.getByRole('heading',
-      { level: 2, name: /favorite pokémons/i },
-    );
+      { level: 2, name: /favorite pokémons/i });
     expect(favPokemons).toBeInTheDocument();
     const pikachuImg = screen.getByAltText('Pikachu sprite');
     expect(pikachuImg).toBeInTheDocument();
