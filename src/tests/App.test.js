@@ -1,6 +1,5 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import { createMemoryHistory } from 'history';
 import App from '../App';
 import renderWithRouter from '../helpers/renderWithRouter';
 
@@ -52,9 +51,8 @@ describe('1. Testando componente <App />', () => {
   });
 
   test('o app é redirecionado para Not Found ao entrar em uma URL desconhecida', () => {
-    const { getByRole } = renderWithRouter(<App />);
+    const { getByRole, history } = renderWithRouter(<App />);
 
-    const history = createMemoryHistory();
     history.push('/xablau');
     const notFoundMsg = getByRole('heading', { level: 2 });
     expect(notFoundMsg).toBeInTheDocument();
