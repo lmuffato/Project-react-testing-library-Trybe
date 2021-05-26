@@ -24,7 +24,6 @@ describe('renders the favorites page', () => {
   it('verify if no card is rendered', () => {
     const { getByText } = renderWithRouter(<FavoritePokemons pokemons={ [] } />);
     const noFavoritesPokemons = getByText('No favorite pokemon found');
-    // const storage = localStorage.getItem('favoritePokemonIds');
 
     expect(noFavoritesPokemons).toBeInTheDocument();
   });
