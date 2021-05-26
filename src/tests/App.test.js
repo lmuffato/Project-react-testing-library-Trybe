@@ -1,7 +1,9 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from '../App';
+import renderWithRouter from './renderWithRouter';
 
 test('renders a reading with the text `Pokédex`', () => {
   const { getByText } = render(
@@ -40,4 +42,12 @@ test('Testa se o topo da aplicação contém um conjunto fixo de links de navega
 
   const navigationFav = getByText('link', { nome: /Favorite Pokémons/i });
   expect(navigationFav).toBeInTheDocument();
+});
+
+test('Teste se a aplicação é redirecionada para a página inicial', () => {
+  const { getByRole, history } = renderWithRouter(<App />);
+
+  userEvent.click(getByRole('Link', { name: /home/i }));
+  const { pathname } = history.location;
+  expect(pathname).toBe('/');
 });
