@@ -1,12 +1,19 @@
 import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
+import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithHistory';
 import App from '../App';
 
-describe('testes do component App.js', () => {
-  it('renders a reading with the text `Pokédex`', () => {
-    const { getByText } = renderWithRouter(<App />);
-    expect(getByText(/Pokédex/i)).toBeInTheDocument();
+describe('Requisite 1', () => {
+  test('shows the Pokédex when the route is `/`', () => {
+    const { getByText } = render(
+      <MemoryRouter initialEntries={ ['/'] }>
+        <App />
+      </MemoryRouter>,
+    );
+
+    expect(getByText('Encountered pokémons')).toBeInTheDocument();
   });
 
   it('Testa se a página principal da Pokédex é renderizada no caminho de URL "/"', () => {
