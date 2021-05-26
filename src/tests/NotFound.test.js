@@ -3,6 +3,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import NotFound from '../components/NotFound';
 
+// getByLabelText e getByAltText consultados na documentação
+// https://testing-library.com/docs/dom-testing-library/cheatsheet/
 describe('Component NotFound.js tests', () => {
   test('There is a h2 heading with text: Page requested not found 😭', () => {
     const { getByRole, getByLabelText } = render(
