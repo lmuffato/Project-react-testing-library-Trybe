@@ -6,6 +6,9 @@ import App from '../App';
 
 describe('Pokedex', () => {
   const pokemonTestID = 'pokemon-name';
+  const nextPokemonBtn = () => screen.getByRole('button', {
+    name: /próximo pokémon/i,
+  });
 
   test('Title is Encountered pokémons', () => {
     renderWithRouter(<App />);
@@ -19,50 +22,42 @@ describe('Pokedex', () => {
 
   test('Show next pokemon when click in button', () => {
     renderWithRouter(<App />);
-    const nextPokemonBtn = screen.getByRole('button', {
-      name: /próximo pokémon/i,
-    });
-    userEvent.click(nextPokemonBtn);
+
+    userEvent.click(nextPokemonBtn());
     const pokemom = screen.getByTestId(pokemonTestID);
     expect(pokemom.innerHTML).toBe('Charmander');
 
-    userEvent.click(nextPokemonBtn);
-    userEvent.click(nextPokemonBtn);
+    userEvent.click(nextPokemonBtn());
+    userEvent.click(nextPokemonBtn());
     expect(pokemom.innerHTML).toBe('Ekans');
   });
 
   test('Go back to the first pokemon when is in the last', () => {
     renderWithRouter(<App />);
-    const nextPokemonBtn = screen.getByRole('button', {
-      name: /próximo pokémon/i,
-    });
 
     const pokemon = screen.getByTestId(pokemonTestID);
     expect(pokemon.innerHTML).toBe('Pikachu');
 
-    userEvent.click(nextPokemonBtn);
-    userEvent.click(nextPokemonBtn);
-    userEvent.click(nextPokemonBtn);
-    userEvent.click(nextPokemonBtn);
-    userEvent.click(nextPokemonBtn);
-    userEvent.click(nextPokemonBtn);
-    userEvent.click(nextPokemonBtn);
-    userEvent.click(nextPokemonBtn);
+    userEvent.click(nextPokemonBtn());
+    userEvent.click(nextPokemonBtn());
+    userEvent.click(nextPokemonBtn());
+    userEvent.click(nextPokemonBtn());
+    userEvent.click(nextPokemonBtn());
+    userEvent.click(nextPokemonBtn());
+    userEvent.click(nextPokemonBtn());
+    userEvent.click(nextPokemonBtn());
 
     expect(pokemon.innerHTML).toBe('Dragonair');
-    userEvent.click(nextPokemonBtn);
+    userEvent.click(nextPokemonBtn());
     expect(pokemon.innerHTML).toBe('Pikachu');
   });
 
   test('There is only one pokemon at time', () => {
     renderWithRouter(<App />);
     const pokemon = screen.getAllByTestId(pokemonTestID);
-    const nextPokemonBtn = screen.getByRole('button', {
-      name: /próximo pokémon/i,
-    });
 
     expect(pokemon.length).toBe(1);
-    userEvent.click(nextPokemonBtn);
+    userEvent.click(nextPokemonBtn());
     expect(pokemon.length).toBe(1);
   });
 
@@ -73,6 +68,20 @@ describe('Pokedex', () => {
     expect(filterButtons).toHaveLength(typesAmount);
     expect(filterButtons[0].innerHTML).toBe('Electric');
     expect(filterButtons[5].innerHTML).toBe('Normal');
-    expect(filterButtons[0]).toBe('Normal');
+  });
+
+  test('Click in one filter button will show only the same type pokemons', () => {
+    renderWithRouter(<App />);
+    const psychicButton = screen.getByRole('button', { name: /psychic/i });
+    const normalButton = screen.getByRole('button', { name: /normal/i });
+    const pokemon = screen.getByTestId('pokemon-type');
+
+    userEvent.click(psychicButton);
+    expect(pokemon.innerHTML).toBe('Psychic');
+
+    userEvent.click(normalButton);
+    expect(pokemon.innerHTML).toBe('Normal');
+    userEvent.click(nextPokemonBtn());
+    expect(pokemon.innerHTML).toBe('Normal');
   });
 });
