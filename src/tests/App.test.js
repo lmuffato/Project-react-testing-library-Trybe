@@ -55,6 +55,16 @@ describe('Tests if you click on the navbar link the page is redirected', () => {
     const heading = screen.getByRole('heading', { level: 2, name: /about pokédex/i });
     expect(heading).toBeInTheDocument();
   });
+
+  it('link Favorites Pokémons redirects to /favorites', () => {
+    const { history } = renderWithRouter(<App />);
+    const favorites = screen.getByRole('link', { name: /favorite pokémons/i });
+    userEvent.click(favorites);
+    const pathResource = history.location.pathname;
+    expect(pathResource).toBe('/favorites');
+    const heading = screen.getByRole('heading', { level: 2, name: /favorite pokémons/i });
+    expect(heading).toBeInTheDocument();
+  });
 });
 
 // it('link Home redirects to /', () => {
