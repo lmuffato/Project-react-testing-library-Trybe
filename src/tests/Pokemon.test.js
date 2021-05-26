@@ -26,41 +26,43 @@ const pokemons = {
     + 'electricity to make them tender enough to eat.',
 };
 
-test('information about pokemon card', () => {
-  const { getByTestId, getByAltText } = renderWithRouter(<Pokemon
-    pokemon={ pokemons }
-    isFavorite={ false }
-  />);
+describe('REQUIREMENT 6', () => {
+  test('information about pokemon card', () => {
+    const { getByTestId, getByAltText } = renderWithRouter(<Pokemon
+      pokemon={ pokemons }
+      isFavorite={ false }
+    />);
 
-  const pokemonName = getByTestId('pokemon-name');
-  expect(pokemonName).toHaveTextContent(/pikachu/i);
-  const pokemonType = getByTestId('pokemon-type');
-  expect(pokemonType).toHaveTextContent(/electric/i);
-  const pokemonWeight = getByTestId('pokemon-weight');
-  expect(pokemonWeight).toHaveTextContent('Average weight: 6.0 kg');
-  const pokemonImg = getByAltText('Pikachu sprite');
-  expect(pokemonImg).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
-});
-
-test('show more details link', () => {
-  const { getByRole } = renderWithRouter(<Pokemon
-    pokemon={ pokemons }
-    isFavorite={ false }
-  />);
-
-  const moreDetailsLink = getByRole('link', {
-    name: /more details/i,
+    const pokemonName = getByTestId('pokemon-name');
+    expect(pokemonName).toHaveTextContent(/pikachu/i);
+    const pokemonType = getByTestId('pokemon-type');
+    expect(pokemonType).toHaveTextContent(/electric/i);
+    const pokemonWeight = getByTestId('pokemon-weight');
+    expect(pokemonWeight).toHaveTextContent('Average weight: 6.0 kg');
+    const pokemonImg = getByAltText('Pikachu sprite');
+    expect(pokemonImg).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
-  expect(moreDetailsLink).toBeInTheDocument();
-  expect(moreDetailsLink).toHaveAttribute('href', '/pokemons/25');
-});
 
-test('shows the star icon', () => {
-  const { getByAltText } = renderWithRouter(<Pokemon
-    pokemon={ pokemons }
-    isFavorite
-  />);
+  test('show more details link', () => {
+    const { getByRole } = renderWithRouter(<Pokemon
+      pokemon={ pokemons }
+      isFavorite={ false }
+    />);
 
-  const icon = getByAltText(/pikachu is marked as favorite/i);
-  expect(icon).toHaveAttribute('src', '/star-icon.svg');
+    const moreDetailsLink = getByRole('link', {
+      name: /more details/i,
+    });
+    expect(moreDetailsLink).toBeInTheDocument();
+    expect(moreDetailsLink).toHaveAttribute('href', '/pokemons/25');
+  });
+
+  test('shows the star icon', () => {
+    const { getByAltText } = renderWithRouter(<Pokemon
+      pokemon={ pokemons }
+      isFavorite
+    />);
+
+    const icon = getByAltText(/pikachu is marked as favorite/i);
+    expect(icon).toHaveAttribute('src', '/star-icon.svg');
+  });
 });
