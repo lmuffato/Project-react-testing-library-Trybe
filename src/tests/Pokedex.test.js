@@ -1,11 +1,10 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from '../App';
-import renderWithRouter from './renderWithRouter';
+
 import pokemons from '../data';
-import { Pokedex } from '../components';
 
 test('show the "Encountered pokémons" text', () => {
   render(
@@ -14,7 +13,7 @@ test('show the "Encountered pokémons" text', () => {
     </BrowserRouter>,
   );
 
-  const pokedexHeader= screen.getByText('Encountered pokémons');
+  const pokedexHeader = screen.getByText('Encountered pokémons');
 
   expect(pokedexHeader).toBeInTheDocument();
 });
