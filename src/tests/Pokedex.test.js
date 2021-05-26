@@ -46,9 +46,16 @@ describe('', () => {
 
   it('test button Electric', () => {
     renderWithRouter(<App />);
-    const nextPokemonButton = screen.getByRole('button', { name: /próximo pokémon/i });
-    const electricButton = screen.getByRole('button', { name: /electric/i });
-    userEvent.click(electricButton);
+    const button = screen.getByRole('button', { name: /electric/i });
+    userEvent.click(button);
+    const type = screen.getByTestId('pokemon-type');
+    expect(type).toBeInTheDocument();
+  });
+
+  it('test button Electric', () => {
+    renderWithRouter(<App />);
+    const button = screen.getByRole('button', { name: /electric/i });
+    userEvent.click(button);
     const type = screen.getByTestId('pokemon-type');
     expect(type).toBeInTheDocument();
   });
