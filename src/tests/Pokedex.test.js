@@ -45,7 +45,7 @@ describe('Test \'Pokedex\' component', () => {
     expect(pokemonWeight.length).toBe(1);
   });
 
-  it('Test if Types can be selectad through buttons', () => {
+  it('Test if Types can be selected through buttons', () => {
     const { getByText, getByTestId, getByRole,
       getAllByTestId } = renderWithRouter(<App />);
     const typeButtons = getAllByTestId('pokemon-type-button');
@@ -60,5 +60,7 @@ describe('Test \'Pokedex\' component', () => {
     expect(nextButton.disabled).toBe(false);
     fireEvent.click(nextButton);
     expect(getByText(/Rapidash/i)).toBeInTheDocument();
+    fireEvent.click(getByRole('button', { name: /all/i }));
+    expect(getByText(/Pikachu/i)).toBeInTheDocument();
   });
 });
