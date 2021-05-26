@@ -5,6 +5,9 @@ import renderWithRouter from '../helpers/renderWithRouter';
 import pokemons from '../data';
 import mockIsPokemonFavoriteById from '../mocks/mockIsPokemonFavoriteById';
 
+const pokemonNameDataTestId = 'pokemon-name';
+const nextPokemonButtonDataTestId = 'next-pokemon';
+
 describe('5. Testando componente <Pokedex />', () => {
   test('Página contém um heading h2 com o texto Encountered pokémon', () => {
     const { getByRole } = renderWithRouter(
@@ -26,7 +29,7 @@ describe('5. Testando componente <Pokedex />', () => {
       />,
     );
 
-    const nextButton = getByTestId('next-pokemon');
+    const nextButton = getByTestId(nextPokemonButtonDataTestId);
     expect(nextButton).toHaveTextContent('Próximo pokémon');
 
     let i = 0;
@@ -66,14 +69,14 @@ describe('5. Testando componente <Pokedex />', () => {
     expect(fireFilterButton).toHaveTextContent('Fire');
     userEvent.click(fireFilterButton);
 
-    let pokemonName = getByTestId('pokemon-name');
+    let pokemonName = getByTestId(pokemonNameDataTestId);
     expect(pokemonName).toHaveTextContent('Charmander');
 
-    const nextButton = getByTestId('next-pokemon');
+    const nextButton = getByTestId(nextPokemonButtonDataTestId);
     expect(nextButton).toHaveTextContent('Próximo pokémon');
     userEvent.click(nextButton);
 
-    pokemonName = getByTestId('pokemon-name');
+    pokemonName = getByTestId(pokemonNameDataTestId);
     expect(pokemonName).toHaveTextContent('Rapidash');
   });
 
@@ -89,7 +92,7 @@ describe('5. Testando componente <Pokedex />', () => {
     expect(filterAllButton).toBeInTheDocument();
     userEvent.click(filterAllButton);
 
-    const nextButton = getByTestId('next-pokemon');
+    const nextButton = getByTestId(nextPokemonButtonDataTestId);
 
     let i = 0;
     while (i < pokemons.length - 1) {
@@ -106,5 +109,7 @@ describe('5. Testando componente <Pokedex />', () => {
 
   test('é criado, dinamicamente, um botão de filtro para cada tipo de Pokémon', () => {});
 
-  test('Botão Próximo deve ser desabilitado quando a lista tiver só um pokémon', () => {});
+  test('Botão Próximo deve ser desabilitado quando a lista tiver só um pokémon', () => {
+
+  });
 });
