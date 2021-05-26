@@ -1,10 +1,10 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import About from '../components/About';
 
 // Referência para resolução do teste da imagem: https://dev.to/raphaelchaula/a-simple-image-test-in-react-3p6f;
+// Referência para a resolução do teste de 2 parágrafos: https://github.com/tryber/sd-010-a-project-react-testing-library/pull/68/files;
 
 describe('Testa o componente About', () => {
   test('Teste se a página contém as informações sobre a Pokédex.', () => {
