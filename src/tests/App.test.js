@@ -1,30 +1,22 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
-test('renders a reading with the text `Pokédex`', () => {
-  const { getByRole } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const heading = getByRole('heading', {
-    name: /pokédex/i,
-    level: 1,
+describe('Test if the home page', () => {
+  it('renders a heading with the text `Pokédex`', () => {
+    const { getByRole } = renderWithRouter(<App />);
+    const heading = getByRole('heading', {
+      name: /pokédex/i,
+      level: 1,
+    });
+    expect(heading).toBeInTheDocument();
   });
-  expect(heading).toBeInTheDocument();
 });
 
 describe('Test if renders nav links', () => {
   it('renders home link', () => {
-    const { getByRole, getByText } = render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+    const { getByRole, getByText } = renderWithRouter(<App />);
     const homeLink = getByText(/home/i);
     userEvent.click(homeLink);
     const homeText = getByRole('heading', {
@@ -34,11 +26,7 @@ describe('Test if renders nav links', () => {
     expect(homeText).toBeInTheDocument();
   });
   it('renders about link', () => {
-    const { getByRole, getByText } = render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+    const { getByRole, getByText } = renderWithRouter(<App />);
     const aboutLink = getByText(/about/i);
     userEvent.click(aboutLink);
     const aboutPageText = getByRole('heading', {
@@ -48,11 +36,7 @@ describe('Test if renders nav links', () => {
     expect(aboutPageText).toBeInTheDocument();
   });
   it('renders Favorite Pokémons link', () => {
-    const { getByRole, getByText } = render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+    const { getByRole, getByText } = renderWithRouter(<App />);
     const favPokemonsLink = getByText(/favorite pokémons/i);
     userEvent.click(favPokemonsLink);
     const favPageText = getByRole('heading', {
