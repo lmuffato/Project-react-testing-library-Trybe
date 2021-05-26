@@ -77,7 +77,32 @@ describe('5. Testando componente <Pokedex />', () => {
     expect(pokemonName).toHaveTextContent('Rapidash');
   });
 
-  test('a Pokédex contém um botão para resetar o filtro', () => {});
+  test('a Pokédex contém um botão para resetar o filtro', () => {
+    const { getByText, getByTestId } = renderWithRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ mockIsPokemonFavoriteById }
+      />,
+    );
+
+    const filterAllButton = getByText('All');
+    expect(filterAllButton).toBeInTheDocument();
+    userEvent.click(filterAllButton);
+
+    const nextButton = getByTestId('next-pokemon');
+
+    let i = 0;
+    while (i < pokemons.length - 1) {
+      const currentPokemon = getByText(pokemons[i].name);
+      expect(currentPokemon).toBeInTheDocument();
+      userEvent.click(nextButton);
+      i += 1;
+    }
+    expect(i).toBe(pokemons.length - 1);
+    userEvent.click(nextButton);
+    const currentPokemon = getByText(pokemons[0].name);
+    expect(currentPokemon).toBeInTheDocument();
+  });
 
   test('é criado, dinamicamente, um botão de filtro para cada tipo de Pokémon', () => {});
 
