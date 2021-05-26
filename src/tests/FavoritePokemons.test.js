@@ -21,12 +21,4 @@ describe('Requisito 3', () => {
     expect(paragraphName).toBeInTheDocument();
     // screen.debug();
   });
-
-//   test('Testando se nenhum card é exibido, se ele não estiver favoritado', () => {
-//     const { getByAltText } = renderWithRouter(<FavoritePokemons pokemons={ '' } />);
-//   });
 });
-
-// describe('Requisito 1', () => {
-// });
-//   test('', () => {});
