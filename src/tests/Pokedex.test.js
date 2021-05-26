@@ -2,10 +2,12 @@ import React from 'react';
 // import { MemoryRouter } from 'react-router-dom';
 // import { render, screen } from '@testing-library/react';
 // import Pokedex from '../components/Pokedex';
+// import { findAllByTestId } from '@testing-library/dom';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
-import { findAllByTestId } from '@testing-library/dom';
-import userEvent from '@testing-library/user-event';
+
+const nextPokemonButton = 'Próximo pokémon';
 
 test('Verifica se aparece h2 com texto Encountered pokémons', () => {
   const { getByRole } = renderWithRouter(<App />);
@@ -15,10 +17,10 @@ test('Verifica se aparece h2 com texto Encountered pokémons', () => {
   expect(h2Text).toBeInTheDocument();
 });
 
-test('Verifica se botão próximo pokemon funciona', async () => {
+test('Verifica se botão próximo pokemon existe', async () => {
   const { getByText } = renderWithRouter(<App />);
-  const buttonNext = getByText('Próximo pokémon');
-  expect(buttonNext).toBeDefined();
+  const nextButton = getByText(nextPokemonButton);
+  expect(nextButton).toBeDefined();
 });
 
 test('Verifica se botão próximo pokemon funciona', async () => {
@@ -41,14 +43,6 @@ test('Verifica se botão próximo pokemon funciona', async () => {
   // expect(pokemonType).toBeInTheDocument();
 });
 
-test('Verifica se botão próximo pokemon funciona', async () => {
-  // const { findAllByTestId } = renderWithRouter(<App />);
-  const { searchButton } = findAllByTestId(() => {
-    searchButton.getByTestId('pokemon-type-button');
-    expect(searchButton).toBeInTheDocument();
-  });
-});
-
 test('Verifica se filtro de pokemon único desabilita o botão próximo', async () => {
   const { getByRole } = renderWithRouter(<App />);
   const buttonAll = getByRole('button', {
@@ -56,7 +50,30 @@ test('Verifica se filtro de pokemon único desabilita o botão próximo', async 
   });
   userEvent.click(buttonAll);
   const buttonNext = getByRole('button', {
-    name: 'Próximo pokémon',
+    name: nextPokemonButton,
   });
   expect(buttonNext).toBeDisabled();
+});
+
+test('Verifica se All habilita o botão próximo', async () => {
+  const { getByText, getByRole } = renderWithRouter(<App />);
+  const buttonAll = getByRole('button', {
+    name: 'All',
+  });
+  const nextPokemon = getByText('Pikachu');
+  userEvent.click(buttonAll);
+  const buttonNext = getByRole('button', {
+    name: nextPokemonButton,
+  });
+  expect(buttonNext).toBeEnabled();
+  expect(nextPokemon).toBeInTheDocument();
+});
+
+// forma de fazer encontrada no teste do requisito 4 do projeto frontend-store
+// https://github.com/tryber/sd-010-a-project-frontend-online-store#4-liste-as-categorias-de-produtos-dispon%C3%ADveis-via-api-na-p%C3%A1gina-principal
+test(`Exibe as categorias retornadas pela API na página de listagem de
+      produtos`, () => {
+  const { getAllByTestId } = renderWithRouter(<App />);
+  const totalTypePokemons = 7;
+  expect(getAllByTestId('pokemon-type-button').length).toEqual(totalTypePokemons);
 });
