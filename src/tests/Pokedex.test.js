@@ -55,8 +55,27 @@ describe('5. Testando componente <Pokedex />', () => {
   });
 
   test('a Pokédex tem os botões de filtro', () => {
-    
-  test('a Pokédex tem os botões de filtro', () => {});
+    const { getAllByTestId, getByTestId } = renderWithRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ mockIsPokemonFavoriteById }
+      />,
+    );
+
+    const fireFilterButton = getAllByTestId('pokemon-type-button')[1];
+    expect(fireFilterButton).toHaveTextContent('Fire');
+    userEvent.click(fireFilterButton);
+
+    let pokemonName = getByTestId('pokemon-name');
+    expect(pokemonName).toHaveTextContent('Charmander');
+
+    const nextButton = getByTestId('next-pokemon');
+    expect(nextButton).toHaveTextContent('Próximo pokémon');
+    userEvent.click(nextButton);
+
+    pokemonName = getByTestId('pokemon-name');
+    expect(pokemonName).toHaveTextContent('Rapidash');
+  });
 
   test('a Pokédex contém um botão para resetar o filtro', () => {});
 
