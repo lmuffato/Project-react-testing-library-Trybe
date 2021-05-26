@@ -11,4 +11,10 @@ describe('Componente Pokedex', () => {
     });
     expect(h2).toBeInTheDocument();
   });
+
+  test('Teste se é mostrado apenas um Pokémon por vez', () => {
+    const { getAllByText } = renderWithRouter(<App />);
+    const text = getAllByText(/More details/);
+    expect(text.length).toBe(1);
+  });
 });
