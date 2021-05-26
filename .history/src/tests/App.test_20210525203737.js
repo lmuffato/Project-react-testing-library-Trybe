@@ -24,7 +24,9 @@ describe('Renders app', () => {
 
   test('Tests paths given by links', () => {
     const { getByText, getAllByRole, history } = renderWithRouter(<App />);
+
     const navLink = getAllByRole('link');
+
     expect(history.location.pathname).toBe('/');
 
     fireEvent.click(navLink[0]);
