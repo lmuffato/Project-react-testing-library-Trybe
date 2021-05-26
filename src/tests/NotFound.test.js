@@ -12,4 +12,12 @@ describe('render elements', () => {
     const emoji = screen.getByRole('img', { name: /crying emoji/i });
     expect(emoji).toBeInTheDocument();
   });
+
+  it('render gif of the crying pikachu', () => {
+    renderWithRouter(<NotFound />);
+    const gif = screen.getByRole('img', {
+      name: /pikachu crying because the page requested was not found/i });
+    expect(gif).toBeInTheDocument();
+    expect(gif).toHaveAttribute('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
+  });
 });
