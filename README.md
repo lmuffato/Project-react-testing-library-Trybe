@@ -17,9 +17,9 @@
 
 ### Requisitos
 
-- [ ] Teste o componente <App.js />
+|&check;| Teste o componente <App.js />
 
-- [ ] Teste o componente <About.js /.
+|&check;| Teste o componente <About.js /.
 
 - [ ] Teste o componente <FavoritePokemons.js />
 
@@ -30,3 +30,7 @@
 - [ ] Teste o componente <Pokemon.js />
 
 - [ ] Teste o componente <PokemonDetails.js />
+
+<!-- |checked|unchecked|crossed|
+|---|---|---|
+|&check;|_|&cross;| -->
