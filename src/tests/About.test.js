@@ -37,6 +37,3 @@ describe('Requisito 2', () => {
 
   // test('', () => {});
 });
-
-// describe('Requisito 1', () => {
-// });
