@@ -44,4 +44,21 @@ describe('Test \'Pokedex\' component', () => {
     expect(pokemonType.length).toBe(1);
     expect(pokemonWeight.length).toBe(1);
   });
+
+  it('Test if Types can be selectad through buttons', () => {
+    const { getByText, getByTestId, getByRole,
+      getAllByTestId } = renderWithRouter(<App />);
+    const typeButtons = getAllByTestId('pokemon-type-button');
+    const nextButton = getByTestId('next-pokemon');
+    const typeBtnsQty = 7;
+    expect(typeButtons.length).toBe(typeBtnsQty);
+    fireEvent.click(getByRole('button', { name: /electric/i }));
+    expect(getByText(/Pikachu/i)).toBeInTheDocument();
+    expect(nextButton.disabled).toBe(true);
+    fireEvent.click(getByRole('button', { name: /fire/i }));
+    expect(getByText(/Charmander/i)).toBeInTheDocument();
+    expect(nextButton.disabled).toBe(false);
+    fireEvent.click(nextButton);
+    expect(getByText(/Rapidash/i)).toBeInTheDocument();
+  });
 });
