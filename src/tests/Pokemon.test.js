@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import Pokemon from '../components/Pokemon';
 
@@ -27,9 +27,18 @@ describe('Pokemon component test', () => {
     const { innerHTML: pokemonType } = screen.getByTestId('pokemon-type');
     const { innerHTML: pokemonWeight } = screen.getByTestId('pokemon-weight');
     const { value, measurementUnit } = myPokemon.averageWeight;
+    const pokemonImage = screen.getByRole('img');
 
     expect(pokemonName).toBe(myPokemon.name);
     expect(pokemonType).toBe(myPokemon.type);
     expect(pokemonWeight).toBe(`Average weight: ${value} ${measurementUnit}`);
+    expect(pokemonImage.src).toBe(myPokemon.image);
+  });
+
+  test('more details link', () => {
+    renderWithRouter(renderPokemon());
+    const moreDetails = screen.getByRole('link');
+    expect(moreDetails).toBeInTheDocument();
+    expect(moreDetails.href).toMatch(`pokemons/${myPokemon.id}`);
   });
 });
