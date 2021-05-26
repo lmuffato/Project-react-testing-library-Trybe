@@ -15,9 +15,14 @@ test('testando se existe uma imagem sendo renderizada no componente about', () =
 });
 test('testando se a página about contém dois parágrafos', () => {
   const { getByText } = renderWithRouter(<About />);
+  const p1 = getByText(
+    'This application simulates a Pokédex,'
+    + ' a digital encyclopedia containing all Pokémons',
+  );
   const
-    p1 = getByText(
+    p2 = getByText(
       'One can filter Pokémons by type, and see more details for each one of them',
     );
+  expect(p2).toBeInTheDocument();
   expect(p1).toBeInTheDocument();
 });
