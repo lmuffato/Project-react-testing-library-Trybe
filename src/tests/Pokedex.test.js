@@ -42,8 +42,20 @@ describe('5. Testando componente <Pokedex />', () => {
     expect(currentPokemon).toBeInTheDocument();
   });
 
-  test('é mostrado apenas um Pokémon por vez', () => {});
+  test('é mostrado apenas um Pokémon por vez', () => {
+    const { getAllByTestId } = renderWithRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ mockIsPokemonFavoriteById }
+      />,
+    );
 
+    const pokemonNames = getAllByTestId('pokemon-name');
+    expect(pokemonNames).toHaveLength(1);
+  });
+
+  test('a Pokédex tem os botões de filtro', () => {
+    
   test('a Pokédex tem os botões de filtro', () => {});
 
   test('a Pokédex contém um botão para resetar o filtro', () => {});
