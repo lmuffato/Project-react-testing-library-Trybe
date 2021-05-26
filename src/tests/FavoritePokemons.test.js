@@ -14,7 +14,7 @@ describe('testing the component "Favorite Pokémons"', () => {
   });
 
   it('Test whether all your favorite Pokémon cards are displayed', () => {
-    const { getByText, getByLabelText } = renderWithRouter(<App />);
+    const { getByText, getByLabelText, getByTestId, history } = renderWithRouter(<App />);
 
     const moreDetails = getByText(/more details/i);
     expect(moreDetails).toBeInTheDocument();
@@ -24,8 +24,8 @@ describe('testing the component "Favorite Pokémons"', () => {
     userEvent.click(radioFavorite);
     expect(radioFavorite).toBeChecked();
 
-    // history.push('/favorites');
-    // const favoritesPage = getByText(/favorite pokemons/i);
-    // expect(favoritesPage).toBeInTheDocument();
+    history.push('/favorites');
+    const pokemon = getByTestId('pokemon-name');
+    expect(pokemon).toBeInTheDocument();
   });
 });
