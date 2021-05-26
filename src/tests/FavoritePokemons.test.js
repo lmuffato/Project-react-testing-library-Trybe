@@ -38,6 +38,6 @@ describe('Requisito 3 - Teste o componente <FavoritePokemons.js />',
         clickNextButton(getByRole);
         addToFavorites(getByRole);
         const favoritePokemons = getAllFavorites(getByRole, getAllByRole);
-        expect(favoritePokemons.length).toBe(2);
+        expect(favoritePokemons).toHaveLength(2);
       });
   });

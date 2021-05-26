@@ -8,30 +8,30 @@ describe('Requisito 6 - Teste o componente <Pokemon.js />',
   () => {
     it('Teste se é renderizado um card com as informações de determinado pokémon',
       () => {
-        const alakazam = pokemons[4];
+        const pokemon = pokemons[4];
         const { getByTestId, getByRole } = renderWithRouter(
           <Pokemon
-            pokemon={ alakazam }
+            pokemon={ pokemon }
             isFavorite={ false }
           />,
         );
         const name = getByTestId('pokemon-name');
-        expect(name).toHaveTextContent('Alakazam');
+        expect(name).toHaveTextContent(pokemon.name);
         const type = getByTestId('pokemon-type');
-        expect(type).toHaveTextContent('Psychic');
+        expect(type).toHaveTextContent(pokemon.type);
         const weight = getByTestId('pokemon-weight');
-        expect(weight).toHaveTextContent(/48\.0 kg/);
-        const sprite = getByRole('img', { name: /sprite/ });
-        expect(sprite).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/8/88/Spr_5b_065_m.png');
+        expect(weight).toHaveTextContent(pokemon.averageWeight.value);
+        const sprite = getByRole('img', { name: `${pokemon.name} sprite` });
+        expect(sprite).toHaveAttribute('src', pokemon.image);
       });
     it(`Teste se o card do Pokémon indicado na Pokédex 
     contém um link de navegação para exibir detalhes deste Pokémon.
     O link deve possuir a URL /pokemons/<id>, onde <id> é o id do Pokémon exibido`,
     () => {
-      const alakazam = pokemons[4];
+      const pokemon = pokemons[4];
       const { getByRole } = renderWithRouter(
         <Pokemon
-          pokemon={ alakazam }
+          pokemon={ pokemon }
           isFavorite={ false }
         />,
       );
@@ -46,27 +46,27 @@ describe('Requisito 6 - Teste o componente <Pokemon.js />',
     it(`Teste também se a URL exibida no navegador muda para /pokemon/<id>,
     onde <id> é o id do Pokémon cujos detalhes se deseja ver`,
     () => {
-      const alakazam = pokemons[4];
+      const pokemon = pokemons[4];
       const { getByRole, history } = renderWithRouter(
         <Pokemon
-          pokemon={ alakazam }
+          pokemon={ pokemon }
           isFavorite={ false }
         />,
       );
       const moreDetails = getByRole('link', { name: 'More details' });
       userEvent.click(moreDetails);
-      expect(history.location.pathname).toBe('/pokemons/65');
+      expect(history.location.pathname).toBe(`/pokemons/${pokemon.id}`);
     });
     it('Teste se existe um ícone de estrela nos Pokémons favoritados',
       () => {
-        const alakazam = pokemons[4];
+        const pokemon = pokemons[4];
         const { getByRole } = renderWithRouter(
           <Pokemon
-            pokemon={ alakazam }
+            pokemon={ pokemon }
             isFavorite
           />,
         );
-        const star = getByRole('img', { name: /marked as favorite/ });
+        const star = getByRole('img', { name: `${pokemon.name} is marked as favorite` });
         expect(star).toBeInTheDocument();
         expect(star).toHaveAttribute('src', '/star-icon.svg');
       });

@@ -17,13 +17,16 @@ describe('Requisito 1 - Teste o componente <App.js />',
     O segundo link deve possuir o texto About
     O terceiro link deve possuir o texto Favorite Pokémons`,
     () => {
+      const NUMBER_OF_LINKS = 3;
       const { getByRole } = renderWithRouter(<App />);
       const nav = getByRole('navigation');
       const navLinks = [...nav.children]
         .filter((child) => child.classList.contains('link'));
-      expect(navLinks[0]).toHaveTextContent('Home');
-      expect(navLinks[1]).toHaveTextContent('About');
-      expect(navLinks[2]).toHaveTextContent('Favorite Pokémons');
+      expect(navLinks).toHaveLength(NUMBER_OF_LINKS);
+      const [home, about, favorites] = navLinks;
+      expect(home).toHaveTextContent('Home');
+      expect(about).toHaveTextContent('About');
+      expect(favorites).toHaveTextContent('Favorite Pokémons');
     });
     it(`Teste se a aplicação é redirecionada para a página inicial,
     na URL / ao clicar no link Home da barra de navegação`,
