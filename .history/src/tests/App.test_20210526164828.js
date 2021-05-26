@@ -14,8 +14,8 @@ describe('Renders app', () => {
   test('Tests if the links have the text `Home,About,Favorite Pokemon.`', () => {
     const { getByText } = renderWithRouter(<App />);
     const linkHome = getByText(/Home/i);
-    const linkAbout = getByText(/About/i);
-    const linkFavorite = getByText(/Favorite Pokémon/i);
+    const linkAbout = screen.getByText(/About/i);
+    const linkFavorite = screen.getByText(/Favorite Pokémon/i);
 
     expect(linkHome).toBeInTheDocument();
     expect(linkAbout).toBeInTheDocument();
