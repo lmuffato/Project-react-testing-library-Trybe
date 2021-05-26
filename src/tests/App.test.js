@@ -6,26 +6,22 @@ import App from '../App';
 describe('testes do component App.js', () => {
   it('renders a reading with the text `Pokédex`', () => {
     const { getByText } = renderWithRouter(<App />);
-    const heading = getByText(/Pokédex/i);
-    expect(heading).toBeInTheDocument();
+    expect(getByText(/Pokédex/i)).toBeInTheDocument();
   });
 
   it('Testa se a página principal da Pokédex é renderizada no caminho de URL "/"', () => {
     const { getByText, history } = renderWithRouter(<App />);
     history.push('/');
-    const heading = getByText(/Pokédex/i);
-    expect(heading).toBeInTheDocument();
+
+    expect(getByText(/Pokédex/i)).toBeInTheDocument();
   });
 
   it('Testa se o topo da aplicação contém um conjunto fixo de links de navegação', () => {
     const { getByText } = renderWithRouter(<App />);
-    const heading1 = getByText(/Home/i);
-    const heading2 = getByText(/About/i);
-    const heading3 = getByText(/Favorite Pokémons/i);
 
-    expect(heading1).toBeInTheDocument();
-    expect(heading2).toBeInTheDocument();
-    expect(heading3).toBeInTheDocument();
+    expect(getByText(/Home/i)).toBeInTheDocument();
+    expect(getByText(/About/i)).toBeInTheDocument();
+    expect(getByText(/Favorite/i)).toBeInTheDocument();
   });
 
   it('Testa se o link Home redirecionada para a página inicial', () => {
@@ -58,7 +54,7 @@ describe('testes do component App.js', () => {
     expect(favorites).toBe('/favorites');
   });
 
-  it('Testa se o link favorites redirecionada para a página favorites', () => {
+  it('Testa se é redirecionada para Not Found ao entrar em uma URL desconhecida', () => {
     const { getByText, history } = renderWithRouter(<App />);
 
     history.push('/nao-existe');
