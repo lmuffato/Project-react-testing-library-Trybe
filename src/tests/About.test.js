@@ -1,8 +1,6 @@
 import React from 'react';
-// import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import About from '../components/About';
-// import renderWithRouter from './renderWithRouter';
 
 test('Verifica se as informações sobra a Pokedex aparecem', () => {
   render(<About />);
