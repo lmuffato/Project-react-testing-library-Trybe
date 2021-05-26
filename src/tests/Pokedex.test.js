@@ -7,8 +7,8 @@ import pokemons from '../data';
 describe('Testa <Pokedex.js />', () => {
   it('Testa se renderiza um cabeçalho h2 com o texto `Encountered pokémons`', () => {
     const { getByRole } = renderWithRouter(<App />);
-    const h2 = getByRole('heading', { 
-      name: /Encountered pokémons/i 
+    const h2 = getByRole('heading', {
+      name: /Encountered pokémons/i,
     });
     expect(h2).toBeInTheDocument();
   });
@@ -55,7 +55,7 @@ describe('Testa <Pokedex.js />', () => {
   });
 
   // Souce: https://github.com/tryber/sd-09-project-react-testing-library/tree/fernandacajueiro-rtl
-  it('Testa se não renderiza o botão `Próximo pokémon` quando houver apenas um pokémon', () => {
+  it('Testa se não renderiza o botão `Próximo pokémon`', () => {
     const { getByText } = renderWithRouter(<App />);
     const next = getByText(/Próximo pokémon/i);
     const poison = getByText(/Poison/i);

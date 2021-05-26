@@ -10,13 +10,13 @@ import data from '../data';
  * Link: https://github.com/tryber/sd-09-project-react-testing-library/pull/18/commits/f304b436438534c976334641ea93ec544caee822
  */
 describe('Testa <PokemonDetails.js />', () => {
+  const link = getByText('More details');
   it('Testa se renderiza as informações do pokemon', () => {
     const { getByRole, getByText } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>,
     );
-    const link = getByText('More details');
     userEvent.click(link);
     expect(getByText('Pikachu Details')).toBeInTheDocument();
     expect(link).not.toBeInTheDocument();
@@ -32,7 +32,7 @@ describe('Testa <PokemonDetails.js />', () => {
         <App />
       </MemoryRouter>,
     );
-    userEvent.click(getByText('More details'));
+    userEvent.click(link);
     expect(getByText('Game Locations of Pikachu')).toBeInTheDocument();
     const maps = getAllByAltText('Pikachu location');
     expect(maps).toHaveLength(2);
@@ -42,12 +42,12 @@ describe('Testa <PokemonDetails.js />', () => {
   });
 
   it('Testa se pokemon pode ser favoritado', () => {
-    const { getByText, getByRole } = render(
+    const { getByRole } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>,
     );
-    userEvent.click(getByText('More details'));
+    userEvent.click(link);
     const favorite = getByRole('checkbox', { name: 'Pokémon favoritado?' });
     expect(favorite).not.toBeChecked();
     userEvent.click(favorite);
