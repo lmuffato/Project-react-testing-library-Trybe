@@ -3,7 +3,6 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 import pokemons from '../data';
-// import { Pokemon } from '../components';
 
 const selectRandomIndex = () => Math.round(Math.random() * pokemons.length - 1);
 const randomPokemonIndex = selectRandomIndex();
@@ -13,25 +12,21 @@ const moreDetailsText = 'More details';
 
 describe('Test the component PokemonDetails', () => {
   it('verify if the info about the selected Pokemon are on the screen', () => {
-    const { getByText, getAllByRole } = renderWithRouter(<App />);
+    const { getByText } = renderWithRouter(<App />);
     const moreDetails = getByText(moreDetailsText);
-    const nextButton = getByText(nextText);
 
-    for (let index = 0; index < randomPokemonIndex; index += 1) {
-      userEvent.click(nextButton);
-    }
-
-    const { id } = randomPokemon;
     expect(moreDetails).toBeInTheDocument();
-    expect(moreDetails).toHaveAttribute('href', `/pokemons/${id}`);
+    expect(moreDetails).toHaveAttribute('href', '/pokemons/25');
 
     userEvent.click(moreDetails);
 
-    const heading = getAllByRole('heading', { level: 2 });
-    expect(heading[0].textContent).toBe(`${randomPokemon.name} Details`);
+    const summary = getByText(/summary/i);
+    const description = getByText(/This intelligent Pokémon/);
+    const PokemonDetails = getByText('Pikachu Details');
+    expect(PokemonDetails).toBeInTheDocument();
     expect(moreDetails).not.toBeInTheDocument();
-    expect(heading[1].textContent).toBe('Summary');
-    expect(heading[2]).toBeInTheDocument();
+    expect(summary).toBeInTheDocument();
+    expect(description).toBeInTheDocument();
   });
 
   it('verify if there is a map with the location of the Pokemon', () => {
@@ -77,7 +72,9 @@ describe('Test the component PokemonDetails', () => {
     userEvent.click(moreDetails);
 
     const checkbox = getByRole('checkbox');
+    const label = getByText(/Pokémon favoritado?/i);
     expect(checkbox).toBeInTheDocument();
+    expect(label).toBeInTheDocument();
 
     userEvent.click(checkbox);
     const favStar = getByAltText(`${randomPokemon.name} is marked as favorite`);
