@@ -19,7 +19,7 @@ describe('Test Pokemon card', () => {
     fireEvent.click(nextBtn);
     expect(pokemonName.textContent).toMatch(/Alakazam/i);
     expect(pokemonType.textContent).toMatch(/Psychic/i);
-    expect(pokemonWeight.textContent).toMatch(/\d+ kg/i);
+    expect(pokemonWeight.textContent).toMatch(/Average weight: \d+.\d+ kg/i);
   });
 
   it('Test if card has a link to \'More Details\'', () => {
