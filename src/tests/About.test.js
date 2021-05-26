@@ -26,7 +26,7 @@ describe('este se a página contém as informações sobre a Pokédex.', () => {
 
     const imageSrc = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
     const pokedexImage = getByRole('img', {
-      nome: 'Pokédex',
+      alt: 'Pokédex',
     });
     expect(pokedexImage.src).toBe(imageSrc);
   });
