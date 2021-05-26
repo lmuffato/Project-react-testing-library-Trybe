@@ -1,5 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import Pokemon from '../components/Pokemon';
 
@@ -40,5 +41,14 @@ describe('Pokemon component test', () => {
     const moreDetails = screen.getByRole('link');
     expect(moreDetails).toBeInTheDocument();
     expect(moreDetails.href).toMatch(`pokemons/${myPokemon.id}`);
+  });
+
+  test('On More Details click go to more details page', () => {
+    const { history } = renderWithRouter(renderPokemon());
+    const moreDetails = screen.getByRole('link');
+    userEvent.click(moreDetails);
+    const { pathname } = history.location;
+
+    expect(pathname).toBe(`/pokemons/${myPokemon.id}`);
   });
 });
