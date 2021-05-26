@@ -83,7 +83,7 @@ describe('1 - Testing the <App.js /> component', () => {
     expect(favoriteText).toBeInTheDocument();
   });
 
-  test('go to the home page \'/\' after click in the \'Home\' link', () => {
+  test('go to the Not Found page when the route doesn\'t match', () => {
     const { history } = renderWithRouter(<App />);
 
     history.push('/no-match');
