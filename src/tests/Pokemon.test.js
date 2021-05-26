@@ -44,4 +44,11 @@ describe('Test Pokemon card', () => {
     expect(favoriteIcon).toBeInTheDocument();
     expect(favoriteIcon.src).toBe('http://localhost/star-icon.svg');
   });
+
+  it('Test if Pokémon\'s image is rendered', () => {
+    const { getByRole } = renderWithRouter(<App />);
+    const pikachuImage = getByRole('img', { name: /pikachu sprite/i });
+    expect(pikachuImage.src).toBe('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
+    expect(pikachuImage.alt).toMatch(/Pikachu sprite/i);
+  });
 });
