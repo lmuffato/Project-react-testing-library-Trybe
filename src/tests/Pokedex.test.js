@@ -1,7 +1,7 @@
 import React from 'react';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
-import userEvent from '@testing-library/user-event';
 
 describe('testing the component "Pokedex"', () => {
   it('renders a reading with the text "Encountered pokémons"', () => {
@@ -27,10 +27,12 @@ describe('testing the component "Pokedex"', () => {
   });
 
   it('', () => {
-    const { getByRole } = renderWithRouter();
+    const { getByRole } = renderWithRouter(<App />);
     const buttonAll = getByRole('button', {
       name: /all/i,
     });
-    expect(buttonAll.length).toBe(8);
+
+    userEvent.click(buttonAll);
+  //   expect(buttonAll).toHaveLength/(8);
   });
 });
