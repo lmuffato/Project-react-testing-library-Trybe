@@ -23,7 +23,7 @@
 
  |&check;| Teste o componente <FavoritePokemons.js />
 
-|_| Teste o componente <NotFound.js />
+|&check;| Teste o componente <NotFound.js />
 
 |_| Teste o componente <Pokedex.js />
 
