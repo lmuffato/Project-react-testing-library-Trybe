@@ -2,9 +2,9 @@ import React from 'react';
 import { Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
+import userEvent from '@testing-library/user-event';
 import PokemonDetails from '../components/PokemonDetails';
 import pokemons from '../data';
-import userEvent from '@testing-library/user-event';
 
 const isPokemonFavoriteById = {
   4: false,
