@@ -29,23 +29,22 @@ test('shows the Pokédex when the route is `/`', () => {
 describe('Testa se contém um conjunto fixo de links de navegação.', () => {
   test('O primeiro link deve possuir o texto "Home"', () => {
     const { getByRole } = renderWithRouter(<App />);
-
     const homeLink = getByRole('link', {
       name: 'Home',
     });
     expect(homeLink).toBeInTheDocument();
   });
+
   test('O segundo link deve possuir o texto "About"', () => {
     const { getByRole } = renderWithRouter(<App />);
-
     const aboutLink = getByRole('link', {
       name: 'About',
     });
     expect(aboutLink).toBeInTheDocument();
   });
+
   test('O terceiro link deve possuir o texto "Favorite Pokémons"', () => {
     const { getByRole } = renderWithRouter(<App />);
-
     const favoritePokemonLink = getByRole('link', {
       name: 'Favorite Pokémons',
     });
