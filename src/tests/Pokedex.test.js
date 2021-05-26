@@ -1,3 +1,9 @@
+import React from 'react';
+import Pokedex from '../components/Pokedex';
+import renderWithRouter from '../helpers/renderWithRouter';
+import pokemons from '../data';
+import mockIsPokemonFavoriteById from '../mocks/mockIsPokemonFavoriteById';
+
 describe('5. Testando componente <Pokedex />', () => {
   test('Página contém um heading h2 com o texto Encountered pokémon', () => {
     const { getByRole } = renderWithRouter(
