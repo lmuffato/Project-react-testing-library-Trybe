@@ -5,6 +5,12 @@ import { PokemonDetails } from '../components';
 import data from '../data';
 
 describe('tests the pokemon details component', () => {
+  const match = {
+    path: '/pokemons/:id',
+    url: '/pokemons/25',
+    isExact: true,
+    params: { id: '25' },
+  };
   const pokemons = data;
   const pokemonFavorite = {
     4: false,
@@ -17,12 +23,6 @@ describe('tests the pokemon details component', () => {
     148: false,
     151: false };
   test('test whether basic information is rendered', () => {
-    const match = {
-      path: '/pokemons/:id',
-      url: '/pokemons/25',
-      isExact: true,
-      params: { id: '25' },
-    };
     const { getByRole, getByText } = render(
       <MemoryRouter>
         <PokemonDetails
@@ -46,5 +46,39 @@ describe('tests the pokemon details component', () => {
     expect(nameDetails).toBeInTheDocument();
     expect(summaryHeading).toBeInTheDocument();
     expect(pokemonResumed).toBeInTheDocument();
+  });
+  test('test whether maps section is rendered', () => {
+    const { getAllByRole, getByRole, getByText } = render(
+      <MemoryRouter>
+        <PokemonDetails
+          pokemons={ pokemons }
+          match={ match }
+          isPokemonFavoriteById={ pokemonFavorite }
+          onUpdateFavoritePokemons={ (pokemonId, isFavorite) => (
+            this.onUpdateFavoritePokemons(pokemonId, isFavorite)
+          ) }
+        />
+      </MemoryRouter>,
+    );
+    const pokemon = pokemons
+      .find((pokemonItem) => pokemonItem.id === Number(match.params.id));
+
+    const { name, foundAt } = pokemon;
+
+    const sectionMap = getByRole('heading',
+      { name: `Game Locations of ${name}`, level: 2 });
+    expect(sectionMap).toBeInTheDocument();
+
+    const mapElement = getAllByRole('img', { name: `${name} location` });
+
+    foundAt.forEach(({ map, location }) => {
+      const locationElement = getByText(location);
+      expect(locationElement).toBeInTheDocument();
+
+      expect(mapElement).toHaveLength(foundAt.length);
+
+      const mapImage = mapElement.find((mapItem) => mapItem.src === map);
+      expect(mapImage).toHaveAttribute('src', map);
+    });
   });
 });
