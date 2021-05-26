@@ -43,4 +43,13 @@ describe('', () => {
     pokemon = screen.getByText(/Pikachu/i);
     expect(pokemon).toBeInTheDocument();
   });
+
+  it('test button Electric', () => {
+    renderWithRouter(<App />);
+    const nextPokemonButton = screen.getByRole('button', { name: /próximo pokémon/i });
+    const electricButton = screen.getByRole('button', { name: /electric/i });
+    userEvent.click(electricButton);
+    const type = screen.getByTestId('pokemon-type');
+    expect(type).toBeInTheDocument();
+  });
 });
