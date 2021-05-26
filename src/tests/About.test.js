@@ -20,3 +20,5 @@ describe('Requirement 02 About tests', () => {
     expect(imageAlt).toHaveAttribute('src', image);
   });
 });
+
+// agradecimento aos colegas Anderson Nascimento e Luciano Amâncio, ToHaveAttribute achando em uma busca no stackOverFlow.
