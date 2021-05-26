@@ -16,6 +16,6 @@ describe('Requisito 4 - Teste o componente <NotFound.js />',
         const { getByRole } = render(<NotFound />);
         const image = getByRole('img',
           { name: 'Pikachu crying because the page requested was not found' });
-        expect(image.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
+        expect(image).toHaveAttribute('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
       });
   });
