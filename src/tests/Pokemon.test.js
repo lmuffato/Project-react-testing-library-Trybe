@@ -4,7 +4,7 @@ import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
 test('Teste se é renderizado um card com as informações de determinado pokémon.', () => {
-  const { getByTestId, getByRole } = renderWithRouter(<App />);
+  const { getByTestId, getByAltText } = renderWithRouter(<App />);
 
   const pokemonName = getByTestId('pokemon-name');
   expect(pokemonName).toHaveTextContent('Pikachu');
@@ -12,12 +12,12 @@ test('Teste se é renderizado um card com as informações de determinado pokém
   expect(pokemonType).toHaveTextContent('Electric');
   const pokemonWeight = getByTestId('pokemon-weight');
   expect(pokemonWeight).toHaveTextContent('Average weight: 6.0 kg');
-  const image = getByRole('img');
+  const image = getByAltText('Pikachu sprite');
   expect(image).toHaveAttribute('src',
     expect.stringMatching('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png'));
 });
 
-test('Testa si ao clikar no link leva para uma pagina detalhada.', () => {
+test('Testa se ao clikar no link leva para uma pagina detalhada.', () => {
   const { getByRole, history } = renderWithRouter(<App />);
 
   const linkDetails = getByRole('link', {
