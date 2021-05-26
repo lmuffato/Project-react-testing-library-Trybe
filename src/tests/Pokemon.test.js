@@ -48,7 +48,7 @@ describe('Teste do componente Pokemon.js', () => {
     userEvent.click(homeLink);
 
     const starIcon = screen.getByRole('img', {
-      name: /marked as favorite/i,
+      name: /Pikachu is marked as favorite/i,
     });
     expect(starIcon).toBeInTheDocument();
     expect(starIcon.src).toContain('/star-icon.svg');
