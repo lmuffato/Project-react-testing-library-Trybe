@@ -59,3 +59,11 @@ test('Teste se a aplicação é redirecionada para a página de About', () => {
   const { pathname } = history.location;
   expect(pathname).toBe('/about');
 });
+
+test('Teste se a aplicação é redirecionada para a página de Pokémons Favoritados', () => {
+  const { getByRole, history } = renderWithRouter(<App />);
+
+  userEvent.click(getByRole('Link', { name: /favorites/i }));
+  const { pathname } = history.location;
+  expect(pathname).toBe('/favorites');
+});
