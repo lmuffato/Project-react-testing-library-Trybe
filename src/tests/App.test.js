@@ -1,11 +1,12 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from '../App';
-// import userEvent from '@testing-library/user-event';
+import renderWithRouter from '../services/renderWithRouter';
 
 describe('Test App', () => {
-  test('renders a reading with the text `Pokédex`', () => {
+  it('renders a reading with the text `Pokédex`', () => {
     const { getByText } = render(
       <MemoryRouter>
         <App />
@@ -15,7 +16,7 @@ describe('Test App', () => {
     expect(heading).toBeInTheDocument();
   });
 
-  test('shows the Pokédex when the route is `/`', () => {
+  it('shows the Pokédex when the route is `/`', () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={ ['/'] }>
         <App />
@@ -25,19 +26,62 @@ describe('Test App', () => {
     expect(getByText('Encountered pokémons')).toBeInTheDocument();
   });
 
-  test('checks: home, about and fav pokemons (and if the links work)', () => {
+  it('checks home link and its operations', () => {
     const { getByRole } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>,
     );
+
     const linkHome = getByRole('link', { name: 'Home' });
-    expect(linkHome).toBeInTheDocument();
+    expect(linkHome).toBeInTheDocument(); // verifica se existe esse link
+    userEvent.click(linkHome);
+    const phraseInHome = getByRole('heading', {
+      name: /encountered pokémons/i,
+      level: 2,
+    });
+    expect(phraseInHome).toBeInTheDocument(); // verifica se após clicar há a frase acima
+  });
+
+  it('checks about link and its operations', () => {
+    const { getByRole } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
 
     const linkAbout = getByRole('link', { name: 'About' });
-    expect(linkAbout).toBeInTheDocument();
+    expect(linkAbout).toBeInTheDocument(); // verifica a existencia do link about
+
+    userEvent.click(linkAbout);
+    const phraseInAbout = getByRole('heading', {
+      name: /about pokédex/i,
+      level: 2,
+    });
+    expect(phraseInAbout).toBeInTheDocument(); // verifica se após clicar a pagina correta é carregada
+  });
+
+  it('checks favorite pokémons link and its operations', () => {
+    const { getByRole } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
 
     const linkFav = getByRole('link', { name: 'Favorite Pokémons' });
-    expect(linkFav).toBeInTheDocument();
+    expect(linkFav).toBeInTheDocument(); // verifica a presença do link
+
+    userEvent.click(linkFav);
+    const phraseInFavorite = getByRole('heading', {
+      name: /favorite pokémons/i,
+      level: 2,
+    });
+    expect(phraseInFavorite).toBeInTheDocument(); // verifica se a page correta foi carregada
+  });
+
+  it('checks if the NotFound page is loaded when the URL does not exist', () => {
+    const { getByText } = renderWithRouter(<App />, { route: '/rota-maluca' });
+    const phraseInInvalidPage = getByText(/page requested not found/i);
+    expect(phraseInInvalidPage).toBeInTheDocument();
   });
 });
