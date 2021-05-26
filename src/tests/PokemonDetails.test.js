@@ -1,8 +1,10 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
+import { render } from '@testing-library/react';
 import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
 import pokemons from '../data';
+import { PokemonDetails } from '../components';
 
 describe('Requirement 7', () => {
   it('Details about the selected Pokémon is shown on the screen', () => {
@@ -17,28 +19,32 @@ describe('Requirement 7', () => {
   });
 
   it('Section with maps containing the locations of the pokémon', () => {
-    const { queryByText, queryAllByAltText, getByRole } = renderWithRouter(<App />);
-    userEvent.click(queryByText(/more details/i));
-    expect(queryByText(/game locations/i)).toBeInTheDocument();
+    const pokemon = pokemons[4];
+    const { getByRole, getAllByRole, getByText } = render(
+      <PokemonDetails
+        isPokemonFavoriteById={ { [pokemon.id]: false } }
+        match={ { params: { id: pokemon.id } } }
+        onUpdateFavoritePokemons={ jest.fn(() => {}) }
+        pokemons={ pokemons }
+      />,
+    );
+    const headerGameLocations = getByRole('heading',
+      { name: `Game Locations of ${pokemon.name}` });
 
-    const headerGameLocations = getByRole('heading', {
-      level: 2,
-      name: `Game Locations of ${pokemons[0].name}`,
-    });
     expect(headerGameLocations).toBeInTheDocument();
 
-    const locations = queryAllByAltText(/pikachu location/i);
-    expect(locations.length).toEqual(2);
-    expect(locations[0]).toHaveAttribute(
-      'src',
-      'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png',
-    );
-    expect(locations[1]).toHaveAttribute(
-      'src',
-      'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
-    );
+    const locations = getAllByRole('img', { name: `${pokemon.name} location` });
+
+    expect(locations).toHaveLength(pokemon.foundAt.length);
+
+    locations.forEach((location, index) => {
+      expect(location).toHaveAttribute('src', pokemon.foundAt[index].map);
+      const locationName = getByText(pokemon.foundAt[index].location);
+      expect(locationName).toBeInTheDocument();
+    });
   });
-  it('user can favor a pokémon through the details page.', () => {
+
+  it('User can favor a pokémon through the details page.', () => {
     const { queryByText } = renderWithRouter(<App />);
     userEvent.click(queryByText(/more details/i));
 
