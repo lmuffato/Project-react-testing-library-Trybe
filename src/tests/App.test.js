@@ -46,6 +46,17 @@ describe('Tests whether the navbar and its links are being rendered', () => {
 });
 
 describe('Tests if you click on the navbar link the page is redirected', () => {
+  it('link Home redirects to /', () => {
+    const { history } = renderWithRouter(<App />);
+    const home = screen.getByRole('link', { name: /home/i });
+    userEvent.click(home);
+    const pathResource = history.location.pathname;
+    expect(pathResource).toBe('/');
+    const heading = screen
+      .getByRole('heading', { level: 2, name: /encountered pokémons/i });
+    expect(heading).toBeInTheDocument();
+  });
+
   it('link About redirects to /about', () => {
     const { history } = renderWithRouter(<App />);
     const about = screen.getByRole('link', { name: /about/i });
@@ -67,13 +78,6 @@ describe('Tests if you click on the navbar link the page is redirected', () => {
   });
 });
 
-// it('link Home redirects to /', () => {
-//   const { history } = renderWithRouter(<App />);
-//   const home = screen.getByRole('link', { name: /home/i });
-//   userEvent.click(home);
-//   const pathResource = history.location.pathname;
-//   expect(pathResource).toBe('/');
-// });
 // it('link Favorite Pokemons redirects to /favorites', () => {
 //   const { history } = renderWithRouter(<App />);
 //   const home = screen.getByRole('link', { name: /favorite pokémons/i });
