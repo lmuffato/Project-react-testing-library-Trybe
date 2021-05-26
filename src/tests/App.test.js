@@ -46,13 +46,10 @@ describe('O topo da aplicação contém um conjunto fixo de links de navegação
     expect(homeLink).toBeInTheDocument();
   });
   test('O segundo link deve possuir o texto About redirecionado para /about', () => {
-    const { getByText } = render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
-    const aboutLink = getByText(/About/);
-    expect(aboutLink).toBeInTheDocument();
+    const { getByText, history } = renderWithRouter(<App />);
+    fireEvent.click(getByText(/About/));
+    const { pathname } = history.location;
+    expect(pathname).toBe('/about');
   });
   test('O terceiro link deve possuir o texto Favorite Pokémons', () => {
     const { getByText } = render(
