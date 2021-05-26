@@ -1,38 +1,39 @@
 import React from 'react';
 import renderWithRouter from '../renderWithRouter';
-import Pokedex from '../components/Pokedex';
+import App from '../App';
+import { fireEvent } from '@testing-library/dom';
 
 describe('Test \'Pokedex\' component', () => {
-  const pokemons = [{
-    id: 25,
-    name: 'Pikachu',
-    type: 'Electric',
-    averageWeight: {
-      value: '6.0',
-      measurementUnit: 'kg',
-    },
-    image: 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
-    moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)',
-    foundAt: [
-      {
-        location: 'Kanto Viridian Forest',
-        map: 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png',
-      },
-      {
-        location: 'Kanto Power Plant',
-        map: 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
-      },
-    ],
-    summary: 'This intelligent Pokémon roasts hard berries'
-      + 'with electricity to make them tender enough to eat.',
-  }];
-  const isPokemonFavoriteById = { 25: false };
-
-  it('Test heading \'Encountered pokémons\'', async () => {
-    const { getByText, getByRole } = await renderWithRouter(
-      <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ isPokemonFavoriteById } />,
-    );
+  it('Test heading \'Encountered pokémons\'', () => {
+    const { getByText, getByRole } = renderWithRouter(<App/>);
     expect(getByRole('heading', { level: 2 })).toBeInTheDocument();
     expect(getByText(/Encountered pokémons/i)).toBeInTheDocument();
   });
+
+  it('Test button \'Próximo pokémon\'', () => {
+    const { getByText, queryByText } = renderWithRouter(<App/>);
+    expect(getByText(/Pikachu/)).toBeInTheDocument();
+    const nextPokemonBtn = getByText(/Próximo pokémon/i);
+    fireEvent.click(nextPokemonBtn);
+    expect(queryByText(/Pikachu/)).toBeNull();
+    expect(getByText(/Charmander/i)).toBeInTheDocument();
+    fireEvent.click(nextPokemonBtn);
+    expect(getByText(/Caterpie/i)).toBeInTheDocument();
+    fireEvent.click(nextPokemonBtn);
+    expect(getByText(/Ekans/i)).toBeInTheDocument();
+    fireEvent.click(nextPokemonBtn);
+    expect(getByText(/Alakazam/i)).toBeInTheDocument();
+    fireEvent.click(nextPokemonBtn);
+    expect(getByText(/Mew/i)).toBeInTheDocument();
+    fireEvent.click(nextPokemonBtn);
+    expect(getByText(/Rapidash/i)).toBeInTheDocument();
+    fireEvent.click(nextPokemonBtn);
+    expect(getByText(/Snorlax/i)).toBeInTheDocument();
+    fireEvent.click(nextPokemonBtn);
+    expect(getByText(/Dragonair/i)).toBeInTheDocument();
+    fireEvent.click(nextPokemonBtn);
+    expect(getByText(/Pikachu/i)).toBeInTheDocument();
+  });
+
+
 });
