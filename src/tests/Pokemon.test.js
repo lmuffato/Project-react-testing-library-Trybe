@@ -15,9 +15,9 @@ const myPokemon = {
   image: 'https://cdn2.bulbagarden.net/upload/2/2c/Spr_5b_148.png',
   moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Dragonair_(Pok%C3%A9mon)',
 };
-const renderPokemon = () => (<Pokemon
+const renderPokemon = (isFavorite = false) => (<Pokemon
   pokemon={ myPokemon }
-  isFavorite={ false }
+  isFavorite={ isFavorite }
   showDetailsLink
 />);
 
@@ -50,5 +50,13 @@ describe('Pokemon component test', () => {
     const { pathname } = history.location;
 
     expect(pathname).toBe(`/pokemons/${myPokemon.id}`);
+  });
+
+  test('Favorite star shows ', () => {
+    renderWithRouter(renderPokemon(true));
+    const starImage = screen.getByAltText(`${myPokemon.name} is marked as favorite`);
+
+    expect(starImage).toBeInTheDocument();
+    expect(starImage.src).toMatch('/star-icon.svg');
   });
 });
