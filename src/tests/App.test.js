@@ -51,3 +51,11 @@ test('Teste se a aplicação é redirecionada para a página inicial', () => {
   const { pathname } = history.location;
   expect(pathname).toBe('/');
 });
+
+test('Teste se a aplicação é redirecionada para a página de About', () => {
+  const { getByRole, history } = renderWithRouter(<App />);
+
+  userEvent.click(getByRole('Link', { name: /about/i }));
+  const { pathname } = history.location;
+  expect(pathname).toBe('/about');
+});
