@@ -19,9 +19,9 @@
 
 |&check;| Teste o componente <App.js />
 
-|&check;| Teste o componente <About.js /.
+|&check;| Teste o componente <About.js />
 
- |_| Teste o componente <FavoritePokemons.js />
+ |&check;| Teste o componente <FavoritePokemons.js />
 
 |_| Teste o componente <NotFound.js />
 
