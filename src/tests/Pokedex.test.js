@@ -127,6 +127,17 @@ describe('5. Testando componente <Pokedex />', () => {
   });
 
   test('Botão Próximo deve ser desabilitado quando a lista tiver só um pokémon', () => {
+    const { getByTestId, getByRole } = renderWithRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ mockIsPokemonFavoriteById }
+      />,
+    );
 
+    const dragonButton = getByRole('button', { name: 'Dragon' });
+    userEvent.click(dragonButton);
+
+    const nextButton = getByTestId(nextPokemonButtonDataTestId);
+    expect(nextButton).toHaveAttribute('disabled');
   });
 });
