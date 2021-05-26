@@ -20,7 +20,8 @@ describe('Requisito 6 - Teste o componente <Pokemon.js />',
         const type = getByTestId('pokemon-type');
         expect(type).toHaveTextContent(pokemon.type);
         const weight = getByTestId('pokemon-weight');
-        expect(weight).toHaveTextContent(pokemon.averageWeight.value);
+        const { value, measurementUnit } = pokemon.averageWeight;
+        expect(weight).toHaveTextContent(`Average weight: ${value} ${measurementUnit}`);
         const sprite = getByRole('img', { name: `${pokemon.name} sprite` });
         expect(sprite).toHaveAttribute('src', pokemon.image);
       });
