@@ -1,4 +1,5 @@
-import { getByText, getByTestId } from '@testing-library/dom';
+// import { getByText, getByTestId, getByRole, getAllByTestId } from '@testing-library/dom';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
 // import { MemoryRouter } from 'react-router-dom';
 // import { render } from '@testing-library/react';
@@ -21,45 +22,37 @@ describe('App tests', () => {
 
   it('renderiza uma div com dados do pokémon', () => {
     const { getByTestId } = renderWithRouter(<App />);
-    const pkmName = getByTestId('pokemon-name');
-    const pkmType = getByTestId('pokemon-type');
-    const pkmWeight = getByTestId('pokemon-weight');
-    // const pkmImg = getByAltText(/sprite/i);
+    // const pkmName = getByTestId('pokemon-name');
+    // const pkmType = getByTestId('pokemon-type');
+    // const pkmWeight = getByTestId('pokemon-weight');
     expect(getByTestId('pokemon-name')).toBeInTheDocument();
     expect(getByTestId('pokemon-type')).toBeInTheDocument();
     expect(getByTestId('pokemon-weight')).toBeInTheDocument();
-
-
-
-    //div geral
-    //name
-    //type
-    //weight
-    //moredetails link
-    //sprite
-
   });
 
+  it('mostra botões com os tipos de pokémons', () => {
+    const { getAllByTestId, getByTestId, getAllByRole } = renderWithRouter(<App />);
+    // const typeBtn = getByTestId('pokemon-type-button');
+    expect(getAllByTestId('pokemon-type-button')).toHaveLength(7);
+    expect(getByTestId('next-pokemon')).toBeInTheDocument();
+    expect(getAllByRole('button')).toHaveLength(9);
+  });
 
+  it('mostra os links `Home`, `About` e `Favorite Pokémons`',() => {
+    const { getByText } = renderWithRouter(<App />);
+    const homeLink = getByText(/Home/i);
+    const aboutLink = getByText(/About/i);
+    const favoriteLink = getByText(/Favorite Pokémons/i);  
+    expect(aboutLink).toBeInTheDocument();
+    expect(homeLink).toBeInTheDocument();
+    expect(favoriteLink).toBeInTheDocument();
+  });
 
+  it('vai para tela inicial `/` quando clicar no `Home`', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    const { pathname } = history.location;
+    userEvent.click(getByText(/Home/i));
+    expect(pathname).toBe('/');
+    expect(getByText('Encountered pokémons')).toBeInTheDocument();
+  })
 });
-
-// test('renders a reading with the text `Pokédex`', () => {
-//   const { getByText } = render(
-//     <MemoryRouter>
-//       <App />
-//     </MemoryRouter>,
-//   );
-//   const heading = getByText(/Pokédex/i);
-//   expect(heading).toBeInTheDocument();
-// });
-
-// test('shows the Pokédex when the route is `/`', () => {
-//   const { getByText } = render(
-//     <MemoryRouter initialEntries={['/']}>
-//       <App />
-//     </MemoryRouter>,
-//   );
-
-//   expect(getByText('Encountered pokémons')).toBeInTheDocument();
-// });
