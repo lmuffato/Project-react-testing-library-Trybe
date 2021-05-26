@@ -1,9 +1,8 @@
 import React from 'react';
-// import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import About from '../components/About';
 
-describe('testing the component About', () => {
+describe('testing the component "About"', () => {
   it('Test if the page contains information about Pokédex', () => {
     const { getByText } = renderWithRouter(<About />);
     const informations = getByText(/This application simulates a Pokédex/i);
