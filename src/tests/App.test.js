@@ -34,9 +34,5 @@ describe('test nav links at the home page', () => {
     userEvent.click(favoriteLink);
     pathname = history.location.pathname;
     expect(pathname).toBe('/favorites');
-    const favoriteHeading = screen.getByRole('heading', {
-      name: /Favorite Pokémons/i,
-    });
-    expect(favoriteHeading).toBeInTheDocument();
   });
 });
