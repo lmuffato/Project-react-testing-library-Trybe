@@ -4,14 +4,14 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
+const pokemonsTypes = ['Electric', 'Fire', 'Bug',
+  'Poison', 'Psychic', 'Normal', 'Dragon'];
+
+const PokemonsNames = ['Pikachu', 'Charmander', 'Caterpie',
+  'Ekans', 'Alakazam', 'Mew', 'Rapidash', 'Snorlax', 'Dragonair'];
+
 describe('Testa todo o Componente "Pokedex"', () => {
   const nextpokemon = () => screen.getByTestId('pokemon-name').innerHTML;
-
-  const pokemonsTypes = () => ['Electric', 'Fire', 'Bug',
-    'Poison', 'Psychic', 'Normal', 'Dragon'];
-
-  const PokemonsNames = () => ['Pikachu', 'Charmander', 'Caterpie',
-    'Ekans', 'Alakazam', 'Mew', 'Rapidash', 'Snorlax', 'Dragonair'];
 
   test('Verifica se página contém um heading h2 com o'
   + ' texto Encountered pokémons.', () => {
@@ -29,38 +29,11 @@ describe('Testa todo o Componente "Pokedex"', () => {
     const button = screen.getByText(/Próximo pokémon/);
     expect(button).toBeInTheDocument();
 
-    // Função que pode ser usada para evitar muitas linhas porém não encontrei solução para caso seja o ultimo elemento do array retornar o "pikachu"
-    // PokemonsNames.forEach((pokemon) => {
-    //   expect(nextpokemon()).toBe(pokemon);
-    //   userEvent.click(button);
-    // });
-
-    userEvent.click(button);
-    expect(nextpokemon()).toBe(PokemonsNames()[1]);
-
-    userEvent.click(button);
-    expect(nextpokemon()).toBe(PokemonsNames()[2]);
-
-    userEvent.click(button);
-    expect(nextpokemon()).toBe(PokemonsNames()[3]);
-
-    userEvent.click(button);
-    expect(nextpokemon()).toBe(PokemonsNames()[4]);
-
-    userEvent.click(button);
-    expect(nextpokemon()).toBe(PokemonsNames()[5]);
-
-    userEvent.click(button);
-    expect(nextpokemon()).toBe(PokemonsNames()[6]);
-
-    userEvent.click(button);
-    expect(nextpokemon()).toBe(PokemonsNames()[7]);
-
-    userEvent.click(button);
-    expect(nextpokemon()).toBe(PokemonsNames()[8]);
-
-    userEvent.click(button);
-    expect(nextpokemon()).toBe(PokemonsNames()[0]);
+    PokemonsNames.forEach((pokemon) => {
+      expect(nextpokemon()).toBe(pokemon);
+      userEvent.click(button);
+    });
+    expect(nextpokemon()).toBe(PokemonsNames[0]);
   });
 
   test('Verifica se a Pokédex tem os botões de filtro.', () => {
@@ -68,7 +41,7 @@ describe('Testa todo o Componente "Pokedex"', () => {
 
     const buttons = getAllByTestId('pokemon-type-button');
     const buttonsText = buttons.map((button) => button.innerHTML);
-    pokemonsTypes().forEach((type, index) => expect(type).toMatch(buttonsText[index]));
+    pokemonsTypes.forEach((type, index) => expect(type).toMatch(buttonsText[index]));
   });
 
   test('Verifica se a Pokédex contém um botão para resetar o filtro', () => {
@@ -80,7 +53,7 @@ describe('Testa todo o Componente "Pokedex"', () => {
 
     userEvent.click(buttonAll);
 
-    PokemonsNames().forEach((pokemon) => {
+    PokemonsNames.forEach((pokemon) => {
       expect(nextpokemon()).toBe(pokemon);
       userEvent.click(button);
     });
