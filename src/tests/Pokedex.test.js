@@ -122,7 +122,7 @@ describe('5. Teste o componente <Pokedex.js />', () => {
 
   it('Teste se a Pokédex contém um botão para resetar o filtro', () => {
     // O texto do botão deve ser All;
-    const { getByRole, getByAltText, getByTestId } = renderWithRouter(<App />);
+    const { getByRole, getByAltText } = renderWithRouter(<App />);
     const buttonAll = getByRole('button', { name: 'All' });
     const nextButton = getByRole('button', { name: nextPokemonTitle });
     expect(buttonAll).toBeInTheDocument();
@@ -130,9 +130,6 @@ describe('5. Teste o componente <Pokedex.js />', () => {
     // Ao carregar a página, o filtro selecionado deverá ser All;
     const getPikachu = getByAltText('Pikachu sprite');
     expect(getPikachu).toBeInTheDocument();
-
-    const getAllButton = getByTestId('');
-    expect(getAllButton).toBeInTheDocument();
 
     // A Pokedéx deverá mostrar os Pokémons normalmente (sem filtros) quando o botão All for clicado;
     userEvent.click(buttonAll);
