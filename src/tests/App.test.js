@@ -107,7 +107,3 @@ describe('Requisito 1', () => {
     expect(pageText).toBeInTheDocument();
   });
 });
-
-// describe('Requisito 1', () => {
-
-// });
