@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import NotFound from '../components/NotFound';
 
@@ -7,11 +6,7 @@ import NotFound from '../components/NotFound';
 // https://testing-library.com/docs/dom-testing-library/cheatsheet/
 describe('Component NotFound.js tests', () => {
   test('There is a h2 heading with text: Page requested not found 😭', () => {
-    const { getByRole, getByLabelText } = render(
-      <BrowserRouter>
-        <NotFound />
-      </BrowserRouter>,
-    );
+    const { getByRole, getByLabelText } = render(<NotFound />);
 
     const heading = getByRole('heading', {
       name: /Page requested not found/,
@@ -24,11 +19,7 @@ describe('Component NotFound.js tests', () => {
   });
 
   test('There is an certain img', () => {
-    const { getByAltText } = render(
-      <BrowserRouter>
-        <NotFound />
-      </BrowserRouter>,
-    );
+    const { getByAltText } = render(<NotFound />);
 
     const img = getByAltText('Pikachu crying because the page requested was not found');
     expect(img).toBeInTheDocument();

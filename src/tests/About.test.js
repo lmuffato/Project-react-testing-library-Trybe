@@ -19,11 +19,7 @@ describe('Component About.js tests', () => {
   });
 
   test('There are two paragraphs', () => {
-    const { getByText } = render(
-      <BrowserRouter>
-        <About />
-      </BrowserRouter>,
-    );
+    const { getByText } = render(<About />);
 
     const paragraph1 = getByText(/This application simulates a Pokédex/);
 
@@ -36,11 +32,7 @@ describe('Component About.js tests', () => {
   // Implementação baseada no post do link https://stackoverflow.com/questions/60509527/jestreact-native-testing-library-how-to-test-an-image-src
   // Porém adaptado para utilizar toMatch
   test('There is an certain img', () => {
-    const { getByRole } = render(
-      <BrowserRouter>
-        <About />
-      </BrowserRouter>,
-    );
+    const { getByRole } = render(<About />);
 
     const img = getByRole('img');
     expect(img).toBeInTheDocument();

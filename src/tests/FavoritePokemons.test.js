@@ -5,11 +5,7 @@ import FavoritePokemons from '../components/FavoritePokemons';
 
 describe('Component FavoritePokemons.js tests', () => {
   test('There is a h2 heading with text About Pokedex', () => {
-    const { getByText } = render(
-      <BrowserRouter>
-        <FavoritePokemons />
-      </BrowserRouter>,
-    );
+    const { getByText } = render(<FavoritePokemons />);
 
     const emptyMsg = getByText('No favorite pokemon found');
     expect(emptyMsg).toBeInTheDocument();
