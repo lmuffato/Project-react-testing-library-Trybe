@@ -1,14 +1,27 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
+import { Link, MemoryRouter as BrowserRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import App from '../App';
 
-test('renders a reading with the text `Pokédex`', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const heading = getByText(/Pokédex/i);
-  expect(heading).toBeInTheDocument();
+const renderApp = () => render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+);
+
+describe('App.test.js', () => {
+  test('Exibe um texto que contém "Pokedex".', () => {
+    const { getByText } = renderApp();
+    const heading = getByText(/Pokédex/i);
+    expect(heading).toBeInTheDocument();
+  });
+  test('Exibe links que devem possuir os textos Home, About e Favorite Pokémons', () => {
+    const { getByRole } = renderApp();
+    const linkHome = getByRole('link', { name: /home/i });
+    expect(linkHome).toBeInTheDocument();
+    const linkAbout = getByRole('link', { name: /about/i });
+    expect(linkAbout).toBeInTheDocument();
+    const linkFav = getByRole('link', { name: /favorite pokémons/i });
+    expect(linkFav).toBeInTheDocument();
+  });
 });

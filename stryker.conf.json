@@ -1,30 +1,11 @@
 {
   "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "comment": "This config was generated using a preset. Please see the handbook for more information: https://github.com/stryker-mutator/stryker-handbook/blob/master/stryker/guides/react.md#react",
   "mutate": [
-    "src/components/About.js",
-    "src/App.js",
-    "src/components/FavoritePokemons.js",
-    "src/components/NotFound.js",
-    "src/components/Pokedex.js",
-    "src/components/Pokemon.js",
-    "src/components/PokemonDetails.js"
+    "src/**/*.js?(x)",
+    "!src/**/*@(.test|.spec|Spec).js?(x)"
   ],
- "mutator": {
-    "name": "javascript",
-    "excludedMutations": [
-      "ArithmeticOperator",
-      "ArrayDeclaration",
-      "ArrowFunction",
-      "BlockStatement",
-      "BooleanLiteral",
-      "ConditionalExpression",
-      "EqualityOperator",
-      "LogicalOperator",
-      "ObjectLiteral",
-      "UnaryOperator",
-      "UpdateOperator"
-    ]
-  },
+  "mutator": "javascript",
   "testRunner": "jest",
   "reporters": [
     "progress",
