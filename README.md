@@ -21,15 +21,15 @@
 
 |&check;| Teste o componente <About.js /.
 
-- [ ] Teste o componente <FavoritePokemons.js />
+ |_| Teste o componente <FavoritePokemons.js />
 
-- [ ] Teste o componente <NotFound.js />
+|_| Teste o componente <NotFound.js />
 
-- [ ] Teste o componente <Pokedex.js />
+|_| Teste o componente <Pokedex.js />
 
-- [ ] Teste o componente <Pokemon.js />
+|_| Teste o componente <Pokemon.js />
 
-- [ ] Teste o componente <PokemonDetails.js />
+|_| Teste o componente <PokemonDetails.js />
 
 <!-- |checked|unchecked|crossed|
 |---|---|---|
