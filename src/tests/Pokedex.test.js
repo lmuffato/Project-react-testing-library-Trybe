@@ -1,37 +1,93 @@
-// import React from 'react';
-// import { Router } from 'react-router-dom';
-// import { render } from '@testing-library/react';
-// import { createMemoryHistory } from 'history';
-// import userEvent from '@testing-library/user-event';
-// import App from '../App';
+import React from 'react';
+import { Router } from 'react-router-dom';
+import { render } from '@testing-library/react';
+import { createMemoryHistory } from 'history';
+import userEvent from '@testing-library/user-event';
+import App from '../App';
+
+const lastPokemon = 7;
+const nextPokemonTitle = 'Próximo pokémon';
+
+const renderWithRouter = (component) => {
+  const history = createMemoryHistory();
+  return ({
+    ...render(
+      <Router history={ history }>
+        { component }
+      </Router>,
+    ),
+    history,
+  });
+};
 
 describe('5. Teste o componente <Pokedex.js />', () => {
-  it('Teste se página contém um heading h2 com o texto Encountered pokémons.', () => {});
-
-  it.skip('Próximo Pokémon da lista quando o botão Próximo pokémon é clicado.', () => {
-    // Se é exibido o próximo Pokémon da lista quando o botão Próximo pokémon é clicado
-  // O botão deve conter o texto Próximo pokémon;
-  // Os próximos Pokémons da lista devem ser mostrados, um a um, ao clicar sucessivamente no botão;
-  // O primeiro Pokémon da lista deve ser mostrado ao clicar no botão, se estiver no último Pokémon da lista;
+  it('Teste se página contém um heading h2 com o texto Encountered pokémons.', () => {
+    const { getByText } = renderWithRouter(<App />);
+    const headingText = getByText('Encountered pokémons');
+    expect(headingText).toBeInTheDocument();
   });
 
-  it.skip('Teste se é mostrado apenas um Pokémon por vez.', () => {});
+  it('Próximo Pokémon da lista quando o botão Próximo pokémon é clicado.', () => {
+  // O botão deve conter o texto Próximo pokémon;
+    const { getByRole, getByText } = renderWithRouter(<App />);
+    const nextButton = getByRole('button', { name: nextPokemonTitle });
+    expect(nextButton).toBeInTheDocument();
 
-  it.skip('Teste se a Pokédex tem os botões de filtro.', () => {
+    // Os próximos Pokémons da lista devem ser mostrados, um a um, ao clicar sucessivamente no botão;
+    userEvent.click(nextButton);
+    const charmanderPokemon = getByText('Charmander');
+    expect(charmanderPokemon).toBeInTheDocument();
+    // O primeiro Pokémon da lista deve ser mostrado ao clicar no botão, se estiver no último Pokémon da lista;
+    for (let index = 0; index < lastPokemon; index += 1) {
+      userEvent.click(nextButton);
+    }
+    userEvent.click(nextButton);
+    const firstPokemon = getByText('Pikachu');
+    expect(firstPokemon).toBeInTheDocument();
+  });
+
+  it('Teste se é mostrado apenas um Pokémon por vez.', () => {
+    const { getByRole } = renderWithRouter(<App />);
+    const img = getByRole('img');
+    expect(img).toBeInTheDocument();
+  });
+
+  it('Teste se a Pokédex tem os botões de filtro.', () => {
     // A partir da seleção de um botão de tipo, a Pokédex deve circular somente pelos pokémons daquele tipo;
+    const { getByRole, getByText } = renderWithRouter(<App />);
+    const psyButton = getByRole('button', { name: 'Psychic' });
+    userEvent.click(psyButton);
+    const nextButton = getByRole('button', { name: 'Próximo pokémon' });
+    userEvent.click(nextButton);
+    const nextPsyPokemon = getByText('Mew');
+    expect(nextPsyPokemon).toBeInTheDocument();
     // O texto do botão deve corresponder ao nome do tipo, ex. Psychic;
   });
 
-  it.skip('Teste se a Pokédex contém um botão para resetar o filtro', () => {
+  it('Teste se a Pokédex contém um botão para resetar o filtro', () => {
     // O texto do botão deve ser All;
-
-    // A Pokedéx deverá mostrar os Pokémons normalmente (sem filtros) quando o botão All for clicado;
+    const { getByRole, getByAltText, getByTestId } = renderWithRouter(<App />);
+    const buttonAll = getByRole('button', { name: 'All' });
+    const nextButton = getByRole('button', { name: nextPokemonTitle });
+    expect(buttonAll).toBeInTheDocument();
 
     // Ao carregar a página, o filtro selecionado deverá ser All;
+    const getPikachu = getByAltText('Pikachu sprite');
+    expect(getPikachu).toBeInTheDocument();
+
+    const getAllButton = getByTestId('');
+    expect(getAllButton).toBeInTheDocument();
+
+    // A Pokedéx deverá mostrar os Pokémons normalmente (sem filtros) quando o botão All for clicado;
+    userEvent.click(buttonAll);
+    userEvent.click(nextButton);
+    userEvent.click(nextButton);
+    const getBugSpecie = getByAltText('Caterpie sprite');
+    expect(getBugSpecie).toBeInTheDocument();
   });
 
   it.skip('Um botão de filtro para cada tipo de Pokémon.', () => {
-    // Teste se é criado, dinamicamente, um botão de filtro para cada tipo de Pokémon
+    // const { getByRole, getByAltText } = renderWithRouter(<App />);
     // Os botões de filtragem devem ser dinâmicos;
     // Deve existir um botão de filtragem para cada tipo de Pokémon disponível nos dados, sem repetição. Ou seja, a sua Pokédex deve possuir pokémons do tipo Fire, Psychic, Electric, Bug, Poison, Dragon e Normal;
 
