@@ -39,12 +39,15 @@ describe('Teste do componente PokemonDetails', () => {
   });
 
   it('Testa se o usuário pode favoritar um pokémon na página de detalhes', () => {
-    const { getByText, getByLabelText } = renderWithRouter(<App />);
+    const { getByText, getByLabelText, getAllByRole } = renderWithRouter(<App />);
     userEvent.click(getByText('More details'));
     const checkbox = getByLabelText('Pokémon favoritado?');
     expect(checkbox).toBeInTheDocument();
     expect(checkbox).not.toBeChecked();
+    expect(getAllByRole('img')
+      .filter((img) => img.alt === 'Pikachu is marked as favorite').length).toBe(0);
     userEvent.click(checkbox);
-    expect(checkbox).toBeChecked();
+    expect(getAllByRole('img')
+      .filter((img) => img.alt === 'Pikachu is marked as favorite').length).toBe(1);
   });
 });
