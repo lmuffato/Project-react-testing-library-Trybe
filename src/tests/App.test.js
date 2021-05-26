@@ -1,6 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from '../App';
 
 test('renders a reading with the text `Pokédex`', () => {
@@ -9,6 +9,8 @@ test('renders a reading with the text `Pokédex`', () => {
       <App />
     </MemoryRouter>,
   );
-  const heading = getByText(/Pokédex/i);
+  const heading = screen.getByRole('heading', {
+    name: /Pokédex/i
+  });
   expect(heading).toBeInTheDocument();
 });
