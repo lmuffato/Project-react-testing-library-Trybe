@@ -21,6 +21,5 @@ describe('"NotFound" page tests', () => {
 
     expect(notFoundGif.src).toContain('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
     expect(notFoundGif).toBeInTheDocument();
-
   });
 });
