@@ -44,6 +44,12 @@ test('renders Pokedex and execute all functions', () => {
   expect(pikachu).toBeInTheDocument();
   expect(nextBtn.disabled).toBe(false);
 
+  const bugBtn = getByRole('button', { name: /Bug/i });
+  userEvent.click(bugBtn);
+  const caterpie = getByText(/Caterpie/i);
+  expect(caterpie).toBeInTheDocument();
+  expect(nextBtn.disabled).toBe(true);
+
   const typebtns = getAllByTestId('pokemon-type-button');
   const typeArr = typebtns.map((button) => button.innerHTML);
   expect(typeArr).toEqual([

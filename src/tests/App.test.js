@@ -85,3 +85,24 @@ test('redirects to "not found" when a non exixtent route is defined', () => {
   const notFound = getByText(/Page requested not found/i);
   expect(notFound).toBeInTheDocument();
 });
+
+test('Tests more details functions', () => {
+  const history = createMemoryHistory();
+  const { getByText, getByRole } = render(
+    <Router history={ history }>
+      <App />
+    </Router>,
+  );
+
+  const details = getByText(/More details/i);
+  expect(details.href).toContain('pokemons/25');
+  userEvent.click(details);
+
+  const favorito = getByRole('checkbox', { name: /Pokémon favoritado?/i });
+  expect(favorito).toBeInTheDocument();
+  userEvent.click(favorito);
+
+  const favImg = getByRole('img', { name: /Pikachu is marked as favorite/i });
+  expect(favImg).toBeInTheDocument();
+  expect(favImg.src).toContain('/star-icon.svg');
+});

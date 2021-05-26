@@ -4,6 +4,7 @@ import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import PokemonDetails from '../components/PokemonDetails';
 import pokemons from '../data';
+import userEvent from '@testing-library/user-event';
 
 const isPokemonFavoriteById = {
   4: false,
@@ -26,6 +27,11 @@ const match = {
   },
 };
 
+function onUpdatePokemon() {
+  const case1 = isPokemonFavoriteById[25];
+  isPokemonFavoriteById[25] = !case1;
+}
+
 test('renders Pokedex and execute all functions', () => {
   const history = createMemoryHistory();
   history.push(match.url);
@@ -35,6 +41,7 @@ test('renders Pokedex and execute all functions', () => {
         pokemons={ pokemons }
         isPokemonFavoriteById={ isPokemonFavoriteById }
         match={ match }
+        onUpdateFavoritePokemons={ onUpdatePokemon }
       />
     </Router>,
   );
@@ -58,4 +65,5 @@ test('renders Pokedex and execute all functions', () => {
 
   const favorito = getByRole('checkbox', { name: /Pokémon favoritado?/i });
   expect(favorito).toBeInTheDocument();
+  userEvent.click(favorito);
 });
