@@ -40,7 +40,7 @@ describe('Testes componente Pokemon - renderiza card', () => {
     expect(details).toBeInTheDocument();
     userEvent.click(details);
     const pokemonWeight = screen.getByTestId('pokemon-weight');
-    expect(pokemonWeight).toContainHTML('6.0 kg');
+    expect(pokemonWeight).toContainHTML('Average weight: 6.0 kg');
   });
   test('Testa a imagendo pokemon', () => {
     render(
