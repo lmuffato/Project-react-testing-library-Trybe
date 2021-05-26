@@ -81,4 +81,20 @@ describe('tests the pokemon details component', () => {
       expect(mapImage).toHaveAttribute('src', map);
     });
   });
+  test('test if pokemon favorited checkbox', () => {
+    const { getByRole } = render(
+      <MemoryRouter>
+        <PokemonDetails
+          pokemons={ pokemons }
+          match={ match }
+          isPokemonFavoriteById={ pokemonFavorite }
+          onUpdateFavoritePokemons={ (pokemonId, isFavorite) => (
+            this.onUpdateFavoritePokemons(pokemonId, isFavorite)
+          ) }
+        />
+      </MemoryRouter>,
+    );
+    const favoriteCheck = getByRole('checkbox', { name: /Pokémon favoritado?/i });
+    expect(favoriteCheck).toBeInTheDocument();
+  });
 });
