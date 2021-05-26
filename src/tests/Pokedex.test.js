@@ -1,5 +1,16 @@
 describe('5. Testando componente <Pokedex />', () => {
-  test('Página contém um heading h2 com o texto Encountered pokémon', () => {});
+  test('Página contém um heading h2 com o texto Encountered pokémon', () => {
+    const { getByRole } = renderWithRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ mockIsPokemonFavoriteById }
+      />,
+    );
+    const pokedexHeading = getByRole('heading', { level: 2 });
+    expect(pokedexHeading).toBeInTheDocument();
+    expect(pokedexHeading).toHaveTextContent('Encountered pokémons');
+  });
+
   test('é exibido o próximo Pokémon da lista quando o botão Próximo pokémon é clicado', () => {});
   test('é mostrado apenas um Pokémon por vez', () => {});
   test('a Pokédex tem os botões de filtro', () => {});
