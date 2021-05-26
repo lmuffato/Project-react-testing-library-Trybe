@@ -23,4 +23,15 @@ describe('Tests whether the information about the pokedex is rendered', () => {
     expect(paragraphy1).toBeInTheDocument();
     expect(paragraphy2).toBeInTheDocument();
   });
+
+  it('Render image of the pokedex', () => {
+    renderWithRouter(<About />);
+    const imgURL = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/';
+    const imgResource = 'Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
+    const image = `${imgURL}${imgResource}`;
+
+    const pokedexImg = screen.getByRole('img', { name: /pokédex/i });
+    expect(pokedexImg).toBeInTheDocument();
+    expect(pokedexImg).toHaveAttribute('src', image);
+  });
 });
