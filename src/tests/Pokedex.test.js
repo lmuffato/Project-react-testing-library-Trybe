@@ -107,7 +107,24 @@ describe('5. Testando componente <Pokedex />', () => {
     expect(currentPokemon).toBeInTheDocument();
   });
 
-  test('é criado, dinamicamente, um botão de filtro para cada tipo de Pokémon', () => {});
+  test('é criado, dinamicamente, um botão de filtro para cada tipo de Pokémon', () => {
+    const { getByRole } = renderWithRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ mockIsPokemonFavoriteById }
+      />,
+    );
+
+    const pokemonTypes = [...new Set(pokemons.map((poke) => poke.type))];
+    pokemonTypes.forEach((pokeType) => {
+      const pokemonTypeButton = getByRole('button', { name: pokeType });
+      expect(pokemonTypeButton).toBeInTheDocument();
+      expect(pokemonTypeButton).toHaveTextContent(pokeType);
+    });
+
+    const pokemonTypeAllButton = getByRole('button', { name: 'All' });
+    expect(pokemonTypeAllButton).toBeInTheDocument();
+  });
 
   test('Botão Próximo deve ser desabilitado quando a lista tiver só um pokémon', () => {
 
