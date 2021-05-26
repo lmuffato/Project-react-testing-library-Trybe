@@ -33,5 +33,6 @@ describe('4. Teste o componente <NotFound.js />', () => {
     history.push('/pagina-inexistente');
     const img = getByAltText('Pikachu crying because the page requested was not found');
     expect(img).toBeInTheDocument();
+    expect(img).toHaveAttribute('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });
