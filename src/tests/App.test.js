@@ -1,6 +1,8 @@
 import React from 'react';
+import { createMemoryHistory } from 'history';
 import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from '../App';
 
 describe('Requisito 1', () => {
@@ -30,6 +32,21 @@ describe('Requisito 1', () => {
 
     const favoritePokemons = getByRole('link', { name: /Favorite Pokémons/i });
     expect(favoritePokemons).toBeInTheDocument();
+  });
 
+  it(`Teste se a aplicação é redirecionada para a página 
+  inicial, na URL / ao clicar no link Home da barra de navegação`, () => {
+    const historyMock = createMemoryHistory();
+
+    const { getByRole } = render(
+      <MemoryRouter history={ historyMock }>
+        <App />
+      </MemoryRouter>,
+    );
+
+    const home = getByRole('link', { name: /Home/i });
+    userEvent.click(home);
+
+    historyMock.push('/');
   });
 });
