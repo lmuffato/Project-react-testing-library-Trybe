@@ -25,7 +25,7 @@
 
 |&check;| Teste o componente <NotFound.js />
 
-|_| Teste o componente <Pokedex.js />
+|&check;| Teste o componente <Pokedex.js />
 
 |_| Teste o componente <Pokemon.js />
 
