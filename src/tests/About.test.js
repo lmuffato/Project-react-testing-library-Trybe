@@ -1,9 +1,7 @@
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { render } from 'react-dom';
 import renderWithRouter from '../../renderWithRouter';
 import App from '../App';
-import { About } from '../components';
 
 describe('renders infos about the pokedex', () => {
   const { container, getByText, getByRole, getByAltText } = renderWithRouter(<App />);
@@ -19,9 +17,4 @@ describe('renders infos about the pokedex', () => {
     const paragraphs = container.querySelectorAll('p');
     paragraphs.forEach((parag) => expect(parag).toBeInTheDocument());
   });
-
-/*   test('checks if the image is rendered correctly', () => {
-    expect(img.src).toBe('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
-    expect(img).toBeInTheDocument();
-  }); */
 });

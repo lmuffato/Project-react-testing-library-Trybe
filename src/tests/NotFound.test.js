@@ -1,11 +1,10 @@
 import React from 'react';
-import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../../renderWithRouter';
 import App from '../App';
 
 describe('testing NotFound component', () => {
   test('contain a heading h2 with the text "Page requested not found 😭"', () => {
-    const { getByText, getByRole, history } = renderWithRouter(<App />);
+    const { getByRole, history } = renderWithRouter(<App />);
 
     history.push('/anything');
 
@@ -17,7 +16,7 @@ describe('testing NotFound component', () => {
   });
 
   test('shows correct image"', () => {
-    const { getByAltText, getByRole, history } = renderWithRouter(<App />);
+    const { getByAltText, history } = renderWithRouter(<App />);
 
     history.push('/anything');
 
