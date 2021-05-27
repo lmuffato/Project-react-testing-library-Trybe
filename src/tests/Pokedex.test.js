@@ -30,4 +30,9 @@ describe('Testa o componente <Pokedex.js />', () => {
     const alakazamAgain = pokemonName;
     expect(alakazamAgain.innerHTML).toBe('Alakazam');
   });
+  test('Teste se é mostrado apenas um Pokémon por vez.', () => {
+    renderWithRouter(<App />);
+    const pokemonName = screen.getAllByTestId('pokemon-name');
+    expect(pokemonName.length).toBe(1);
+  });
 });
