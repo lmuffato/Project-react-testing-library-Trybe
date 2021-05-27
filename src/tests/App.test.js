@@ -32,3 +32,13 @@ test('render navigation link "Home"', () => {
   const homeLink = getByText(/Home/i);
   expect(homeLink).toBeInTheDocument();
 });
+
+test('render navigation link "About"', () => {
+  const { getByText } = render(
+    <MemoryRouter initialEntries={ ['/'] }>
+      <App />
+    </MemoryRouter>,
+  );
+  const aboutLink = getByText(/About/i);
+  expect(aboutLink).toBeInTheDocument();
+});
