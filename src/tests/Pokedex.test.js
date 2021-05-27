@@ -97,4 +97,11 @@ describe('pokemon type buttons tests', () => {
     userEvent.click(button);
     testButton('electric');
   });
+
+  it('test button Fire', () => {
+    renderPokedex(testModel('Fire'));
+    const button = screen.getByRole('button', { name: /fire/i });
+    userEvent.click(button);
+    testButton('fire');
+  });
 });
