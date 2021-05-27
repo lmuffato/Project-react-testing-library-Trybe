@@ -5,7 +5,6 @@ import Pokedex from '../components/Pokedex';
 import renderWithRouter from '../renderWithRouter';
 import pokemons from '../data';
 
-// const isPokemonFavoriteById = pokemons.map(({ id }) => id);
 const isPokemonFavoriteById = pokemons.map(() => false);
 describe('Request 5: test component Pokedex', () => {
   it('renders a heading with the text `Encountered pokémons`', () => {
