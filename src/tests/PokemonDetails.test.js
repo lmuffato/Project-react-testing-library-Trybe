@@ -6,15 +6,18 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
+const moreDetails = 'More details';
+const type = 'Electric';
+
 test('testa se informações detalhadas são mostradas', () => {
-const { getByRole, getByAltText, getByText, getByLabelText } = renderWithRouter(<App />);
+  const { getByRole, getByText } = renderWithRouter(<App />);
   const selectPikachu = getByRole('button', {
-    name: 'Electric',
+    name: type,
+  });
+  const selectDetails = getByRole('link', {
+    name: moreDetails,
   });
   userEvent.click(selectPikachu);
-  const selectDetails = getByRole('link', {
-    name: 'More details',
-  });
   userEvent.click(selectDetails);
   const pikachu = getByText('Pikachu Details');
   expect(pikachu).toBeInTheDocument();
@@ -24,40 +27,41 @@ const { getByRole, getByAltText, getByText, getByLabelText } = renderWithRouter(
   });
   expect(pikachu).toBeInTheDocument();
   expect(h2Summary).toBeInTheDocument();
+  const summary = getByText('This intelligent '
+  + 'Pokémon roasts hard berries with electricity to make them tender enough to eat.');
+  expect(summary).toBeInTheDocument();
 });
 
-
 test('testa se há seção com os mapas contendo as localizações', () => {
-    const { getByRole, getByAltText, getByText, getByLabelText } = renderWithRouter(<App />);
+  const { getByRole } = renderWithRouter(<App />);
   const selectPikachu = getByRole('button', {
-    name: 'Electric',
+    name: type,
+  });
+  const selectDetails = getByRole('link', {
+    name: moreDetails,
   });
   userEvent.click(selectPikachu);
-  const selectDetails = getByRole('link', {
-    name: 'More details',
-  });
   userEvent.click(selectDetails);
-    const h2Location = getByRole('heading', {
-        name: 'Game Locations of Pikachu',
-        level: 2,
-      });
-      expect(h2Location).toBeInTheDocument();
+  const h2Location = getByRole('heading', {
+    name: 'Game Locations of Pikachu',
+    level: 2,
+  });
+  expect(h2Location).toBeInTheDocument();
 });
 
 test('testa se pode favoritar um pokémon', () => {
-const { getByRole, getByAltText, getByLabelText } = renderWithRouter(<App />);
+  const { getByRole, getByLabelText } = renderWithRouter(<App />);
   const selectPikachu = getByRole('button', {
-    name: 'Electric',
+    name: type,
+  });
+  const selectDetails = getByRole('link', {
+    name: moreDetails,
   });
   userEvent.click(selectPikachu);
-  const selectDetails = getByRole('link', {
-    name: 'More details',
-  });
   userEvent.click(selectDetails);
   const checkbox = getByRole('checkbox');
   const labelFavorite = getByLabelText('Pokémon favoritado?');
   userEvent.click(labelFavorite);
-  const sprite = getByAltText('Pikachu is marked as favorite');
   expect(labelFavorite).toBeInTheDocument();
   expect(checkbox).toBeInTheDocument();
 });
