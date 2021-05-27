@@ -1,16 +1,13 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import About from '../components/About';
 import renderWithRouter from './renderWithRouter';
-import App from '../App';
 
 test('Teste se a página contém as informações sobre a Pokédex.', () => {
-  const { getByText, history } = renderWithRouter(<App />);
-  userEvent.click(getByText('link', { name: /about/i }));
-  const { pathname } = history.location;
-  expect(pathname).toBe('/about');
+  const { getByText } = renderWithRouter(<About />);
+  const aboutTextInfo = getByText(/This application simulates/i);
+  expect(aboutTextInfo).toBeInTheDocument();
 });
 
 test('Teste se a página contém um heading h2 com o texto About Pokédex.', () => {
@@ -20,7 +17,7 @@ test('Teste se a página contém um heading h2 com o texto About Pokédex.', () 
     </MemoryRouter>,
   );
   const testh2Info = getByRole('heading', {
-    name: '/about pokédex/i',
+    name: /about pokédex/i,
     level: 2,
   });
   expect(testh2Info).toBeInTheDocument();
@@ -32,7 +29,7 @@ test('Teste se a página contém dois parágrafos', () => {
       <About />
     </MemoryRouter>,
   );
-  const pAboutPoke = getAllByText('/pokémon/i');
+  const pAboutPoke = getAllByText(/pokémons/i);
   expect(pAboutPoke.length).toBe(2);
 });
 
