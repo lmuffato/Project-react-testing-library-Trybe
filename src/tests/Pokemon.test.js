@@ -1,8 +1,10 @@
 import React from 'react';
-import renderWithRouter from "../helpers/renderWithRouter";
-import Pokemon from '../components/Pokemon';
-import pokemons from '../data';
 import userEvent from '@testing-library/user-event';
+import renderWithRouter from '../helpers/renderWithRouter';
+import Pokemon from '../components/Pokemon';
+import App from '../App';
+import pokemons from '../data';
+import mockIsPokemonFavoriteById from '../mocks/mockIsPokemonFavoriteById';
 
 describe('6. Testar componente <Pokemon />', () => {
   const pikachu = pokemons[0];
@@ -39,19 +41,24 @@ describe('6. Testar componente <Pokemon />', () => {
   });
 
   test('ao clicar no link, é feito o redirecionamento para a página de detalhes', () => {
-    const { getByRole, history } = renderWithRouter(
-      <Pokemon
-        pokemon={ pikachu }
-        isFavorite="true"
-      />,
-    );
+    const { getByRole, history } = renderWithRouter(<App />);
 
     const detailsLink = getByRole('link', { name: 'More details' });
     userEvent.click(detailsLink);
     expect(history.location.pathname).toBe('/pokemons/25');
   });
 
-  test('a URL exibida no navegador muda para `/pokemon/<id>`', () => {});
+  test('existe um ícone de estrela nos Pokémons favoritados.', () => {
+    const favPokemon = pokemons.filter((poke) => mockIsPokemonFavoriteById[poke.id])[0];
+    const { getByAltText } = renderWithRouter(
+      <Pokemon
+        pokemon={ favPokemon }
+        isFavorite
+      />,
+    );
 
-  test('existe um ícone de estrela nos Pokémons favoritados.', () => {});
+    const favImage = getByAltText(`${favPokemon.name} is marked as favorite`);
+    expect(favImage).toBeInTheDocument();
+    expect(favImage.src).toContain('/star-icon.svg');
+  });
 });
