@@ -132,4 +132,11 @@ describe('pokemon type buttons tests', () => {
     userEvent.click(button);
     testButton('normal');
   });
+
+  it('test button Dragon', () => {
+    renderPokedex(testModel('Dragon'));
+    const button = screen.getByRole('button', { name: /dragon/i });
+    userEvent.click(button);
+    testButton('dragon');
+  });
 });
