@@ -1,6 +1,5 @@
 import { fireEvent } from '@testing-library/dom';
 import React from 'react';
-// import App from '../App';
 import Pokemon from '../components/Pokemon';
 import renderWithRouter from '../renderWithRouter';
 import pokemons from '../data';
@@ -43,7 +42,6 @@ describe('Resquest 6: Test component Pokemon', () => {
     expect(pathname).toBe(url);
   });
   it('renders star icon on favorite Pokémon', () => {
-    console.log(pokemon);
     const { getByRole } = renderWithRouter(<Pokemon
       pokemon={ pokemon }
       isFavorite={ isPokemonFavoriteById[0] }
