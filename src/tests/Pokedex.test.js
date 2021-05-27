@@ -125,4 +125,11 @@ describe('pokemon type buttons tests', () => {
     userEvent.click(button);
     testButton('psychic');
   });
+
+  it('test button Normal', () => {
+    renderPokedex(testModel('Normal'));
+    const button = screen.getByRole('button', { name: /normal/i });
+    userEvent.click(button);
+    testButton('normal');
+  });
 });
