@@ -1,7 +1,5 @@
 import React from 'react';
-// import { MemoryRouter } from 'react-router-dom';
-import { render, screen, fireEvent } from '@testing-library/react';
-import renderWithRouter from '../renderWithRouter';
+import { render, screen } from '@testing-library/react';
 import About from '../components/About';
 
 describe('Tests in About.js ', () => {
