@@ -4,6 +4,11 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
+const pokeType = 'pokemon-type';
+const btnPokeType = 'pokemon-type-button';
+const pokeName = 'pokemon-name';
+const nextPokemon = 'next-pokemon';
+
 describe('Testa o componente <Pokedex.js />', () => {
   test('Teste se página contém um heading h2 com o texto Encountered pokémons', () => {
     renderWithRouter(<App />);
@@ -12,7 +17,7 @@ describe('Testa o componente <Pokedex.js />', () => {
   });
   test('Teste se é mostrado apenas um Pokémon por vez.', () => {
     renderWithRouter(<App />);
-    const pokemonName = screen.getAllByTestId('pokemon-name');
+    const pokemonName = screen.getAllByTestId(pokeName);
     expect(pokemonName.length).toBe(1);
   });
   test('Teste se é exibido o próximo Pokémon da lista quando o bt é clicado.', () => {
@@ -21,11 +26,11 @@ describe('Testa o componente <Pokedex.js />', () => {
     const psychicType = btnType[5];
     userEvent.click(psychicType);
 
-    const pokemonName = screen.getByTestId('pokemon-name');
+    const pokemonName = screen.getByTestId(pokeName);
     const alakazam = pokemonName;
     expect(alakazam.innerHTML).toBe('Alakazam');
 
-    const btnNextPokemon = screen.getByTestId('next-pokemon');
+    const btnNextPokemon = screen.getByTestId(nextPokemon);
     userEvent.click(btnNextPokemon);
 
     const mew = pokemonName;
@@ -35,21 +40,30 @@ describe('Testa o componente <Pokedex.js />', () => {
     const alakazamAgain = pokemonName;
     expect(alakazamAgain.innerHTML).toBe('Alakazam');
   });
+  test('Testa botão de Próximo, desabilitado quando a lista tiver um só pokémon.', () => {
+    renderWithRouter(<App />);
+    const btnpokemonsTypes = screen.getAllByTestId(btnPokeType);
+    userEvent.click(btnpokemonsTypes[5]);
+    const snorlax = screen.getByTestId(pokeName);
+    expect(snorlax.innerHTML).toBe('Snorlax');
+    const nextPok = screen.getByTestId(nextPokemon);
+    expect(nextPok).toBeDisabled();
+  });
 });
 describe('Testa os botões de filtro', () => {
   test('Teste se a Pokédex tem os botões de filtro.', () => {
     renderWithRouter(<App />);
-    const btnFilterType = screen.getAllByTestId('pokemon-type-button');
+    const btnFilterType = screen.getAllByTestId(btnPokeType);
     expect(btnFilterType[0]).toBeInTheDocument();
   });
   test('Testa se ao clicar em filtro, os pokemons são daquele tipo', () => {
     renderWithRouter(<App />);
-    const btnFilterType = screen.getAllByTestId('pokemon-type-button');
+    const btnFilterType = screen.getAllByTestId(btnPokeType);
     userEvent.click(btnFilterType[1]);
-    const pokemonType = screen.getByTestId('pokemon-type');
+    const pokemonType = screen.getByTestId(pokeType);
     expect(pokemonType.innerHTML).toBe('Fire');
 
-    const btnNextPokemon = screen.getByTestId('next-pokemon');
+    const btnNextPokemon = screen.getByTestId(nextPokemon);
     userEvent.click(btnNextPokemon);
     expect(pokemonType.innerHTML).toBe('Fire');
   });
@@ -74,7 +88,7 @@ describe('Teste se a Pokédex contém um botão para resetar o filtro', () => {
   });
   test('Mostrar os Pokémons (sem filtros) quando All for clicado;', () => {
     renderWithRouter(<App />);
-    const pokemonType = screen.getByTestId('pokemon-type');
+    const pokemonType = screen.getByTestId(pokeType);
     expect(pokemonType.innerHTML).toBe('Electric');
     const btn = screen.getAllByRole('button');
     const btndragonType = btn[7];
