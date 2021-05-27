@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { MemoryRouter } from 'react-router';
 import { render } from '@testing-library/react';
+
 import About from '../components/About';
 
 test('tests return of application details', () => {
