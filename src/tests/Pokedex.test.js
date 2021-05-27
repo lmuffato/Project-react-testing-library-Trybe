@@ -121,4 +121,21 @@ describe('Componente Pokedex', () => {
     fireEvent.click(btnsFilter[6]);
     expect(pokName.textContent).toEqual('Dragonair');
   });
+
+  test('Teste criação dinamica de botões de filtro', () => {
+    const { getAllByTestId } = renderWithRouter(<App />);
+    const btns = getAllByTestId(pokemonTypeButton);
+
+    const pokemonTypesRepeat = pokemons.map((pokemon) => pokemon.type);
+    const types = pokemonTypesRepeat
+      .filter((el, i) => pokemonTypesRepeat.indexOf(el) === i);
+    expect(btns.length).toBe(types.length);
+    expect(btns[0]).toHaveTextContent(types[0]);
+    expect(btns[1]).toHaveTextContent(types[1]);
+    expect(btns[2]).toHaveTextContent(types[2]);
+    expect(btns[3]).toHaveTextContent(types[3]);
+    expect(btns[4]).toHaveTextContent(types[4]);
+    expect(btns[5]).toHaveTextContent(types[5]);
+    expect(btns[6]).toHaveTextContent(types[6]);
+  });
 });
