@@ -2,9 +2,6 @@ import React from 'react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../helpers/renderWithRouter';
 import App from '../App';
-import pokemons from '../data';
-// import { checkPropTypes } from 'prop-types';
-// import pokemons from '../data';
 
 describe('Test the <PokemonDetails.js /> component', () => {
   it('Test if the information for the selected Pokémon is shown.', () => {
@@ -13,9 +10,10 @@ describe('Test the <PokemonDetails.js /> component', () => {
     const linkToDetails = getByRole('link', {
       name: /more details/i,
     });
+    const pikachuPath = '/pokemons/25';
     userEvent.click(linkToDetails);
     const path = history.location.pathname;
-    expect(path).toBe('/pokemons/25');
+    expect(path).toBe(pikachuPath);
     const heading = getByRole('heading', {
       name: /pikachu details/i,
     });
@@ -85,7 +83,7 @@ describe('Test the <PokemonDetails.js /> component', () => {
    remove the Pokémon from the list of favorites, respectively`, () => {
     const { getByRole, queryByText, history } = renderWithRouter(<App />);
 
-    history.push('/pokemons/25');
+    history.push(pikachuPath);
     const favorite = getByRole('checkbox', {
       name: /pokémon favoritado\?/i,
     });
@@ -96,7 +94,7 @@ describe('Test the <PokemonDetails.js /> component', () => {
     const pokemon = queryByText(/no favorite pokemon found/i);
     expect(pokemon).not.toBeInTheDocument();
 
-    history.push('/pokemons/25');
+    history.push(pikachuPath);
     userEvent.click(favorite);
     expect(favorite).not.toBeChecked();
   });
