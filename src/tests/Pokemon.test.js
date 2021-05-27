@@ -1,17 +1,17 @@
 import React from 'react';
 import { screen, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import App from '../App';
-import renderWithRouter from './renderWithRouter';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router';
+import App from '../App';
+import renderWithRouter from './renderWithRouter';
 
 test('Testa se aparece card com as informações do pokémon', () => {
   const { getByAltText, getByTestId } = renderWithRouter(<App />);
-  const name = getByTestId('pokemon-name')
-  const type = getByTestId('pokemon-type')
-  const weight = getByTestId('pokemon-weight')
-  const sprite = getByAltText('Pikachu sprite')
+  const name = getByTestId('pokemon-name');
+  const type = getByTestId('pokemon-type');
+  const weight = getByTestId('pokemon-weight');
+  const sprite = getByAltText('Pikachu sprite');
   expect(name).toHaveTextContent('Pikachu');
   expect(type).toHaveTextContent('Electric');
   expect(weight).toHaveTextContent('Average weight: 6.0 kg');
@@ -23,8 +23,8 @@ test('Testa se contém um link de navegação para exibir detalhes', () => {
   render(
     <Router history={ historyMock }>
       <App />
-    </Router>
-  )
+    </Router>,
+  );
   historyMock.push('/pokemons/4');
 
   const charmander = screen.getByText('Charmander');
@@ -36,16 +36,16 @@ test('Testa se contém um link de navegação para exibir detalhes', () => {
 test('Testa se marca favoritos', async () => {
   const { getByRole, getByAltText, getByLabelText } = renderWithRouter(<App />);
   const selectPikachu = getByRole('button', {
-    name:'Electric',
+    name: 'Electric',
   });
   userEvent.click(selectPikachu);
   const selectDetails = getByRole('link', {
-    name:'More details',
+    name: 'More details',
   });
   userEvent.click(selectDetails);
   const labelFavorite = getByLabelText('Pokémon favoritado?');
   userEvent.click(labelFavorite);
-  const sprite = getByAltText('Pikachu is marked as favorite')
+  const sprite = getByAltText('Pikachu is marked as favorite');
   expect(sprite.src).toContain('/star-icon.svg');
   expect(sprite).toBeInTheDocument();
 });
