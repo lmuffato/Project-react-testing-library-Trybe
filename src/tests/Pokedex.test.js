@@ -80,4 +80,12 @@ describe('header and nextPokemon button', () => {
     pokemon = screen.getByText(/Pikachu/i);
     expect(pokemon).toBeInTheDocument();
   });
+
+  it('Disables next pokemon button when there is only one pokemon.', () => {
+    renderPokedex(testModelOriginal());
+    const button = screen.getByRole('button', { name: /electric/i });
+    userEvent.click(button);
+    const nextPokemon = screen.getByRole('button', { name: /próximo pokémon/i });
+    expect(nextPokemon).toBeDisabled();
+  });
 });
