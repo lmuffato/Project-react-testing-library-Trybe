@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import FavoritePokemons from '../components/FavoritePokemons';
 
 describe('Component FavoritePokemons.js tests', () => {
-  test('There is a h2 heading with text About Pokedex', () => {
+  test('There is a message: No favorite pokemon found', () => {
     const { getByText } = render(<FavoritePokemons />);
 
     const emptyMsg = getByText('No favorite pokemon found');
