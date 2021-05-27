@@ -13,7 +13,7 @@ describe('6. Testar componente <Pokemon />', () => {
     const { getByTestId, getByAltText } = renderWithRouter(
       <Pokemon
         pokemon={ pikachu }
-        isFavorite="true"
+        isFavorite
       />,
     );
 
@@ -31,7 +31,7 @@ describe('6. Testar componente <Pokemon />', () => {
     const { getByRole } = renderWithRouter(
       <Pokemon
         pokemon={ pikachu }
-        isFavorite="true"
+        isFavorite
       />,
     );
 
