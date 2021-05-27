@@ -15,6 +15,5 @@ describe('Test component NotFound', () => {
     + ' because the page requested was not found');
     const image = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
     expect(imageAlt).toHaveAttribute('src', image);
-
   });
 });
