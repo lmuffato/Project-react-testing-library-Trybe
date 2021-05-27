@@ -126,12 +126,12 @@ describe('Teste se a Pokédex contém um botão para resetar o filtro', () => {
     const firstPokeName = getByText('Pikachu');
     expect(firstPokeName).toBeInTheDocument();
 
-    const btn2 = getByRole('button', {
+    const Nextbtn = getByRole('button', {
       name: /Próximo pokémon/i,
     });
-    fireEvent.click(btn2);
-    fireEvent.click(btn2);
-    fireEvent.click(btn2);
+    fireEvent.click(Nextbtn);
+    fireEvent.click(Nextbtn);
+    fireEvent.click(Nextbtn);
 
     const firstPokeName2 = getByText('Ekans');
     expect(firstPokeName2).toBeInTheDocument();
