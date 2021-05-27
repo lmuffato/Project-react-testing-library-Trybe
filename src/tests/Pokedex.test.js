@@ -138,4 +138,10 @@ describe('Componente Pokedex', () => {
     expect(btns[5]).toHaveTextContent(types[5]);
     expect(btns[6]).toHaveTextContent(types[6]);
   });
+
+  test('Teste criação dinamica de botões de filtro', () => {
+    const { getByText } = renderWithRouter(<App />);
+    const btnNext = getByText(/Próximo pokémon/i);
+    expect(btnNext).toBeInTheDocument();
+  });
 });
