@@ -71,7 +71,7 @@ describe('Teste se existe os mapas contendo as localizações do pokémon', () =
 
     expect(pokeDetails).toBeInTheDocument();
   });
-  it('deve conter o texto Pikachu Details', () => {
+  it('deve conter os nomes dos mapas', () => {
     const { getByRole, getByText } = renderWithRouter(<App />);
 
     const btn = getByRole('link', {
@@ -105,7 +105,7 @@ describe('Teste se existe os mapas contendo as localizações do pokémon', () =
 describe('Teste se o usuário pode favoritar um pokémon', () => {
   // const pokemon = pokemons[0];
   // const isPokemonFavoriteById = false;
-  it('deve conter o texto Pikachu Details', () => {
+  it('deve conter o texto Pokémon favoritado? na label', () => {
     const { getByRole, getByLabelText } = renderWithRouter(<App />);
 
     const btn = getByRole('link', {
