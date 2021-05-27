@@ -2,6 +2,7 @@ import React from 'react';
 import renderWithRouter from "../helpers/renderWithRouter";
 import Pokemon from '../components/Pokemon';
 import pokemons from '../data';
+import userEvent from '@testing-library/user-event';
 
 describe('6. Testar componente <Pokemon />', () => {
   const pikachu = pokemons[0];
@@ -37,7 +38,18 @@ describe('6. Testar componente <Pokemon />', () => {
     expect(detailsLink).toHaveAttribute('href', `/pokemons/${pikachu.id}`);
   });
 
-  test('ao clicar no link, é feito o redirecionamento para a página de detalhes', () => {});
+  test('ao clicar no link, é feito o redirecionamento para a página de detalhes', () => {
+    const { getByRole, history } = renderWithRouter(
+      <Pokemon
+        pokemon={ pikachu }
+        isFavorite="true"
+      />,
+    );
+
+    const detailsLink = getByRole('link', { name: 'More details' });
+    userEvent.click(detailsLink);
+    expect(history.location.pathname).toBe('/pokemons/25');
+  });
 
   test('a URL exibida no navegador muda para `/pokemon/<id>`', () => {});
 
