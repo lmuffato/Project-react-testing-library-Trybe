@@ -21,12 +21,14 @@ describe('Componente Pokemon', () => {
 
   test('Teste se é redenrizado um card com o peso medio correto do pokemon', () => {
     const { getByTestId } = renderWithRouter(<App />);
-    const weight = getByTestId('pokemon-weight');
+    const weight = getByTestId(/pokemon-weight/i);
+    const averageWeightValue = pokemons[0].averageWeight.value;
+    const averageWeightUnit = pokemons[0].averageWeight.measurementUnit;
     const averageWeight = (
-      `${pokemons[0].averageWeight.value} ${pokemons[0].averageWeight.measurementUnit}`
+      `Average weight: ${averageWeightValue} ${averageWeightUnit}`
     );
     expect(weight).toBeInTheDocument();
-    expect(weight).toHaveTextContent(averageWeight);
+    expect(weight).toHaveTextContent(`${averageWeight}`);
   });
 
   test('Deve ter a img com src e alt corretos', () => {
