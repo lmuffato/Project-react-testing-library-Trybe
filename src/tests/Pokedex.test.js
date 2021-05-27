@@ -139,4 +139,21 @@ describe('pokemon type buttons tests', () => {
     userEvent.click(button);
     testButton('dragon');
   });
+
+  it('test button All', () => {
+    renderWithRouter(<Pokedex
+      pokemons={ testModelOriginal() }
+      isPokemonFavoriteById={ { 4: true, 25: false } }
+    />);
+    const button = screen.getByRole('button', { name: /all/i });
+    userEvent.click(button);
+    let pokemonType = screen.getByTestId(pokemonTypeText);
+    expect(pokemonType.textContent).toMatch(/electric/i);
+    const nextPokemon = screen.getByRole('button', { name: /próximo pokémon/i });
+    userEvent.click(nextPokemon);
+    const pokemon = screen.getByText(/Charmander/i);
+    expect(pokemon).toBeInTheDocument();
+    pokemonType = screen.getByTestId(pokemonTypeText);
+    expect(pokemonType.textContent).toMatch(/fire/i);
+  });
 });
