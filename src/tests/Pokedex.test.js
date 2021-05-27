@@ -94,4 +94,42 @@ describe('Requirement 05 - Testing a Pokédex', () => {
       checkFilterAll(getByTestId);
     });
   });
+  it('testing whether buttons are created dynamically', () => {
+    const { getAllByTestId, getByText } = renderWithRouter(<App />);
+    const types = [...new Set(pokemons.map(({ type }) => type))];
+    const buttons = getAllByTestId('pokemon-type-button');
+    types.forEach((type, i) => {
+      expect(buttons[i].textContent).toBe(type);
+    });
+
+    const expectTypes = [
+      'Fire',
+      'Psychic',
+      'Electric',
+      'Bug',
+      'Poison',
+      'Dragon',
+      'Normal',
+    ];
+    expectTypes.forEach((_type, i) => {
+      expect(expectTypes.indexOf(buttons[i].textContent)).not.toBe('-1');
+      expect(buttons[i]).toBeInTheDocument();
+      const resetButton = getByText('All');
+      expect(resetButton).toBeInTheDocument();
+    });
+  });
+  it('The Next Pokémon button should be disabled when there is only one Pokémon', () => {
+    const { getAllByTestId, getByTestId } = renderWithRouter(<App />);
+    const buttons = getAllByTestId('pokemon-type-button');
+    buttons.forEach((button) => {
+      userEvent.click(button);
+      const pokemonsLength = pokemons.filter(
+        ({ type }) => type === button.textContent,
+      ).length;
+      if (pokemonsLength <= 1) {
+        const buttoNext = getByTestId('next-pokemon');
+        expect(buttoNext).toBeDisabled();
+      }
+    });
+  });
 });
