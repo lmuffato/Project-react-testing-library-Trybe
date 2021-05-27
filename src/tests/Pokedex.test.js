@@ -114,9 +114,15 @@ describe('pokemon type buttons tests', () => {
 
   it('test button Poison', () => {
     renderPokedex(testModel('Poison'));
-
     const button = screen.getByRole('button', { name: /poison/i });
     userEvent.click(button);
     testButton('poison');
+  });
+
+  it('test button Psychic', () => {
+    renderPokedex(testModel('Psychic'));
+    const button = screen.getByRole('button', { name: /psychic/i });
+    userEvent.click(button);
+    testButton('psychic');
   });
 });
