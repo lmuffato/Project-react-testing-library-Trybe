@@ -29,7 +29,10 @@ describe('Requirement 03 - Testing FavoritePokemons', () => {
 
     history.push(favoriteLink);
     const favoritePokemons = queryAllByTestId('favorite-pokemon');
-    expect(favoritePokemons.length).toEqual(2);
+    favoritePokemons.forEach((pokemon) => {
+      expect(pokemon).toBeInTheDocument();
+    });
+
     markFavorite('10');
     markFavorite('23');
   });
