@@ -17,7 +17,9 @@ describe('Requisito 7 - Teste o componente <PokemonDetails.js />',
             pokemons={ pokemons }
           />,
         );
-        const detailsHeader = getByRole('heading', { name: `${pokemon.name} Details` });
+        const detailsHeader = getByRole('heading',
+          { name: `${pokemon.name} Details`,
+            level: 2 });
         expect(detailsHeader).toBeInTheDocument();
         const name = getByTestId('pokemon-name');
         expect(name).toHaveTextContent(pokemon.name);
@@ -39,7 +41,9 @@ describe('Requisito 7 - Teste o componente <PokemonDetails.js />',
             pokemons={ pokemons }
           />,
         );
-        const summaryHeader = getByRole('heading', { name: 'Summary' });
+        const summaryHeader = getByRole('heading',
+          { name: 'Summary',
+            level: 2 });
         expect(summaryHeader).toBeInTheDocument();
         const summaryContent = getByText(pokemon.summary);
         expect(summaryContent).toBeInTheDocument();
@@ -57,7 +61,8 @@ describe('Requisito 7 - Teste o componente <PokemonDetails.js />',
         />,
       );
       const locationHeader = getByRole('heading',
-        { name: `Game Locations of ${pokemon.name}` });
+        { name: `Game Locations of ${pokemon.name}`,
+          level: 2 });
       expect(locationHeader).toBeInTheDocument();
       const locations = getAllByRole('img', { name: `${pokemon.name} location` });
       expect(locations).toHaveLength(pokemon.foundAt.length);

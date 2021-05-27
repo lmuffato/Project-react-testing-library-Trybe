@@ -17,7 +17,8 @@ describe('Requisito 5 - Teste o componente <Pokedex.js />',
           />,
         );
         const header = getByRole('heading',
-          { name: 'Encountered pokémons' });
+          { name: 'Encountered pokémons',
+            level: 2 });
         expect(header).toBeInTheDocument();
       });
     it(`Teste se é exibido o próximo Pokémon da lista
@@ -44,8 +45,8 @@ describe('Requisito 5 - Teste o componente <Pokedex.js />',
           />,
         );
         const sprites = getAllByRole('img',
-          { name: /sprite/i });
-        expect(sprites.length).toBe(1);
+          { name: /sprite/ });
+        expect(sprites).toHaveLength(1);
       });
     it('Teste se a Pokédex tem os botões de filtro',
       () => {
@@ -59,9 +60,10 @@ describe('Requisito 5 - Teste o componente <Pokedex.js />',
         const filterButtons = getAllByTestId('pokemon-type-button');
         const filterButtonsNoRepeatedTypes = [...new Set(filterButtons
           .map(({ innerHTML }) => innerHTML))];
-        expect(filterButtonsNoRepeatedTypes.length).toBe(types.length);
+        expect(filterButtonsNoRepeatedTypes).toHaveLength(filterButtons.length);
+        expect(filterButtonsNoRepeatedTypes).toHaveLength(types.length);
       });
-    it('Teste se a Pokédex contém um botão para resetar o filtro',
+    it('Testa se o botão Próximo Pokémon está funcionando',
       () => {
         const { getByRole, getByText } = renderWithRouter(
           <Pokedex
@@ -71,13 +73,12 @@ describe('Requisito 5 - Teste o componente <Pokedex.js />',
         );
         const all = getByRole('button', { name: 'All' });
         userEvent.click(all);
-        const pikachu = getByText('Pikachu');
-        expect(pikachu).toBeInTheDocument();
         const nextPokemon = getByRole('button', { name: NEXT_POKEMON });
-        userEvent.click(nextPokemon);
-        // Since this test is mocked I know for sure the next one is Charmander
-        const charmander = getByText('Charmander');
-        expect(charmander).toBeInTheDocument();
+        Array(pokemons.length * 2).forEach((_e, index) => {
+          const pokemon = getByText(pokemons[index % pokemons.length].name);
+          expect(pokemon).toBeInTheDocument();
+          userEvent.click(nextPokemon);
+        });
       });
     it(`O botão de Próximo pokémon deve ser desabilitado quando a lista
      filtrada de Pokémons tiver um só pokémon`,

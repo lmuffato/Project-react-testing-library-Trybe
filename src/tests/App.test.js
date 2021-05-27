@@ -8,8 +8,10 @@ describe('Requisito 1 - Teste o componente <App.js />',
     it(`Teste se a página principal da Pokédex é renderizada
     ao carregar a aplicação no caminho de URL /.`,
     () => {
-      const { getByText } = renderWithRouter(<App />);
-      const heading = getByText(/pokédex/i);
+      const { getByRole } = renderWithRouter(<App />);
+      const heading = getByRole('heading',
+        { name: 'Pokédex',
+          level: 1 });
       expect(heading).toBeInTheDocument();
     });
     it(`Teste se o topo da aplicação contém um conjunto fixo de links de navegação

@@ -39,11 +39,11 @@ describe('Requisito 6 - Teste o componente <Pokemon.js />',
       const moreDetails = getByRole('link', { name: 'More details' });
       expect(moreDetails).toHaveAttribute('href', '/pokemons/65');
     });
-    it(`Teste se ao clicar no link de navegação do Pokémon, 
+    /*     it(`Teste se ao clicar no link de navegação do Pokémon,
     é feito o redirecionamento da aplicação para a página de detalhes de Pokémon`,
     () => {
 
-    });
+    }); */
     it(`Teste também se a URL exibida no navegador muda para /pokemon/<id>,
     onde <id> é o id do Pokémon cujos detalhes se deseja ver`,
     () => {

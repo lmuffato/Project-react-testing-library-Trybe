@@ -6,9 +6,11 @@ describe('Requisito 2 - Teste o componente <About.js /',
   () => {
     it('Teste se a página contém um heading h2 com o texto About Pokédex',
       () => {
-        const { getByText } = render(<About />);
-        const heading = getByText(/about pokédex/i);
-        expect(heading).toBeInTheDocument();
+        const { getByRole } = render(<About />);
+        const aboutText = getByRole('heading',
+          { name: 'About Pokédex',
+            level: 2 });
+        expect(aboutText).toBeInTheDocument();
       });
     it('Teste se a página contém dois parágrafos com texto sobre a Pokédex',
       () => {

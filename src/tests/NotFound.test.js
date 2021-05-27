@@ -8,7 +8,8 @@ describe('Requisito 4 - Teste o componente <NotFound.js />',
       () => {
         const { getByRole } = render(<NotFound />);
         const text = getByRole('heading',
-          { name: 'Page requested not found Crying emoji' });
+          { name: 'Page requested not found Crying emoji',
+            level: 2 });
         expect(text).toBeInTheDocument();
       });
     it('Teste se página mostra a imagem https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif',
