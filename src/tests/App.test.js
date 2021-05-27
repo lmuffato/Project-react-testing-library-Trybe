@@ -28,7 +28,7 @@ describe('Trybe default tests', () => {
 });
 
 describe('Tests makes for me', () => {
-  describe('Tests with the component \'App\'', () => {
+  describe('Tests in App.js', () => {
     it('Test the order of links', () => {
       render(
         <MemoryRouter initialEntries={ ['/'] }>
