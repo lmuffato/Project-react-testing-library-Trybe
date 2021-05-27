@@ -83,7 +83,7 @@ describe('Test the <PokemonDetails.js /> component', () => {
 
   it(`Alternate clicks in the checkbox should add and
    remove the Pokémon from the list of favorites, respectively`, () => {
-    const { getByRole, getByText, queryByText, history } = renderWithRouter(<App />);
+    const { getByRole, queryByText, history } = renderWithRouter(<App />);
 
     history.push('/pokemons/25');
     const favorite = getByRole('checkbox', {
@@ -99,9 +99,5 @@ describe('Test the <PokemonDetails.js /> component', () => {
     history.push('/pokemons/25');
     userEvent.click(favorite);
     expect(favorite).not.toBeChecked();
-
-    history.push('/favorites');
-    // expect(getByText(/no favorite pokemon found/i)).toBeInTheDocument();
-    console.log(favorite.checked);
   });
 });
