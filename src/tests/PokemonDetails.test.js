@@ -2,6 +2,9 @@ import React from 'react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../helpers/renderWithRouter';
 import App from '../App';
+import pokemons from '../data';
+// import { checkPropTypes } from 'prop-types';
+// import pokemons from '../data';
 
 describe('Test the <PokemonDetails.js /> component', () => {
   it('Test if the information for the selected Pokémon is shown.', () => {
@@ -76,5 +79,29 @@ describe('Test the <PokemonDetails.js /> component', () => {
     userEvent.click(getByRole('link', {
       name: /home/i,
     }));
+  });
+
+  it(`Alternate clicks in the checkbox should add and
+   remove the Pokémon from the list of favorites, respectively`, () => {
+    const { getByRole, getByText, queryByText, history } = renderWithRouter(<App />);
+
+    history.push('/pokemons/25');
+    const favorite = getByRole('checkbox', {
+      name: /pokémon favoritado\?/i,
+    });
+    userEvent.dblClick(favorite);
+    expect(favorite).toBeChecked();
+
+    history.push('/favorites');
+    const pokemon = queryByText(/no favorite pokemon found/i);
+    expect(pokemon).not.toBeInTheDocument();
+
+    history.push('/pokemons/25');
+    userEvent.click(favorite);
+    expect(favorite).not.toBeChecked();
+
+    history.push('/favorites');
+    // expect(getByText(/no favorite pokemon found/i)).toBeInTheDocument();
+    console.log(favorite.checked);
   });
 });
