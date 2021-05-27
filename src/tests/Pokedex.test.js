@@ -65,3 +65,22 @@ describe('Testa os botões de filtro', () => {
     expect(btn[7].innerHTML).toBe('Dragon');
   });
 });
+
+describe('Teste se a Pokédex contém um botão para resetar o filtro', () => {
+  test('O texto do botão deve ser All', () => {
+    renderWithRouter(<App />);
+    const btnAll = screen.getByRole('button', { name: 'All' });
+    expect(btnAll).toBeInTheDocument();
+  });
+  test('Mostrar os Pokémons (sem filtros) quando All for clicado;', () => {
+    renderWithRouter(<App />);
+    const pokemonType = screen.getByTestId('pokemon-type');
+    expect(pokemonType.innerHTML).toBe('Electric');
+    const btn = screen.getAllByRole('button');
+    const btndragonType = btn[7];
+    userEvent.click(btndragonType);
+    expect(pokemonType.innerHTML).toBe('Dragon');
+    userEvent.click(btn[0]);
+    expect(pokemonType.innerHTML).toBe('Electric');
+  });
+});
