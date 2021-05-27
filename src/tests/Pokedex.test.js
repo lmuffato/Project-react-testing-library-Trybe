@@ -32,7 +32,7 @@ describe('testing the component "Pokedex"', () => {
   //   expect(validation).toHaveAttribute('a', 'More details');
   // });
 
-  it('Test for filter buttons', () => {
+  it('check for filter buttons', () => {
     const { getByRole } = renderWithRouter(<App />);
     const filterBtn = (btn) => getByRole('button', { name: `${btn}` });
     const btnAll = filterBtn('All');
@@ -54,7 +54,7 @@ describe('testing the component "Pokedex"', () => {
     expect(btnDragon).toBeInTheDocument();
   });
 
-  it('Test if the Pokédex contains a button to reset the filter', () => {
+  it('check if the Pokédex contains a button to reset the filter', () => {
     const { getByText, getByRole } = renderWithRouter(<App />);
     const buttonAll = getByRole('button', {
       name: /all/i,
