@@ -49,7 +49,7 @@ describe('App.test.js', () => {
   });
   test('Ao ir há uma pagina que não existe direciona para a pagina NotFound', () => {
     const { getByRole, history } = renderAppWithRouter();
-    history.push('where-i-am?');
+    history.push('where-am-i?');
     const notFoundText = getByRole('heading', {
       name: 'Page requested not found Crying emoji',
       level: 2 });
