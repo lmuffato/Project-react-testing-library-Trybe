@@ -69,4 +69,15 @@ describe('header and nextPokemon button', () => {
       .getByRole('heading', { level: 2, name: /Encountered Pokémons/i });
     expect(heading).toBeInTheDocument();
   });
+
+  it('rendering next pokemon, when clicking on the button', () => {
+    renderPokedex(testModelOriginal());
+    const nextPokemonButton = screen.getByRole('button', { name: /próximo pokémon/i });
+    userEvent.click(nextPokemonButton);
+    let pokemon = screen.getByText(/Charmander/i);
+    expect(pokemon).toBeInTheDocument();
+    userEvent.click(nextPokemonButton);
+    pokemon = screen.getByText(/Pikachu/i);
+    expect(pokemon).toBeInTheDocument();
+  });
 });
