@@ -17,4 +17,10 @@ describe('Testa o componente <NotFound />', () => {
     const title = screen.getByRole('heading', { level: 2, name: /requested not found/ });
     expect(title).toBeInTheDocument();
   });
+  test('Teste se página mostra a imagem', () => {
+    renderWithRouter(<NotFound />);
+    const image = screen.getByAltText(/Pikachu crying because the page/);
+    expect(image).toBeInTheDocument();
+    expect(image).toHaveAttribute('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
+  });
 });
