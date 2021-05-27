@@ -18,12 +18,12 @@ describe('Requirement 03 - Testing FavoritePokemons', () => {
     checkEmpty();
   });
   it('deveria exibir todos os cards de pokémons favoritados', () => {
-    const { getAllByTestId, getByLabelText, history } = renderWithRouter(
+    const { getAllByTestId, getByRole, history } = renderWithRouter(
       <App />,
     );
     const markFavorite = (id) => {
       history.push(`/pokemons/${id}`);
-      const check = getByLabelText(/Pokémon favoritado/);
+      const check = getByRole('checkbox');
       userEvent.click(check);
     };
     markFavorite('10');
@@ -32,7 +32,6 @@ describe('Requirement 03 - Testing FavoritePokemons', () => {
     history.push(favoriteLink);
     const favoritePokemons = getAllByTestId(testId);
     expect(favoritePokemons.length).toBeGreaterThanOrEqual(2);
-
     markFavorite('10');
     markFavorite('23');
   });
