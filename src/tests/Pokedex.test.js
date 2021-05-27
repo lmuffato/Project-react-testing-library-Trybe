@@ -52,14 +52,36 @@ test('Pokédex has the filter buttons', () => {
     </Router>
   );
 
+  const nextPokemonButton = screen.getByRole('button', {
+    name: /Próximo pokémon/i
+  });
+
   const allPokemonTypes = pokemons.map(({type}) => type);
 
+  const resetFilterButton = screen.getByRole('button', {
+    name: /all/i,
+  });
+
+  const allButton = () => {
+    pokemons.forEach(({name, type}) => {
+      const pokeName = screen.getByTestId('pokemon-name');
+      const pokeType = screen.getByTestId('pokemon-type');
+      expect(pokeName).toHaveTextContent(name);
+      expect(pokeType).toHaveTextContent(type);
+      userEvent.click(nextPokemonButton);
+    });
+  };
+  allButton();
+  userEvent.click(resetFilterButton);
+  allButton();
+  
   function findTypeInCard(type) {
     const pokemonTypeOnCardEl = screen.getByTestId('pokemon-type');
     const pokemonType = pokemonTypeOnCardEl.innerHTML;
     expect(pokemonType).toEqual(type);
+    expect(resetFilterButton).toBeDefined(); 
   }
-
+  
   const filterButtons = screen.getAllByTestId('pokemon-type-button');
   filterButtons.forEach((button) => {
     userEvent.click(button);
@@ -77,15 +99,5 @@ test('Pokédex has the filter buttons', () => {
   const pokemonTypeOnCardEl = screen.getByTestId('pokemon-type');
   const pokemonType = pokemonTypeOnCardEl.innerHTML;
   expect(pokemonType).toEqual('Normal');
-  const nextPokemonButton = screen.getByRole('button', {
-    name: /Próximo pokémon/i
-  });
-  expect(nextPokemonButton).toHaveAttribute('disabled');
-
-
-  const resetFilterButton = screen.getByRole('button', {
-    name: /all/i,
-    
-  });
-  expect(resetFilterButton).toBeDefined();  
+  expect(nextPokemonButton).toHaveAttribute('disabled'); 
 });
