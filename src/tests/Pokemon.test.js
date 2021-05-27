@@ -23,9 +23,23 @@ describe('6. Testar componente <Pokemon />', () => {
     expect(image).toBeInTheDocument();
     expect(image.src).toContain(imgPath);
   });
-  
-  test('o card do Pokémon contém um link para exibir mais detalhes', () => {});
+
+  test('o card do Pokémon contém um link para exibir mais detalhes', () => {
+    const { getByRole } = renderWithRouter(
+      <Pokemon
+        pokemon={ pikachu }
+        isFavorite="true"
+      />,
+    );
+
+    const detailsLink = getByRole('link', { name: 'More details' });
+    expect(detailsLink).toBeInTheDocument();
+    expect(detailsLink).toHaveAttribute('href', `/pokemons/${pikachu.id}`);
+  });
+
   test('ao clicar no link, é feito o redirecionamento para a página de detalhes', () => {});
+
   test('a URL exibida no navegador muda para `/pokemon/<id>`', () => {});
+
   test('existe um ícone de estrela nos Pokémons favoritados.', () => {});
 });
