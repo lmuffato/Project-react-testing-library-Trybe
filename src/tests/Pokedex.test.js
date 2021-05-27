@@ -46,7 +46,8 @@ describe('Verifica se:', () => {
 
     pokemonTypes.forEach((type) => {
       const pokemonsByTypes = pokemons.filter((pokemon) => (pokemon.type === type));
-      const pokemonTypeBtn = screen.getByRole('button', { name: `${type}` });
+      const allFilterBtns = screen.getAllByTestId('pokemon-type-button');
+      const pokemonTypeBtn = allFilterBtns.find((button) => (button.textContent === type));
       userEvent.click(pokemonTypeBtn);
       pokemonsByTypes.forEach((pokemon) => {
         expect(pokeNameInCard).toHaveTextContent(pokemon.name);
