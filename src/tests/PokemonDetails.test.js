@@ -33,23 +33,23 @@ test('testa se informações detalhadas são mostradas', () => {
 });
 
 test('testa se há seção com os mapas contendo as localizações', () => {
-  const { getByRole, getAllByAltText } = renderWithRouter(<App />);
-  const selectPikachu = getByRole('button', {
-    name: type,
+  const { getByRole, getByAltText } = renderWithRouter(<App />);
+  const selectAlakazam = getByRole('button', {
+    name: 'Psychic',
   });
   const selectDetails = getByRole('link', {
     name: moreDetails,
   });
-  userEvent.click(selectPikachu);
+  userEvent.click(selectAlakazam);
   userEvent.click(selectDetails);
   const h2Location = getByRole('heading', {
-    name: 'Game Locations of Pikachu',
+    name: 'Game Locations of Alakazam',
     level: 2,
   });
   expect(h2Location).toBeInTheDocument();
-  const pokemonLocation = getAllByAltText('Pikachu location');
-  const locations = 2;
-  expect((pokemonLocation).length).toEqual(locations);
+  const pokemonLocation = getByAltText('Alakazam location');
+  console.log(pokemonLocation);
+  expect(pokemonLocation.src).toContain('https://cdn2.bulbagarden.net/upload/4/44/Unova_Accumula_Town_Map.png');
 });
 
 test('testa se pode favoritar um pokémon', () => {
