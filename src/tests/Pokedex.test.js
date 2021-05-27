@@ -89,3 +89,12 @@ describe('header and nextPokemon button', () => {
     expect(nextPokemon).toBeDisabled();
   });
 });
+
+describe('pokemon type buttons tests', () => {
+  it('test button Electric', () => {
+    renderPokedex(testModel('Electric'));
+    const button = screen.getByRole('button', { name: /electric/i });
+    userEvent.click(button);
+    testButton('electric');
+  });
+});
