@@ -150,6 +150,7 @@ describe('Test filter buttons', () => {
     userEvent.click(allBtn[6]);
     expect(getByText(pokemonNames[8])).toBeInTheDocument();
   });
+
   it(`The Next Pokémon button should be disabled when 
   a filtered list of Pokémon has only one Pokémon.`, () => {
     const { getAllByTestId, getByRole } = render(

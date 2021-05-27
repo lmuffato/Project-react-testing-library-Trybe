@@ -19,12 +19,14 @@ describe('Test the component <About.js>', () => {
 
     expect(getByText(/one can filter pokémons by type/i)).toBeInTheDocument();
 
-    const imagem = getByRole('img', {
+    const image = getByRole('img', {
       name: /pokédex/i,
     });
 
-    expect(imagem).toBeInTheDocument();
+    expect(image).toBeInTheDocument();
 
-    expect(imagem.src).toBe('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+    expect(image).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 });
+
+// Método 'toHaveAttribute' dica do Nilson Ribeiro.

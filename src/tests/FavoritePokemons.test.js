@@ -17,13 +17,14 @@ describe('Test the <FavoritePokemons /> component', () => {
   });
 
   it('Test if all your favorite Pokémon cards are displayed.', () => {
-    const { history, getByRole, queryByText, getByText } = renderWithRouter(<App />);
+    const { history, getByRole, queryByText,
+      getByText, container } = renderWithRouter(<App />);
 
-    const moreDeatilsLink = getByRole('link', {
+    const moreDetailsLink = getByRole('link', {
       name: /more details/i,
     });
 
-    userEvent.click(moreDeatilsLink);
+    userEvent.click(moreDetailsLink);
     expect(history.location.pathname).toBe('/pokemons/25');
 
     const checkboxFavorite = getByRole('checkbox', {
@@ -32,12 +33,22 @@ describe('Test the <FavoritePokemons /> component', () => {
 
     userEvent.click(checkboxFavorite);
 
+    expect(checkboxFavorite).toBeChecked();
+
     history.push(toFavoritePage);
     expect(queryByText(/no favorite pokemon found/i)).not.toBeInTheDocument();
 
-    expect(getByText(/pikachu/i)).toBeInTheDocument();
-    expect(getByRole('img', {
+    const pokemonName = getByText(/pikachu/i);
+    expect(pokemonName).toBeInTheDocument();
+
+    const pokemonImg = getByRole('img', {
       name: /pikachu sprite/i,
-    })).toBeInTheDocument();
+    });
+    expect(pokemonImg).toBeInTheDocument();
+
+    const cardPokemon = container.querySelector('.pokemon');
+
+    expect(cardPokemon).toContainElement(pokemonName);
+    expect(cardPokemon).toContainElement(pokemonImg);
   });
 });
