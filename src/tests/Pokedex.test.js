@@ -25,13 +25,10 @@ describe('Requirement 05 - Testing a Pokédex', () => {
       expect(button).toBeInTheDocument();
     });
     it('should be shown one pokemon at a time', () => {
-      const { getByTestId } = renderWithRouter(<App />);
+      const { getByTestId, getAllByTestId } = renderWithRouter(<App />);
       clickEvent(getByTestId);
-      let pokemon = getByTestId(nameTestId);
-      expect(pokemon.textContent).toBe('Charmander');
-      clickEvent(getByTestId);
-      pokemon = getByTestId(nameTestId);
-      expect(pokemon.textContent).toBe('Caterpie');
+      const pokemon = getAllByTestId(nameTestId);
+      expect(pokemon.length).toEqual(1);
     });
     it('should go back to the first pokemon if you were in the last', () => {
       const { getByTestId, getAllByTestId } = renderWithRouter(<App />);
