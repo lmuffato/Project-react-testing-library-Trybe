@@ -5,7 +5,7 @@ import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
 describe('Tests in FavoritePokemons.js', () => {
-  it('Message when don\'t have a favorite pokemon', () => {
+  it('Message appear when don\'t have a favorite pokemon', () => {
     render(<FavoritePokemons />);
     const withoutFavoriteMessage = screen.getByText('No favorite pokemon found');
     expect(withoutFavoriteMessage).toBeInTheDocument();
