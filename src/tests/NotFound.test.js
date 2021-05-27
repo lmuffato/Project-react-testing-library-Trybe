@@ -12,4 +12,9 @@ describe('Testa o componente <NotFound />', () => {
     const notFound = screen.getByText(/Page requested not found/);
     expect(notFound).toBeInTheDocument();
   });
+  test('Teste se contém um heading h2 com o texto Page requested not found', () => {
+    renderWithRouter(<NotFound />);
+    const title = screen.getByRole('heading', { level: 2, name: /requested not found/ });
+    expect(title).toBeInTheDocument();
+  });
 });
