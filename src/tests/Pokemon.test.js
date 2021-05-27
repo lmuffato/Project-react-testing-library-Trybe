@@ -4,6 +4,30 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
+const pokemon = {
+  id: 25,
+  name: 'Pikachu',
+  type: 'Electric',
+  averageWeight: {
+    value: '6.0',
+    measurementUnit: 'kg',
+  },
+  image: 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
+  moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)',
+  foundAt: [
+    {
+      location: 'Kanto Viridian Forest',
+      map: 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png',
+    },
+    {
+      location: 'Kanto Power Plant',
+      map: 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
+    },
+  ],
+  summary: 'This intelligent Pokémon roasts hard berries with'
+  + ' electricity to make them tender enough to eat.',
+};
+
 describe('Testa todo o Componente "Pokemon.js"', () => {
   test('Verifica se se é renderizado um card com as '
   + 'informações de determinado pokémon', () => {
@@ -15,10 +39,11 @@ describe('Testa todo o Componente "Pokemon.js"', () => {
     const pokemonType = screen.getByTestId('pokemon-type');
     expect(pokemonType.innerHTML).toMatch('Electric');
 
-    const pokemonWheight = screen.getByText(/Average weight/);
-    const pokemonMeasurementUnit = screen.getByText(/...kg/);
-    expect(pokemonWheight).toBeInTheDocument();
-    expect(pokemonMeasurementUnit).toBeInTheDocument();
+    const pokemonWheight = screen.getByText(/Average weight.../);
+    const wheight = pokemon.averageWeight.value;
+    const meansureUnit = pokemon.averageWeight.measurementUnit;
+    expect(pokemonWheight.innerHTML)
+      .toMatch(`Average weight: ${wheight} ${meansureUnit}`);
 
     const pokemonImage = screen.getByRole('img');
     const pokemonImageSrc = pokemonImage.getAttribute('src');
