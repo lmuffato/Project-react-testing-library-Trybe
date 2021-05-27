@@ -156,4 +156,9 @@ describe('pokemon type buttons tests', () => {
     pokemonType = screen.getByTestId(pokemonTypeText);
     expect(pokemonType.textContent).toMatch(/fire/i);
   });
+
+  it('dinamic buttons test ', () => {
+    renderPokedex(testModelOriginal());
+    expect(screen.getAllByTestId('pokemon-type-button')).toHaveLength(2);
+  });
 });
