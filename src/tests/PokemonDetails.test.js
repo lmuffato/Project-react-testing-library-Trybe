@@ -19,7 +19,7 @@ const { getByRole, getByAltText, getByText, getByLabelText } = renderWithRouter(
   const pikachu = getByText('Pikachu Details');
   expect(pikachu).toBeInTheDocument();
   const h2Summary = getByRole('heading', {
-    name: /Summary/i,
+    name: /summary/i,
     level: 2,
   });
   expect(pikachu).toBeInTheDocument();
@@ -27,7 +27,22 @@ const { getByRole, getByAltText, getByText, getByLabelText } = renderWithRouter(
 });
 
 
-test('', () => {});
+test('testa se há seção com os mapas contendo as localizações', () => {
+    const { getByRole, getByAltText, getByText, getByLabelText } = renderWithRouter(<App />);
+  const selectPikachu = getByRole('button', {
+    name: 'Electric',
+  });
+  userEvent.click(selectPikachu);
+  const selectDetails = getByRole('link', {
+    name: 'More details',
+  });
+  userEvent.click(selectDetails);
+    const h2Location = getByRole('heading', {
+        name: 'Game Locations of Pikachu',
+        level: 2,
+      });
+      expect(h2Location).toBeInTheDocument();
+});
 
 test('testa se pode favoritar um pokémon', () => {
 const { getByRole, getByAltText, getByLabelText } = renderWithRouter(<App />);
