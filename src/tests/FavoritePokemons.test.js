@@ -22,11 +22,10 @@ describe('Favorite Pokemons', () => {
     // clico na checkbok para adicionar as favoritos
     const addFavorito = screen.getByRole('checkbox');
     userEvent.click(addFavorito);
-    // expect(checkbox).toBeChecked(); // faço um expect para ter
 
     // clico no link de pokemons favoritos
-    const favPokemonComponent = screen.getByText('Favorite Pokémons');
-    userEvent.click(favPokemonComponent);
+    const favoritePokemon = screen.getByText('Favorite Pokémons');
+    userEvent.click(favoritePokemon);
 
     // verifico se existe o texto More details pois assim é sinal que existe o card do pokemon na pagina de favoritos
     const pokemonDetail = screen.getByText('More details');
