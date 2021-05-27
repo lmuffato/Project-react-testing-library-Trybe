@@ -3,7 +3,7 @@ import React from 'react';
 import App from '../App';
 import renderWithRouter from '../services/renderWithRouter';
 
-describe('Test <App>', () => {
+describe('Test <App />', () => {
   test('Test index page', () => {
     const { history: { location: { pathname } } } = renderWithRouter(<App />);
     expect(pathname).toBe('/');
