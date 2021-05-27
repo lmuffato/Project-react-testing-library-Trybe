@@ -31,18 +31,17 @@ describe('Requirement 05 - Testing a Pokédex', () => {
       expect(pokemon.length).toEqual(1);
     });
     it('should go back to the first pokemon if you were in the last', () => {
-      const { getByTestId, getAllByTestId } = renderWithRouter(<App />);
-      const allPokemons = getAllByTestId('pokemon');
-      for (let i = 0; i < allPokemons.length - 1; i += 1) {
+      const { getByTestId } = renderWithRouter(<App />);
+      Array(pokemons.length - 1).forEach(({ name }) => {
         clickEvent(getByTestId);
-      }
-      const pokemon = getByTestId(nameTestId);
-      expect(pokemon.textContent).toBe('Pikachu');
+        const pokemon = getByTestId(nameTestId);
+        expect(pokemon.textContent).toBe(name);
+      });
     });
   });
   it('should display only one pokemon at a time', () => {
     const { getAllByTestId } = renderWithRouter(<App />);
-    const pokemon = getAllByTestId('pokemon');
+    const pokemon = getAllByTestId(nameTestId);
     expect(pokemon.length).toBe(1);
   });
   describe('testing if the pokedex has filter buttons', () => {
