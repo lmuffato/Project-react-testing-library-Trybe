@@ -5,8 +5,7 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('Requirement 03 - Testing FavoritePokemons', () => {
-  const favoriteLink = '/favorites';  
-
+  const favoriteLink = '/favorites';
   const checkEmpty = () => {
     const { getByText } = renderWithRouter(<FavoritePokemons />);
     const noFavorite = getByText(/No favorite pokemon found/);
