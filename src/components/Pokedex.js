@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { isPokemonFavoriteByIdType, pokemonType } from '../types';
 import Button from './Button';
 import Pokemon from './Pokemon';
