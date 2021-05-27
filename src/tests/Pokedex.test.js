@@ -17,6 +17,7 @@ describe('Requirement 05 - Testing a Pokédex', () => {
     userEvent.click(button);
   };
   const nameTestId = 'pokemon-name';
+  const buttonTestId = 'pokemon-type-button';
   describe('Testing next pokemon button', () => {
     it('should contain the text "Próximo pokémon"', () => {
       const { getByText } = renderWithRouter(<App />);
@@ -59,7 +60,7 @@ describe('Requirement 05 - Testing a Pokédex', () => {
         });
       };
       const { getAllByTestId } = renderWithRouter(<App />);
-      const buttons = getAllByTestId('pokemon-type-button');
+      const buttons = getAllByTestId(buttonTestId);
       userEvent.click(buttons[0]);
       checkPokemons(buttons[0].textContent);
       userEvent.click(buttons[1]);
@@ -97,7 +98,7 @@ describe('Requirement 05 - Testing a Pokédex', () => {
   it('testing whether buttons are created dynamically', () => {
     const { getAllByTestId, getByText } = renderWithRouter(<App />);
     const types = [...new Set(pokemons.map(({ type }) => type))];
-    const buttons = getAllByTestId('pokemon-type-button');
+    const buttons = getAllByTestId(buttonTestId);
     types.forEach((type, i) => {
       expect(buttons[i].textContent).toBe(type);
     });
@@ -120,7 +121,7 @@ describe('Requirement 05 - Testing a Pokédex', () => {
   });
   it('The Next Pokémon button should be disabled when there is only one Pokémon', () => {
     const { getAllByTestId, getByTestId } = renderWithRouter(<App />);
-    const buttons = getAllByTestId('pokemon-type-button');
+    const buttons = getAllByTestId(buttonTestId);
     buttons.forEach((button) => {
       userEvent.click(button);
       const pokemonsLength = pokemons.filter(

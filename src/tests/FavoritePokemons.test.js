@@ -5,8 +5,7 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('Requirement 03 - Testing FavoritePokemons', () => {
-  const testId = 'favorite-pokemon';
-  const favoriteLink = '/favorites';
+  const favoriteLink = '/favorites';  
 
   const checkEmpty = () => {
     const { getByText } = renderWithRouter(<FavoritePokemons />);
@@ -18,7 +17,7 @@ describe('Requirement 03 - Testing FavoritePokemons', () => {
     checkEmpty();
   });
   it('deveria exibir todos os cards de pokémons favoritados', () => {
-    const { getAllByTestId, getByRole, history } = renderWithRouter(
+    const { getByTestId, getByRole, history } = renderWithRouter(
       <App />,
     );
     const markFavorite = (id) => {
@@ -30,8 +29,8 @@ describe('Requirement 03 - Testing FavoritePokemons', () => {
     markFavorite('23');
 
     history.push(favoriteLink);
-    const favoritePokemons = getAllByTestId(testId);
-    expect(favoritePokemons.length).toBeGreaterThanOrEqual(2);
+    const favoritePokemons = getByTestId('favorite-pokemons');
+    expect(favoritePokemons.children.length).toBeGreaterThanOrEqual(2);
     markFavorite('10');
     markFavorite('23');
   });
