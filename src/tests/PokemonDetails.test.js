@@ -33,7 +33,7 @@ test('testa se informações detalhadas são mostradas', () => {
 });
 
 test('testa se há seção com os mapas contendo as localizações', () => {
-  const { getByRole } = renderWithRouter(<App />);
+  const { getByRole, getAllByAltText } = renderWithRouter(<App />);
   const selectPikachu = getByRole('button', {
     name: type,
   });
@@ -47,6 +47,9 @@ test('testa se há seção com os mapas contendo as localizações', () => {
     level: 2,
   });
   expect(h2Location).toBeInTheDocument();
+  const pokemonLocation = getAllByAltText('Pikachu location');
+  const locations = 2;
+  expect((pokemonLocation).length).toEqual(locations);
 });
 
 test('testa se pode favoritar um pokémon', () => {
