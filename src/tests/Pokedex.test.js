@@ -10,4 +10,24 @@ describe('Testa o componente <Pokedex.js />', () => {
     const title = screen.getByRole('heading', { level: 2, name: 'Encountered pokémons' });
     expect(title).toBeInTheDocument();
   });
+  test('Teste se é exibido o próximo Pokémon da lista quando o bt é clicado.', () => {
+    renderWithRouter(<App />);
+    const btnType = screen.getAllByRole('button');
+    const psychicType = btnType[5];
+    userEvent.click(psychicType);
+
+    const pokemonName = screen.getByTestId('pokemon-name');
+    const alakazam = pokemonName;
+    expect(alakazam.innerHTML).toBe('Alakazam');
+
+    const btnNextPokemon = screen.getByTestId('next-pokemon');
+    userEvent.click(btnNextPokemon);
+
+    const mew = pokemonName;
+    expect(mew.innerHTML).toBe('Mew');
+    userEvent.click(btnNextPokemon);
+
+    const alakazamAgain = pokemonName;
+    expect(alakazamAgain.innerHTML).toBe('Alakazam');
+  });
 });
