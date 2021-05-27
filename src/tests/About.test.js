@@ -12,8 +12,10 @@ describe('About tests',() => {
   });
 
   it('mostra image da Pokédex', () => {
-    const { getByAltText } = renderWithRouter(<About />);
+    const { getByAltText, getByRole } = renderWithRouter(<About />);
+    const url = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
     expect(getByAltText(/Pokédex/i)).toBeInTheDocument();
+    expect(getByRole('img').src).toBe(url);
   });
 
   it('mostra um h2', () => {
