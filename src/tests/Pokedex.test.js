@@ -111,4 +111,12 @@ describe('pokemon type buttons tests', () => {
     userEvent.click(button);
     testButton('bug');
   });
+
+  it('test button Poison', () => {
+    renderPokedex(testModel('Poison'));
+
+    const button = screen.getByRole('button', { name: /poison/i });
+    userEvent.click(button);
+    testButton('poison');
+  });
 });
