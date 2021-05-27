@@ -16,7 +16,7 @@ describe('Requirement 03 - Testing FavoritePokemons', () => {
     checkEmpty();
   });
   it('deveria exibir todos os cards de pokémons favoritados', () => {
-    const { getByTestId, getByRole, history } = renderWithRouter(
+    const { queryAllByTestId, getByRole, history } = renderWithRouter(
       <App />,
     );
     const markFavorite = (id) => {
@@ -28,8 +28,8 @@ describe('Requirement 03 - Testing FavoritePokemons', () => {
     markFavorite('23');
 
     history.push(favoriteLink);
-    const favoritePokemons = getByTestId('favorite-pokemons');
-    expect(favoritePokemons.children.length).toBeGreaterThanOrEqual(2);
+    const favoritePokemons = queryAllByTestId('favorite-pokemon');
+    expect(favoritePokemons.length).toEqual(2);
     markFavorite('10');
     markFavorite('23');
   });
