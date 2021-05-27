@@ -1,5 +1,5 @@
 import React from 'react';
-import { NotFound } from "../components";
+import { NotFound } from '../components';
 import renderWithRouter from './renderWithRouter';
 
 test('Teste se página contém um heading h2 com o texto Page requested not found', () => {
@@ -15,5 +15,4 @@ test('Teste se página mostra a imagem', () => {
   const img = getByRole('img', { name: /Pikachu crying because the page/i });
   expect(img).toBeInTheDocument();
   expect(img.src).toContain('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
-
-})
+});
