@@ -17,7 +17,6 @@ describe('"Pokedex" Buttons Tests', () => {
     expect(pageHeader).toBeInTheDocument();
   });
 
-  const PKN_TYPE_BUTTON = 'pokemon-type-button';
   test('"All" Button', () => {
     const { getByRole } = renderWithRouter(<Pokedex
       pokemons={ pokemons }
@@ -33,7 +32,7 @@ describe('"Pokedex" Buttons Tests', () => {
       pokemons={ pokemons }
       isPokemonFavoriteById={ {} }
     />);
-    const elementsButtons = getAllByTestId(PKN_TYPE_BUTTON);
+    const elementsButtons = getAllByTestId('pokemon-type-button');
     userEvent.type(elementsButtons);
     expect(elementsButtons[0]).toHaveTextContent(/electric/i);
   });
