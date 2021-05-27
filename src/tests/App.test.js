@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from './helpers/renderWithRouter';
 import App from '../App';
 
-describe('1 - Testing the <App.js /> component', () => {
+describe('1 - Testing the component <App.js />', () => {
   test('renders a reading with the text \'Pokédex\'', () => {
     renderWithRouter(<App />);
 
