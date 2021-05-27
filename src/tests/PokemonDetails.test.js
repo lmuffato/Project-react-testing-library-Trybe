@@ -6,7 +6,26 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
-test('', () => {});
+test('testa se informações detalhadas são mostradas', () => {
+const { getByRole, getByAltText, getByText, getByLabelText } = renderWithRouter(<App />);
+  const selectPikachu = getByRole('button', {
+    name: 'Electric',
+  });
+  userEvent.click(selectPikachu);
+  const selectDetails = getByRole('link', {
+    name: 'More details',
+  });
+  userEvent.click(selectDetails);
+  const pikachu = getByText('Pikachu Details');
+  expect(pikachu).toBeInTheDocument();
+  const h2Summary = getByRole('heading', {
+    name: /Summary/i,
+    level: 2,
+  });
+  expect(pikachu).toBeInTheDocument();
+  expect(h2Summary).toBeInTheDocument();
+});
+
 
 test('', () => {});
 
