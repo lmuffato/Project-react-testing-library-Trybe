@@ -4,13 +4,13 @@ import renderWithRouter from '../helpers/renderWithRouter';
 import App from '../App';
 
 describe('Test the <PokemonDetails.js /> component', () => {
+  const pikachuPath = '/pokemons/25';
   it('Test if the information for the selected Pokémon is shown.', () => {
     const { getByRole, getByText, history } = renderWithRouter(<App />);
 
     const linkToDetails = getByRole('link', {
       name: /more details/i,
     });
-    const pikachuPath = '/pokemons/25';
     userEvent.click(linkToDetails);
     const path = history.location.pathname;
     expect(path).toBe(pikachuPath);
