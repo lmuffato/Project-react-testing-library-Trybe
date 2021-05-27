@@ -81,9 +81,30 @@ describe('Componente Pokedex', () => {
   });
 
   test('Teste se tem 7 botões de filtro', () => {
-    const { getByText, getAllByTestId } = renderWithRouter(<App />);
+    const { getAllByTestId } = renderWithRouter(<App />);
     const numberOfFilterButtons = 7;
     const btnsFilter = getAllByTestId(pokemonTypeButton);
     expect(btnsFilter.length).toBe(numberOfFilterButtons);
+  });
+
+  test('Teste filtros', () => {
+    const { getAllByTestId, getByTestId } = renderWithRouter(<App />);
+    const pokName = getByTestId(pokemonName);
+    expect(pokName.textContent).toEqual('Pikachu');
+    const btnsFilter = getAllByTestId(pokemonTypeButton);
+    fireEvent.click(btnsFilter[1]);
+    expect(pokName.textContent).toEqual('Charmander');
+    fireEvent.click(btnsFilter[4]);
+    expect(pokName.textContent).toEqual('Alakazam');
+    fireEvent.click(btnsFilter[3]);
+    expect(pokName.textContent).toEqual('Ekans');
+    fireEvent.click(btnsFilter[2]);
+    expect(pokName.textContent).toEqual('Caterpie');
+    fireEvent.click(btnsFilter[0]);
+    expect(pokName.textContent).toEqual('Pikachu');
+    fireEvent.click(btnsFilter[5]);
+    expect(pokName.textContent).toEqual('Snorlax');
+    fireEvent.click(btnsFilter[6]);
+    expect(pokName.textContent).toEqual('Dragonair');
   });
 });
