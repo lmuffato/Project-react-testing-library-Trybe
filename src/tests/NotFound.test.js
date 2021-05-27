@@ -25,5 +25,3 @@ describe('Requisito 4', () => {
     expect(imgText.src).toContain(url);
   });
 });
-
-// describe('', () => {});
