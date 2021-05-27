@@ -13,6 +13,12 @@ describe('FavoritePokemons.test.js', () => {
     const noPokeFav = getByText('No favorite pokemon found');
     expect(noPokeFav).toBeInTheDocument();
   });
+  test('ao ir da Home para o Favorites sem favoritar, não exibe nenhum card', () => {
+    const { getByRole, getByText } = renderAppWithRouter();
+    userEvent.click(getByRole('link', { name: /favorite pokémons/i }));
+    const noPokeCard = getByText(/no favorite pokemon found/i);
+    expect(noPokeCard).toBeInTheDocument();
+  });
   test('Quando pokemon é adicionado aos favoritos, exibe na pagina de Favoritos', () => {
     const { getByText, getByRole, getByLabelText } = renderAppWithRouter();
     userEvent.click(getByRole('link', { name: /more details/i }));
