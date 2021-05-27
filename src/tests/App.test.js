@@ -30,9 +30,9 @@ test('Testa se o topo da aplicação contém um conjunto fixo de links de navega
       <App />
     </MemoryRouter>,
   );
-/* 
-  const navigation = query('navigation');
-  expect(navigation).toBeInTheDocument(); */
+
+  const navigation = getByRole('navigation');
+  expect(navigation).toBeInTheDocument();
 
   const navigationHome = getByRole('link', { name: /home/i });
   expect(navigationHome).toBeInTheDocument();
