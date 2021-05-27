@@ -3,7 +3,7 @@ import { screen, render } from '@testing-library/react';
 import { About } from '../components';
 
 describe('2 - Testing the component <About />', () => {
-  test('the page /about must have a heading h2 with the text \'About Pokédex\'', () => {
+  test('the page must have a heading h2 with the text \'About Pokédex\'', () => {
     render(<About />);
 
     const aboutHeading = screen.getByRole('heading', {
@@ -14,7 +14,7 @@ describe('2 - Testing the component <About />', () => {
     expect(aboutHeading).toBeInTheDocument();
   });
 
-  test('the page /about must have two paragraphs', () => {
+  test('the page must have two paragraphs', () => {
     render(<About />);
 
     const paragraphs = document.querySelectorAll('p');
@@ -23,7 +23,7 @@ describe('2 - Testing the component <About />', () => {
     expect(paragraphs.length).toBe(paragraphsLength);
   });
 
-  test('the page /about must have a image with a specific source', () => {
+  test('the page must have a image with a specific source', () => {
     render(<About />);
 
     const image = screen.getByRole('img', { name: /pokédex/i });
