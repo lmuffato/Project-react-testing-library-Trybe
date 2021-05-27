@@ -3,7 +3,7 @@ import React from 'react';
 import renderWithRouter from '../../renderWithRouter';
 import App from '../App';
 
-describe('renders infos about the pokedex', () => {
+describe('testing About component', () => {
   const { container, getByText, getByRole, getByAltText } = renderWithRouter(<App />);
   userEvent.click(getByText('About'));
 

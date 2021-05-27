@@ -1,13 +1,9 @@
-import { getByAltText, getByLabelText } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import renderWithRouter from '../../renderWithRouter';
 import App from '../App';
-import pokemons from '../data';
 
-describe('testing Pokedex component', () => {
-  const buttonNext = (getByText) => getByText('Próximo pokémon');
-
+describe('testing Pokemon component', () => {
   test('renders a card with pokemon`s information', () => {
     const { getByText, getByAltText, container } = renderWithRouter(<App />);
 
@@ -24,7 +20,7 @@ describe('testing Pokedex component', () => {
   });
 
   test('the card contains a link to show the page more details', () => {
-    const { getByText, getByRole, history, container } = renderWithRouter(<App />);
+    const { getByText, getByRole, history } = renderWithRouter(<App />);
 
     const buttonDragon = getByText(/Dragon/i);
     userEvent.click(buttonDragon);
@@ -38,7 +34,13 @@ describe('testing Pokedex component', () => {
   });
 
   test('there is a star icon in favorited pokemons', () => {
-    const { getByText, getByRole, history, getByLabelText, getByAltText } = renderWithRouter(<App />);
+    const {
+      getByText,
+      getByRole,
+      history,
+      getByLabelText,
+      getByAltText,
+    } = renderWithRouter(<App />);
 
     const linkDetails = getByRole('link', { name: /More details/i });
     userEvent.click(linkDetails);
