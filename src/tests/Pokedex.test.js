@@ -16,7 +16,7 @@ test('Teste se página contém um heading h2 com o texto Encountered pokémons',
   expect(homeText).toBeInTheDocument();
 });
 
-test('', () => {
+test('Testa se ao clicar no botao proximo pokemon e mostrado Charmander', () => {
   const { getByText, getByRole } = renderWithRouter(<App />);
 
   const myButton = getByRole('button', {
