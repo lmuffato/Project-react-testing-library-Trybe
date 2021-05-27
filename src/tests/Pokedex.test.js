@@ -6,6 +6,7 @@ import pokemons from '../data';
 
 const nextPokemon = 'next-pokemon';
 const pokemonName = 'pokemon-name';
+const pokemonTypeButton = 'pokemon-type-button';
 
 describe('Componente Pokedex', () => {
   test('Teste se página contém um heading h2 com o texto Encountered pokémons', () => {
@@ -69,5 +70,20 @@ describe('Componente Pokedex', () => {
     for (let i = 0; i < five; i += 1) fireEvent.click(btnNext);
     expect(pokName.textContent).toEqual('Mew');
     expect(pokName.textContent).not.toEqual('Pikachu');
+
+    fireEvent.click(btnAll);
+    for (let i = 0; i < pokemons.length; i += 1) {
+      fireEvent.click(btnNext);
+    }
+    expect(pokName.textContent).toEqual('Pikachu');
+    fireEvent.click(btnNext);
+    expect(pokName.textContent).toEqual('Charmander');
+  });
+
+  test('Teste se tem 7 botões de filtro', () => {
+    const { getByText, getAllByTestId } = renderWithRouter(<App />);
+    const numberOfFilterButtons = 7;
+    const btnsFilter = getAllByTestId(pokemonTypeButton);
+    expect(btnsFilter.length).toBe(numberOfFilterButtons);
   });
 });
