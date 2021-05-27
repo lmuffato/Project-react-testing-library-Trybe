@@ -92,18 +92,32 @@ describe('Componente Pokedex', () => {
     const pokName = getByTestId(pokemonName);
     expect(pokName.textContent).toEqual('Pikachu');
     const btnsFilter = getAllByTestId(pokemonTypeButton);
+
+    expect(btnsFilter[1]).toHaveTextContent(/^Fire$/);
     fireEvent.click(btnsFilter[1]);
     expect(pokName.textContent).toEqual('Charmander');
+
+    expect(btnsFilter[4]).toHaveTextContent(/^Psychic$/);
     fireEvent.click(btnsFilter[4]);
     expect(pokName.textContent).toEqual('Alakazam');
+
+    expect(btnsFilter[3]).toHaveTextContent(/^Poison$/);
     fireEvent.click(btnsFilter[3]);
     expect(pokName.textContent).toEqual('Ekans');
+
+    expect(btnsFilter[2]).toHaveTextContent(/^Bug$/);
     fireEvent.click(btnsFilter[2]);
     expect(pokName.textContent).toEqual('Caterpie');
+
+    expect(btnsFilter[0]).toHaveTextContent(/^Electric$/);
     fireEvent.click(btnsFilter[0]);
     expect(pokName.textContent).toEqual('Pikachu');
+
+    expect(btnsFilter[5]).toHaveTextContent(/^Normal$/);
     fireEvent.click(btnsFilter[5]);
     expect(pokName.textContent).toEqual('Snorlax');
+
+    expect(btnsFilter[6]).toHaveTextContent(/^Dragon$/);
     fireEvent.click(btnsFilter[6]);
     expect(pokName.textContent).toEqual('Dragonair');
   });
