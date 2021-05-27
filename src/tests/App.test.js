@@ -42,3 +42,13 @@ test('render navigation link "About"', () => {
   const aboutLink = getByText(/About/i);
   expect(aboutLink).toBeInTheDocument();
 });
+
+test('render navigation link "Favorite Pokémons"', () => {
+  const { getByText } = render(
+    <MemoryRouter initialEntries={ ['/'] }>
+      <App />
+    </MemoryRouter>,
+  );
+  const favoriteLink = getByText(/Favorite Pokémons/i);
+  expect(favoriteLink).toBeInTheDocument();
+});
