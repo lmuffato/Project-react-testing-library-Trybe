@@ -21,4 +21,10 @@ describe('render pokemon card itens', () => {
     const pokemonWeight = screen.getByText(/average weight: 6\.0 kg/i);
     expect(pokemonWeight).toBeInTheDocument();
   });
+
+  it('render pokemon weight', () => {
+    renderWithRouter(<App />);
+    const pokemonImg = screen.getByRole('img', { name: /pikachu sprite/i });
+    expect(pokemonImg).toBeInTheDocument();
+  });
 });
