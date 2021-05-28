@@ -25,3 +25,13 @@ test('test button contain the text "Próximo pokémon"', () => {
   const text = getByText(/Próximo pokémon/i);
   expect(text).toBeInTheDocument();
 });
+
+test('test button in Pokedex ', () => {
+  const { getByTestId } = render(
+    <MemoryRouter initialEntries={ ['/'] }>
+      <App />
+    </MemoryRouter>,
+  );
+  const button = getByTestId('next-pokemon');
+  expect(button).toBeInTheDocument();
+});
