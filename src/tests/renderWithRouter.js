@@ -5,8 +5,14 @@ import { render } from '@testing-library/react';
 
 const renderWithRouter = (component) => {
   const history = createMemoryHistory();
+  const objRender = render(
+    <Router history={ history }>
+      {component}
+    </Router>,
+  );
   return ({
-    ...render(<Router history={ history }>{component}</Router>), history,
+    ...objRender,
+    history,
   });
 };
 

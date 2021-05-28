@@ -1,17 +1,17 @@
 import React from 'react';
 // import { MemoryRouter } from 'react-router-dom';
-// import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
-describe('Requisito 1.1', () => {
+describe('Teste da pagina inicial', () => {
   const mesage = 'Teste se a página principal da Pokédex é renderizada na URL /';
   it(mesage, () => {
     const { history: { location: { pathname } } } = renderWithRouter(<App />);
     expect(pathname).toBe('/');
   });
 });
-describe('Requisito 1.2 Teste se existe um conjunto fixo de links de navegação', () => {
+describe('Teste se existe um conjunto fixo de links de navegação', () => {
   it('O primeiro link deve possuir o texto Home', () => {
     const { getByRole } = renderWithRouter(<App />);
     const nav = getByRole('navigation');
@@ -32,59 +32,28 @@ describe('Requisito 1.2 Teste se existe um conjunto fixo de links de navegação
   });
 });
 
-// describe('Requisito 1.3', () => {
-//   const mesage = '';
-//   it(mesage, () => {
-//     const { } = renderWithRouter(<App />);
-//     expect().toBe();
-//   });
-// });
-
-// describe('Requisito 1.4', () => {
-//   const mesage = '';
-//   it(mesage, () => {
-//     const { } = renderWithRouter(<App />);
-//     expect().toBe();
-//   });
-// });
-
-// describe('Requisito 1.5', () => {
-//   const mesage = '';
-//   it(mesage, () => {
-//     const { } = renderWithRouter(<App />);
-//     expect().toBe();
-//   });
-// });
-
-// describe('Requisito 1.6', () => {
-//   const mesage = '';
-//   it(mesage, () => {
-//     const { } = renderWithRouter(<App />);
-//     expect().toBe();
-//   });
-// });
-
-/*
-Teste o componente <App.js />
-1-Teste se a página principal da Pokédex é renderizada ao carregar a aplicação no caminho de URL /.
-
-2 Teste se o topo da aplicação contém um conjunto fixo de links de navegação.
-
-O primeiro link deve possuir o texto Home.
-
-O segundo link deve possuir o texto About.
-
-O terceiro link deve possuir o texto Favorite Pokémons.
-
-3-Teste se a aplicação é redirecionada para a página inicial, na URL / ao clicar no link Home da barra de navegação.
-
-4-Teste se a aplicação é redirecionada para a página de About, na URL /about, ao clicar no link About da barra de navegação.
-
-5-Teste se a aplicação é redirecionada para a página de Pokémons Favoritados, na URL /favorites, ao clicar no link Favorite Pokémons da barra de navegação.
-
-6-Teste se a aplicação é redirecionada para a página Not Found ao entrar em uma URL desconhecida.
-
-O que será verificado:
-
-Será avaliado se o arquivo teste App.test.js contemplam 100% dos casos de uso criados pelo Stryker.
-*/
+describe('Testando rotas de navegação', () => {
+  it('Teste redirecionamento para a página inicial ao clicar no link Home', () => {
+    const screen = renderWithRouter(<App />);
+    userEvent.click(screen.getByRole('link', { name: /about/i }));
+    expect(screen.history.location.pathname).toBe('/about');
+    userEvent.click(screen.getByRole('link', { name: /home/i }));
+    expect(screen.history.location.pathname).toBe('/');
+  });
+  it('Teste redirecionamento para a página "sobre" ao clicar no link about', () => {
+    const screen = renderWithRouter(<App />);
+    userEvent.click(screen.getByRole('link', { name: /about/i }));
+    expect(screen.history.location.pathname).toBe('/about');
+  });
+  it('Teste direcionamento p/ "favoritos" ao clicar no link "Favorite Pokémons"', () => {
+    const screen = renderWithRouter(<App />);
+    userEvent.click(screen.getByRole('link', { name: /favorite/i }));
+    expect(screen.history.location.pathname).toBe('/favorites');
+  });
+  it('Teste direcionamento p/ "Not Found" ao digitar url desconhecida', () => {
+    const screen = renderWithRouter(<App />);
+    screen.history.push('/xablau');
+    const headingNotFound = screen.getByRole('heading', { name: /not found/ });
+    expect(headingNotFound).toBeInTheDocument();
+  });
+});
