@@ -1,5 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../helpers/renderWithRouter';
 import App from '../App';
 
@@ -22,9 +23,18 @@ describe('render pokemon card itens', () => {
     expect(pokemonWeight).toBeInTheDocument();
   });
 
-  it('render pokemon weight', () => {
+  it('render pokemon sprite', () => {
     renderWithRouter(<App />);
     const pokemonImg = screen.getByRole('img', { name: /pikachu sprite/i });
     expect(pokemonImg).toBeInTheDocument();
+  });
+
+  it('render link more details', () => {
+    const { history } = renderWithRouter(<App />);
+    const moreDetails = screen.getByRole('link', { name: /more details/i });
+    expect(moreDetails).toBeInTheDocument();
+    userEvent.click(moreDetails);
+    const pathResource = history.location.pathname;
+    expect(pathResource).toBe('/pokemons/25');
   });
 });
