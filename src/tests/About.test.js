@@ -12,4 +12,10 @@ describe('Testing <About />', () => {
 
     expect(heading).toBeInTheDocument();
   });
+
+  test('Test number of paragraphs', () => {
+    const { container } = renderWithRouter(<About />);
+    const p = container.querySelectorAll('p');
+    expect(p.length).toBe(2);
+  });
 });
