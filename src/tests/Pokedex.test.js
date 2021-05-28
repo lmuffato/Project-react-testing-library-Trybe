@@ -54,9 +54,6 @@ describe('Teste do componente Pokedex', () => {
       pokemons.forEach(({ type }, index2) => {
         if (item.type === type && index1 !== index2) {
           multipleItem.push(item.type);
-          const btnFilter = getByRole('button', { name: type });
-          userEvent.click(btnFilter);
-          expect(getByTestId('next-pokemon')).not.toBeDisabled();
         }
       });
     });
