@@ -12,9 +12,9 @@ class PokemonDetails extends React.Component {
       <section>
         <h2>{`Game Locations of ` + `${name}`}</h2>
         <div className="pokemon-habitat">
-          {foundAt.map(({ location, map }) => (
+          {foundAt.map(({ location, map }, index) => (
             <div key={ location }>
-              <img src={ `${map}` } alt={`${name} ` + `location`} />
+              <img src={ `${map}` } alt={`${name} ` + `location`}/>
               <p><em>{location}</em></p>
             </div>
           ))}

@@ -25,7 +25,7 @@ describe('Test PokemonDetails', () => {
     });
     expect(summary).toBeDefined();
 
-    const paragraph = (summary.nextElementSibling.innerHTML);
+    const paragraph = (summary.nextElementSibling);
     expect(paragraph).toBeDefined();
   });
   test('testing  if maps section is shown in the page', () => {
@@ -46,6 +46,24 @@ describe('Test PokemonDetails', () => {
 
     const altText = `${name} location`;
     const img = getAllByAltText(altText);
-    console.log(img.length);
+    img.forEach((image) => {
+      expect(image.src).toBeDefined();
+      expect(image.alt).toBeDefined();
+      expect(image.nextElementSibling).toBeDefined();
+    });
+  });
+  test('testing  if an user can favorite a pokemon', () => {
+    const { getByRole, getByText } = renderWithRouter(<App />);
+
+    const detButton = getByRole('link', { name: /more details/i });
+    expect(detButton).toBeInTheDocument();
+
+    userEvent.click(detButton);
+
+    const favorite = getByText(/pokémon favoritado\?/i);
+    expect(favorite).toBeInTheDocument();
+
+    const favoriteCheck = getByRole('checkbox', { name: /pokémon favoritado\?/i });
+    expect(favoriteCheck).toBeInTheDocument();
   });
 });
