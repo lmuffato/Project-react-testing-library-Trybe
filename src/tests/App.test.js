@@ -58,7 +58,7 @@ describe('Requisito 1 - Teste o componente <App.js />',
     ao entrar em uma URL desconhecida`,
     () => {
       const { getByRole, history } = renderWithRouter(<App />);
-      history.push('/paginaquenaoexiste');
+      history.push('/pagina-que-nao-existe');
       const text = getByRole('heading',
         { name: 'Page requested not found Crying emoji' });
       expect(text).toBeInTheDocument();

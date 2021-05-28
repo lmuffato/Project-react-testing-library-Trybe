@@ -7,7 +7,7 @@ import isPokemonFavoriteById from './isPokemonFavorite-data';
 
 describe('Requisito 5 - Teste o componente <Pokedex.js />',
   () => {
-    const NEXT_POKEMON = 'Próximo pokémon';
+    const NEXT_BTN_NAME = 'Próximo pokémon';
     it('Teste se página contém um heading h2 com o texto Encountered pokémons',
       () => {
         const { getByRole } = renderWithRouter(
@@ -30,23 +30,30 @@ describe('Requisito 5 - Teste o componente <Pokedex.js />',
           isPokemonFavoriteById={ isPokemonFavoriteById }
         />,
       );
-      const nextPokemon = getByRole('button', { name: NEXT_POKEMON });
-      userEvent.click(nextPokemon);
-      // Since this test is mocked I know for sure the next one is Charmander
-      const charmander = getByText('Charmander');
-      expect(charmander).toBeInTheDocument();
+      const nextButton = getByRole('button', { name: NEXT_BTN_NAME });
+      [...Array(pokemons.length * 2)]
+        .forEach((_e, index) => {
+          const pokemon = getByText(pokemons[index % pokemons.length].name);
+          expect(pokemon).toBeInTheDocument();
+          userEvent.click(nextButton);
+        });
     });
     it('Teste se é mostrado apenas um Pokémon por vez',
       () => {
-        const { getAllByRole } = renderWithRouter(
+        const { getByRole, getAllByRole } = renderWithRouter(
           <Pokedex
             pokemons={ pokemons }
             isPokemonFavoriteById={ isPokemonFavoriteById }
           />,
         );
-        const sprites = getAllByRole('img',
-          { name: /sprite/ });
-        expect(sprites).toHaveLength(1);
+        const nextButton = getByRole('button', { name: NEXT_BTN_NAME });
+        [...Array(pokemons.length * 2)]
+          .forEach(() => {
+            const sprites = getAllByRole('img',
+              { name: /sprite/ });
+            expect(sprites).toHaveLength(1);
+            userEvent.click(nextButton);
+          });
       });
     it('Teste se a Pokédex tem os botões de filtro',
       () => {
@@ -56,29 +63,23 @@ describe('Requisito 5 - Teste o componente <Pokedex.js />',
             isPokemonFavoriteById={ isPokemonFavoriteById }
           />,
         );
-        const types = [...new Set(pokemons.map(({ type }) => type))];
+        const uniqueTypes = [...new Set(pokemons.map(({ type }) => type))];
         const filterButtons = getAllByTestId('pokemon-type-button');
-        const filterButtonsNoRepeatedTypes = [...new Set(filterButtons
+        const uniqueFilterButtons = [...new Set(filterButtons
           .map(({ innerHTML }) => innerHTML))];
-        expect(filterButtonsNoRepeatedTypes).toHaveLength(filterButtons.length);
-        expect(filterButtonsNoRepeatedTypes).toHaveLength(types.length);
+        expect(uniqueFilterButtons).toHaveLength(filterButtons.length);
+        expect(uniqueFilterButtons).toHaveLength(uniqueTypes.length);
       });
-    it('Testa se o botão Próximo Pokémon está funcionando',
+    it('Testa se a Pokédex tem o botão de filtro All',
       () => {
-        const { getByRole, getByText } = renderWithRouter(
+        const { getByRole } = renderWithRouter(
           <Pokedex
             pokemons={ pokemons }
             isPokemonFavoriteById={ isPokemonFavoriteById }
           />,
         );
         const all = getByRole('button', { name: 'All' });
-        userEvent.click(all);
-        const nextPokemon = getByRole('button', { name: NEXT_POKEMON });
-        Array(pokemons.length * 2).forEach((_e, index) => {
-          const pokemon = getByText(pokemons[index % pokemons.length].name);
-          expect(pokemon).toBeInTheDocument();
-          userEvent.click(nextPokemon);
-        });
+        expect(all).toBeInTheDocument();
       });
     it(`O botão de Próximo pokémon deve ser desabilitado quando a lista
      filtrada de Pokémons tiver um só pokémon`,
@@ -89,9 +90,14 @@ describe('Requisito 5 - Teste o componente <Pokedex.js />',
           isPokemonFavoriteById={ isPokemonFavoriteById }
         />,
       );
-      const electricButton = getByRole('button', { name: 'Electric' });
-      userEvent.click(electricButton);
-      const nextPokemon = getByRole('button', { name: NEXT_POKEMON });
-      expect(nextPokemon).toBeDisabled();
+      const nextPokemon = getByRole('button', { name: NEXT_BTN_NAME });
+      const typesWithOnlyOnePokemon = pokemons
+        .map(({ type }) => type)
+        .filter((type, _i, arr) => arr.indexOf(type) === arr.lastIndexOf(type));
+      typesWithOnlyOnePokemon.forEach((type) => {
+        const typeButton = getByRole('button', { name: type });
+        userEvent.click(typeButton);
+        expect(nextPokemon).toBeDisabled();
+      });
     });
   });

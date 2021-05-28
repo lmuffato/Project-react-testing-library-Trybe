@@ -27,6 +27,6 @@ describe('Requisito 2 - Teste o componente <About.js /',
         const { getByRole } = render(<About />);
         const image = getByRole('img');
         const expectedPath = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
-        expect(image.src).toBe(expectedPath);
+        expect(image).toHaveAttribute('src', expectedPath);
       });
   });
