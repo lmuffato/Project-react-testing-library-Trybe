@@ -35,7 +35,7 @@ test('Testa se peso médio do pokémon é exibido na tela', () => {
   const { getByTestId } = renderWithRouter(<App />);
   const catchWeight = getByTestId('pokemon-weight');
   expect(catchWeight).toBeInTheDocument();
-  expect(catchWeight).toHaveTextContent('6.0 kg');
+  expect(catchWeight).toHaveTextContent('Average weight: 6.0 kg');
 });
 
 test('Testa se a imagem do Pokémon  é exibido na tela', () => {
