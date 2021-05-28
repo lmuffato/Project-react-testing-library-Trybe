@@ -33,8 +33,10 @@ describe('Testando Component Pokemon', () => {
     const pickachu = getByText(pokemon.name);
     expect(pickachu).toBeInTheDocument();
     expect(getByText(pokemon.type)).toBeInTheDocument();
+    const srcImg = pokemon.image;
     const img = getByAltText(`${pokemon.name} sprite`);
     expect(img).toBeInTheDocument();
+    expect(img.src).toBe(srcImg);
     const { averageWeight: { measurementUnit } } = pokemon;
     const weight = getByText(
       `Average weight: ${pokemon.averageWeight.value} ${measurementUnit}`,
@@ -47,5 +49,16 @@ describe('Testando Component Pokemon', () => {
     expect(link).toBeInTheDocument();
     userEvent.click(link);
     expect(history.location.pathname).toBe(`/pokemons/${pokemon.id}`);
+  });
+  test('Se existe um ícone de estrela no pokemon favoritado', () => {
+    const truePoke = true;
+    const { getAllByRole } = renderWithRouter(<Pokemon
+      pokemon={ pokemon }
+      isFavorite={ truePoke }
+    />);
+    const imgFavorite = '/star-icon.svg';
+    const arrTestImg = getAllByRole('img');
+    expect(arrTestImg[1].src).toMatch(imgFavorite);
+    expect(arrTestImg[1].alt).toBe('Pikachu is marked as favorite');
   });
 });
