@@ -3,7 +3,6 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../helpers/renderWithRouter';
 import App from '../App';
-import { FavoritePokemons } from '../components';
 
 describe('render pokemon card itens', () => {
   it('render pokemon name', () => {
@@ -27,6 +26,8 @@ describe('render pokemon card itens', () => {
   it('render pokemon sprite', () => {
     renderWithRouter(<App />);
     const pokemonImg = screen.getByRole('img', { name: /pikachu sprite/i });
+    expect(pokemonImg).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.pngclea');
+    expect(pokemonImg).toHaveAttribute('alt', 'Pikachu sprite');
     expect(pokemonImg).toBeInTheDocument();
   });
 
