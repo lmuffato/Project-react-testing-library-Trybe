@@ -14,3 +14,14 @@ test('render text `Page requested not found 😭`', () => {
   const text = getByText(/Page requested not found/i);
   expect(text).toBeInTheDocument();
 });
+
+test('render an image.gif in Page not founded', () => {
+  render(
+    <MemoryRouter initialEntries={ ['/*'] }>
+      <NotFound />
+    </MemoryRouter>,
+  );
+  const img = document.querySelector('.not-found-image');
+  const { src } = img;
+  expect(src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
+});
