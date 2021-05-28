@@ -9,4 +9,10 @@ describe('render pokemon card itens', () => {
     const pokemonName = screen.getByText(/pikachu/i);
     expect(pokemonName).toBeInTheDocument();
   });
+
+  it('pokemon name', () => {
+    renderWithRouter(<App />);
+    const pokemonType = screen.getByTestId('pokemon-type');
+    expect(pokemonType.textContent).toMatch(/electric/i);
+  });
 });
