@@ -26,20 +26,20 @@ it('Renders a card with the informations'
   render(
     <Router history={ historyMock }>
       <App />
-    </Router>
+    </Router>,
   );
 
   const normalPokeTypeButton = screen.getByRole('button', {
-    name: /normal/i
-  })
-  
+    name: /normal/i,
+  });
+
   userEvent.click(normalPokeTypeButton);
 
-  const averageWeightTextModel = 'Average weight: 460.0 kg'
+  const averageWeightTextModel = 'Average weight: 460.0 kg';
   const pokemonDetails = catchPokemonDetails();
   const pokeName = pokemonDetails.name.innerHTML;
   const pokeImageSrc = 'https://cdn2.bulbagarden.net/upload/4/40/Spr_5b_143.png';
-  
+
   expect(pokemonDetails.name).toHaveTextContent('Snorlax');
   expect(pokemonDetails.type).toHaveTextContent('Normal');
   expect(pokemonDetails.weight).toHaveTextContent(averageWeightTextModel);
@@ -48,23 +48,20 @@ it('Renders a card with the informations'
 });
 
 it('Renders a link in the card'
-  +' and it contains the pokemon Id', () => {
-
+  + ' and it contains the pokemon Id', () => {
   const historyMock = createBrowserHistory();
   render(
     <Router history={ historyMock }>
       <App />
-    </Router>
+    </Router>,
   );
-  
+
   const pokemonDetails = catchPokemonDetails();
 
-  const { id } = pokemons.find(({name}) => {
-    return name === pokemonDetails.name.innerHTML;
-  });
+  const { id } = pokemons.find(({ name }) => name === pokemonDetails.name.innerHTML);
 
   const pokeDetailsLink = screen.getByRole('link', {
-    name: /more details/i
+    name: /more details/i,
   });
   const detailsLinkQueriedId = pokeDetailsLink.href;
   const re = RegExp(`${id}`, 'gi');
@@ -75,42 +72,38 @@ it('Renders a link in the card'
 });
 
 it('Redirects the user to the Details page with'
-+ ' the link contaning the Id whose pokemon' 
++ ' the link contaning the Id whose pokemon'
 + ' that it wants to see the details', () => {
-  
   const historyMock = createBrowserHistory();
   render(
     <Router history={ historyMock }>
       <App />
-    </Router>
+    </Router>,
   );
 
-  const pokemonDetails = catchPokemonDetails();
+  const { name } = catchPokemonDetails();
 
-  const { id, name } = pokemons.find(({name}) => {
-    return name === pokemonDetails.name.innerHTML;
-  });
-  const re = RegExp(`${id}`, 'gi');
+  const foundPoke = pokemons.find((poke) => poke.name === name.innerHTML);
+  const re = RegExp(`${foundPoke.id}`, 'gi');
 
   const pokeDetailsLink = screen.getByRole('link', {
-    name: /more details/i
+    name: /more details/i,
   });
 
   userEvent.click(pokeDetailsLink);
 
   const { pathname } = historyMock.location;
   const pathnameContainsThePokemonId = pathname.match(re);
-  const isUserInPageDetails = pathname.match(/pokemons/gi); 
+  const isUserInPageDetails = pathname.match(/pokemons/gi);
 
   const detailsHeadingText = screen.getByRole('heading', {
     level: 2,
-    name: `${name} Details`
+    name: `${foundPoke.name} Details`,
   });
 
   expect(pathnameContainsThePokemonId).toBeTruthy();
   expect(isUserInPageDetails).toBeTruthy();
   expect(detailsHeadingText).toBeInTheDocument();
-
 });
 
 it('Favorited Pokemons have a star in your card', () => {
@@ -118,13 +111,13 @@ it('Favorited Pokemons have a star in your card', () => {
   render(
     <Router history={ historyMock }>
       <App />
-    </Router>
+    </Router>,
   );
 
   historyMock.push('/');
 
   const pokeDetailsLink = screen.getByRole('link', {
-    name: /more details/i
+    name: /more details/i,
   });
 
   userEvent.click(pokeDetailsLink);

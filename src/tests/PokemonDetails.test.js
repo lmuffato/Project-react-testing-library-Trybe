@@ -21,34 +21,33 @@ function catchPokemonDetails() {
 
 test('The information from the selected pokemon'
 + ' is showed in the page', () => {
-
   const historyMock = createBrowserHistory();
   render(
     <Router history={ historyMock }>
       <App />
-    </Router>
+    </Router>,
   );
 
   const normalPokeTypeButton = screen.getByRole('button', {
-    name: /normal/i
+    name: /normal/i,
   });
   const { name } = catchPokemonDetails();
 
   userEvent.click(normalPokeTypeButton);
   const pokeDetailsLink = screen.getByRole('link', {
-    name: /more details/i
+    name: /more details/i,
   });
   userEvent.click(pokeDetailsLink);
 
   const headingText = screen.getByRole('heading', {
-    name: `${name.innerHTML} Details`
+    name: `${name.innerHTML} Details`,
   });
   const sumaryText = screen.getByRole('heading', {
-    name: /summary/i
+    name: /summary/i,
   });
-  
+
   const pokemonExpectedResume = 'What sounds like its cry may actually be its'
-  + ' snores or the rumblings of its hungry belly.'
+  + ' snores or the rumblings of its hungry belly.';
   const pokemonResume = screen.getByText(pokemonExpectedResume);
 
   //  EXPECTS
@@ -59,18 +58,16 @@ test('The information from the selected pokemon'
 });
 
 it('Exists a section with the maps containing'
-+ ' the locations of the pokemon' , () => {
++ ' the locations of the pokemon', () => {
   const historyMock = createBrowserHistory();
   render(
     <Router history={ historyMock }>
       <App />
-    </Router>
+    </Router>,
   );
 
   const { name } = catchPokemonDetails();
-  const { foundAt } = pokemons.find((poke) => {
-    return (poke.name === name.innerHTML)
-  });
+  const { foundAt } = pokemons.find((poke) => (poke.name === name.innerHTML));
   const locationsInPage = document.querySelectorAll('.pokemon-habitat div');
 
   const locationsHeadingText = screen.getByRole('heading', {
@@ -83,7 +80,7 @@ it('Exists a section with the maps containing'
     const mapUrl = foundAt[index].map;
     const locationEl = screen.getByText(locationName);
     const mapEl = screen.getByAltText(`${name.innerHTML} location`);
-    
+
     expect(locationEl).toBeInTheDocument();
     expect(mapEl).toBeInTheDocument();
     expect(mapEl.src).toEqual(mapUrl);
@@ -99,7 +96,7 @@ it('User can fav a pokemon from the details page', () => {
   render(
     <Router history={ historyMock }>
       <App />
-    </Router>
+    </Router>,
   );
 
   const favPokeCheckbox = screen.getByRole('checkbox');

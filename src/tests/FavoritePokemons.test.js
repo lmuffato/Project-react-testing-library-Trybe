@@ -1,19 +1,16 @@
 import React from 'react';
-import { MemoryRouter, Router } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
-import { render, screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
-import App from '../App';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import App from '../App';
 import { FavoritePokemons } from '../components';
-import pokemons from '../data';
-
-const pokemonsIds = pokemons.map(({id}) => id);
 
 test('The page starts with the'
 + 'text "No favorite pokemon found"', () => {
   render(<FavoritePokemons />);
 
-  const notFoundText = 'No favorite pokemon found'; 
+  const notFoundText = 'No favorite pokemon found';
   const paragraphNotFound = screen.getByText(notFoundText);
   expect(paragraphNotFound).toBeInTheDocument();
 });
@@ -23,7 +20,7 @@ test('Show all the favorited Pokemons', () => {
   render(
     <Router history={ historyMock }>
       <App />
-    </Router>
+    </Router>,
   );
 
   const favoritePokemonById = (id) => {
@@ -36,6 +33,6 @@ test('Show all the favorited Pokemons', () => {
   favoritePokemonById('4');
 
   historyMock.push('/favorites');
-  const pokemonCards = document.querySelectorAll('.favorite-pokemon')
+  const pokemonCards = document.querySelectorAll('.favorite-pokemon');
   expect(pokemonCards.length).toEqual(2);
 });
