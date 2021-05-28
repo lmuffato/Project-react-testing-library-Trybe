@@ -20,4 +20,11 @@ describe('renders pokemon info', () => {
     const type = screen.getByTestId('pokemon-type');
     expect(type.textContent).toMatch(/electric/i);
   });
+
+  it('render pokemon average', () => {
+    renderWithRouter(<App />);
+    const pokemonDetails = screen.getByRole('link', { name: /more details/i });
+    userEvent.click(pokemonDetails);
+    screen.getByText(/average weight: 6\.0 kg/i);
+  });
 });
