@@ -26,7 +26,8 @@ describe('render pokemon card itens', () => {
   it('render pokemon sprite', () => {
     renderWithRouter(<App />);
     const pokemonImg = screen.getByRole('img', { name: /pikachu sprite/i });
-    expect(pokemonImg).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.pngclea');
+    expect(pokemonImg)
+      .toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
     expect(pokemonImg).toHaveAttribute('alt', 'Pikachu sprite');
     expect(pokemonImg).toBeInTheDocument();
   });
