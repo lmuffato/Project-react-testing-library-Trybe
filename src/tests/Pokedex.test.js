@@ -27,14 +27,17 @@ describe('"Pokedex" Buttons Tests', () => {
     expect(allPokemons).toBeInTheDocument();
   });
 
-  test('"Elements" Buttons', () => {
+  test('"Types" Buttons', () => {
     const { getAllByTestId } = renderWithRouter(<Pokedex
       pokemons={ pokemons }
       isPokemonFavoriteById={ {} }
     />);
     const elementsButtons = getAllByTestId('pokemon-type-button');
     userEvent.type(elementsButtons);
-    expect(elementsButtons[0]).toHaveTextContent(/electric/i);
+    const types = ['Electric', 'Fire', 'Bug'];
+    types.forEach((type, i) => {
+      expect(elementsButtons[i]).toHaveTextContent(type);
+    });
   });
 
   test('"Next" Button', () => {
