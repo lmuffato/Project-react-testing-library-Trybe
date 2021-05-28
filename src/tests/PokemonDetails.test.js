@@ -10,6 +10,14 @@ describe('renders pokemon info', () => {
     const pokemonDetails = screen.getByRole('link', { name: /more details/i });
     userEvent.click(pokemonDetails);
     const name = screen.getByTestId('pokemon-name');
-    expect(name.textContent).toBe('Pikachu');
+    expect(name.textContent).toMatch(/pikachu/i);
+  });
+
+  it('render pokemon type', () => {
+    renderWithRouter(<App />);
+    const pokemonDetails = screen.getByRole('link', { name: /more details/i });
+    userEvent.click(pokemonDetails);
+    const type = screen.getByTestId('pokemon-type');
+    expect(type.textContent).toMatch(/electric/i);
   });
 });
