@@ -27,10 +27,6 @@
 
 |&check;| Teste o componente <Pokedex.js />
 
-|_| Teste o componente <Pokemon.js />
+|&check;| Teste o componente <Pokemon.js />
 
 |_| Teste o componente <PokemonDetails.js />
-
-<!-- |checked|unchecked|crossed|
-|---|---|---|
-|&check;|_|&cross;| -->
