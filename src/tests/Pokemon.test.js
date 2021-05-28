@@ -28,7 +28,7 @@ test('Basic infos show', () => {
   const { innerHTML: pokemonType } = getByTestId('pokemon-type');
   const { innerHTML: pokemonWeight } = getByTestId('pokemon-weight');
   const { value, measurementUnit } = myPoke.averageWeight;
-  const pokeImage = getByAltText(`${myPokemon.name} sprite`);
+  const pokeImage = getByAltText(`${myPoke.name} sprite`);
   expect(pokemonName).toBe(myPoke.name);
   expect(pokemonType).toBe(myPoke.type);
   expect(pokemonWeight).toBe(`Average weight: ${value} ${measurementUnit}`);
