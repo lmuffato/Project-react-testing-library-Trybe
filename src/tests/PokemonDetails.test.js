@@ -34,3 +34,14 @@ describe('renders pokemon info', () => {
     screen.getByText(textRegex);
   });
 });
+
+describe('renders a section with maps containing the locations of the pokémon', () => {
+  it('render header', () => {
+    renderWithRouter(<App />);
+    const moreDetails = screen.getByRole('link', { name: /more details/i });
+    userEvent.click(moreDetails);
+    const header = screen
+      .getByRole('heading', { level: 2, name: /game locations of pikachu/i });
+    expect(header).toBeInTheDocument();
+  });
+});
