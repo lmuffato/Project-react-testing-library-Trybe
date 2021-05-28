@@ -3,6 +3,7 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../helpers/renderWithRouter';
 import App from '../App';
+import { FavoritePokemons } from '../components';
 
 describe('render pokemon card itens', () => {
   it('render pokemon name', () => {
@@ -36,5 +37,19 @@ describe('render pokemon card itens', () => {
     userEvent.click(moreDetails);
     const pathResource = history.location.pathname;
     expect(pathResource).toBe('/pokemons/25');
+  });
+
+  it('render star', () => {
+    renderWithRouter(<App />);
+    const moreDetails = screen.getByRole('link', { name: /more details/i });
+    userEvent.click(moreDetails);
+    const checkbox = screen.getByRole('checkbox', { name: /pokémon favoritado\?/i });
+    userEvent.click(checkbox);
+    const favoriteStarImg = screen
+      .getByRole('img', { name: /pikachu is marked as favorite/i });
+    expect(favoriteStarImg).toBeInTheDocument();
+    const starURL = '/star-icon.svg';
+    expect(favoriteStarImg).toHaveAttribute('src', starURL);
+    expect(favoriteStarImg).toHaveAttribute('alt', 'Pikachu is marked as favorite');
   });
 });
