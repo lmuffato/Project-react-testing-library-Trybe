@@ -9,7 +9,7 @@ describe('Requirement 5 - testing the <Pokedex/> component', () => {
     const btnAll = getByRole('button', { name: 'All' });
     fireEvent.click(btnAll);
     const pokereset = getByTestId('pokemon-name');
-    expect(pokereset).toHaveTextContent('Pikachu');
+    expect(pokereset).toHaveTextContent(/pikachu/i);
   });
 
   it('Check the title "Encountered pokémons"', () => {
