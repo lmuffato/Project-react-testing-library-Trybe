@@ -20,6 +20,12 @@ describe('Pokedex test', () => {
     const url = 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png';
     expect(getByTestId('pokemon-name')).toHaveTextContent(/Pikachu/i);
     expect(getByTestId('pokemon-type')).toHaveTextContent(/Electric/i);
+    expect(getByTestId('pokemon-type')).not.toBe(/""/);
+    expect(getByTestId('pokemon-type')).not.toBe(/``/);
+
+    // expect(getByTestId('pokemon-type')).not.toNull();
+    // expect(getByTestId('pokemon-type')).not.toUndefined();
+
     expect(getByTestId('pokemon-weight')).toHaveTextContent('Average weight: 6.0 kg');
     expect(getByAltText('Pikachu sprite').src).toBe(url);
     expect(getByRole('img').src).toBe(url);
