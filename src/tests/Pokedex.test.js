@@ -15,6 +15,16 @@ describe('Pokedex test', () => {
     expect(h2).toBeInTheDocument();
   });
 
+  it('mostra um card do pokemon com informações', () => {
+    const { getByTestId, getByRole, getByAltText } = renderWithRouter(<App />);
+    const url = 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png';
+    expect(getByTestId('pokemon-name')).toHaveTextContent(/Pikachu/i);
+    expect(getByTestId('pokemon-type')).toHaveTextContent(/Electric/i);
+    expect(getByTestId('pokemon-weight')).toHaveTextContent('Average weight: 6.0 kg');
+    expect(getByAltText('Pikachu sprite').src).toBe(url);
+    expect(getByRole('img').src).toBe(url);
+  });
+
   it('Mostra o proximo pokemon quando clica em `Proximo pokémon`'
   + ' vai para o primeiro pkmn depois que o ultimo foi clicado', () => {
     const { getByText, getByTestId } = renderWithRouter(<App />);
