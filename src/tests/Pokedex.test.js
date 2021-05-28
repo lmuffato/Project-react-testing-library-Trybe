@@ -34,11 +34,14 @@ describe('"Pokedex" Buttons Tests', () => {
     />);
     const elementsButtons = getAllByTestId('pokemon-type-button');
     userEvent.type(elementsButtons);
-    const types = ['Electric', 'Fire', 'Bug'];
-    types.forEach((type, i) => {
+    const getRawTypes = pokemons.map(({ type }) => type);
+    const filteredTypes = [...new Set(getRawTypes)];
+    filteredTypes.forEach((type, i) => {
       expect(elementsButtons[i]).toHaveTextContent(type);
     });
   });
+
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set e o famigerado e abençoado Rafael Medeiros - Turma 10-A, o Ronin do JavaScript!
 
   test('"Next" Button', () => {
     const { getByTestId } = renderWithRouter(<Pokedex
