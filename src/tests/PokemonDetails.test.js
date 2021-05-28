@@ -12,4 +12,11 @@ describe('renders pokemon info', () => {
     const heading = screen.getByRole('heading', { level: 2, name: /pikachu details/i });
     expect(heading).toBeInTheDocument();
   });
+
+  it('it does not render the link for more details', () => {
+    renderWithRouter(<App />);
+    const moreDetails = screen.getByRole('link', { name: /more details/i });
+    userEvent.click(moreDetails);
+    expect(moreDetails).not.toBeInTheDocument();
+  });
 });
