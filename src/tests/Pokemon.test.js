@@ -1,7 +1,8 @@
 import React from 'react';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import Pokemon from '../components/Pokemon';
-
+// Utilizei o codigo do colega Sergio Martins para fazer abstração desse requisito
 const myPoke = {
   id: 148,
   name: 'Dragonair',
@@ -14,14 +15,14 @@ const myPoke = {
   moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Dragonair_(Pok%C3%A9mon)',
 };
 
-const PokeRender = (isFavorite = false) => (<Pokemon
+const pokeRender = (isFavorite = false) => (<Pokemon
   pokemon={ myPoke }
   isFavorite={ isFavorite }
   showDetailsLink
 />);
 
 test('Basic infos show', () => {
-  const { getByTestId, getByRole } = renderWithRouter(PokeRender());
+  const { getByTestId, getByRole } = renderWithRouter(pokeRender());
 
   const { innerHTML: pokemonName } = getByTestId('pokemon-name');
   const { innerHTML: pokemonType } = getByTestId('pokemon-type');
@@ -35,8 +36,25 @@ test('Basic infos show', () => {
 });
 
 test('exibir detalhes deste Pokémon', () => {
-  const { getByRole } = renderWithRouter(PokeRender());
+  const { getByRole } = renderWithRouter(pokeRender());
   const details = getByRole('link');
   expect(details).toBeInTheDocument();
   expect(details.href).toMatch(`pokemons/${myPoke.id}`);
+});
+
+test('Teste se ao clicar em navegação a aplicação vai para detalhes. ', () => {
+  const { history, getByRole } = renderWithRouter(pokeRender());
+  const details = getByRole('link');
+  userEvent.click(details);
+  const { pathname } = history.location;
+
+  expect(pathname).toBe(`/pokemons/${myPoke.id}`);
+});
+
+test('Teste se existe um ícone de estrela nos Pokémons favoritados.', () => {
+  const { getByAltText } = renderWithRouter(pokeRender(true));
+  const getImage = getByAltText(`${myPoke.name} is marked as favorite`);
+
+  expect(getImage).toBeInTheDocument();
+  expect(getImage.src).toMatch('/star-icon.svg');
 });
