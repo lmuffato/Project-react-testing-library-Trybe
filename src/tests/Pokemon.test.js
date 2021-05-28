@@ -84,6 +84,4 @@ describe('Requisito 6', () => {
     const url = '/star-icon.svg';
     expect(imgText.src).toContain(url);
   });
-// test('', () => {});
 });
-// describe('', () => {});
