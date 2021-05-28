@@ -4,7 +4,7 @@ import renderWithRouter from './helpers/renderWithRouter';
 import { FavoritePokemons } from '../components';
 import pokemons from '../data';
 
-const mockingFavoritePokemons = pokemons.filter(({ id }) => id % 2);
+const mockingFavoritePokemons = jest.fn(() => pokemons.filter(({ id }) => id % 2));
 
 describe('3 - Testing the component <FavoritePokemons />', () => {
   test('\'no favorite pokemon found\' must be in the component at first', () => {
@@ -16,7 +16,7 @@ describe('3 - Testing the component <FavoritePokemons />', () => {
   });
 
   test('when we have favorites pokemons it must show their cards in the page', () => {
-    renderWithRouter(<FavoritePokemons pokemons={ mockingFavoritePokemons } />);
+    renderWithRouter(<FavoritePokemons pokemons={ mockingFavoritePokemons() } />);
 
     const favoritePage = screen.getByRole('heading', { name: /favorite pokémons/i });
     const pokemonsCard = screen.getAllByTestId('pokemon-name');
