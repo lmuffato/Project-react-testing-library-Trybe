@@ -12,7 +12,7 @@ describe('NotFound test', () => {
     expect(getByText(/Page requested not found/i)).toBeInTheDocument();
   });
 
-  it('mostra um gif do pikachu triste',() => {
+  it('mostra um gif do pikachu triste', () => {
     // Span/emoticon é uma imagem -_-
     const { getAllByRole } = renderWithRouter(<NotFound />);
     const url = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
@@ -24,4 +24,4 @@ describe('NotFound test', () => {
     const { getAllByRole } = renderWithRouter(<NotFound />);
     expect(getAllByRole('img').length).toBe(2);
   });
-})
+});

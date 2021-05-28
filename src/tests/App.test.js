@@ -15,7 +15,7 @@ describe('App tests', () => {
 
   it('mostra Pokédex quando a rota é `/`', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    const pathname = history.location.pathname;
+    const { pathname } = history.location;
     expect(pathname).toBe('/');
     expect(getByText('Encountered pokémons')).toBeInTheDocument();
   });
@@ -33,16 +33,16 @@ describe('App tests', () => {
   it('mostra botões com os tipos de pokémons', () => {
     const { getAllByTestId, getByTestId, getAllByRole } = renderWithRouter(<App />);
     // const typeBtn = getByTestId('pokemon-type-button');
-    expect(getAllByTestId('pokemon-type-button')).toHaveLength(7);
+    expect(getAllByTestId('pokemon-type-button')).toHaveLength('7');
     expect(getByTestId('next-pokemon')).toBeInTheDocument();
-    expect(getAllByRole('button')).toHaveLength(9);
+    expect(getAllByRole('button')).toHaveLength('9');
   });
 
-  it('mostra os links `Home`, `About` e `Favorite Pokémons`',() => {
+  it('mostra os links `Home`, `About` e `Favorite Pokémons`', () => {
     const { getByText } = renderWithRouter(<App />);
     const homeLink = getByText(/Home/i);
     const aboutLink = getByText(/About/i);
-    const favoriteLink = getByText(/Favorite Pokémons/i);  
+    const favoriteLink = getByText(/Favorite Pokémons/i);
     expect(aboutLink).toBeInTheDocument();
     expect(homeLink).toBeInTheDocument();
     expect(favoriteLink).toBeInTheDocument();
@@ -54,5 +54,5 @@ describe('App tests', () => {
     userEvent.click(getByText(/Home/i));
     expect(pathname).toBe('/');
     expect(getByText('Encountered pokémons')).toBeInTheDocument();
-  })
+  });
 });

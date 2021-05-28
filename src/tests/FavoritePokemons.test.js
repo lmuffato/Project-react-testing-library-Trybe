@@ -25,6 +25,5 @@ describe('FavoritePokemons tests', () => {
       pokemons={ favoritedPokemons }
     />);
     expect(getAllByRole('link')).toHaveLength(1);
-
   });
 });

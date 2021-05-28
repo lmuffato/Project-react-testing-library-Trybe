@@ -9,26 +9,26 @@ describe('PokemonDetails test', () => {
     const { getByRole, getByText, history } = renderWithRouter(<App />);
 
     expect(getByRole('link', {
-        name: /more details/i,
-      })).toBeInTheDocument();
+      name: /more details/i,
+    })).toBeInTheDocument();
 
     userEvent.click(screen.getByRole('link', {
-        name: /more details/i,
-      }));
+      name: /more details/i,
+    }));
 
-    const pathname = history.location.pathname;
+    const { pathname } = history.location;
     expect(pathname).toBe('/pokemons/25');
 
     expect(getByText(/Pikachu Details/i)).toBeInTheDocument();
-    
+
     // expect(getByRole('link', {
     //   name: /more details/i,
     // })).not.toBeInTheDocument();
 
     expect(getByRole('heading', {
-        level: 2,
-        name: /Summary/i,
-      })).toBeInTheDocument();
+      level: 2,
+      name: /Summary/i,
+    })).toBeInTheDocument();
 
     expect(getByText(/electricity/i)).toBeInTheDocument();
   });
@@ -37,12 +37,12 @@ describe('PokemonDetails test', () => {
     const { getByRole, getAllByAltText } = renderWithRouter(<App />);
 
     expect(getByRole('link', {
-        name: /more details/i,
-      })).toBeInTheDocument();
+      name: /more details/i,
+    })).toBeInTheDocument();
 
     userEvent.click(screen.getByRole('link', {
-        name: /more details/i,
-      }));
+      name: /more details/i,
+    }));
 
     const locationsHeading = getByRole('heading', {
       level: 2,
@@ -63,20 +63,20 @@ describe('PokemonDetails test', () => {
     });
   });
 
- it('consigo favoritar estando na pagina de detalhes', () => {
+  it('consigo favoritar estando na pagina de detalhes', () => {
     const { getByRole, getByLabelText, getByAltText } = renderWithRouter(<App />);
 
     expect(getByRole('link', {
-        name: /more details/i,
-      })).toBeInTheDocument();
+      name: /more details/i,
+    })).toBeInTheDocument();
 
     userEvent.click(screen.getByRole('link', {
-        name: /more details/i,
-      }));
+      name: /more details/i,
+    }));
     expect(getByLabelText(/Pokémon favoritado?/)).toBeInTheDocument();
 
     userEvent.click(screen.getByLabelText(/Pokémon favoritado?/));
-    expect(getByAltText(/Pikachu is marked as favorite/i).src).toContain('/star-icon.svg');
+    const pikachuFav = getByAltText(/Pikachu is marked as favorite/i);
+    expect(pikachuFav.src).toContain('/star-icon.svg');
   });
-
 });

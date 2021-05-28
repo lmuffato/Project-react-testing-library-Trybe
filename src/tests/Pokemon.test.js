@@ -22,8 +22,8 @@ describe('Pokemon test', () => {
     });
     expect(detailsButton).toBeInTheDocument();
     userEvent.click(screen.getByRole('link', {
-        name: /more details/i,
-      }));
+      name: /more details/i,
+    }));
     const { pathname } = history.location;
     expect(pathname).toBe('/pokemons/25');
   });
@@ -35,11 +35,11 @@ describe('Pokemon test', () => {
     });
     expect(detailsButton).toBeInTheDocument();
     userEvent.click(screen.getByRole('link', {
-        name: /more details/i,
-      }));
+      name: /more details/i,
+    }));
     expect(getByLabelText(/Pokémon favoritado?/)).toBeInTheDocument();
     userEvent.click(screen.getByLabelText(/Pokémon favoritado?/));
-    expect(getByAltText(/Pikachu is marked as favorite/i).src).toContain('/star-icon.svg');
+    const pikachuFav = getByAltText(/Pikachu is marked as favorite/i);
+    expect(pikachuFav.src).toContain('/star-icon.svg');
   });
 });
- 
