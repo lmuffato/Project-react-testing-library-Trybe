@@ -18,15 +18,8 @@ describe('Pokedex test', () => {
   it('mostra um card do pokemon com informações', () => {
     const { getByTestId, getByRole, getByAltText } = renderWithRouter(<App />);
     const url = 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png';
-    // const lintPkmType = getByTestId('pokemon-type');
     expect(getByTestId('pokemon-name')).toHaveTextContent(/Pikachu/i);
     expect(getByTestId('pokemon-type')).toHaveTextContent(/Electric/i);
-    // expect(getByTestId(lintPkmType)).not.toBe(/ /);
-    // expect(getByTestId(lintPkmType)).not.toBe(/``/);
-
-    // expect(getByTestId('pokemon-type')).not.toNull();
-    // expect(getByTestId('pokemon-type')).not.toUndefined();
-
     expect(getByTestId('pokemon-weight')).toHaveTextContent('Average weight: 6.0 kg');
     expect(getByAltText('Pikachu sprite').src).toBe(url);
     expect(getByRole('img').src).toBe(url);
@@ -65,8 +58,14 @@ describe('Pokedex test', () => {
 
   it('`Proximo Pokemon` não mostra quando há apenas um pokemon', () => {
     const { getByText } = renderWithRouter(<App />);
-    const nextButton = getByText(/Próximo pokémon/i);
-    expect(nextButton).toBeInTheDocument();
-    expect(nextButton.disabled).toBeFalsy();
+    expect(getByText(/Próximo pokémon/i)).toBeInTheDocument();
+    expect(getByText(/Próximo pokémon/i).disabled).toBeFalsy();
+  });
+
+  it('te peguei Stryker, nada de botão vazio', () => {
+    const { getByText } = renderWithRouter(<App />);
+    expect(getByText(/Dragon/i)).toBeInTheDocument();
+
+    userEvent.click(screen.getByText(/Dragon/i));
   });
 });
