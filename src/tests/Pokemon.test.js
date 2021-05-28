@@ -48,5 +48,4 @@ describe('Testando Component Pokemon', () => {
     userEvent.click(link);
     expect(history.location.pathname).toBe(`/pokemons/${pokemon.id}`);
   });
-
 });
