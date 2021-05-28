@@ -12,9 +12,13 @@ describe('Testando se a página contém informaçoes sobre a pokedex', () => {
     expect(h2).toBeInTheDocument();
   });
   test('Teste se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
-    const { getAllByRole } = render(<About />);
-    const p = getAllByRole('p');
-    expect(p.length).toBe(2);
+    const { getByText } = render(<About />);
+    const p1 = getByText('This application simulates a Pokédex, '
+    + 'a digital encyclopedia containing all Pokémons');
+    expect(p1).toBeInTheDocument();
+    const p2 = getByText('One can filter Pokémons by type, '
+    + 'and see more details for each one of them');
+    expect(p2).toBeInTheDocument();
   });
   test('Teste se a página contém a img', () => {
     const { getByRole } = render(<About />);
