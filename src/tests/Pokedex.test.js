@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../helpers/renderWithRouter';
 import Pokedex from '../components/Pokedex';
 
+const { getByRole } = screen;
 const testModel = (type) => [{
   id: 25,
   name: 'Pikachu',
@@ -72,7 +73,7 @@ describe('header and nextPokemon button', () => {
 
   it('rendering next pokemon, when clicking on the button', () => {
     renderPokedex(testModelOriginal());
-    const nextPokemonButton = screen.getByRole('button', { name: /próximo pokémon/i });
+    const nextPokemonButton = getByRole('button', { name: /próximo pokémon/i });
     userEvent.click(nextPokemonButton);
     let pokemon = screen.getByText(/Charmander/i);
     expect(pokemon).toBeInTheDocument();
