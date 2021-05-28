@@ -11,6 +11,7 @@ describe('testing App components', () => {
     });
     expect(heading).toBeInTheDocument();
   });
+
   it('test if there is a pikachu crying img', () => {
     const { getByAltText } = renderWithRouter(<NotFound />);
     const pokedexImg = getByAltText(
