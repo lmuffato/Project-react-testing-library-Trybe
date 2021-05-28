@@ -23,4 +23,14 @@ describe('renders pokemon info', () => {
     userEvent.click(moreDetails);
     expect(moreDetails).not.toBeInTheDocument();
   });
+
+  it('renders paragraphs with description of pokemon ', () => {
+    renderWithRouter(<App />);
+    const moreDetails = screen.getByRole('link', { name: /more details/i });
+    userEvent.click(moreDetails);
+    const textPart1 = 'This intelligent Pokémon roasts hard berries with ';
+    const textPart2 = 'electricity to make them tender enough to eat.';
+    const textRegex = new RegExp(`${textPart1}${textPart2}`, 'i');
+    screen.getByText(textRegex);
+  });
 });
