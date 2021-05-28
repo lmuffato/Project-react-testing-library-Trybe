@@ -33,9 +33,11 @@ describe('App tests', () => {
   it('mostra botões com os tipos de pokémons', () => {
     const { getAllByTestId, getByTestId, getAllByRole } = renderWithRouter(<App />);
     // const typeBtn = getByTestId('pokemon-type-button');
-    expect(getAllByTestId('pokemon-type-button')).toHaveLength('7');
+    const sevenNumberLint = 7;
+    const nineNumberLint = 9;
+    expect(getAllByTestId('pokemon-type-button')).toHaveLength(sevenNumberLint);
     expect(getByTestId('next-pokemon')).toBeInTheDocument();
-    expect(getAllByRole('button')).toHaveLength('9');
+    expect(getAllByRole('button')).toHaveLength(nineNumberLint);
   });
 
   it('mostra os links `Home`, `About` e `Favorite Pokémons`', () => {

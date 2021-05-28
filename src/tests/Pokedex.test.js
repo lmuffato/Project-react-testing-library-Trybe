@@ -18,11 +18,11 @@ describe('Pokedex test', () => {
   it('mostra um card do pokemon com informações', () => {
     const { getByTestId, getByRole, getByAltText } = renderWithRouter(<App />);
     const url = 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png';
-    const lintPkmType = getByTestId('pokemon-type');
+    // const lintPkmType = getByTestId('pokemon-type');
     expect(getByTestId('pokemon-name')).toHaveTextContent(/Pikachu/i);
-    expect(getByTestId(lintPkmType)).toHaveTextContent(/Electric/i);
-    expect(getByTestId(lintPkmType)).not.toBe(/ /);
-    expect(getByTestId(lintPkmType)).not.toBe(/``/);
+    expect(getByTestId('pokemon-type')).toHaveTextContent(/Electric/i);
+    // expect(getByTestId(lintPkmType)).not.toBe(/ /);
+    // expect(getByTestId(lintPkmType)).not.toBe(/``/);
 
     // expect(getByTestId('pokemon-type')).not.toNull();
     // expect(getByTestId('pokemon-type')).not.toUndefined();
@@ -51,7 +51,8 @@ describe('Pokedex test', () => {
   it('mostra os botões com todos os tipos de pkmn', () => {
     const { getAllByTestId } = renderWithRouter(<App />);
     const typeButtons = getAllByTestId('pokemon-type-button');
-    expect(typeButtons.length).toBe('7');
+    const sevenNumberLint = 7;
+    expect(typeButtons.length).toBe(sevenNumberLint);
   });
 
   it('mostrar um botão de reset', () => {
