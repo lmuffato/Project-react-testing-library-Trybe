@@ -12,8 +12,8 @@ describe('testando component NotFound', () => {
     expect(h2).toBeInTheDocument();
   });
   test('teste se página contém uma imagem e o src correto', () => {
-    const { getByRole } = render(<NotFound />);
-    const img = getByRole('img');
+    const { getByAltText } = render(<NotFound />);
+    const img = getByAltText('Pikachu crying because the page requested was not found');
     const srcImg = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
     expect(img.src).toBe(srcImg);
   });
