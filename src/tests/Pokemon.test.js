@@ -22,13 +22,13 @@ const pokeRender = (isFavorite = false) => (<Pokemon
 />);
 
 test('Basic infos show', () => {
-  const { getByTestId, getByRole } = renderWithRouter(pokeRender());
+  const { getByTestId, getByAltText } = renderWithRouter(pokeRender());
 
   const { innerHTML: pokemonName } = getByTestId('pokemon-name');
   const { innerHTML: pokemonType } = getByTestId('pokemon-type');
   const { innerHTML: pokemonWeight } = getByTestId('pokemon-weight');
   const { value, measurementUnit } = myPoke.averageWeight;
-  const pokeImage = getByRole('img');
+  const pokeImage = getByAltText(`${myPokemon.name} sprite`);
   expect(pokemonName).toBe(myPoke.name);
   expect(pokemonType).toBe(myPoke.type);
   expect(pokemonWeight).toBe(`Average weight: ${value} ${measurementUnit}`);
