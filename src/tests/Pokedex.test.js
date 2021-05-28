@@ -37,4 +37,20 @@ describe('Pokedex test', () => {
     expect(typeButtons.length).toBe(7);
   });
 
+  it('mostrar um botão de reset', () => {
+    const { getByText } = renderWithRouter(<App />);
+    const resetButton = getByText(/All/);
+    userEvent.click(screen.getByText(/All/));
+    expect(resetButton).toBeInTheDocument();
+    expect(getByText(/Pikachu/i)).toBeInTheDocument();
+  });
+
+  it('`Proximo Pokemon` não mostra quando há apenas um pokemon', () => {
+    const { getByText } = renderWithRouter(<App />);
+    const nextButton = getByText(/Próximo pokémon/i);
+    expect(nextButton).toBeInTheDocument();
+    expect(nextButton.disabled).toBeFalsy();
+
+  });
+
 });
