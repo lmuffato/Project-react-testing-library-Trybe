@@ -9,7 +9,7 @@ describe('NotFound.test.js', () => {
     const { getByRole, history } = renderAppWithRouter();
     history.push('lets-test');
     const notFoundText = getByRole('heading', {
-      name: 'Page requested not found Crying emoji',
+      name: /Page requested not found Crying emoji/i,
       level: 2 });
     expect(notFoundText).toBeInTheDocument();
   });
@@ -17,7 +17,8 @@ describe('NotFound.test.js', () => {
     const { getByAltText, history } = renderAppWithRouter();
     history.push('another-test');
     const altText = /Pikachu crying because the page requested was not found/i;
-    const imageNotFound = getByAltText(altText);
-    expect(imageNotFound).toBeInTheDocument();
+    const imageNotFound = (getByAltText(altText)).src;
+    const correctSource = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
+    expect(imageNotFound).toBe(correctSource);
   });
 });
