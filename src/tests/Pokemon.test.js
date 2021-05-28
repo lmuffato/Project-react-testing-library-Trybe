@@ -15,7 +15,7 @@ const myPoke = {
 };
 
 const PokeRender = (isFavorite = false) => (<Pokemon
-  pokemon={ myPokemon }
+  pokemon={ myPoke }
   isFavorite={ isFavorite }
   showDetailsLink
 />);
@@ -27,9 +27,16 @@ test('Basic infos show', () => {
   const { innerHTML: pokemonType } = getByTestId('pokemon-type');
   const { innerHTML: pokemonWeight } = getByTestId('pokemon-weight');
   const { value, measurementUnit } = myPoke.averageWeight;
-  const pokemonImage = getByRole('img');
+  const pokeImage = getByRole('img');
   expect(pokemonName).toBe(myPoke.name);
   expect(pokemonType).toBe(myPoke.type);
   expect(pokemonWeight).toBe(`Average weight: ${value} ${measurementUnit}`);
-  expect(pokemonImage.src).toBe(myPoke.image);
+  expect(pokeImage.src).toBe(myPoke.image);
+});
+
+test('exibir detalhes deste Pokémon', () => {
+  const { getByRole } = renderWithRouter(PokeRender());
+  const details = getByRole('link');
+  expect(details).toBeInTheDocument();
+  expect(details.href).toMatch(`pokemons/${myPoke.id}`);
 });
