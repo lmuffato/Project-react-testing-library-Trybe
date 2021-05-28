@@ -57,10 +57,42 @@ test('Teste se é mostrado apenas um Pokémon por vez.', () => {
   expect(idPoke.length).toBe(1);
 });
 
+/* Esses codigos abaixo foram feitos com abstração do codigo do colega Sergio Martins T-10 */
+/* eu derreti minha cabeça e meu computador mas compriendi tudo. */
+
 test('Teste se a Pokédex tem os botões de filtro.', () => {
   const { getAllByTestId } = renderWithRouter(<App />);
   const buttons = getAllByTestId('pokemon-type-button');
-  const lengthButton = 7;
+  const lengthButton = 6;
+  const butTypes = ['Fire', 'Psychic', 'Electric', 'Bug', 'Poison', 'Dragon', 'Normal'];
+  const funcMap = buttons.map(({ innerHTML }) => innerHTML);
 
-  expect(buttons.length).toBe(lengthButton);
+  expect(buttons.length).toBeGreaterThanOrEqual(lengthButton);
+  expect(funcMap.sort()).toEqual(butTypes.sort());
+});
+
+test('Teste se a Pokédex contém um botão para resetar o filtro', () => {
+  const { getByRole, getByTestId } = renderWithRouter(<App />);
+  const buttonAll = getByRole('button', { name: /all/i });
+  const buttonPsychic = getByRole('button', { name: /psychic/i });
+  const pokemon = getByTestId('pokemon-type');
+  expect(buttonAll).toBeInTheDocument();
+  userEvent.click(buttonPsychic);
+  expect(pokemon.innerHTML).toBe('Psychic');
+  userEvent.click(buttonAll);
+  expect(pokemon.innerHTML).toBe('Electric');
+});
+
+test('O botão de Próximo pokémon deve ser desabilitado', () => {
+  const { getByRole } = renderWithRouter(
+    <App />,
+  );
+  const buttonAll = getByRole('button', { name: /all/i });
+  const buttonNormal = getByRole('button', { name: /normal/i });
+
+  userEvent.click(buttonNormal);
+  expect(nextPokemonBtn()).toBeDisabled();
+
+  userEvent.click(buttonAll);
+  expect(nextPokemonBtn()).not.toBeDisabled();
 });
