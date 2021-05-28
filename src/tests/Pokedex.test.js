@@ -4,6 +4,12 @@ import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
 const nameId = 'pokemon-name';
+const pokeButton = () => {
+  const { getByRole } = renderWithRouter();
+  return getByRole('button', {
+    name: /próximo pokémon/i,
+  });
+};
 
 test('Teste se página contém um heading h2 com o texto Encountered pokémons', () => {
   const { getByRole } = renderWithRouter(<App />);
@@ -15,45 +21,42 @@ test('Teste se página contém um heading h2 com o texto Encountered pokémons',
 });
 
 test('Testa se é exibido o próximo Pokémon quando o clica no botão', () => {
-  const { getByRole, getByTestId } = renderWithRouter(<App />);
-  const pokeButton = getByRole('button', { name: /próximo pokémon/i });
-  userEvent.click(pokeButton);
+  const { getByTestId } = renderWithRouter(<App />);
+  userEvent.click(pokeButton());
   const idPoke = getByTestId(nameId);
   expect(idPoke.innerHTML).toBe('Charmander');
 
-  userEvent.click(pokeButton);
-  userEvent.click(pokeButton);
-  userEvent.click(pokeButton);
-  userEvent.click(pokeButton);
+  userEvent.click(pokeButton());
+  userEvent.click(pokeButton());
+  userEvent.click(pokeButton());
+  userEvent.click(pokeButton());
 
   expect(idPoke.innerHTML).toBe('Mew');
 });
 
 test('O primeiro Pokémon deve ser mostrado ao click, se estiver no último', () => {
-  const { getByRole, getByTestId } = renderWithRouter(<App />);
-  const pokeButton = getByRole('button', { name: /próximo pokémon/i });
+  const { getByTestId } = renderWithRouter(<App />);
   const idPoke = getByTestId('pokemon-name');
 
   expect(idPoke.innerHTML).toBe('Pikachu');
-  userEvent.click(pokeButton);
-  userEvent.click(pokeButton);
-  userEvent.click(pokeButton);
-  userEvent.click(pokeButton);
-  userEvent.click(pokeButton);
-  userEvent.click(pokeButton);
-  userEvent.click(pokeButton);
-  userEvent.click(pokeButton);
+  userEvent.click(pokeButton());
+  userEvent.click(pokeButton());
+  userEvent.click(pokeButton());
+  userEvent.click(pokeButton());
+  userEvent.click(pokeButton());
+  userEvent.click(pokeButton());
+  userEvent.click(pokeButton());
+  userEvent.click(pokeButton());
   expect(idPoke.innerHTML).toBe('Dragonair');
-  userEvent.click(pokeButton);
+  userEvent.click(pokeButton());
   expect(idPoke.innerHTML).toBe('Pikachu');
 });
 
 test('Teste se é mostrado apenas um Pokémon por vez.', () => {
-  const { getAllByTestId, getByRole } = renderWithRouter(<App />);
+  const { getAllByTestId } = renderWithRouter(<App />);
   const idPoke = getAllByTestId(nameId);
-  const pokeButton = getByRole('button', { name: /próximo pokémon/i });
   expect(idPoke.length).toBe(1);
-  userEvent.click(pokeButton);
+  userEvent.click(pokeButton());
   expect(idPoke.length).toBe(1);
 });
 
@@ -91,8 +94,8 @@ test('O botão de Próximo pokémon deve ser desabilitado', () => {
   const buttonNormal = getByRole('button', { name: /normal/i });
 
   userEvent.click(buttonNormal);
-  expect(nextPokemonBtn()).toBeDisabled();
+  expect(pokeButton()).toBeDisabled();
 
   userEvent.click(buttonAll);
-  expect(nextPokemonBtn()).not.toBeDisabled();
+  expect(pokeButton()).not.toBeDisabled();
 });
