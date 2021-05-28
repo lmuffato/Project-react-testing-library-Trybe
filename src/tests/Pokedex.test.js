@@ -23,9 +23,12 @@ describe('Pokedex teste', () => {
     });
     userEvent.click(btn);
 
-    const name = screen.getByTestId('pokemon-name'); // pego o elemento do card pokemon (pokemon.js) que tem o testId com o nome do pokemon
-    console.log(name.innerHTML); // como o name retorna o html inteiro pego apenas o texto que está dentro
-    console.log(data[1].name); // pelo arqivo de dados, pego o pokemon seguindo do array de objetos do data.js
+    const name = screen.getByTestId('pokemon-name');
+    // pego o elemento do card pokemon (pokemon.js) que tem o testId com o nome do pokemon
+    console.log(name.innerHTML);
+    // como o name retorna o html inteiro pego apenas o texto que está dentro
+    console.log(data[1].name);
+    // pelo arqivo de dados, pego o pokemon seguindo do array de objetos do data.js
 
     expect(name.innerHTML).toBe(data[1].name);
   });
@@ -41,48 +44,52 @@ describe('Pokedex teste', () => {
     expect(pokemon).toBeInTheDocument();
   });
 
-  // test('testa botão de All', () => {
-  //   RenderWithRouter(<Pokedex />);
-  //   const btn = screen.getByRole('button', {
-  //     name: /All/i,
-  //   });
-  //   userEvent.click(btn);
+  test('testa botão de All', () => {
+    RenderWithRouter(<App />);
+    const btn = screen.getByRole('button', {
+      name: /All/i,
+    });
+    userEvent.click(btn);
 
-  //   const name = screen.getByTestId('pokemon-name');
+    const name = screen.getByTestId('pokemon-name');
 
-  //   expect(name.innerHTML).toBeInTheDocument(data[0].name);
-  // });
+    expect(name.innerHTML).toBe(data[0].name);
+  });
 
-  // test('testa se existe todos btn de filtro', () => {
-  //   RenderWithRouter(<App />);
-  //   const eletric = screen.getByRole('button', { name: /Eletric/i });
-  //   const fire = screen.getByRole('button', { name: /Fire/i });
-  //   const bug = screen.getByRole('button', { name: /Bug/i });
-  //   const poison = screen.getByRole('button', { name: /Poison/i });
-  //   const normal = screen.getByRole('button', { name: /Bug/i });
-  //   const dragon = screen.getByRole('button', { name: /ragon/i });
+  test('testa se existe todos btn de filtro', () => {
+    RenderWithRouter(<App />);
+    const eletric = screen.getByRole('button', { name: /Electric/i });
+    expect(eletric).toBeInTheDocument();
 
-  //   expect(eletric).toBeDefined();
-  //   expect(fire).toBeDefined();
-  //   expect(bug).toBeDefined();
-  //   expect(poison).toBeDefined();
-  //   expect(normal).toBeDefined();
-  //   expect(dragon).toBeDefined();
-  // });
+    const fire = screen.getByRole('button', { name: /Fire/i });
+    expect(fire).toBeInTheDocument();
 
-  // test('desabilitar botão', () => {
-  //   RenderWithRouter(<App />);
+    const bug = screen.getByRole('button', { name: /Bug/i });
+    expect(bug).toBeInTheDocument();
 
-  //   const btn = screen.getByRole('button', {
-  //     name: /Próximo pokémon/i,
-  //   });
+    const poison = screen.getByRole('button', { name: /Poison/i });
+    expect(poison).toBeInTheDocument();
 
-  //   const psychic = screen.getByRole('button', {
-  //     name: /Psychic/i,
-  //   });
+    const normal = screen.getByRole('button', { name: /Bug/i });
+    expect(normal).toBeInTheDocument();
 
-  //   userEvent.click(psychic);
+    const dragon = screen.getByRole('button', { name: /ragon/i });
+    expect(dragon).toBeInTheDocument();
+  });
 
-  //   expect(btn).toBeInTheDocument();
-  // });
+  test('desabilitar botão quando lista filtrada de Pokémons tiver um só pokémon', () => {
+    RenderWithRouter(<App />);
+
+    const btn = screen.getByRole('button', {
+      name: /Próximo pokémon/i,
+    });
+
+    const btnFiltros = screen.getAllByTestId('pokemon-type-button');
+    // pego todos os botões de filtro, o botão do index 2 é um dos botões de filtros que tem apenas 1 pokemon,
+    // então testo se quando clicaco, desabilita o next pokemon
+
+    userEvent.click(btnFiltros[2]);
+
+    expect(btn).toBeDisabled();
+  });
 });
