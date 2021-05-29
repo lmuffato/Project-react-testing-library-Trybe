@@ -40,6 +40,10 @@ describe('Testando component Pokemon Details', () => {
     expect(getByText(pokemon.type)).toBeInTheDocument();
     const { value, measurementUnit } = pokemon.averageWeight;
     expect(getByText(`Average weight: ${value} ${measurementUnit}`)).toBeInTheDocument();
+    const textSummary = 'This intelligent Pokémon roasts hard berries with '
+    + 'electricity to make them tender enough to eat.';
+    const testSummary = getByText(textSummary);
+    expect(testSummary).toBeInTheDocument();
   });
   test('Teste se existe na página uma seção com os mapas ', () => {
     const { getByText, getByRole, getAllByAltText } = renderWithRouter(<App />);
