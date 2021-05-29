@@ -77,4 +77,22 @@ describe('Testa o componente "App"', () => {
 
     expect(about).toBeInTheDocument();
   });
+
+  it(`Teste se a aplicação é redirecionada para a página de Pokémons Favoritados, 
+    na URL /favorites, ao clicar no link Favorite Pokémons
+    da barra de navegação.`, () => {
+    const { getByText, getByRole, history } = renderWithRouter(<App />);
+
+    userEvent.click(getByText(/Favorite Pokémons/i));
+    const pahtnameFavorite = history.location.pathname;
+
+    expect(pahtnameFavorite).toBe('/favorites');
+
+    const favorite = getByRole('heading', {
+      level: 2,
+      name: /Favorite pokémons/i,
+    });
+
+    expect(favorite).toBeInTheDocument();
+  });
 });
