@@ -5,6 +5,28 @@ import App from '../App';
 import pokemons from '../data';
 
 const renderAppWithRouter = () => renderWithRouter(<App />);
+const newPokemonType = {
+  id: 54,
+  name: 'Psyduck',
+  type: 'Water',
+  averageWeight: {
+    value: '19.6',
+    measurementUnit: 'kg',
+  },
+  image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/054.png',
+  moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Psyduck_(Pok%C3%A9mon)',
+  foundAt: [
+    {
+      location: 'Seafoam Islands',
+      map: 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png',
+    },
+    {
+      location: 'Kanto Power Plant',
+      map: 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
+    },
+  ],
+  summary: 'its the best pokemon',
+};
 const allPokesChecker = (button, getByText) => {
   pokemons.forEach((poke) => {
     const pokeName = getByText(poke.name);
@@ -36,12 +58,16 @@ describe('Pokedex.test.js', () => {
     expect(pokeDiv).toHaveLength(1);
   });
   test('Exibe filtros com todos os tipos de pokemóns cadastrados', () => {
-    const { getByRole } = renderAppWithRouter();
-    const types = pokemons.map((poke) => poke.type);
-    types.forEach((type) => {
-      const filterButton = getByRole('button', { name: type });
-      expect(filterButton).toBeInTheDocument();
-    });
+    const { getAllByTestId } = renderAppWithRouter();
+    const types = [/electric/i,
+      /fire/i,
+      /bug/i,
+      /poison/i,
+      /psychic/i, /normal/i, /dragon/i];
+    const typeButtons = getAllByTestId('pokemon-type-button');
+    for (let index = 0; index < typeButtons.length; index += 1) {
+      expect(typeButtons[index]).toHaveTextContent(types[index]);
+    }
   });
   test('Ao clicar em um filtro, exibe todos os pokémons do tipo do filtro', () => {
     const { getByRole, getByText } = renderAppWithRouter();
@@ -66,5 +92,11 @@ describe('Pokedex.test.js', () => {
     const { getByRole, getByText } = renderAppWithRouter();
     const nextPokemonButton = getByRole('button', { name: /próximo pokémon/i });
     allPokesChecker(nextPokemonButton, getByText);
+  });
+  test('botões de filtragem devem ser dinâmicos', () => {
+    pokemons.push(newPokemonType);
+    const { getByRole } = renderAppWithRouter();
+    const waterFilterButton = getByRole('button', { name: /water/i });
+    expect(waterFilterButton).toBeInTheDocument();
   });
 });
