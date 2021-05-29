@@ -13,7 +13,7 @@ describe('Test component <NotFound />', () => {
   });
   test('Test img', () => {
     const { getByRole } = renderWithRouter(<NotFound />);
-    const img = getByRole('img', { 
+    const img = getByRole('img', {
       name: /Pikachu crying because the page requested was not found/i,
     });
     expect(img.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
