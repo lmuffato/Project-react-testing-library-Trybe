@@ -26,4 +26,15 @@ describe('Testa o componente "About"', () => {
 
     expect(paragraphs.length).toBe(2);
   });
+
+  it(`Teste se a página contém a seguinte imagem de uma Pokédex: 
+    https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png`, () => {
+    const { getByRole } = render(<About />);
+    const imagePokedex = getByRole('img');
+
+    expect(imagePokedex).toBeInTheDocument();
+    expect(imagePokedex.src).toContain('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+    // Consegui entender que usando o .src eu acesso essa propriedade do objecto pego.
+    // Fonte: https://stackoverflow.com/questions/60509527/jestreact-native-testing-library-how-to-test-an-image-src
+  });
 });
