@@ -29,6 +29,35 @@ describe('Test Pokedex', () => {
     const pokemon2 = getByText(/charmander/i);
     expect(pokemon2).toBeInTheDocument();
   });
+  test('shows the filter buttons', () => {
+    const { getAllByTestId, getByRole } = renderWithRouter(<App />);
+
+    const buttons = getAllByTestId('pokemon-type-button');
+    buttons.forEach((button) => {
+      expect(button).toBeInTheDocument();
+    });
+
+    const eleButton = getByRole('button', { name: /electric/i });
+    expect(eleButton).toHaveTextContent('Electric');
+
+    const firButton = getByRole('button', { name: /fire/i });
+    expect(firButton).toHaveTextContent('Fire');
+
+    const bugButton = getByRole('button', { name: /bug/i });
+    expect(bugButton).toHaveTextContent('Bug');
+
+    const poiButton = getByRole('button', { name: /poison/i });
+    expect(poiButton).toHaveTextContent('Poison');
+
+    const psyButton = getByRole('button', { name: /psychic/i });
+    expect(psyButton).toHaveTextContent('Psychic');
+
+    const norButton = getByRole('button', { name: /normal/i });
+    expect(norButton).toHaveTextContent('Normal');
+
+    const draButton = getByRole('button', { name: /dragon/i });
+    expect(draButton).toHaveTextContent('Dragon');
+  });
   test('shows the all button', () => {
     const { getByRole } = renderWithRouter(<App />);
 
