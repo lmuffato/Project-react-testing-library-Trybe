@@ -63,6 +63,7 @@ describe('Test the component Pokedex.js', () => {
       filteredPokemons.forEach((poke) => {
         expect(getByText(poke.name)).toBeInTheDocument();
         expect(typeBtn).toBeInTheDocument();
+        expect(typeBtn.textContent).toBe(poke.type);
         userEvent.click(proxPokemon);
       });
     }
