@@ -27,6 +27,8 @@ describe('Test PokemonDetails', () => {
 
     const paragraph = (summary.nextElementSibling);
     expect(paragraph).toBeDefined();
+    expect(paragraph).toHaveTextContent(paragraph.textContent);
+    expect(paragraph).not.toBeEmptyDOMElement();
   });
   test('testing  if maps section is shown in the page', () => {
     const { getByRole, getByTestId, getAllByAltText } = renderWithRouter(<App />);
@@ -46,11 +48,12 @@ describe('Test PokemonDetails', () => {
 
     const altText = `${name} location`;
     const img = getAllByAltText(altText);
-    img.forEach((image) => {
-      expect(image.src).toBeDefined();
-      expect(image.alt).toBeDefined();
-      expect(image.nextElementSibling).toBeDefined();
-    });
+    const image = img[0];
+    expect(image.src).toBeDefined();
+    expect(image.src).toBe('https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
+    expect(image.alt).toBeDefined();
+    expect(image.alt).toBe('Pikachu location');
+    expect(image.nextElementSibling).toBeDefined();
   });
   test('testing  if an user can favorite a pokemon', () => {
     const { getByRole, getByText } = renderWithRouter(<App />);
