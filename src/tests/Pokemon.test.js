@@ -9,12 +9,16 @@ describe('Test Pokemon', () => {
 
     const name = getByTestId('pokemon-name');
     expect(name).toBeInTheDocument();
+    expect(name).toHaveTextContent(name.textContent);
 
     const type = getByTestId('pokemon-type');
     expect(type).toBeInTheDocument();
+    expect(type).toHaveTextContent(type.textContent);
+    expect(type).not.toBeEmpty();
 
     const weight = getByTestId('pokemon-weight');
     expect(weight).toBeInTheDocument();
+    expect(weight).toHaveTextContent(weight.textContent);
 
     const phrase = getByText(/average weight/i);
     expect(phrase).toBeInTheDocument();
