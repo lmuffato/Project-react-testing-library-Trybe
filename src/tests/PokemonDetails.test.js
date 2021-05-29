@@ -26,10 +26,12 @@ const pokemon = {
   summary: 'This intelligent Pokémon roasts hard berries.',
 };
 
+const moreDetails = 'More details';
+
 describe('Testando component Pokemon Details', () => {
   test('Teste se as informações detalhadas do Pokémon selecionado são mostradas', () => {
     const { getByText, getByRole } = renderWithRouter(<App />);
-    const buttonDetails = getByText('More details');
+    const buttonDetails = getByText(moreDetails);
     expect(buttonDetails).toBeInTheDocument();
     userEvent.click(buttonDetails);
     expect(getByText(`${pokemon.name} Details`)).toBeInTheDocument();
@@ -41,7 +43,7 @@ describe('Testando component Pokemon Details', () => {
   });
   test('Teste se existe na página uma seção com os mapas ', () => {
     const { getByText, getByRole, getAllByAltText } = renderWithRouter(<App />);
-    const buttonDetails = getByText('More details');
+    const buttonDetails = getByText(moreDetails);
     expect(buttonDetails).toBeInTheDocument();
     userEvent.click(buttonDetails);
     const h2 = getByRole('heading', { level: 2,
@@ -55,7 +57,7 @@ describe('Testando component Pokemon Details', () => {
   });
   test('Teste se existe na página uma seção com os mapas ', () => {
     const { getByText, getByRole, getByLabelText } = renderWithRouter(<App />);
-    const buttonDetails = getByText('More details');
+    const buttonDetails = getByText(moreDetails);
     expect(buttonDetails).toBeInTheDocument();
     userEvent.click(buttonDetails);
     expect(getByRole('checkbox')).toBeInTheDocument();
