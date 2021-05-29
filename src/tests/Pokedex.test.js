@@ -66,5 +66,6 @@ describe('Test Pokedex', () => {
     });
 
     expect(allButton).toBeInTheDocument();
+    userEvent.click(allButton);
   });
 });
