@@ -30,4 +30,6 @@ describe('Teste about', () => {
   });
 });
 
-// agradecimento ao colega Anderson Nascimento, Adelino Junior, Nathi zebral, Luciano Amâncio, Marilia
+// agradecimento ao colega Anderson Nascimento, Adelino Junior,
+// Nathizebral, Luciano Amâncio, Anderson Silva, Rafael Medeiros pelo auxilio no projeto
+// metodo toMatch https://jestjs.io/docs/expect#tomatchregexp--string

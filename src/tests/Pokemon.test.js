@@ -1,3 +1,4 @@
+import userEvent from '@testing-library/user-event';
 import React from 'react';
 import Pokemon from '../components/Pokemon';
 import isPokemonFavoriteById from '../isPokemonFavorite-data';
@@ -56,12 +57,24 @@ describe('Pokemon Tests', () => {
     const { getAllByRole } = renderWithRouter(
       <Pokemon
         pokemon={ pokeMock }
-        isPokemonFavoriteById={ isPokemonFavoriteTrue }
+        isFavorite={ isPokemonFavoriteTrue }
       />,
     );
     const imageFavorite = '/star-icon.svg';
     const arrayTestImage = getAllByRole('img');
-    expect(arrayTestImage.src).toMatch(imageFavorite);
+    expect(arrayTestImage[1].src).toMatch(imageFavorite);
     expect(arrayTestImage[1].alt).toBe('Pikachu is marked as favorite');
+  });
+
+  it('Clicking on the Pokémon navigation link will go to details', () => {
+    const { getByRole, history } = renderWithRouter(
+      <Pokemon
+        pokemon={ pokeMock }
+        isPokemonFavoriteById={ isPokemonFavoriteById }
+      />,
+    );
+    userEvent.click(getByRole('link', { name: /more details/i }));
+    const { pathname } = history.location;
+    expect(pathname).toBe('/pokemons/25');
   });
 });
