@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../services/renderWithRouter';
 
-describe('Test App', () => {
+describe('Test Pokedex', () => {
   test('shows the Pokédex title', () => {
     const { getByRole } = renderWithRouter(<App />);
 
@@ -26,8 +26,16 @@ describe('Test App', () => {
 
     userEvent.click(nextButton);
 
-
     const pokemon2 = getByText(/charmander/i);
     expect(pokemon2).toBeInTheDocument();
+  });
+  test('shows the all button', () => {
+    const { getByRole } = renderWithRouter(<App />);
+
+    const allButton = getByRole('button', {
+      name: /all/i,
+    });
+
+    expect(allButton).toBeInTheDocument();
   });
 });
