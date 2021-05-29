@@ -66,10 +66,10 @@ describe('Testa o componente "App"', () => {
 
   it(`Teste se a aplicação é redirecionada para a página de About, 
     na URL /about, ao clicar no link About da barra de navegação.`, () => {
-    const { getByText, history: { location: { pathname } } } = renderWithRouter(<App />);
+    const { getByText, history } = renderWithRouter(<App />);
 
     userEvent.click(getByText(/About/i));
-    const pathnameAbout = pathname;
+    const pathnameAbout = history.location.pathname; // Tive que usar por extenso, pois quando eu destruturava o pahtname não atualizava e ficava sempre "/"
 
     expect(pathnameAbout).toBe('/about');
 
