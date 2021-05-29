@@ -48,7 +48,6 @@ describe('Tests in Pokedex.js', () => {
       </MemoryRouter>,
     );
     const pokemon = screen.getAllByTestId(pokemonID);
-    console.log(pokemon);
     expect(pokemon).toHaveLength(1);
   });
   it('If has filter buttons', () => {
@@ -72,13 +71,13 @@ describe('Tests in Pokedex.js', () => {
     const dragonFilter = screen.getByRole('button', { name: /dragon/i });
     expect(dragonFilter).toBeInTheDocument();
   });
+  const pkmTypeID = 'pokemon-type';
   it('If has filter buttons working', () => {
     render(
       <MemoryRouter>
         <App />
       </MemoryRouter>,
     );
-    const pkmTypeID = 'pokemon-type';
     const proximoPkmButton = screen.getByRole('button', { name: nextPkm });
     const electricFilter = screen.getByRole('button', { name: /electric/i });
     fireEvent.click(electricFilter);
@@ -122,5 +121,44 @@ describe('Tests in Pokedex.js', () => {
     fireEvent.click(proximoPkmButton);
     pkmAfterClick = screen.getByTestId(pkmTypeID).innerHTML;
     expect(pkmPreviousClick && pkmAfterClick).toBe(dragonFilter.innerHTML);
+  });
+  it('Button All works', () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    const buttonAll = screen.getByRole('button', { name: 'All' });
+    expect(buttonAll).toBeInTheDocument();
+    const previousPokemonType = screen.getByTestId(pkmTypeID).innerHTML;
+    const buttonProximoPokemon = screen.getByRole('button', { name: nextPkm });
+    fireEvent.click(buttonProximoPokemon);
+    const afterClickPokemonType = screen.getByTestId(pkmTypeID).innerHTML;
+    expect(previousPokemonType).not.toBe(afterClickPokemonType);
+  });
+  it('Have a button for aech pokemon type', () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    const allTypes = screen.getAllByTestId('pokemon-type-button');
+    allTypes.forEach(({ innerHTML: type }) => {
+      const currentType = screen.getByRole('button', { name: type });
+      const buttonAll = screen.getByRole('button', { name: 'All' });
+      expect(buttonAll).toBeInTheDocument();
+      return expect(currentType).toBeInTheDocument();
+    });
+  });
+  it('Button Próximo pokémon disabled when has only a pokemon on the filter type', () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    const filterWithOnlyOnePkm = screen.getByRole('button', { name: 'Normal' });
+    const proximoPkmButton = screen.getByRole('button', { name: nextPkm });
+    fireEvent.click(filterWithOnlyOnePkm);
+    expect(proximoPkmButton).toBeDisabled(); // https://stackoverflow.com/questions/56593840/check-that-button-is-disabled-in-react-testing-library
   });
 });
