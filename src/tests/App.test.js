@@ -95,4 +95,15 @@ describe('Testa o componente "App"', () => {
 
     expect(favorite).toBeInTheDocument();
   });
+
+  it(`Teste se a aplicação é redirecionada para a 
+    página Not Found ao entrar em uma URL desconhecida.`, () => {
+    const { getByText, history } = renderWithRouter(<App />);
+
+    history.push('/pagina/que-nao-existe');
+
+    const notFound = getByText(/Page requested not found/);
+
+    expect(notFound).toBeInTheDocument();
+  });
 });
