@@ -25,6 +25,6 @@ describe('Testa o componente "NotFound"', () => {
 
     const imageAlt = getByAltText(textAlt);
 
-    expect(imageAlt).toBeInTheDocument();
+    expect(imageAlt.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });
