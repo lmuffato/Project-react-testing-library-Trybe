@@ -57,6 +57,22 @@ describe('Testa o componente "Pokemon"', () => {
   it(`Teste se o card do Pokémon indicado na Pokédex contém um link de navegação 
     para exibir detalhes deste Pokémon. O link deve possuir a URL /pokemons/<id>, 
     onde <id> é o id do Pokémon exibido`, () => {
+    const { getByRole } = renderWithRouter(
+      <Pokemon pokemon={ pokemonMock } isFavorite={ false } />,
+    );
+
+    const moreDetails = getByRole('link', {
+      name: 'More details',
+    });
+
+    expect(moreDetails).toBeInTheDocument();
+    expect(moreDetails.pathname).toBe('/pokemons/10');
+  });
+
+  it(`Teste se ao clicar no link de navegação do Pokémon, é feito 
+    o redirecionamento da aplicação para a página de detalhes de Pokémon.
+    Teste também se a URL exibida no navegador muda para /pokemon/<id>, 
+    onde <id> é o id do Pokémon cujos detalhes se deseja ver;`, () => {
     const { getByRole, history } = renderWithRouter(
       <Pokemon pokemon={ pokemonMock } isFavorite={ false } />,
     );
