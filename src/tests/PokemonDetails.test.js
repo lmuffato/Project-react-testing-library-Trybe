@@ -3,11 +3,13 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
+const textLink = 'More details';
+
 describe('Testa o componente "PokemonDetails"', () => {
   it(`Teste se as informações detalhadas do Pokémon 
     selecionado são mostradas na tela.`, () => {
     const { getByText, getByRole } = renderWithRouter(<App />);
-    const details = getByText('More details');
+    const details = getByText(textLink);
     const pokeSummary = 'This intelligent Pokémon roasts hard berries'
       + ' with electricity to make them tender enough to eat.';
 
@@ -28,7 +30,7 @@ describe('Testa o componente "PokemonDetails"', () => {
   it(`Teste se existe na página uma seção com 
     os mapas contendo as localizações do pokémon`, () => {
     const { getByText, getByRole, getAllByAltText } = renderWithRouter(<App />);
-    const details = getByText('More details');
+    const details = getByText(textLink);
 
     userEvent.click(details);
     const maps = getByRole('heading', {
@@ -55,7 +57,7 @@ describe('Testa o componente "PokemonDetails"', () => {
   it(`Teste se o usuário pode favoritar 
     um pokémon através da página de detalhes.`, () => {
     const { getByText, getByRole } = renderWithRouter(<App />);
-    const details = getByText('More details');
+    const details = getByText(textLink);
 
     userEvent.click(details);
     const checkFavorite = getByRole('checkbox', {
