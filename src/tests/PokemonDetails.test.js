@@ -24,4 +24,54 @@ describe('Testa o componente "PokemonDetails"', () => {
     expect(summary).toBeInTheDocument();
     expect(paragraph).toBeInTheDocument();
   });
+
+  it(`Teste se existe na página uma seção com 
+    os mapas contendo as localizações do pokémon`, () => {
+    const { getByText, getByRole, getAllByAltText } = renderWithRouter(<App />);
+    const details = getByText('More details');
+
+    userEvent.click(details);
+    const maps = getByRole('heading', {
+      level: 2,
+      name: 'Game Locations of Pikachu',
+    });
+
+    const map1 = getByText('Kanto Viridian Forest');
+    const map2 = getByText('Kanto Power Plant');
+
+    const imagesMap = getAllByAltText('Pikachu location');
+
+    const srcMap1 = imagesMap[0].src;
+    const srcMap2 = imagesMap[1].src;
+
+    expect(maps).toBeInTheDocument();
+    expect(map1).toBeInTheDocument();
+    expect(map2).toBeInTheDocument();
+    expect(imagesMap.length).toBe(2);
+    expect(srcMap1).toBe('https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
+    expect(srcMap2).toBe('https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
+  });
+
+  it(`Teste se o usuário pode favoritar 
+    um pokémon através da página de detalhes.`, () => {
+    const { getByText, getByRole } = renderWithRouter(<App />);
+    const details = getByText('More details');
+
+    userEvent.click(details);
+    const checkFavorite = getByRole('checkbox', {
+      name: 'Pokémon favoritado?',
+    });
+
+    expect(checkFavorite).toBeInTheDocument();
+
+    userEvent.click(checkFavorite);
+    const checkedBox = getByRole('checkbox', { checked: true });
+
+    expect(checkedBox).toBeInTheDocument();
+
+    userEvent.click(checkFavorite);
+    const unCheckedBox = getByRole('checkbox', { checked: false });
+
+    expect(unCheckedBox).toBeInTheDocument();
+  });
 });
