@@ -26,7 +26,7 @@ test('shows the Pokédex when the route is `/`', () => {
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
 
-describe('Teste o componente <App.js />', () => {
+describe('Testando o componente <App.js />', () => {
   it('Teste se é renderizada ao carregar a aplicação no caminho de URL "/"', () => {
     const { history: { location: { pathname } } } = renderWithRouter(<App />);
     expect(pathname).toBe('/');
