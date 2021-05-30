@@ -4,8 +4,7 @@ import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
 test('Teste se a página contém as informações sobre a Pokédex.', () => {
-  const { getByRole, history } = renderWithRouter(<App />);
-  history.push('/about');
+  renderWithRouter(<App />, { route: '/about' });
 
   const aboutHeading = getByRole('heading', {
     name: /About Pokédex/i,

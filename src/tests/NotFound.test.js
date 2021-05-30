@@ -3,9 +3,7 @@ import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
 test('show the not found page with all the elements', () => {
-  const { getByRole, history } = renderWithRouter(<App />);
-
-  history.push('/rota-que-não-existe');
+  renderWithRouter(<App />, { route: '/qualquer-rota' });
 
   const notFoundText = getByRole('heading', {
     name: /Page requested not found/i,

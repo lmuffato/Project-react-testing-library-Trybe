@@ -83,9 +83,7 @@ test('shows the correct URL by clicking the links', () => {
   expect(favoriteHeading).toBeInTheDocument();
 });
 test('shows "not found" page by access an unknow URL', () => {
-  const { getByRole, history } = renderWithRouter(<App />);
-
-  history.push('/rota-que-não-existe');
+  renderWithRouter(<App />, { route: '/qualquer-rota' });
 
   const notFoundText = getByRole('heading', {
     name: /Page requested not found/i,
