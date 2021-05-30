@@ -5,14 +5,17 @@ import { About } from '../components';
 
 describe('Testa o componente <About.js /.', () => {
   it('Teste se a página contém as informações sobre a Pokédex.', () => {
-    const { history } = renderWithRouter(<About />);
+    renderWithRouter(<About />);
 
-    history.push('/about');
-    const linkAbout = screen.getByRole('heading', {
-      name: /About Pokédex/i,
-      level: 2,
-    });
-    expect(linkAbout).toBeInTheDocument();
+    const paragrafoUm = screen.getByText('This application simulates a Pokédex, '
+    + 'a digital encyclopedia containing all Pokémons');
+
+    expect(paragrafoUm).toBeInTheDocument();
+
+    const paragrafoDois = screen.getByText('One can filter Pokémons by type, '
+    + 'and see more details for each one of them');
+
+    expect(paragrafoDois).toBeInTheDocument();
   });
 
   it('Testa se a página contém um heading h2 com o texto About Pokédex.', () => {
