@@ -82,4 +82,17 @@ describe('Testa o componente "Pokemon"', () => {
 
     expect(pathPokemon).toBe('/pokemons/10');
   });
+
+  it('Teste se existe um ícone de estrela nos Pokémons favoritados.', () => {
+    const favoritePokemon = true;
+
+    const { getByAltText } = renderWithRouter(
+      <Pokemon pokemon={ pokemonMock } isFavorite={ favoritePokemon } />,
+    );
+
+    const pokeFavorite = getByAltText('Caterpie is marked as favorite');
+
+    expect(pokeFavorite).toBeInTheDocument();
+    expect(pokeFavorite.src).toBe('http://localhost/star-icon.svg');
+  });
 });
