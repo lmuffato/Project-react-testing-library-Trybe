@@ -32,4 +32,15 @@ describe('Test component <Pokemon />', () => {
     const { pathname } = history.location;
     expect(pathname).toBe(`/pokemons/${pokeMock.id}`);
   });
+  test('Test favorite icon', () => {
+    const { getByRole } = renderWithRouter(<Pokemon
+      pokemon={ pokeMock }
+      isFavorite
+    />);
+    const image = getByRole('img', {
+      name: `${pokeMock.name} is marked as favorite`,
+    });
+    expect(image).toBeInTheDocument();
+    expect(image.src).toBe('http://localhost/star-icon.svg');
+  });
 });
