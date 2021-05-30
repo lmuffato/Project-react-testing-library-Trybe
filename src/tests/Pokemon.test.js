@@ -1,5 +1,5 @@
 import React from 'react';
-import { userEvent } from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import Pokemon from '../components/Pokemon';
 
@@ -52,5 +52,18 @@ describe('Testa o componente "Pokemon"', () => {
     expect(pokeWeight).toBeInTheDocument();
     expect(pokeImage.src).toBe('https://cdn2.bulbagarden.net/upload/8/83/Spr_5b_010.png');
     expect(pokeImage.alt).toBe('Caterpie sprite');
+  });
+
+  it(`Teste se o card do Pokémon indicado na Pokédex contém um link de navegação 
+    para exibir detalhes deste Pokémon. O link deve possuir a URL /pokemons/<id>, 
+    onde <id> é o id do Pokémon exibido`, () => {
+    const { getByRole, history } = renderWithRouter(
+      <Pokemon pokemon={ pokemonMock } isFavorite={ false } />,
+    );
+
+    userEvent.click(getByRole('link', 'More details'));
+    const pathPokemon = history.location.pathname;
+
+    expect(pathPokemon).toBe('/pokemons/10');
   });
 });
