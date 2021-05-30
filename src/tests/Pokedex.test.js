@@ -38,7 +38,7 @@ describe('Test component <Pokedex />', () => {
   });
 
   test('Test filter buttons', () => {
-    const { history, getByRole } = renderWithRouter(<App />);
+    const { history } = renderWithRouter(<App />);
     history.push('/');
     const pkmListOfTypes = [...new Set(pokemons.map(({ type }) => type))];
     const buttons = screen.getAllByTestId('pokemon-type-button');
@@ -46,10 +46,18 @@ describe('Test component <Pokedex />', () => {
     pkmListOfTypes.forEach((type, index) => {
       expect(buttons[index]).toHaveTextContent(type);
     });
+  });
+
+  test('Test reset button', () => {
+    const { history, getByRole } = renderWithRouter(<App />);
+    history.push('/');
     const reset = getByRole('button', {
       name: /all/i,
     });
     expect(reset).toBeInTheDocument();
+    userEvent.click(reset);
+    history.push('/');
+    expect(reset).not.toBeDisabled();
   });
 });
 
