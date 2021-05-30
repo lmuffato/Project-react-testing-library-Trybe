@@ -1,21 +1,10 @@
 import { render } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
-import React from 'react';
-import { Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
-function renderWithRouter(componentToRender) {
-  const historyMock = createMemoryHistory();
+const renderWithRouter = (ui, { route = '/' } = {}) => {
+  window.history.pushState({}, 'Test page', route);
 
-  const renderObject = render(
-    <Router history={ historyMock }>
-      {componentToRender}
-    </Router>,
-  );
-
-  return {
-    ...renderObject,
-    history: historyMock,
-  };
-}
+  return render(ui, { wrapper: BrowserRouter });
+};
 
 export default renderWithRouter;
