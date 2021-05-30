@@ -6,7 +6,7 @@ import renderWithRouter from './renderWithRouter';
 test('Teste se a página contém as informações sobre a Pokédex.', () => {
   renderWithRouter(<App />, { route: '/about' });
 
-  const aboutHeading = getByRole('heading', {
+  const aboutHeading = screen.getByRole('heading', {
     name: /About Pokédex/i,
     level: 2,
   });
@@ -21,7 +21,7 @@ test('Teste se a página contém as informações sobre a Pokédex.', () => {
   const aboutText2 = screen.getByText(text2);
   expect(aboutText2).toBeInTheDocument();
 
-  const aboutImg = getByRole('img', {
+  const aboutImg = screen.getByRole('img', {
     name: /Pokédex/,
   });
   const src = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';

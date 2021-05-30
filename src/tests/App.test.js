@@ -85,7 +85,7 @@ test('shows the correct URL by clicking the links', () => {
 test('shows "not found" page by access an unknow URL', () => {
   renderWithRouter(<App />, { route: '/qualquer-rota' });
 
-  const notFoundText = getByRole('heading', {
+  const notFoundText = screen.getByRole('heading', {
     name: /Page requested not found/i,
     level: 2,
   });
