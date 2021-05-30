@@ -31,8 +31,8 @@ describe('Testa o componente <About.js /.', () => {
   it('Teste se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
     renderWithRouter(<About />);
 
-    const elementosP = screen.getAllByRole('p');
-    expect(elementosP.length).toBe(2);
+    // const elementosP = screen.getAllByRole('p');
+    // expect(elementosP.length).toBe(2);
 
     const paragrafoUm = screen.getByText('This application simulates a Pokédex, '
     + 'a digital encyclopedia containing all Pokémons');
