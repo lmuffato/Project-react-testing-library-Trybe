@@ -10,9 +10,8 @@ describe('Tests in Pokedex.js', () => {
         <App />
       </MemoryRouter>,
     );
-    const requiredText = 'Encountered pokémons';
-    const heading = screen.getByRole('heading', { level: 2, name: requiredText });
-    expect(heading).toBeInTheDocument();
+    const h2 = screen.getByRole('heading', { level: 2, name: 'Encountered pokémons' });
+    expect(h2).toBeInTheDocument();
   });
   const pokemonID = 'pokemon-name';
   const nextPkm = 'Próximo pokémon';
@@ -23,22 +22,13 @@ describe('Tests in Pokedex.js', () => {
       </MemoryRouter>,
     );
     const previousPokemon = screen.getByTestId(pokemonID).outerHTML;
-    const proximoPokemonButton = screen.getByRole('button', { name: nextPkm });
-    fireEvent.click(proximoPokemonButton);
-    const currentPokemon = screen.getByTestId(pokemonID).outerHTML;
-    expect(previousPokemon).not.toBe(currentPokemon);
-  });
-  it('when click in: proximo pokemon, on last in the list, appear the first', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
-    const lenght = 8;
-    const previousPokemon = screen.getByTestId(pokemonID).outerHTML;
     const proximoPkmButton = screen.getByRole('button', { name: nextPkm });
+    fireEvent.click(proximoPkmButton);
+    let currentPokemon = screen.getByTestId(pokemonID).outerHTML;
+    expect(previousPokemon).not.toBe(currentPokemon);
+    const lenght = 7;
     for (let index = 0; index <= lenght; index += 1) fireEvent.click(proximoPkmButton);
-    const currentPokemon = screen.getByTestId(pokemonID).outerHTML;
+    currentPokemon = screen.getByTestId(pokemonID).outerHTML;
     expect(previousPokemon).toBe(currentPokemon);
   });
   it('If appear only one pokemon per time', () => {
@@ -130,6 +120,7 @@ describe('Tests in Pokedex.js', () => {
     );
     const buttonAll = screen.getByRole('button', { name: 'All' });
     expect(buttonAll).toBeInTheDocument();
+    fireEvent.click(buttonAll);
     const previousPokemonType = screen.getByTestId(pkmTypeID).innerHTML;
     const buttonProximoPokemon = screen.getByRole('button', { name: nextPkm });
     fireEvent.click(buttonProximoPokemon);
