@@ -4,7 +4,7 @@ import renderWithRouter from './renderWithHistory';
 import FavoritePokemons from '../components/FavoritePokemons';
 import App from '../App';
 
-describe('testes do component FavoritePkemons', () => {
+describe('testes do component FavoritePokemons', () => {
   it('Testa se a página contém um heading h2 com o texto About Pokédex', () => {
     const { getByText } = renderWithRouter(<FavoritePokemons />);
     expect(getByText(/No favorite pokemon/i)).toBeInTheDocument();

@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithHistory';
 import App from '../App';
 
-describe('Requisite 1', () => {
+describe('Testes do Component APP.js', () => {
   test('shows the Pokédex when the route is `/`', () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={ ['/'] }>
