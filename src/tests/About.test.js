@@ -4,6 +4,17 @@ import renderWithRouter from './RenderWithRouter';
 import { About } from '../components';
 
 describe('Testa o componente <About.js /.', () => {
+  it('Teste se a página contém as informações sobre a Pokédex.', () => {
+    const { history } = renderWithRouter(<About />);
+
+    history.push('/about');
+    const linkAbout = screen.getByRole('heading', {
+      name: /About Pokédex/i,
+      level: 2,
+    });
+    expect(linkAbout).toBeInTheDocument();
+  });
+
   it('Testa se a página contém um heading h2 com o texto About Pokédex.', () => {
     renderWithRouter(<About />);
 
