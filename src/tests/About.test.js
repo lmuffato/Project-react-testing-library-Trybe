@@ -33,6 +33,16 @@ describe('Testa o componente <About.js /.', () => {
 
     const elementosP = screen.getAllByRole('p');
     expect(elementosP.length).toBe(2);
+
+    const paragrafoUm = screen.getByText('This application simulates a Pokédex, '
+    + 'a digital encyclopedia containing all Pokémons');
+
+    expect(paragrafoUm).toBeInTheDocument();
+
+    const paragrafoDois = screen.getByText('One can filter Pokémons by type, '
+    + 'and see more details for each one of them');
+
+    expect(paragrafoDois).toBeInTheDocument();
   });
 
   it('Teste se a página contém a seguinte imagem de uma Pokédex', () => {
