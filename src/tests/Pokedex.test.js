@@ -5,6 +5,8 @@ import App from '../App';
 
 describe('Testa o componente "Pokedex".', () => {
   const pokeIdCardName = 'pokemon-name';
+  const pokeIdType = 'pokemon-type';
+  const pokeIdWeight = 'pokemon-weight';
 
   it('Teste se página contém um heading h2 com o texto Encountered pokémons.', () => {
     const { getByRole } = renderWithRouter(<App />);
@@ -42,5 +44,17 @@ describe('Testa o componente "Pokedex".', () => {
     expect(newPokemon.textContent).toBe('Pikachu');
 
     expect(nextPokemon).toBeInTheDocument();
+  });
+
+  it('Teste se é mostrado apenas um Pokémon por vez.', () => {
+    const { getAllByTestId } = renderWithRouter(<App />);
+
+    const name = getAllByTestId(pokeIdCardName);
+    const type = getAllByTestId(pokeIdType);
+    const weight = getAllByTestId(pokeIdWeight);
+
+    expect(name.length).toBe(1);
+    expect(type.length).toBe(1);
+    expect(weight.length).toBe(1);
   });
 });
