@@ -4,7 +4,7 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('Tests in PokemonDetails.js', () => {
-  it('Pokemon details appear in the screen', () => {
+  it('Pokémon details appear in the screen', () => {
     /* const { history } =  */renderWithRouter(<App />);
     const moreDetailsLink = screen.getByRole('link', { name: 'More details' });
     fireEvent.click(moreDetailsLink);
@@ -22,7 +22,7 @@ describe('Tests in PokemonDetails.js', () => {
     const pkmParagraph = screen.getByText(pkmParagraphText).outerHTML;
     expect(pkmParagraph).toBe(`<p>${pkmParagraphText}</p>`);
   });
-  it('Contein a map with pokemon location', () => {
+  it('Contein a map with pokémon location', () => {
     /* const { history } =  */renderWithRouter(<App />);
     const moreDetailsLink = screen.getByRole('link', { name: 'More details' });
     fireEvent.click(moreDetailsLink);
@@ -34,5 +34,17 @@ describe('Tests in PokemonDetails.js', () => {
     expect(pkmLocations).toHaveLength(2);
     expect(pkmLocations[0]).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
     expect(pkmLocations[1]).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
+  });
+  it('The user can favor pokémon', () => {
+    /* const { history } =  */renderWithRouter(<App />);
+    const moreDetailsLink = screen.getByRole('link', { name: 'More details' });
+    fireEvent.click(moreDetailsLink);
+    const pkmName = screen.getByTestId('pokemon-name').innerHTML;
+    const labelOfCheckbox = screen.getByLabelText('Pokémon favoritado?');
+    fireEvent.click(labelOfCheckbox);
+    const favoriteIcon = screen.getByAltText(`${pkmName} is marked as favorite`);
+    expect(favoriteIcon).toBeInTheDocument();
+    fireEvent.click(labelOfCheckbox);
+    expect(favoriteIcon).not.toBeInTheDocument();
   });
 });
