@@ -7,6 +7,7 @@ describe('Testa o componente "Pokedex".', () => {
   const pokeIdCardName = 'pokemon-name';
   const pokeIdType = 'pokemon-type';
   const pokeIdWeight = 'pokemon-weight';
+  const nextButtonText = 'Próximo pokémon';
 
   it('Teste se página contém um heading h2 com o texto Encountered pokémons.', () => {
     const { getByRole } = renderWithRouter(<App />);
@@ -23,7 +24,7 @@ describe('Testa o componente "Pokedex".', () => {
     quando o botão Próximo pokémon é clicado.`, () => {
     const { getByText, getByTestId } = renderWithRouter(<App />);
 
-    const nextPokemon = getByText('Próximo pokémon');
+    const nextPokemon = getByText(nextButtonText);
 
     userEvent.click(nextPokemon);
     let newPokemon = getByTestId(pokeIdCardName);
@@ -65,7 +66,7 @@ describe('Testa o componente "Pokedex".', () => {
       name: 'Fire',
     });
     const nextPokemon = getByRole('button', {
-      name: 'Próximo pokémon',
+      name: nextButtonText,
     });
 
     userEvent.click(filterButton);
@@ -75,5 +76,53 @@ describe('Testa o componente "Pokedex".', () => {
     userEvent.click(nextPokemon);
     const nextFilteredPokemon = getByText('Rapidash');
     expect(nextFilteredPokemon).toBeInTheDocument();
+  });
+
+  it('Teste se a Pokédex contém um botão para resetar o filtro.', () => {
+    const { getByRole } = renderWithRouter(<App />);
+
+    const resetFilter = getByRole('button', {
+      name: 'All',
+    });
+
+    expect(resetFilter).toBeInTheDocument();
+
+    userEvent.click(resetFilter);
+  });
+
+  it(`Teste se é criado, dinamicamente, um botão 
+    de filtro para cada tipo de Pokémon.`, () => {
+    const { getByRole } = renderWithRouter(<App />);
+
+    const fire = getByRole('button', { name: 'Fire' });
+    const psychic = getByRole('button', { name: 'Psychic' });
+    const electric = getByRole('button', { name: 'Electric' });
+    const bug = getByRole('button', { name: 'Bug' });
+    const poison = getByRole('button', { name: 'Poison' });
+    const dragon = getByRole('button', { name: 'Dragon' });
+    const normal = getByRole('button', { name: 'Normal' });
+
+    expect(fire).toBeInTheDocument();
+    expect(psychic).toBeInTheDocument();
+    expect(electric).toBeInTheDocument();
+    expect(bug).toBeInTheDocument();
+    expect(poison).toBeInTheDocument();
+    expect(dragon).toBeInTheDocument();
+    expect(normal).toBeInTheDocument();
+  });
+
+  it(`O botão de Próximo pokémon deve ser desabilitado quando 
+    a lista filtrada de Pokémons tiver um só pokémon.`, () => {
+    const { getByRole, getByTestId } = renderWithRouter(<App />);
+
+    const bugFilter = getByRole('button', { name: 'Bug' });
+    userEvent.click(bugFilter);
+    const actualyPokemon = getByTestId(pokeIdCardName);
+    expect(actualyPokemon.textContent).toBe('Caterpie');
+
+    const nextPokemon = getByRole('button', { name: nextButtonText });
+    userEvent.click(nextPokemon);
+    const updatePokemon = getByTestId(pokeIdCardName);
+    expect(updatePokemon.textContent).toBe('Caterpie');
   });
 });
