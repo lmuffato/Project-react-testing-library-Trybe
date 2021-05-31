@@ -4,11 +4,13 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('Tests in PokemonDetails.js', () => {
+  const pkmnameText = 'pokemon-name';
+  const moreDetailsText = 'More details';
   it('Pokémon details appear in the screen', () => {
     /* const { history } =  */renderWithRouter(<App />);
-    const moreDetailsLink = screen.getByRole('link', { name: 'More details' });
+    const moreDetailsLink = screen.getByRole('link', { name: moreDetailsText });
     fireEvent.click(moreDetailsLink);
-    const pkmName = screen.getByTestId('pokemon-name').innerHTML;
+    const pkmName = screen.getByTestId(pkmnameText).innerHTML;
     const pkmDetailsHeading = screen.getByText(`${pkmName} Details`);
     expect(pkmDetailsHeading).toBeInTheDocument();
     expect(moreDetailsLink).not.toBeInTheDocument();
@@ -24,9 +26,9 @@ describe('Tests in PokemonDetails.js', () => {
   });
   it('Contein a map with pokémon location', () => {
     /* const { history } =  */renderWithRouter(<App />);
-    const moreDetailsLink = screen.getByRole('link', { name: 'More details' });
+    const moreDetailsLink = screen.getByRole('link', { name: moreDetailsText });
     fireEvent.click(moreDetailsLink);
-    const pkmName = screen.getByTestId('pokemon-name').innerHTML;
+    const pkmName = screen.getByTestId(pkmnameText).innerHTML;
     const headingTxt = `Game Locations of ${pkmName}`;
     const LocationHeading = screen.getByRole('heading', { level: 2, name: headingTxt });
     expect(LocationHeading).toBeInTheDocument();
@@ -37,9 +39,9 @@ describe('Tests in PokemonDetails.js', () => {
   });
   it('The user can favor pokémon', () => {
     /* const { history } =  */renderWithRouter(<App />);
-    const moreDetailsLink = screen.getByRole('link', { name: 'More details' });
+    const moreDetailsLink = screen.getByRole('link', { name: moreDetailsText });
     fireEvent.click(moreDetailsLink);
-    const pkmName = screen.getByTestId('pokemon-name').innerHTML;
+    const pkmName = screen.getByTestId(pkmnameText).innerHTML;
     const labelOfCheckbox = screen.getByLabelText('Pokémon favoritado?');
     fireEvent.click(labelOfCheckbox);
     const favoriteIcon = screen.getByAltText(`${pkmName} is marked as favorite`);
