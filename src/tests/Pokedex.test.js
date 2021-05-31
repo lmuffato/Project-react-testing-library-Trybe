@@ -92,7 +92,11 @@ describe('Testa o componente "Pokedex".', () => {
 
   it(`Teste se é criado, dinamicamente, um botão 
     de filtro para cada tipo de Pokémon.`, () => {
-    const { getByRole } = renderWithRouter(<App />);
+    const { getByRole, getAllByTestId } = renderWithRouter(<App />);
+    const typePokemon = 7;
+
+    const fiterButtons = getAllByTestId('pokemon-type-button');
+    expect(fiterButtons.length).toBe(typePokemon);
 
     const fire = getByRole('button', { name: 'Fire' });
     const psychic = getByRole('button', { name: 'Psychic' });
