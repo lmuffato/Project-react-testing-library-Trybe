@@ -7,7 +7,7 @@ describe('Tests in PokemonDetails.js', () => {
   const pkmnameText = 'pokemon-name';
   const moreDetailsText = 'More details';
   it('Pokémon details appear in the screen', () => {
-    /* const { history } =  */renderWithRouter(<App />);
+    renderWithRouter(<App />);
     const moreDetailsLink = screen.getByRole('link', { name: moreDetailsText });
     fireEvent.click(moreDetailsLink);
     const pkmName = screen.getByTestId(pkmnameText).innerHTML;
@@ -25,7 +25,7 @@ describe('Tests in PokemonDetails.js', () => {
     expect(pkmParagraph).toBe(`<p>${pkmParagraphText}</p>`);
   });
   it('Contein a map with pokémon location', () => {
-    /* const { history } =  */renderWithRouter(<App />);
+    renderWithRouter(<App />);
     const moreDetailsLink = screen.getByRole('link', { name: moreDetailsText });
     fireEvent.click(moreDetailsLink);
     const pkmName = screen.getByTestId(pkmnameText).innerHTML;
@@ -38,7 +38,7 @@ describe('Tests in PokemonDetails.js', () => {
     expect(pkmLocations[1]).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
   });
   it('The user can favor pokémon', () => {
-    /* const { history } =  */renderWithRouter(<App />);
+    renderWithRouter(<App />);
     const moreDetailsLink = screen.getByRole('link', { name: moreDetailsText });
     fireEvent.click(moreDetailsLink);
     const pkmName = screen.getByTestId(pkmnameText).innerHTML;
