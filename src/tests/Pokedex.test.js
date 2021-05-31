@@ -57,4 +57,23 @@ describe('Testa o componente "Pokedex".', () => {
     expect(type.length).toBe(1);
     expect(weight.length).toBe(1);
   });
+
+  it('Teste se a Pokédex tem os botões de filtro.', () => {
+    const { getByText, getByRole } = renderWithRouter(<App />);
+
+    const filterButton = getByRole('button', {
+      name: 'Fire',
+    });
+    const nextPokemon = getByRole('button', {
+      name: 'Próximo pokémon',
+    });
+
+    userEvent.click(filterButton);
+    const filteredPokemon = getByText('Charmander');
+    expect(filteredPokemon).toBeInTheDocument();
+
+    userEvent.click(nextPokemon);
+    const nextFilteredPokemon = getByText('Rapidash');
+    expect(nextFilteredPokemon).toBeInTheDocument();
+  });
 });
