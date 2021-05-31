@@ -22,4 +22,15 @@ describe('2. Teste o componente <About.js /.', () => {
 
     expect(h2Test).toBeInTheDocument();
   });
+
+  it('Teste se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
+    const { getByText } = render(
+      <About />,
+    );
+    const p1 = getByText(/This application simulates a Pokédex/i);
+    const p2 = getByText(/One can filter Pokémons by type/i);
+
+    expect(p1).toBeInTheDocument();
+    expect(p2).toBeInTheDocument();
+  });
 });
