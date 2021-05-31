@@ -1,24 +1,22 @@
+import { fireEvent } from '@testing-library/dom';
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+// import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
+import renderWithRouter from '../components/renderWithRouter';
 
-test('renders a reading with the text `Pokédex`', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const heading = getByText(/Pokédex/i);
-  expect(heading).toBeInTheDocument();
-});
-
-test('shows the Pokédex when the route is `/`', () => {
-  const { getByText } = render(
-    <MemoryRouter initialEntries={ ['/'] }>
-      <App />
-    </MemoryRouter>,
-  );
+it('shows the Pokédex when the route is `/`', () => {
+  const { getByText } = renderWithRouter(<App />);
 
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
+});
+
+describe('Teste o componente <App.js />', () => {
+  it('Testa se o primeiro link possui os textos Home', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    const linkHome = getByText(/Home/i);
+    expect(linkHome).toBeInTheDocument();
+
+    fireEvent.click(linkHome);
+    expect(history.location.pathname).toBe('/');
+  });
 });
