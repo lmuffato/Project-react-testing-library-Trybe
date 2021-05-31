@@ -24,6 +24,7 @@ const pokemonMock = {
     },
   ],
   summary: 'its the best pokemon',
+  IsFavorite: true,
 };
 
 describe('Pokemon.test.js', () => {
@@ -48,6 +49,15 @@ describe('Pokemon.test.js', () => {
     const { getByAltText } = renderWithRouter(<Pokemon pokemon={ pokemonMock } />);
     const pokeImage = getByAltText(`${pokemonMock.name} sprite`);
     expect(pokeImage).toBeInTheDocument();
+  });
+  test('Exibe uma imagem de uma estrela caso o pokemon seja favoritado', () => {
+    const { getByAltText } = renderWithRouter(<Pokemon
+      pokemon={ pokemonMock }
+      isFavorite={ pokemonMock.IsFavorite }
+    />);
+    const starImage = getByAltText(`${pokemonMock.name} is marked as favorite`);
+    expect(starImage.src).toBe('http://localhost/star-icon.svg');
+    expect(starImage).toBeInTheDocument();
   });
   test('Exibe uma imagem com o Link da imagem do pokemon', () => {
     const { getByAltText } = renderWithRouter(<Pokemon pokemon={ pokemonMock } />);
