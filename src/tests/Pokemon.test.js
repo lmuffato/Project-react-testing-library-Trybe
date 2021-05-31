@@ -1,7 +1,7 @@
 import React from 'react';
-import { screen, render } from '@testing-library/react';
+import { screen, render, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-// import renderWithRouter from '../renderWithRouter';
+import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('Tests in Pokemon.js', () => {
@@ -23,6 +23,7 @@ describe('Tests in Pokemon.js', () => {
     expect(pkmIMG).toHaveAttribute('src', defaultSRC);
     expect(pkmIMG).toHaveAttribute('alt', `${pkmName} sprite`); // gave me some help: https://dev.to/raphaelchaula/a-simple-image-test-in-react-3p6f
   });
+  const moreDetails = 'More details';
   it('Card have a correctly navegation link', () => {
     render(
       <MemoryRouter>
@@ -30,8 +31,27 @@ describe('Tests in Pokemon.js', () => {
       </MemoryRouter>,
     );
     const pikachuID = '25';
-    const moreDetailsLink = screen.getByRole('link', { name: 'More details' });
+    const moreDetailsLink = screen.getByRole('link', { name: moreDetails });
     expect(moreDetailsLink).toBeInTheDocument();
     expect(moreDetailsLink).toHaveAttribute('href', `/pokemons/${pikachuID}`);
+  });
+  it('Card have a correctly navegation link', () => {
+    const { history } = renderWithRouter(<App />);
+    const moreDetailsLink = screen.getByRole('link', { name: moreDetails });
+    fireEvent.click(moreDetailsLink);
+    const currentPath = history.location.pathname;
+    expect(currentPath).toBe('/pokemons/25');
+  });
+  it('Favorite pokemons have a star icon', () => {
+    renderWithRouter(<App />);
+    const moreDetailsLink = screen.getByRole('link', { name: moreDetails });
+    fireEvent.click(moreDetailsLink);
+    const favoriteCheckbox = screen.getByLabelText('Pokémon favoritado?');
+    fireEvent.click(favoriteCheckbox);
+    const FavoritePkm = screen.getByTestId('pokemon-name').innerHTML;
+    const favoriteALT = `${FavoritePkm} is marked as favorite`;
+    const favoriteIcon = screen.getByRole('img', { name: favoriteALT });
+    expect(favoriteIcon).toBeInTheDocument();
+    expect(favoriteIcon).toHaveAttribute('src', '/star-icon.svg');
   });
 });
