@@ -10,4 +10,12 @@ describe('4. Teste o componente <NotFound.js />', () => {
     });
     expect(h2Test).toHaveTextContent('Page requested not found');
   });
+
+  it('Teste se página mostra a imagem indicada', () => {
+    const { getAllByRole } = renderWithRouter(<NotFound />);
+    const img = getAllByRole('img');
+    const imgSource = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
+
+    expect(img[1]).toHaveAttribute('src', imgSource);
+  });
 });
