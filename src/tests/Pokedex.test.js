@@ -88,7 +88,7 @@ describe('5 - Testing the component <Pokedex />', () => {
     rendering();
 
     const filterButtons = screen.getAllByTestId('pokemon-type-button')
-      .map((buttoType) => buttoType.textContent);
+      .map((buttonType) => buttonType.textContent);
 
     const filteredTypes = pokemons.reduce((totalOfTypes, { type }) => {
       if (totalOfTypes.includes(type)) return totalOfTypes;
