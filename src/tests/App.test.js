@@ -38,4 +38,14 @@ describe('tests navigation links', () => {
     const linkAbout = getByText(/about/i);
     userEvent.click(linkAbout);
   });
+
+  test('favorite pokémons link', () => {
+    const { getByText } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    const favoritePokemonsLink = getByText(/favorite pokémon/i);
+    userEvent.click(favoritePokemonsLink);
+  });
 });
