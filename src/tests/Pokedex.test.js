@@ -27,18 +27,15 @@ describe('Testa o componente <Pokedex.js />', () => {
     userEvent.click(psychicType);
 
     const pokemonName = screen.getByTestId(pokeName);
-    const alakazam = pokemonName;
-    expect(alakazam.innerHTML).toBe('Alakazam');
+    expect(pokemonName.innerHTML).toBe('Alakazam');
 
     const btnNextPokemon = screen.getByTestId(nextPokemon);
     userEvent.click(btnNextPokemon);
 
-    const mew = pokemonName;
-    expect(mew.innerHTML).toBe('Mew');
+    expect(pokemonName.innerHTML).toBe('Mew');
     userEvent.click(btnNextPokemon);
 
-    const alakazamAgain = pokemonName;
-    expect(alakazamAgain.innerHTML).toBe('Alakazam');
+    expect(pokemonName.innerHTML).toBe('Alakazam');
   });
   test('Testa botão de Próximo, desabilitado quando a lista tiver um só pokémon.', () => {
     renderWithRouter(<App />);
@@ -54,7 +51,10 @@ describe('Testa os botões de filtro', () => {
   test('Teste se a Pokédex tem os botões de filtro.', () => {
     renderWithRouter(<App />);
     const btnFilterType = screen.getAllByTestId(btnPokeType);
+    const filterTotal = 7;
     expect(btnFilterType[0]).toBeInTheDocument();
+    expect(btnFilterType[5]).toBeInTheDocument();
+    expect(btnFilterType.length).toBe(filterTotal);
   });
   test('Testa se ao clicar em filtro, os pokemons são daquele tipo', () => {
     renderWithRouter(<App />);
@@ -66,17 +66,43 @@ describe('Testa os botões de filtro', () => {
     const btnNextPokemon = screen.getByTestId(nextPokemon);
     userEvent.click(btnNextPokemon);
     expect(pokemonType.innerHTML).toBe('Fire');
+
+    userEvent.click(btnFilterType[2]);
+    expect(pokemonType.innerHTML).toBe('Bug');
+    userEvent.click(btnNextPokemon);
+    expect(pokemonType.innerHTML).toBe('Bug');
   });
   test('O texto do botão deve corresponder ao nome do tipo', () => {
     renderWithRouter(<App />);
     const btn = screen.getAllByRole('button');
+    const pokemonType = screen.getByTestId(pokeType);
+    userEvent.click(btn[1]);
     expect(btn[1].innerHTML).toBe('Electric');
+    expect(pokemonType.innerHTML).toBe('Electric');
+
+    userEvent.click(btn[2]);
     expect(btn[2].innerHTML).toBe('Fire');
+    expect(pokemonType.innerHTML).toBe('Fire');
+
+    userEvent.click(btn[3]);
     expect(btn[3].innerHTML).toBe('Bug');
+    expect(pokemonType.innerHTML).toBe('Bug');
+
+    userEvent.click(btn[4]);
     expect(btn[4].innerHTML).toBe('Poison');
+    expect(pokemonType.innerHTML).toBe('Poison');
+
+    userEvent.click(btn[5]);
     expect(btn[5].innerHTML).toBe('Psychic');
+    expect(pokemonType.innerHTML).toBe('Psychic');
+
+    userEvent.click(btn[6]);
     expect(btn[6].innerHTML).toBe('Normal');
+    expect(pokemonType.innerHTML).toBe('Normal');
+
+    userEvent.click(btn[7]);
     expect(btn[7].innerHTML).toBe('Dragon');
+    expect(pokemonType.innerHTML).toBe('Dragon');
   });
 });
 
@@ -91,10 +117,13 @@ describe('Teste se a Pokédex contém um botão para resetar o filtro', () => {
     const pokemonType = screen.getByTestId(pokeType);
     expect(pokemonType.innerHTML).toBe('Electric');
     const btn = screen.getAllByRole('button');
-    const btndragonType = btn[7];
-    userEvent.click(btndragonType);
+    const dragonButton = screen.getByRole('button', { name: /dragon/i });
+    userEvent.click(dragonButton);
     expect(pokemonType.innerHTML).toBe('Dragon');
     userEvent.click(btn[0]);
     expect(pokemonType.innerHTML).toBe('Electric');
+    const nextPok = screen.getByTestId(nextPokemon);
+    userEvent.click(nextPok);
+    expect(pokemonType.innerHTML).toBe('Fire');
   });
 });
