@@ -20,6 +20,11 @@ describe('Testa o componente <Pokedex.js />', () => {
     const pokemonName = screen.getAllByTestId(pokeName);
     expect(pokemonName.length).toBe(1);
   });
+  test('testa o nome do botão de proximo pokemon', () => {
+    renderWithRouter(<App />);
+    const btnNextPokemon = screen.getByTestId(nextPokemon);
+    expect(btnNextPokemon.innerHTML).toBe('Próximo pokémon');
+  });
   test('Teste se é exibido o próximo Pokémon da lista quando o bt é clicado.', () => {
     renderWithRouter(<App />);
     const btnType = screen.getAllByRole('button');
