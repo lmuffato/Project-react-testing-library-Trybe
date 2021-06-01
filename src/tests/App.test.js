@@ -23,7 +23,7 @@ describe('Testando o componente App', () => {
     expect(endereco).toBe('/');
   });
 
-  it('Testa a existencia dos link Home, About, Favorite Pokémon', () => {
+  it('Testa a existência dos link Home, About, Favorite Pokémon', () => {
     const { getByText } = renderWithRouter(<App />);
     expect(getByText('Home')).toBeInTheDocument();
     expect(getByText('About')).toBeInTheDocument();
