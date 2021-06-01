@@ -28,4 +28,14 @@ describe('tests navigation links', () => {
     const linkHome = getByText(/home/i);
     userEvent.click(linkHome);
   });
+
+  test('about link', () => {
+    const { getByText } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    const linkAbout = getByText(/about/i);
+    userEvent.click(linkAbout);
+  });
 });
