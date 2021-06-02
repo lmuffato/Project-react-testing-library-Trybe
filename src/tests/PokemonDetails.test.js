@@ -95,3 +95,16 @@ describe('existe <PokemonDetails> uma seção com os mapas da loc. do pokémo', 
     expect(locations[0]).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/2/21/Johto_Route_45_Map.png');
   });
 });
+describe('se o usuário pode favoritar um pokémon na página de detalhes', () => {
+  test('A página deve exibir um checkbox que permite favoritar o Pokémon', () => {
+    gettingDragonairDetails2();
+    const favorite = screen.getByLabelText('Pokémon favoritado?');
+    expect(favorite).toBeInTheDocument();
+    userEvent.click(favorite);
+    const favoritado = screen.getByRole('checkbox', { checked: true });
+    expect(favoritado).toBeInTheDocument();
+    userEvent.click(favorite);
+    const naoFavoritado = screen.getByRole('checkbox', { checked: false });
+    expect(naoFavoritado).toBeInTheDocument();
+  });
+});
