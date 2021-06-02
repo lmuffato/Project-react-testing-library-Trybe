@@ -17,4 +17,19 @@ describe('Testing Pokedex component', () => {
     userEvent.click(buttonNextPokemon);
     expect(buttonNextPokemon).toHaveTextContent('Próximo pokémon');
   });
+  it('if have button to reset type of pokemons', () => {
+    const { getByRole } = renderWithRouter(<App />);
+    const resetButton = getByRole('button', {
+      name: /All/i,
+    });
+    userEvent.click(resetButton);
+    expect(resetButton).toBeInTheDocument();
+  });
+
+  it('have buttons for each type of pokemons', () => {
+    const { getAllByTestId } = renderWithRouter(<App />);
+    const buttonForType = getAllByTestId('pokemon-type-button');
+    userEvent.type(buttonForType);
+    expect(buttonForType[1]).toHaveTextContent('Fire');
+  });
 });
