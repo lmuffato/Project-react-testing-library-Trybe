@@ -50,6 +50,7 @@ describe('5. Teste o componente <Pokedex.js />', () => {
     const resetButton = getByRole('button', {
       name: /all/i,
     });
+
     fireEvent.click(resetButton);
     expect(getByText('Pikachu')).toBeInTheDocument();
   });
