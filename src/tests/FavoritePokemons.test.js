@@ -28,18 +28,3 @@ describe('Tests whether the information about the favorites pokemons is rendered
     expect(pokemonName).toBeInTheDocument();
   });
 });
-
-it('Remove pokemon from favorites if it is disadvantaged', () => {
-  renderWithRouter(<App />);
-  const moreDetails = screen.getByRole('link', { name: /more details/i });
-  userEvent.click(moreDetails);
-  const checkbox = screen.getByRole('checkbox', { name: /pokémon favoritado\?/i });
-  userEvent.click(checkbox);
-  const favorite = screen.getByRole('link', { name: /favorite pokémons/i });
-  userEvent.click(favorite);
-  userEvent.click(moreDetails);
-  userEvent.click(checkbox);
-  userEvent.click(favorite);
-  const text = screen.getByText(/no favorite pokemon found/i);
-  expect(text).toBeInTheDocument();
-});

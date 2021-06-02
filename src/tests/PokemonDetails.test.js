@@ -56,4 +56,16 @@ describe('renders a section with maps containing the locations of the pokémon',
     expect(mapsImages[1])
       .toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
   });
+
+  it('Remove pokemon from favorites if it is disadvantaged', () => {
+    renderWithRouter(<App />);
+    const moreDetails = screen.getByRole('link', { name: /more details/i });
+    userEvent.click(moreDetails);
+    const checkbox = screen.getByRole('checkbox', { name: /pokémon favoritado\?/i });
+    userEvent.click(checkbox);
+    const favoriteStar = screen
+      .getByRole('img', { name: /pikachu is marked as favorite/i });
+    userEvent.click(checkbox);
+    expect(favoriteStar).not.toBeInTheDocument();
+  });
 });
