@@ -37,13 +37,14 @@ describe('ver se é renderizado um card com as informações do pokémon', () =>
     const { getByText, history } = renderWithRouter(<Pokemon
       pokemon={ pokemons[0] }
     />);
+
     const linkMoreDetails = getByText(/More Details/i);
 
     expect(linkMoreDetails).toBeInTheDocument();
 
     userEvent.click(linkMoreDetails);
-    const { pathname } = history.location;
+    const { pathname } = history.location; // busca pela url
 
-    expect(pathname).toBe('/pokemons/25');
+    expect(pathname).toBe('/pokemons/25'); // url
   });
 });
