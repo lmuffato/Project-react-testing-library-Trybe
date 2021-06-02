@@ -19,7 +19,7 @@ describe('test component Pokémon', () => {
   it('Correct Average weigth', () => {
     const { getByTestId } = renderWithRouter(<Pokemon pokemon={ pokemons[0] } />);
     const pokemonWeigth = getByTestId('pokemon-weight');
-    expect(pokemonWeigth.textContent).toContain('6.0');
+    expect(pokemonWeigth.textContent).toBe('Average weight: 6.0 kg');
   });
 
   it('Have a Image of Pokemon', () => {
