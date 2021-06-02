@@ -57,7 +57,3 @@ describe('Test the "PokemonDetails" component - Requirement 7', () => {
     expect(favoritedImg).not.toBeInTheDocument();
   });
 });
-
-// Acessar os elementos da sua tela
-// Interagir com eles (se houver necessidade)
-// Fazer seu teste
