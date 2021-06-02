@@ -1,14 +1,19 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router';
 import App from '../App';
 
-test('renders a reading with the text `Pokédex`', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const heading = getByText(/Pokédex/i);
-  expect(heading).toBeInTheDocument();
+test('O primeiro link deve possuir o texto Home.', () => {
+  render(<App />, { wrapper: MemoryRouter });
+  screen.getByText(/home/i);
+});
+
+test('O segundo link deve possuir o texto About.', () => {
+  render(<App />, { wrapper: MemoryRouter });
+  screen.getByText(/about/i);
+});
+
+test('O terceiro link deve possuir o texto Favorite Pokémons.', () => {
+  render(<App />, { wrapper: MemoryRouter });
+  screen.getByText(/favorite pokémons/i);
 });
