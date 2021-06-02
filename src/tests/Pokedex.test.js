@@ -102,6 +102,7 @@ describe('Requisito 5', () => {
       }
     });
   });
+
   test('O botão de Próximo pokémon deve ser desabilitado quando a lista filtrada'
    + 'de Pokémons tiver um só pokémon', () => {
     renderWithRouter(<App />);
@@ -117,7 +118,6 @@ describe('Requisito 5', () => {
       const buttonNextPokemon = screen.getByTestId(nextPokemonConst);
       if (pokemonsType.length === 1) {
         expect(buttonNextPokemon).toHaveAttribute('disabled');
-        console.log('botao disabilitado');
       } else {
         expect(buttonNextPokemon).not.toHaveAttribute('disabled');
       }
