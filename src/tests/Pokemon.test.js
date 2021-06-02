@@ -45,7 +45,22 @@ describe('Testa os componentes do cardPokemon', () => {
     expect(linkDetails).toHaveAttribute('href', `/pokemons/${idDragonClick}`);
     // Poderia refatorar, em função do idDragonclick
   });
-  test('Se clicar em exibir detalhes deve redirecionar p/ pagina', () => {
+  test('Se ao clicar em exibir detalhes redireciona para devida pagina', () => {
+    const { history } = renderWithRouter(<App />);
+    dragonClick();
+    const linkDetails = screen.getByRole('link', {
+      name: 'More details',
+    });
+    userEvent.click(linkDetails);
+    const pokeDetails = screen.getByText('Dragonair Details');
+    const summary = screen.getByRole('heading', {
+      name: 'Summary',
+      level: 2,
+    });
+    expect(pokeDetails).toBeInTheDocument();
+    expect(summary).toBeInTheDocument();
+  });
+  test('Se clicar em exibir detalhes deve redirecionar p/ url especifica', () => {
     const { history } = renderWithRouter(<App />);
     dragonClick();
     const linkDetails = screen.getByRole('link', {
@@ -54,5 +69,18 @@ describe('Testa os componentes do cardPokemon', () => {
     userEvent.click(linkDetails);
     const { pathname } = history.location;
     expect(pathname).toBe('/pokemons/148');
+  });
+  test('testa a imagem da estrela de favoritado', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/pokemons/148');
+    const favorite = screen.getByLabelText('Pokémon favoritado?');
+    expect(favorite).toBeInTheDocument();
+    userEvent.click(favorite);
+    const favoritado = screen.getByRole('checkbox', { checked: true });
+    expect(favoritado).toBeInTheDocument();
+    const star = screen.getByRole('img', {
+      name: 'Dragonair is marked as favorite',
+    });
+    expect(star).toHaveAttribute('src', '/star-icon.svg');
   });
 });
