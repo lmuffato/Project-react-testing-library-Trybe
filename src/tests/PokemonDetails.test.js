@@ -38,4 +38,21 @@ describe('Testes das informações detalhadas do Pokémon selecionado na tela.',
     const dragonairDetails = screen.getByRole('heading', { name: 'Dragonair Details' });
     expect(dragonairDetails).toBeInTheDocument();
   });
+  test('testa que não há link para mais detalhes em <PokemonDetails>', () => {
+  // Falta o teste do link nao estar na pagina
+  });
+  test('seção de detalhes deve conter um heading h2 com o texto Summary', () => {
+    gettingDragonairDetails2();
+    const summary = screen.getByRole('heading', {
+      name: 'Summary',
+      level: 2,
+    });
+    expect(summary).toBeInTheDocument();
+  });
+  test('seção detalhes deve conter um <p> com o resumo do Pokémon específico', () => {
+    gettingDragonairDetails();
+    const dragonairSummary = /They say that if it emits an aura from its whole body/;
+    const dragSum = screen.getByText(dragonairSummary);
+    expect(dragSum).toBeInTheDocument();
+  });
 });
