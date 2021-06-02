@@ -9,4 +9,12 @@ describe('Testes sobre componente Pokedex.', () => {
     const h2Tag = getByText(/Encountered pokémons/i);
     expect(h2Tag).toBeInTheDocument();
   });
+
+  it('Deve haver um botão com o texto: "Próximo Pokemon"', () => {
+    const { getByRole } = renderWithRouter(<App />);
+    const botao = getByRole('button', {
+      name: /próximo pokémon/i,
+    });
+    expect(botao).toBeInTheDocument();
+  });
 });
