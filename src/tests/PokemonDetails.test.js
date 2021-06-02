@@ -26,9 +26,9 @@ function gettingDragonairDetails2() {
 describe('Testes das informações detalhadas do Pokémon selecionado na tela.', () => {
   test('conter um texto <name> Details, onde <name> é o nome do Pokémon', () => {
     gettingDragonairDetails2();
-    const pokemonName = screen.getByTestId(pokeName);
+    const pokemonName = screen.getAllByTestId(pokeName);
     const pokemonDetails = screen.getByRole('heading', {
-      name: `${pokemonName.innerHTML} Details`,
+      name: `${pokemonName[0].innerHTML} Details`,
       level: 2,
     });
     expect(pokemonDetails).toBeInTheDocument();
@@ -54,5 +54,30 @@ describe('Testes das informações detalhadas do Pokémon selecionado na tela.',
     const dragonairSummary = /They say that if it emits an aura from its whole body/;
     const dragSum = screen.getByText(dragonairSummary);
     expect(dragSum).toBeInTheDocument();
+  });
+});
+describe('existe <PokemonDetails> uma seção com os mapas da loc. do pokémo', () => {
+  test('testa <h2> com Game Location s{pokemonName}', () => {
+    gettingDragonairDetails2();
+    const gameLocation = screen.getByRole('heading', {
+      name: /Game Locations/,
+      level: 2,
+    });
+    expect(gameLocation).toBeInTheDocument();
+
+    const pokemonName = screen.getAllByTestId(pokeName);
+    const gameLocation2 = screen.getByRole('heading', {
+      name: `Game Locations of ${pokemonName[0].innerHTML}`,
+      level: 2,
+    });
+    expect(gameLocation2).toBeInTheDocument();
+  });
+  test('as localizações do Pokémon devem ser mostradas', () => {
+    gettingDragonairDetails();
+    const totalImgLocDragonair = 2;
+    const pokemonName = screen.getAllByTestId(pokeName);
+    const locations = screen.getAllByAltText(`${pokemonName[0].innerHTML} location`);
+    expect(locations[0]).toBeInTheDocument();
+    expect(locations.length).toBe(totalImgLocDragonair);
   });
 });
