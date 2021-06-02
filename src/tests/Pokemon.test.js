@@ -45,4 +45,14 @@ describe('Testa os componentes do cardPokemon', () => {
     expect(linkDetails).toHaveAttribute('href', `/pokemons/${idDragonClick}`);
     // Poderia refatorar, em função do idDragonclick
   });
+  test('Se clicar em exibir detalhes deve redirecionar p/ pagina', () => {
+    const { history } = renderWithRouter(<App />);
+    dragonClick();
+    const linkDetails = screen.getByRole('link', {
+      name: 'More details',
+    });
+    userEvent.click(linkDetails);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/pokemons/148');
+  });
 });
