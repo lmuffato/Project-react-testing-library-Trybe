@@ -20,4 +20,10 @@ describe('Testa os componentes do cardPokemon', () => {
     const pokemonName = screen.getByTestId(pokeName);
     expect(pokemonName.innerHTML).toBe('Dragonair');
   });
+  test('O peso médio pokémon deve ser exibido com um texto no formato certo', () => {
+    renderWithRouter(<App />);
+    dragonClick();
+    const pokeWeight = screen.getByTestId('pokemon-weight');
+    expect(pokeWeight.innerHTML).toBe('Average weight: 16.5 kg');
+  });
 });
