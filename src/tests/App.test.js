@@ -51,7 +51,7 @@ describe('Testes de redirecionamento', () => {
     expect(pathname).toBe('/favorites');
   });
   test(`Teste se a aplicação é redirecionada para a página Not Found
-  ao entrar em uma URL desconhecida.`, () => {
+  ao entrar em uma U  RL desconhecida.`, () => {
     const { history, getByText } = renderWithRouter(<App />);
     history.push('/xablau');
     const notFound = getByText('Page requested not found');
