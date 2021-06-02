@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent } from '@testing-library/dom';
 import App from '../App';
 import renderWithRouter from '../components/renderWithRouter';
-import pokemons from '../data';
+import pokemons from '../data'
 
 describe('5. Teste o componente <Pokedex.js />', () => {
   it('Teste se página contém um heading h2 com o texto Encountered pokémons.', () => {
@@ -30,5 +30,11 @@ describe('5. Teste o componente <Pokedex.js />', () => {
 
     /* O primeiro Pokémon da lista deve ser mostrado ao clicar no botão, se estiver no último Pokémon da lista; */
     expect(getByText('Pikachu')).toBeInTheDocument();
+  });
+
+  it('Teste se é mostrado apenas um Pokémon por vez.', () => {
+    const { getAllByTestId } = renderWithRouter(<App />);7
+
+    expect(getAllByTestId('pokemon-name').length).toBe(1);
   });
 });
