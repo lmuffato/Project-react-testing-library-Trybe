@@ -40,6 +40,16 @@ describe('Testes sobre componente Pokedex.', () => {
     expect(botaoFiltro[0]).toHaveTextContent('Electric');
   });
 
+  it('Testa o funcionamento do botão de reset.', () => {
+    const { getByRole, getByText } = renderWithRouter(<App />);
+    const pikachu = getByText('Pikachu');
+    const botaoDeReset = getByRole('button', {
+      name: /all/i,
+    });
+    userEvent.click(botaoDeReset);
+    expect(pikachu).toBeInTheDocument();
+  });
+
   it('Teste se é mostrado apenas um Pokémon por vez.', () => {
     const { getAllByTestId } = renderWithRouter(<App />);
     expect(getAllByTestId('pokemon-name').length).toBe(1);
