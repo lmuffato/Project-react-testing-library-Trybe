@@ -6,6 +6,7 @@ import App from '../App';
 
 const pokeType = 'pokemon-type';
 const pokeName = 'pokemon-name';
+const moreDetails = 'More details';
 
 function dragonClick() {
   const dragonButton = screen.getByRole('button', { name: /dragon/i });
@@ -39,17 +40,17 @@ describe('Testa os componentes do cardPokemon', () => {
     dragonClick();
     const idDragonClick = 148;
     const linkDetails = screen.getByRole('link', {
-      name: 'More details',
+      name: moreDetails,
     });
     expect(linkDetails).toBeInTheDocument();
     expect(linkDetails).toHaveAttribute('href', `/pokemons/${idDragonClick}`);
     // Poderia refatorar, em função do idDragonclick
   });
   test('Se ao clicar em exibir detalhes redireciona para devida pagina', () => {
-    const { history } = renderWithRouter(<App />);
+    renderWithRouter(<App />);
     dragonClick();
     const linkDetails = screen.getByRole('link', {
-      name: 'More details',
+      name: moreDetails,
     });
     userEvent.click(linkDetails);
     const pokeDetails = screen.getByText('Dragonair Details');
@@ -64,7 +65,7 @@ describe('Testa os componentes do cardPokemon', () => {
     const { history } = renderWithRouter(<App />);
     dragonClick();
     const linkDetails = screen.getByRole('link', {
-      name: 'More details',
+      name: moreDetails,
     });
     userEvent.click(linkDetails);
     const { pathname } = history.location;
