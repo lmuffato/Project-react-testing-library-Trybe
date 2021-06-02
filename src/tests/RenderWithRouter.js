@@ -7,7 +7,7 @@ function renderWithRouter(component) {
   const history = createMemoryHistory();
   return (
     { ...render(<Router history={ history }>{ component }</Router>), history }
-  )
+  );
 }
 
 export default renderWithRouter;

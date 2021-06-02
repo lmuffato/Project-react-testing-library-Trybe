@@ -1,9 +1,9 @@
 import React from 'react';
-import renderWithRouter from './RenderWithRouter';
 import { MemoryRouter } from 'react-router-dom';
 import { screen, render } from '@testing-library/react';
-import App from '../App';
 import userEvent from '@testing-library/user-event';
+import App from '../App';
+import renderWithRouter from './RenderWithRouter';
 
 test('renders a reading with the text `Pokédex`', () => {
   const { getByText } = render(
@@ -17,7 +17,7 @@ test('renders a reading with the text `Pokédex`', () => {
 
 test('shows the Pokédex when the route is `/`', () => {
   const { getByText } = render(
-    <MemoryRouter initialEntries={['/']}>
+    <MemoryRouter initialEntries={ ['/'] }>
       <App />
     </MemoryRouter>,
   );
@@ -26,7 +26,7 @@ test('shows the Pokédex when the route is `/`', () => {
 });
 
 test('renders home when loading the URL path `/`', () => {
-  const { history:{ location:{ pathname } } } = renderWithRouter((<App />));
+  const { history: { location: { pathname } } } = renderWithRouter((<App />));
   expect(pathname).toBe('/');
 });
 
@@ -53,13 +53,13 @@ test('page header contains nav links `home`, `about` and `favorite`', () => {
 
 describe('redirection tests', () => {
   test('clicking on `Home` redirects to `/`', () => {
-    const { history:{ location:{ pathname } } } = renderWithRouter((<App />));
+    const { history: { location: { pathname } } } = renderWithRouter((<App />));
     const home = screen.getByRole('link', {
       name: /home/i,
     });
     userEvent.click(home);
     expect(pathname).toBe('/');
-  })
+  });
 
   test('clicking on `About` redirects to `/about`', () => {
     const { history } = renderWithRouter((<App />));
@@ -69,7 +69,7 @@ describe('redirection tests', () => {
     userEvent.click(about);
     const { pathname } = history.location;
     expect(pathname).toBe('/about');
-  })
+  });
 
   test('clicking on `Favorite Pokémons` redirects to `/favorites`', () => {
     const { history } = renderWithRouter((<App />));
@@ -79,12 +79,12 @@ describe('redirection tests', () => {
     userEvent.click(favorite);
     const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
-  })
+  });
 
   test('redirects to Not Found on clicking on an unknown URL', () => {
     const { history } = renderWithRouter((<App />));
     history.push('/random');
     const notFound = screen.getByText('Page requested not found');
     expect(notFound).toBeInTheDocument();
-  })
-})
+  });
+});
