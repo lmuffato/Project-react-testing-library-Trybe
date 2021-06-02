@@ -34,6 +34,12 @@ describe('Testes sobre componente Pokedex.', () => {
     expect(pikachu).toBeInTheDocument();
   });
 
+  it('Testa se há um botões de filtro.', () => {
+    const { getAllByTestId } = renderWithRouter(<App />);
+    const botaoFiltro = getAllByTestId('pokemon-type-button');
+    expect(botaoFiltro[0]).toHaveTextContent('Electric');
+  });
+
   it('Teste se é mostrado apenas um Pokémon por vez.', () => {
     const { getAllByTestId } = renderWithRouter(<App />);
     expect(getAllByTestId('pokemon-name').length).toBe(1);
