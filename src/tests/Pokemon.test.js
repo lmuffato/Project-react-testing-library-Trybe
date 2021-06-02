@@ -1,30 +1,29 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
-import App from '../App';
 import { Pokemon } from '../components';
 import pokemons from '../data';
 
 describe('test component Pokémon', () => {
   it('Correct name of Pokémon', () => {
-    const { getByTestId } = renderWithRouter(<App />);
+    const { getByTestId } = renderWithRouter(<Pokemon pokemon={ pokemons[0] } />);
     const pokemonName = getByTestId('pokemon-name');
-    expect(pokemonName.textContent).toBe('Pikachu');
+    expect(pokemonName.textContent).toContain('Pikachu');
   });
   it('Correct Type of Pokémon', () => {
-    const { getByTestId } = renderWithRouter(<App />);
+    const { getByTestId } = renderWithRouter(<Pokemon pokemon={ pokemons[0] } />);
     const pokemonType = getByTestId('pokemon-type');
     expect(pokemonType.textContent).toBe('Electric');
   });
 
   it('Correct Average weigth', () => {
-    const { getByTestId } = renderWithRouter(<App />);
+    const { getByTestId } = renderWithRouter(<Pokemon pokemon={ pokemons[0] } />);
     const pokemonWeigth = getByTestId('pokemon-weight');
     expect(pokemonWeigth.textContent).toContain('6.0');
   });
 
   it('Have a Image of Pokemon', () => {
-    renderWithRouter(<App />);
+    renderWithRouter(<Pokemon pokemon={ pokemons[0] } />);
     const pokemonImage = document.querySelector('img');
     expect(pokemonImage.alt).toContain('Pikachu sprite');
     expect(pokemonImage.src).toContain('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
