@@ -61,6 +61,7 @@ describe('Requisito 7', () => {
     });
 
   test('O usuário pode favoritar um pokémon através da página de detalhes.', () => {
+    screen.getByText(/pokémon favoritado/i);
     const inputFavoritePokemon = screen.getByRole('checkbox');
     expect(inputFavoritePokemon).toBeInTheDocument();
     userEvent.click(inputFavoritePokemon);
@@ -70,21 +71,3 @@ describe('Requisito 7', () => {
     expect(pokemonName[0]).toBeInTheDocument();
   });
 });
-
-/* <img
-        alt="Pikachu sprite"
-        src="https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png"
-      />
-      <img
-        alt="Pikachu is marked as favorite"
-        class="favorite-icon"
-        src="/star-icon.svg"
-      />
-      <img
-        alt="Pikachu location"
-        src="https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png"
-      />
-      <img
-        alt="Pikachu location"
-        src="https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png"
-      /> */
