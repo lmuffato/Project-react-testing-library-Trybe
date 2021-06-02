@@ -40,8 +40,17 @@ describe('5. Teste o componente <Pokedex.js />', () => {
 
   it('Teste se a Pokédex tem os botões de filtro.', () => {
     const { getAllByTestId } = renderWithRouter(<App />);
-    const typeBtn = getAllByTestId('pokemon-type-button');
+    const filterButton = getAllByTestId('pokemon-type-button');
 
-    expect(typeBtn[0]).toHaveTextContent('Electric');
+    expect(filterButton[0]).toHaveTextContent('Electric');
+  });
+
+  it('Teste se a Pokédex contém um botão para resetar o filtro', () => {
+    const { getByRole, getByText } = renderWithRouter(<App />);
+    const resetButton = getByRole('button', {
+      name: /all/i,
+    });
+    fireEvent.click(resetButton);
+    expect(getByText('Pikachu')).toBeInTheDocument();
   });
 });
