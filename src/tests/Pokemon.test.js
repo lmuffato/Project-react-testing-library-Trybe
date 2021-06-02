@@ -26,4 +26,12 @@ describe('Testa os componentes do cardPokemon', () => {
     const pokeWeight = screen.getByTestId('pokemon-weight');
     expect(pokeWeight.innerHTML).toBe('Average weight: 16.5 kg');
   });
+  test('A imagem do Pokémon deve ser exibida.', () => {
+    renderWithRouter(<App />);
+    dragonClick();
+    const pokemonName = screen.getByTestId(pokeName).innerHTML;
+    const image = screen.getByRole('img');
+    expect(image).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/2/2c/Spr_5b_148.png');
+    expect(image).toHaveAttribute('alt', `${pokemonName} sprite`);
+  });
 });
