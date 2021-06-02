@@ -8,9 +8,11 @@ import App from '../App';
 
 describe('Test of app, render and nav', () => {
   test('Rendeniza na tela', () => {
-    renderWithRouter(<App />);
+    const { history } = renderWithRouter(<App />);
+    const { pathname } = history.location;
     const title = screen.getByText('Pokédex');
     expect(title).toBeInTheDocument();
+    expect(pathname).toBe('/');
   });
   test('Encontra os links de navegação', () => {
     renderWithRouter(<App />);
