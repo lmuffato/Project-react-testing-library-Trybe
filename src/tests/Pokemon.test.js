@@ -27,7 +27,7 @@ describe('ver se é renderizado um card com as informações do pokémon', () =>
       isFavorite
     />); // pokemon e isFavorite são as props obrigatorias do componente Pokemon
 
-    const favIcon = getByAltText(/is marked as favorite/i);
+    const favIcon = getByAltText(/Pikachu is marked as favorite/i);
     const starIcon = '/star-icon.svg';
 
     expect(favIcon).toHaveAttribute('src', starIcon);
