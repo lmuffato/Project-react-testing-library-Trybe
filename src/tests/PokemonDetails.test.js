@@ -44,4 +44,16 @@ describe('renders a section with maps containing the locations of the pokémon',
       .getByRole('heading', { level: 2, name: /game locations of pikachu/i });
     expect(header).toBeInTheDocument();
   });
+
+  it('render maps image', () => {
+    renderWithRouter(<App />);
+    const moreDetails = screen.getByRole('link', { name: /more details/i });
+    userEvent.click(moreDetails);
+    const mapsImages = screen.getAllByAltText(/pikachu location/i);
+    expect(mapsImages).toHaveLength(2);
+    expect(mapsImages[0])
+      .toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
+    expect(mapsImages[1])
+      .toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
+  });
 });
