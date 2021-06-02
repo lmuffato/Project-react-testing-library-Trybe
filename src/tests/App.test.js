@@ -16,6 +16,8 @@ describe('Test of app, render and nav', () => {
   });
   test('Encontra os links de navegação', () => {
     renderWithRouter(<App />);
+    const nav = screen.getByRole('navigation');
+    expect(nav).toBeInTheDocument();
     const links = screen.getAllByRole('link');
     expect(links[0]).toHaveTextContent('Home');
     expect(links[1]).toHaveTextContent('About');
