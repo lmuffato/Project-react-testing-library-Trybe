@@ -34,4 +34,15 @@ describe('Testa os componentes do cardPokemon', () => {
     expect(image).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/2/2c/Spr_5b_148.png');
     expect(image).toHaveAttribute('alt', `${pokemonName} sprite`);
   });
+  test('Se possui link de exibir detalhes', () => {
+    renderWithRouter(<App />);
+    dragonClick();
+    const idDragonClick = 148;
+    const linkDetails = screen.getByRole('link', {
+      name: 'More details',
+    });
+    expect(linkDetails).toBeInTheDocument();
+    expect(linkDetails).toHaveAttribute('href', `/pokemons/${idDragonClick}`);
+    // Poderia refatorar, em função do idDragonclick
+  });
 });
