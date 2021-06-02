@@ -9,12 +9,12 @@ const pokeName = 'pokemon-name';
 const moreDetails = 'More details';
 
 function dragonClick() {
+  renderWithRouter(<App />);
   const dragonButton = screen.getByRole('button', { name: /dragon/i });
   userEvent.click(dragonButton);
 }
 describe('Testa os componentes do cardPokemon', () => {
   test('Testa se o nome e tipo correto do pokemon aparece na tela', () => {
-    renderWithRouter(<App />);
     dragonClick();
     const pokemonType = screen.getByTestId(pokeType);
     expect(pokemonType.innerHTML).toBe('Dragon');
@@ -22,13 +22,11 @@ describe('Testa os componentes do cardPokemon', () => {
     expect(pokemonName.innerHTML).toBe('Dragonair');
   });
   test('O peso médio pokémon deve ser exibido com um texto no formato certo', () => {
-    renderWithRouter(<App />);
     dragonClick();
     const pokeWeight = screen.getByTestId('pokemon-weight');
     expect(pokeWeight.innerHTML).toBe('Average weight: 16.5 kg');
   });
   test('A imagem do Pokémon deve ser exibida.', () => {
-    renderWithRouter(<App />);
     dragonClick();
     const pokemonName = screen.getByTestId(pokeName).innerHTML;
     const image = screen.getByRole('img');
@@ -36,7 +34,6 @@ describe('Testa os componentes do cardPokemon', () => {
     expect(image).toHaveAttribute('alt', `${pokemonName} sprite`);
   });
   test('Se possui link de exibir detalhes', () => {
-    renderWithRouter(<App />);
     dragonClick();
     const idDragonClick = 148;
     const linkDetails = screen.getByRole('link', {
@@ -47,7 +44,6 @@ describe('Testa os componentes do cardPokemon', () => {
     // Poderia refatorar, em função do idDragonclick
   });
   test('Se ao clicar em exibir detalhes redireciona para devida pagina', () => {
-    renderWithRouter(<App />);
     dragonClick();
     const linkDetails = screen.getByRole('link', {
       name: moreDetails,
@@ -63,7 +59,8 @@ describe('Testa os componentes do cardPokemon', () => {
   });
   test('Se clicar em exibir detalhes deve redirecionar p/ url especifica', () => {
     const { history } = renderWithRouter(<App />);
-    dragonClick();
+    const dragonButton = screen.getByRole('button', { name: /dragon/i });
+    userEvent.click(dragonButton);
     const linkDetails = screen.getByRole('link', {
       name: moreDetails,
     });
