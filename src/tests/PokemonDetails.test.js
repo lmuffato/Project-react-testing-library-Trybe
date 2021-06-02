@@ -72,12 +72,26 @@ describe('existe <PokemonDetails> uma seção com os mapas da loc. do pokémo', 
     });
     expect(gameLocation2).toBeInTheDocument();
   });
-  test('as localizações do Pokémon devem ser mostradas', () => {
+  test('as localizações do pokemon, e nomes destas, devem ser mostradas', () => {
     gettingDragonairDetails();
+    // testa se há imagens de localização
     const totalImgLocDragonair = 2;
     const pokemonName = screen.getAllByTestId(pokeName);
     const locations = screen.getAllByAltText(`${pokemonName[0].innerHTML} location`);
     expect(locations[0]).toBeInTheDocument();
     expect(locations.length).toBe(totalImgLocDragonair);
+    // testando nome das rotas
+    const johtoRoute45 = screen.getByText(/Route 45/);
+    const johtonDragonsDen = screen.getByText(/Johto Dragon/);
+    expect(johtoRoute45).toBeInTheDocument();
+    expect(johtonDragonsDen).toBeInTheDocument();
+  });
+  test('A img-loc ter atributo src com URL da localização, alt pokename location', () => {
+    gettingDragonairDetails();
+    const pokemonName = screen.getAllByTestId(pokeName);
+    const locations = screen.getAllByRole('img', {
+      name: `${pokemonName[0].innerHTML} location`,
+    });
+    expect(locations[0]).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/2/21/Johto_Route_45_Map.png');
   });
 });
