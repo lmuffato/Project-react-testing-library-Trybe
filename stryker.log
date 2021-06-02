@@ -540,3 +540,545 @@ Error: Child process [pid 9128] exited unexpectedly with exit code 1 (without si
     at InitialTestExecutor.run (C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\process\InitialTestExecutor.js:41:14)
     at processTicksAndRejections (internal/process/task_queues.js:97:5)
     at async Stryker.runMutationTest (C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\Stryker.js:53:38)
+20:17:27 (7028) INFO ConfigReader Using stryker.conf.json
+20:17:28 (7028) DEBUG BroadcastReporter Broadcasting to reporters ["progress","clear-text","html"]
+20:17:27 (7028) DEBUG ConfigReader Loading config C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\stryker.conf.json
+20:17:27 (7028) DEBUG ConfigReader Loaded config: {
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "mutate": [
+    "src/components/About.js",
+    "src/App.js",
+    "src/components/FavoritePokemons.js",
+    "src/components/NotFound.js",
+    "src/components/Pokedex.js",
+    "src/components/Pokemon.js",
+    "src/components/PokemonDetails.js"
+  ],
+  "mutator": {
+    "name": "javascript",
+    "excludedMutations": [
+      "ArithmeticOperator",
+      "ArrayDeclaration",
+      "ArrowFunction",
+      "BlockStatement",
+      "BooleanLiteral",
+      "ConditionalExpression",
+      "EqualityOperator",
+      "LogicalOperator",
+      "ObjectLiteral",
+      "UnaryOperator",
+      "UpdateOperator"
+    ]
+  },
+  "testRunner": "jest",
+  "reporters": [
+    "progress",
+    "clear-text",
+    "html"
+  ],
+  "coverageAnalysis": "off",
+  "jest": {
+    "projectType": "create-react-app"
+  },
+  "allowConsoleColors": true,
+  "commandRunner": {
+    "command": "npm test"
+  },
+  "clearTextReporter": {
+    "allowColor": true,
+    "logTests": true,
+    "maxTestsToLog": 3
+  },
+  "dashboard": {
+    "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+    "reportType": "full"
+  },
+  "eventReporter": {
+    "baseDir": "reports/mutation/events"
+  },
+  "fileLogLevel": "trace",
+  "logLevel": "debug",
+  "maxConcurrentTestRunners": 9007199254740991,
+  "plugins": [
+    "@stryker-mutator/*"
+  ],
+  "symlinkNodeModules": true,
+  "tempDirName": ".stryker-tmp",
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": null
+  },
+  "timeoutFactor": 1.5,
+  "timeoutMS": 5000,
+  "transpilers": [],
+  "warnings": true,
+  "configFile": "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\stryker.conf.json"
+}
+20:17:27 (7028) DEBUG PluginLoader Loading @stryker-mutator/* from C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator
+20:17:27 (7028) DEBUG PluginLoader Loading plugin "C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\javascript-mutator" (matched with expression @stryker-mutator/*)
+20:17:27 (7028) DEBUG PluginLoader Loading plugin "C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\jest-runner" (matched with expression @stryker-mutator/*)
+20:17:27 (7028) DEBUG PluginLoader Loading plugins C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\javascript-mutator
+20:17:27 (7028) DEBUG PluginLoader Loading plugins C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\jest-runner
+20:17:28 (7028) DEBUG PluginLoader Loading plugins C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\reporters\index.js
+20:17:28 (7028) DEBUG buildSchemaWithPluginContributions Contributing 1 schemas from plugins to options validation.
+20:17:28 (7028) INFO InputFileResolver Found 7 of 63 file(s) to be mutated.
+20:17:28 (7028) DEBUG InputFileResolver All input files: [
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\.babelrc.json",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\.eslintignore",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\.eslintrc.json",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\.github\\CODEOWNERS",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\.github\\workflows\\main.yml",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\.gitignore",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\.stylelintignore",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\.stylelintrc.json",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\.trybe\\requirements.json",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\README.md",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\package-lock.json",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\package.json",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\public\\favicon.ico",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\public\\index.html",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\public\\logo192.png",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\public\\logo512.png",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\public\\manifest.json",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\public\\robots.txt",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\public\\star-icon.svg",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\App.css",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\App.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\components\\About.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\components\\Button.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\components\\FavoritePokemons.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\components\\NotFound.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\components\\Pokedex.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\components\\Pokemon.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\components\\PokemonDetails.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\components\\about.css",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\components\\button.css",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\components\\favorite-pokemons.css",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\components\\index.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\components\\not-found.css",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\components\\pokedex.css",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\components\\pokemon-details.css",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\components\\pokemon.css",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\data.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\index.css",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\index.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\logo.svg",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\renderWithRouter.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\serviceWorker.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\services\\pokedexService.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\setupTests.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\tests\\About.test.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\tests\\App.test.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\tests\\FavoritePokemons.test.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\tests\\NotFound.test.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\tests\\Pokedex.test.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\tests\\Pokemon.test.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\tests\\PokemonDetails.test.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\types\\index.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\stryker.conf.json",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\stryker.log",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\stryker\\About.conf.json",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\stryker\\App.conf.json",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\stryker\\FavoritePokemons.conf.json",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\stryker\\NotFound.conf.json",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\stryker\\Pokedex.conf.json",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\stryker\\Pokemon.conf.json",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\stryker\\PokemonDetails.conf.json",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\testefalhando.png",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\testepassando.png"
+]
+20:17:28 (7028) DEBUG InputFileResolver Files to mutate: [
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\App.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\components\\About.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\components\\FavoritePokemons.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\components\\NotFound.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\components\\Pokedex.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\components\\Pokemon.js",
+  "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\src\\components\\PokemonDetails.js"
+]
+20:17:28 (7028) DEBUG TemporaryDirectory Using temp directory "C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\.stryker-tmp"
+20:17:28 (7028) DEBUG TestFrameworkOrchestrator The `coverageAnalysis` setting is "off", not hooking into the test framework to achieve performance benefits.
+20:17:28 (7028) INFO InitialTestExecutor Starting initial test run. This may take a while.
+20:17:28 (7028) DEBUG Sandbox Creating a sandbox for files in C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\.stryker-tmp\sandbox375116
+20:17:28 (7028) DEBUG Sandbox Creating test runner 0
+20:17:28 (7028) DEBUG ChildProcessProxy Starting C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\test-runner\ChildProcessTestRunnerWorker.js in child process 7436
+20:17:28 (7436) DEBUG ChildProcessProxyWorker Changing current working directory for this process to C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\.stryker-tmp\sandbox375116
+20:17:28 (7436) DEBUG PluginLoader Loading @stryker-mutator/* from C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator
+20:17:28 (7436) DEBUG PluginLoader Loading plugin "C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\javascript-mutator" (matched with expression @stryker-mutator/*)
+20:17:28 (7436) DEBUG PluginLoader Loading plugin "C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\jest-runner" (matched with expression @stryker-mutator/*)
+20:17:28 (7436) DEBUG PluginLoader Loading plugins C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\javascript-mutator
+20:17:28 (7436) DEBUG PluginLoader Loading plugins C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\jest-runner
+20:17:29 (7436) DEBUG PluginLoader Loading plugins C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\reporters\index.js
+20:17:29 (7436) TRACE JestTestRunner Merging file-based config {
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "collectCoverageFrom": [
+    "**/*.{js,jsx}",
+    "!src/index.js",
+    "!src/serviceWorker.js"
+  ],
+  "setupFiles": [
+    "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\node_modules\\react-app-polyfill\\jsdom.js"
+  ],
+  "setupFilesAfterEnv": [
+    "<rootDir>/src/setupTests.js"
+  ],
+  "testMatch": [
+    "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+    "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+  ],
+  "testEnvironment": "jest-environment-jsdom-fourteen",
+  "transform": {
+    "^.+\\.(js|jsx|ts|tsx)$": "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\babelTransform.js",
+    "^.+\\.css$": "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\cssTransform.js",
+    "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\fileTransform.js"
+  },
+  "transformIgnorePatterns": [
+    "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
+    "^.+\\.module\\.(css|sass|scss)$"
+  ],
+  "modulePaths": [],
+  "moduleNameMapper": {
+    "^react-native$": "react-native-web",
+    "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+  },
+  "moduleFileExtensions": [
+    "web.js",
+    "js",
+    "web.ts",
+    "ts",
+    "web.tsx",
+    "tsx",
+    "json",
+    "web.jsx",
+    "jsx",
+    "node"
+  ],
+  "watchPlugins": [
+    "jest-watch-typeahead/filename",
+    "jest-watch-typeahead/testname"
+  ],
+  "rootDir": "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\.stryker-tmp\\sandbox375116"
+} 
+      with custom config {}
+      and default (internal) stryker config [object Object]
+20:17:29 (7436) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+20:17:29 (7436) DEBUG JestTestRunner Project root is C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\.stryker-tmp\sandbox375116
+20:17:29 (7028) DEBUG TimeoutDecorator Starting timeout timer (300000 ms) for a test run
+20:17:29 (7436) TRACE JestLessThan25TestAdapter Invoking Jest with config {"roots":["<rootDir>/src"],"collectCoverageFrom":["**/*.{js,jsx}","!src/index.js","!src/serviceWorker.js"],"setupFiles":["C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\node_modules\\react-app-polyfill\\jsdom.js"],"setupFilesAfterEnv":["<rootDir>/src/setupTests.js"],"testMatch":["<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}","<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"],"testEnvironment":"jest-environment-jsdom-fourteen","transform":{"^.+\\.(js|jsx|ts|tsx)$":"C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\babelTransform.js","^.+\\.css$":"C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\cssTransform.js","^(?!.*\\.(js|jsx|ts|tsx|css|json)$)":"C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\fileTransform.js"},"transformIgnorePatterns":["[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$","^.+\\.module\\.(css|sass|scss)$"],"modulePaths":[],"moduleNameMapper":{"^react-native$":"react-native-web","^.+\\.module\\.(css|sass|scss)$":"identity-obj-proxy"},"moduleFileExtensions":["web.js","js","web.ts","ts","web.tsx","tsx","json","web.jsx","jsx","node"],"watchPlugins":["jest-watch-typeahead/filename","jest-watch-typeahead/testname"],"rootDir":"C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\.stryker-tmp\\sandbox375116","collectCoverage":false,"verbose":false,"bail":false,"notify":false,"reporters":[]}
+20:17:29 (7028) TRACE ChildProcessProxy No tests found, exiting with code 1
+Run with `--passWithNoTests` to exit with code 0
+In C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\.stryker-tmp\sandbox375116
+  23 files checked.
+  testMatch: C:/Users/ADM/Documents/turma10-triboa/projetos/sd-010-a-project-react-testing-library\.stryker-tmp/sandbox375116/src/**/__tests__/**/*.{js,jsx,ts,tsx}, C:/Users/ADM/Documents/turma10-triboa/projetos/sd-010-a-project-react-testing-library\.stryker-tmp/sandbox375116/src/**/*.{spec,test}.{js,jsx,ts,tsx} - 0 matches
+  testPathIgnorePatterns: \\node_modules\\ - 23 matches
+  testRegex:  - 0 matches
+Pattern:  - 0 matches
+
+20:17:29 (7028) ERROR log4js A worker log process hung up unexpectedly Error: read ECONNRESET
+    at TCP.onStreamRead (internal/stream_base_commons.js:205:27) {
+  errno: 'ECONNRESET',
+  code: 'ECONNRESET',
+  syscall: 'read'
+}
+20:17:29 (7028) WARN ChildProcessProxy Child process [pid 7436] exited unexpectedly with exit code 1 (without signal). Last part of stdout and stderr was:
+	No tests found, exiting with code 1
+	Run with `--passWithNoTests` to exit with code 0
+	In C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\.stryker-tmp\sandbox375116
+	  23 files checked.
+	  testMatch: C:/Users/ADM/Documents/turma10-triboa/projetos/sd-010-a-project-react-testing-library\.stryker-tmp/sandbox375116/src/**/__tests__/**/*.{js,jsx,ts,tsx}, C:/Users/ADM/Documents/turma10-triboa/projetos/sd-010-a-project-react-testing-library\.stryker-tmp/sandbox375116/src/**/*.{spec,test}.{js,jsx,ts,tsx} - 0 matches
+	  testPathIgnorePatterns: \\node_modules\\ - 23 matches
+	  testRegex:  - 0 matches
+	Pattern:  - 0 matches
+	 ChildProcessCrashedError: Child process [pid 7436] exited unexpectedly with exit code 1 (without signal). Last part of stdout and stderr was:
+	No tests found, exiting with code 1
+	Run with `--passWithNoTests` to exit with code 0
+	In C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\.stryker-tmp\sandbox375116
+	  23 files checked.
+	  testMatch: C:/Users/ADM/Documents/turma10-triboa/projetos/sd-010-a-project-react-testing-library\.stryker-tmp/sandbox375116/src/**/__tests__/**/*.{js,jsx,ts,tsx}, C:/Users/ADM/Documents/turma10-triboa/projetos/sd-010-a-project-react-testing-library\.stryker-tmp/sandbox375116/src/**/*.{spec,test}.{js,jsx,ts,tsx} - 0 matches
+	  testPathIgnorePatterns: \\node_modules\\ - 23 matches
+	  testRegex:  - 0 matches
+	Pattern:  - 0 matches
+	
+    at ChildProcessProxy.handleUnexpectedExit (C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\child-proxy\ChildProcessProxy.js:33:37)
+    at ChildProcess.emit (events.js:310:20)
+    at maybeClose (internal/child_process.js:1021:16)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:286:5) {
+  innerError: undefined,
+  pid: 7436,
+  exitCode: 1,
+  signal: null
+}
+20:17:29 (7028) DEBUG ChildProcessProxy Starting C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\test-runner\ChildProcessTestRunnerWorker.js in child process 16276
+20:17:30 (7028) DEBUG TimeoutDecorator Starting timeout timer (300000 ms) for a test run
+20:17:30 (16276) DEBUG ChildProcessProxyWorker Changing current working directory for this process to C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\.stryker-tmp\sandbox375116
+20:17:30 (16276) DEBUG PluginLoader Loading @stryker-mutator/* from C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator
+20:17:30 (16276) DEBUG PluginLoader Loading plugin "C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\javascript-mutator" (matched with expression @stryker-mutator/*)
+20:17:30 (16276) DEBUG PluginLoader Loading plugin "C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\jest-runner" (matched with expression @stryker-mutator/*)
+20:17:30 (16276) DEBUG PluginLoader Loading plugins C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\javascript-mutator
+20:17:30 (16276) DEBUG PluginLoader Loading plugins C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\jest-runner
+20:17:30 (16276) DEBUG PluginLoader Loading plugins C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\reporters\index.js
+20:17:30 (16276) TRACE JestTestRunner Merging file-based config {
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "collectCoverageFrom": [
+    "**/*.{js,jsx}",
+    "!src/index.js",
+    "!src/serviceWorker.js"
+  ],
+  "setupFiles": [
+    "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\node_modules\\react-app-polyfill\\jsdom.js"
+  ],
+  "setupFilesAfterEnv": [
+    "<rootDir>/src/setupTests.js"
+  ],
+  "testMatch": [
+    "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+    "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+  ],
+  "testEnvironment": "jest-environment-jsdom-fourteen",
+  "transform": {
+    "^.+\\.(js|jsx|ts|tsx)$": "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\babelTransform.js",
+    "^.+\\.css$": "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\cssTransform.js",
+    "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\fileTransform.js"
+  },
+  "transformIgnorePatterns": [
+    "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
+    "^.+\\.module\\.(css|sass|scss)$"
+  ],
+  "modulePaths": [],
+  "moduleNameMapper": {
+    "^react-native$": "react-native-web",
+    "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+  },
+  "moduleFileExtensions": [
+    "web.js",
+    "js",
+    "web.ts",
+    "ts",
+    "web.tsx",
+    "tsx",
+    "json",
+    "web.jsx",
+    "jsx",
+    "node"
+  ],
+  "watchPlugins": [
+    "jest-watch-typeahead/filename",
+    "jest-watch-typeahead/testname"
+  ],
+  "rootDir": "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\.stryker-tmp\\sandbox375116"
+} 
+      with custom config {}
+      and default (internal) stryker config [object Object]
+20:17:30 (16276) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+20:17:30 (16276) DEBUG JestTestRunner Project root is C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\.stryker-tmp\sandbox375116
+20:17:30 (16276) TRACE JestLessThan25TestAdapter Invoking Jest with config {"roots":["<rootDir>/src"],"collectCoverageFrom":["**/*.{js,jsx}","!src/index.js","!src/serviceWorker.js"],"setupFiles":["C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\node_modules\\react-app-polyfill\\jsdom.js"],"setupFilesAfterEnv":["<rootDir>/src/setupTests.js"],"testMatch":["<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}","<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"],"testEnvironment":"jest-environment-jsdom-fourteen","transform":{"^.+\\.(js|jsx|ts|tsx)$":"C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\babelTransform.js","^.+\\.css$":"C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\cssTransform.js","^(?!.*\\.(js|jsx|ts|tsx|css|json)$)":"C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\fileTransform.js"},"transformIgnorePatterns":["[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$","^.+\\.module\\.(css|sass|scss)$"],"modulePaths":[],"moduleNameMapper":{"^react-native$":"react-native-web","^.+\\.module\\.(css|sass|scss)$":"identity-obj-proxy"},"moduleFileExtensions":["web.js","js","web.ts","ts","web.tsx","tsx","json","web.jsx","jsx","node"],"watchPlugins":["jest-watch-typeahead/filename","jest-watch-typeahead/testname"],"rootDir":"C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\.stryker-tmp\\sandbox375116","collectCoverage":false,"verbose":false,"bail":false,"notify":false,"reporters":[]}
+20:17:30 (7028) TRACE ChildProcessProxy No tests found, exiting with code 1
+Run with `--passWithNoTests` to exit with code 0
+In C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\.stryker-tmp\sandbox375116
+  23 files checked.
+  testMatch: C:/Users/ADM/Documents/turma10-triboa/projetos/sd-010-a-project-react-testing-library\.stryker-tmp/sandbox375116/src/**/__tests__/**/*.{js,jsx,ts,tsx}, C:/Users/ADM/Documents/turma10-triboa/projetos/sd-010-a-project-react-testing-library\.stryker-tmp/sandbox375116/src/**/*.{spec,test}.{js,jsx,ts,tsx} - 0 matches
+  testPathIgnorePatterns: \\node_modules\\ - 23 matches
+  testRegex:  - 0 matches
+Pattern:  - 0 matches
+
+20:17:30 (7028) ERROR log4js A worker log process hung up unexpectedly Error: read ECONNRESET
+    at TCP.onStreamRead (internal/stream_base_commons.js:205:27) {
+  errno: 'ECONNRESET',
+  code: 'ECONNRESET',
+  syscall: 'read'
+}
+20:17:30 (7028) WARN ChildProcessProxy Child process [pid 16276] exited unexpectedly with exit code 1 (without signal). Last part of stdout and stderr was:
+	No tests found, exiting with code 1
+	Run with `--passWithNoTests` to exit with code 0
+	In C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\.stryker-tmp\sandbox375116
+	  23 files checked.
+	  testMatch: C:/Users/ADM/Documents/turma10-triboa/projetos/sd-010-a-project-react-testing-library\.stryker-tmp/sandbox375116/src/**/__tests__/**/*.{js,jsx,ts,tsx}, C:/Users/ADM/Documents/turma10-triboa/projetos/sd-010-a-project-react-testing-library\.stryker-tmp/sandbox375116/src/**/*.{spec,test}.{js,jsx,ts,tsx} - 0 matches
+	  testPathIgnorePatterns: \\node_modules\\ - 23 matches
+	  testRegex:  - 0 matches
+	Pattern:  - 0 matches
+	 ChildProcessCrashedError: Child process [pid 16276] exited unexpectedly with exit code 1 (without signal). Last part of stdout and stderr was:
+	No tests found, exiting with code 1
+	Run with `--passWithNoTests` to exit with code 0
+	In C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\.stryker-tmp\sandbox375116
+	  23 files checked.
+	  testMatch: C:/Users/ADM/Documents/turma10-triboa/projetos/sd-010-a-project-react-testing-library\.stryker-tmp/sandbox375116/src/**/__tests__/**/*.{js,jsx,ts,tsx}, C:/Users/ADM/Documents/turma10-triboa/projetos/sd-010-a-project-react-testing-library\.stryker-tmp/sandbox375116/src/**/*.{spec,test}.{js,jsx,ts,tsx} - 0 matches
+	  testPathIgnorePatterns: \\node_modules\\ - 23 matches
+	  testRegex:  - 0 matches
+	Pattern:  - 0 matches
+	
+    at ChildProcessProxy.handleUnexpectedExit (C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\child-proxy\ChildProcessProxy.js:33:37)
+    at ChildProcess.emit (events.js:310:20)
+    at maybeClose (internal/child_process.js:1021:16)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:286:5) {
+  innerError: undefined,
+  pid: 16276,
+  exitCode: 1,
+  signal: null
+}
+20:17:30 (7028) DEBUG ChildProcessProxy Starting C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\test-runner\ChildProcessTestRunnerWorker.js in child process 7316
+20:17:31 (7316) DEBUG ChildProcessProxyWorker Changing current working directory for this process to C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\.stryker-tmp\sandbox375116
+20:17:31 (7316) DEBUG PluginLoader Loading @stryker-mutator/* from C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator
+20:17:31 (7316) DEBUG PluginLoader Loading plugin "C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\javascript-mutator" (matched with expression @stryker-mutator/*)
+20:17:31 (7316) DEBUG PluginLoader Loading plugin "C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\jest-runner" (matched with expression @stryker-mutator/*)
+20:17:31 (7316) DEBUG PluginLoader Loading plugins C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\javascript-mutator
+20:17:31 (7316) DEBUG PluginLoader Loading plugins C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\jest-runner
+20:17:31 (7316) DEBUG PluginLoader Loading plugins C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\reporters\index.js
+20:17:31 (7316) TRACE JestTestRunner Merging file-based config {
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "collectCoverageFrom": [
+    "**/*.{js,jsx}",
+    "!src/index.js",
+    "!src/serviceWorker.js"
+  ],
+  "setupFiles": [
+    "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\node_modules\\react-app-polyfill\\jsdom.js"
+  ],
+  "setupFilesAfterEnv": [
+    "<rootDir>/src/setupTests.js"
+  ],
+  "testMatch": [
+    "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+    "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+  ],
+  "testEnvironment": "jest-environment-jsdom-fourteen",
+  "transform": {
+    "^.+\\.(js|jsx|ts|tsx)$": "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\babelTransform.js",
+    "^.+\\.css$": "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\cssTransform.js",
+    "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\fileTransform.js"
+  },
+  "transformIgnorePatterns": [
+    "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
+    "^.+\\.module\\.(css|sass|scss)$"
+  ],
+  "modulePaths": [],
+  "moduleNameMapper": {
+    "^react-native$": "react-native-web",
+    "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+  },
+  "moduleFileExtensions": [
+    "web.js",
+    "js",
+    "web.ts",
+    "ts",
+    "web.tsx",
+    "tsx",
+    "json",
+    "web.jsx",
+    "jsx",
+    "node"
+  ],
+  "watchPlugins": [
+    "jest-watch-typeahead/filename",
+    "jest-watch-typeahead/testname"
+  ],
+  "rootDir": "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\.stryker-tmp\\sandbox375116"
+} 
+      with custom config {}
+      and default (internal) stryker config [object Object]
+20:17:31 (7316) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+20:17:31 (7316) DEBUG JestTestRunner Project root is C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\.stryker-tmp\sandbox375116
+20:17:31 (7028) DEBUG ChildProcessProxy Disposing of worker process 7316
+20:17:31 (7028) DEBUG ChildProcessProxy Kill 7316
+20:17:31 (7028) DEBUG ChildProcessProxy Starting C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\test-runner\ChildProcessTestRunnerWorker.js in child process 14508
+20:17:32 (14508) DEBUG ChildProcessProxyWorker Changing current working directory for this process to C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\.stryker-tmp\sandbox375116
+20:17:32 (14508) DEBUG PluginLoader Loading @stryker-mutator/* from C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator
+20:17:32 (14508) DEBUG PluginLoader Loading plugin "C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\javascript-mutator" (matched with expression @stryker-mutator/*)
+20:17:32 (14508) DEBUG PluginLoader Loading plugin "C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\jest-runner" (matched with expression @stryker-mutator/*)
+20:17:32 (14508) DEBUG PluginLoader Loading plugins C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\javascript-mutator
+20:17:32 (14508) DEBUG PluginLoader Loading plugins C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\jest-runner
+20:17:32 (14508) DEBUG PluginLoader Loading plugins C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\reporters\index.js
+20:17:32 (14508) TRACE JestTestRunner Merging file-based config {
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "collectCoverageFrom": [
+    "**/*.{js,jsx}",
+    "!src/index.js",
+    "!src/serviceWorker.js"
+  ],
+  "setupFiles": [
+    "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\node_modules\\react-app-polyfill\\jsdom.js"
+  ],
+  "setupFilesAfterEnv": [
+    "<rootDir>/src/setupTests.js"
+  ],
+  "testMatch": [
+    "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+    "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+  ],
+  "testEnvironment": "jest-environment-jsdom-fourteen",
+  "transform": {
+    "^.+\\.(js|jsx|ts|tsx)$": "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\babelTransform.js",
+    "^.+\\.css$": "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\cssTransform.js",
+    "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\fileTransform.js"
+  },
+  "transformIgnorePatterns": [
+    "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
+    "^.+\\.module\\.(css|sass|scss)$"
+  ],
+  "modulePaths": [],
+  "moduleNameMapper": {
+    "^react-native$": "react-native-web",
+    "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+  },
+  "moduleFileExtensions": [
+    "web.js",
+    "js",
+    "web.ts",
+    "ts",
+    "web.tsx",
+    "tsx",
+    "json",
+    "web.jsx",
+    "jsx",
+    "node"
+  ],
+  "watchPlugins": [
+    "jest-watch-typeahead/filename",
+    "jest-watch-typeahead/testname"
+  ],
+  "rootDir": "C:\\Users\\ADM\\Documents\\turma10-triboa\\projetos\\sd-010-a-project-react-testing-library\\.stryker-tmp\\sandbox375116"
+} 
+      with custom config {}
+      and default (internal) stryker config [object Object]
+20:17:32 (14508) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+20:17:32 (14508) DEBUG JestTestRunner Project root is C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\.stryker-tmp\sandbox375116
+20:17:32 (7028) DEBUG ChildProcessProxy Disposing of worker process 14508
+20:17:32 (7028) DEBUG ChildProcessProxy Kill 14508
+20:17:32 (7028) ERROR InitialTestExecutor One or more tests resulted in an error:
+	Test runner crashed. Tried twice to restart it without any luck. Last time the error message was: Error: Child process [pid 16276] exited unexpectedly with exit code 1 (without signal). Last part of stdout and stderr was:
+	No tests found, exiting with code 1
+	Run with `--passWithNoTests` to exit with code 0
+	In C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\.stryker-tmp\sandbox375116
+	  23 files checked.
+	  testMatch: C:/Users/ADM/Documents/turma10-triboa/projetos/sd-010-a-project-react-testing-library\.stryker-tmp/sandbox375116/src/**/__tests__/**/*.{js,jsx,ts,tsx}, C:/Users/ADM/Documents/turma10-triboa/projetos/sd-010-a-project-react-testing-library\.stryker-tmp/sandbox375116/src/**/*.{spec,test}.{js,jsx,ts,tsx} - 0 matches
+	  testPathIgnorePatterns: \\node_modules\\ - 23 matches
+	  testRegex:  - 0 matches
+	Pattern:  - 0 matches
+	
+Error: Child process [pid 16276] exited unexpectedly with exit code 1 (without signal). Last part of stdout and stderr was:
+	No tests found, exiting with code 1
+	Run with `--passWithNoTests` to exit with code 0
+	In C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\.stryker-tmp\sandbox375116
+	  23 files checked.
+	  testMatch: C:/Users/ADM/Documents/turma10-triboa/projetos/sd-010-a-project-react-testing-library\.stryker-tmp/sandbox375116/src/**/__tests__/**/*.{js,jsx,ts,tsx}, C:/Users/ADM/Documents/turma10-triboa/projetos/sd-010-a-project-react-testing-library\.stryker-tmp/sandbox375116/src/**/*.{spec,test}.{js,jsx,ts,tsx} - 0 matches
+	  testPathIgnorePatterns: \\node_modules\\ - 23 matches
+	  testRegex:  - 0 matches
+	Pattern:  - 0 matches
+	
+    at ChildProcessProxy.handleUnexpectedExit (C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\child-proxy\ChildProcessProxy.js:33:37)
+    at ChildProcess.emit (events.js:310:20)
+    at maybeClose (internal/child_process.js:1021:16)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:286:5)
+20:17:32 (7028) ERROR StrykerCli an error occurred Error: Something went wrong in the initial test run
+    at InitialTestExecutor.validateResult (C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\process\InitialTestExecutor.js:86:15)
+    at InitialTestExecutor.run (C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\process\InitialTestExecutor.js:41:14)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+    at async Stryker.runMutationTest (C:\Users\ADM\Documents\turma10-triboa\projetos\sd-010-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\Stryker.js:53:38)
