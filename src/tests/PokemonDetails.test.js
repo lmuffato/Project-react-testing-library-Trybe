@@ -3,55 +3,71 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../helper/renderWithRouter';
 import App from '../App';
 
-describe('Teste se as informações detalhadas do Pokémon são mostradas na tela.', () => {
-  const { headings, resume, maps } = pokemonDetailsData;
-  const pathPokemon = '/pokemons/25';
+const idRouter = '/pokemons/65';
 
-  it('renders pokemon headings and paragraphs', () => {
-    const { history, getByRole, getByText } = renderWithRouter(<App />);
+it('Teste se as informações detalhadas do Pokémon são mostradas na tela', () => {
+  const { getByRole, getByTestId, getByText, history } = renderWithRouter(<App />);
 
-    history.push(pathPokemon);
+  history.push(idRouter);
 
-    headings.forEach((heading) => {
-      const header = getByRole('heading', { name: heading });
-      expect(header).toHaveTextContent(heading);
-    });
+  const title1 = getByRole('heading', { name: /Alakazam Details/i });
 
-    const paragraphResume = getByText(resume);
-    expect(paragraphResume).toHaveTextContent(resume);
-  });
+  const title2 = getByRole('heading', { name: /Game Locations of Alakazam/i });
 
-  it('renders pokemon maps', () => {
-    const { history, getAllByRole, getByText } = renderWithRouter(<App />);
+  const title3 = getByRole('heading', { name: /Summary/i });
 
-    history.push(pathPokemon);
+  const string = /Closing both its eyes heightens all its other senses/i;
 
-    maps.forEach((map, index) => {
-      const { alt, src, mapName } = map;
+  const textSumary = getByText(string);
 
-      const imgMapPosition = index + 1;
-      const imgMap = getAllByRole('img')[imgMapPosition];
-      expect(imgMap).toHaveAttribute('src', src);
-      expect(imgMap).toHaveAttribute('alt', alt);
+  const name = getByTestId('pokemon-name');
+  const type = getByTestId('pokemon-type');
 
-      const locationName = getByText(mapName);
-      expect(locationName).toHaveTextContent(mapName);
-    });
-  });
+  expect(title1).toBeInTheDocument();
+  expect(title2).toBeInTheDocument();
+  expect(title3).toBeInTheDocument();
+  expect(textSumary).toHaveTextContent(string);
+  expect(name.innerHTML).toBe('Alakazam');
+  expect(type.innerHTML).toBe('Psychic');
+});
 
-  it('renders a star icon when it clicks in the checkbox', () => {
-    const { history, getByLabelText, getByRole } = renderWithRouter(<App />);
+it('Testa si a imagem carrega corretamente', () => {
+  const { history, getByAltText } = renderWithRouter(<App />);
 
-    history.push(pathPokemon);
+  history.push(idRouter);
 
-    const checkBoxFavorite = getByLabelText(/pokémon favoritado\?/i);
-    userEvent.click(checkBoxFavorite);
+  const imgSprite = getByAltText(/Alakazam sprite/i);
+  const mapAlakazam = getByAltText(/Alakazam location/i);
 
-    const starIcon = getByRole('img', {
-      name: /pikachu is marked as favorite/i,
-    });
-    expect(starIcon).toBeInTheDocument();
+  expect(mapAlakazam.src).toContain('https://cdn2.bulbagarden.net/upload/4/44/Unova_Accumula_Town_Map.png');
+  expect(imgSprite.src).toContain('https://cdn2.bulbagarden.net/upload/8/88/Spr_5b_065_m.png');
+});
 
-    userEvent.click(checkBoxFavorite);
-  });
+it('Testa si é um pokemon favorito', () => {
+  const { history, getByLabelText, getByRole } = renderWithRouter(<App />);
+
+  history.push(idRouter);
+
+  const labelFavorite = getByLabelText('Pokémon favoritado?');
+  const inputFavorite = getByRole('checkbox');
+
+  userEvent.click(labelFavorite);
+
+  expect(inputFavorite.checked).toBe(true);
+});
+
+it('Testa si a pagina contem links para rotas', () => {
+  const { history, getByRole } = renderWithRouter(<App />);
+
+  history.push(idRouter);
+
+  const linkHome = getByRole('link', { name: /home/i });
+
+  const linkAbout = getByRole('link', { name: /about/i });
+
+  const linkFavorite = getByRole('link', { name: /favorite/i });
+
+  expect(linkHome).toBeInTheDocument();
+  expect(linkAbout).toBeInTheDocument();
+  expect(linkFavorite).toBeInTheDocument();
 });
