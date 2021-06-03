@@ -3,7 +3,9 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../helper/renderWithRouter';
 import App from '../App';
 
-test('Teste se é renderizado um card com as informações de determinado pokémon', () => {
+// Requisito realizado com ajuda dos estudantes Nilson Ribeiro, Renzo sevilha e Adelino
+
+it('Teste se é renderizado um card com as informações de determinado pokémon', () => {
   const { getByTestId, getByAltText } = renderWithRouter(<App />);
 
   const name = getByTestId('pokemon-name');
@@ -17,7 +19,7 @@ test('Teste se é renderizado um card com as informações de determinado pokém
   expect(image.src).toContain('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
 });
 
-test('Teste se o card do Pokémon indicado na Pokédex contém um link...', () => {
+it('Teste se o card do Pokémon indicado na Pokédex contém um link...', () => {
   const { getByRole, history } = renderWithRouter(<App />);
 
   const Details = getByRole('link', { name: /More details/i });
@@ -30,7 +32,7 @@ test('Teste se o card do Pokémon indicado na Pokédex contém um link...', () =
   expect(pathname).toBe('/pokemons/25');
 });
 
-test('Teste se existe um ícone de estrela nos Pokémons favoritados', () => {
+it('Teste se existe um ícone de estrela nos Pokémons favoritados', () => {
   const { getByRole, history, getByLabelText, getByAltText } = renderWithRouter(<App />);
 
   const Details = getByRole('link', { name: /More details/i });

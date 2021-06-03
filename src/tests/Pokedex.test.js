@@ -4,51 +4,52 @@ import renderWithRouter from '../helper/renderWithRouter';
 import App from '../App';
 
 // Este requisito foi desenvolvido com base na solução do estudante Adelino Jr. //
+describe('Teste o componente <Pokedex.js />', () => {
+  it('Teste se é exibido o próximo Pokémon da lista ', () => {
+    const { getByRole, getByAltText } = renderWithRouter(<App />);
 
-it(' Teste o componente <Pokedex.js />', () => {
-  const { getByRole, getByAltText } = renderWithRouter(<App />);
+    const title = getByRole('heading', { name: /Encountered pokémons/i });
 
-  const title = getByRole('heading', { name: /Encountered pokémons/i });
+    const nextPokemon = getByRole('button', { name: /Próximo pokémon/i });
 
-  const nextPokemon = getByRole('button', { name: /Próximo pokémon/i });
+    userEvent.click(nextPokemon);
 
-  userEvent.click(nextPokemon);
+    const altImage = getByAltText('Charmander sprite');
 
-  const altImage = getByAltText('Charmander sprite');
+    expect(title).toBeInTheDocument();
+    expect(altImage.src).toContain('https://cdn2.bulbagarden.net/upload/0/0a/Spr_5b_004.png');
+  });
 
-  expect(title).toBeInTheDocument();
-  expect(altImage.src).toContain('https://cdn2.bulbagarden.net/upload/0/0a/Spr_5b_004.png');
-});
+  it(' Teste o componente <Pokedex.js />', () => {
+    const { getByRole } = renderWithRouter(<App />);
 
-it(' Teste o componente <Pokedex.js />', () => {
-  const { getByRole } = renderWithRouter(<App />);
+    const buttonAll = getByRole('button', { name: /all/i });
 
-  const buttonAll = getByRole('button', { name: /all/i });
+    userEvent.click(buttonAll);
 
-  userEvent.click(buttonAll);
+    expect(buttonAll).toBeInTheDocument();
+  });
 
-  expect(buttonAll).toBeInTheDocument();
-});
+  it('Teste se a Pokédex tem os botões de filtro', () => {
+    const { getByRole } = renderWithRouter(<App />);
 
-it('Teste se a Pokédex tem os botões de filtro', () => {
-  const { getByRole } = renderWithRouter(<App />);
+    const EletricButton = getByRole('button', { name: /Electric/i });
 
-  const EletricButton = getByRole('button', { name: /Electric/i });
+    const nextButton = getByRole('button', { name: /Próximo pokémon/i });
 
-  const nextButton = getByRole('button', { name: /Próximo pokémon/i });
+    userEvent.click(EletricButton);
 
-  userEvent.click(EletricButton);
+    expect(nextButton).toBeDisabled();
+  });
 
-  expect(nextButton).toBeDisabled();
-});
+  it('Teste se a Pokédex contém um botão para resetar o filtro', () => {
+    const { getAllByTestId } = renderWithRouter(<App />);
 
-it('Teste se a Pokédex contém um botão para resetar o filtro', () => {
-  const { getAllByTestId } = renderWithRouter(<App />);
+    const tipos = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
+    const dataTest = 'pokemon-type-button';
+    const buttons = [...getAllByTestId(dataTest)];
+    const arrayTypeButtons = buttons.map((btn) => btn.innerHTML);
 
-  const tipos = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
-  const dataTest = 'pokemon-type-button';
-  const buttons = [...getAllByTestId(dataTest)];
-  const arrayTypeButtons = buttons.map((btn) => btn.innerHTML);
-
-  expect(arrayTypeButtons).toEqual(tipos);
+    expect(arrayTypeButtons).toEqual(tipos);
+  });
 });
