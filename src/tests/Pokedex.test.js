@@ -6,7 +6,7 @@ import renderWithRouter from './helpers/renderWithRouter';
 import { Pokedex } from '../components';
 import pokemons from '../data';
 
-const simulatedPokemonFavoriteById = () => pokemons.filter((id) => id % 2);
+const simulatedPokemonFavoriteById = pokemons.filter((id) => id % 2);
 
 const rendering = () => (
   renderWithRouter(
