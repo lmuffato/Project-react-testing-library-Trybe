@@ -1,8 +1,7 @@
 import React from 'react';
-import NotFound from '../components/NotFound';
 import { screen } from '@testing-library/react';
+import NotFound from '../components/NotFound';
 import renderWithRouter from './RenderWithRouter';
-
 
 describe('tests `NotFound` component', () => {
   test('contains an <h2> element whit the text `Page requested not found`', () => {
@@ -16,7 +15,9 @@ describe('tests `NotFound` component', () => {
 
   test('contains a `not found` image', () => {
     renderWithRouter((<NotFound />));
-    const image = screen.getByAltText('Pikachu crying because the page requested was not found');
-    expect(image).toHaveAttribute('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
+    const image = screen.getByAltText('Pikachu crying because the'
+    + 'page requested was not found');
+    expect(image).toHaveAttribute('src',
+      'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });
