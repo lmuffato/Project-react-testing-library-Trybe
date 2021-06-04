@@ -75,6 +75,35 @@ describe('The Requirement 6 Tests', () => {
   });
 
   it('After clicked on the link "more details", the user is redirectioned to', () => {
+    const { getByText, getByTestId } = renderWithRouter(<App />);
+
+    const path = '/pokemons/';
+    const href = getByText(/More details/i);
+    const nam = getByTestId(pn);
+    const idPath = pokemons.find((id2) => {
+      if (id2.name === nam.textContent) {
+        return id2;
+      }
+      return undefined;
+    }).id;
+
+    expect(href.href).toContain(`${path}${idPath}`);
+
+    fireEvent.click(getByText(/Fire/i));
+
+    const href2 = getByText(/More details/i);
+    const nam2 = getByTestId(pn);
+    const idPath2 = pokemons.find((id3) => {
+      if (id3.name === nam2.textContent) {
+        return id3;
+      }
+      return undefined;
+    }).id;
+
+    expect(href2.href).toContain(`${path}${idPath2}`);
+  });
+
+  it('The URL Pokemons Details page contains "id"', () => {
     const { getByText, history } = renderWithRouter(<App />);
 
     fireEvent.click(getByText(/More details/i));
@@ -83,7 +112,8 @@ describe('The Requirement 6 Tests', () => {
     expect(path).toContain('/pokemons/');
   });
 
-  it('The URL Pokemons Details page contains "id"', () => {
+  it('There is a star icon within card of'
+  + 'the Pokemon that was selected like favorite', () => {
     const { getByText, getByRole, getByTestId, getAllByRole } = renderWithRouter(<App />);
 
     fireEvent.click(getByText(/Home/i));
@@ -93,7 +123,7 @@ describe('The Requirement 6 Tests', () => {
 
     const starImg = getAllByRole('img')[1].src;
     const starImgAlt = getAllByRole('img')[1].alt;
-    const nam = getByTestId('pokemon-name').textContent;
+    const nam = getByTestId(pn).textContent;
     expect(starImg).toContain('/star-icon.svg');
     expect(starImgAlt).toContain('is marked as favorite');
     expect(starImgAlt).toContain(nam);
