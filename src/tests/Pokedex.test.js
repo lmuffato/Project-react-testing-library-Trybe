@@ -31,7 +31,7 @@ describe('Testes do requisito 5', () => {
 
     expect(btn).toEqual('Próximo pokémon');
 
-    fireEvent.click(getByTestId(''));
+    fireEvent.click(getByText(/All/i));
     fireEvent.click(getByTestId(pokemonType));
 
     expect(highlighted[0].textContent).toBe('Fire');
