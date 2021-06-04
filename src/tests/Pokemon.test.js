@@ -5,12 +5,14 @@ import App from '../App';
 import pokemons from '../data';
 
 describe('The Requirement 6 Tests', () => {
+  const pn = 'pokemon-name';
+
   it('The Pokemon"s name is renderized on screen', () => {
     const { getByText, getByRole, getByTestId } = renderWithRouter(<App />);
 
     fireEvent.click(getByText(/Home/i));
 
-    const nam = getByTestId('pokemon-name');
+    const nam = getByTestId(pn);
     const typ = getByTestId('pokemon-type');
     const weight = pokemons.map((p) => {
       if (p.name === nam.textContent) {
@@ -60,7 +62,7 @@ describe('The Requirement 6 Tests', () => {
   it('The Pokemon renderized on screen has a link "more details" on', () => {
     const { getByTestId, getByText, history } = renderWithRouter(<App />);
 
-    const nam = getByTestId('pokemon-name');
+    const nam = getByTestId(pn);
     const idPath = pokemons.find((id) => {
       if (id.name === nam.textContent) {
         return id;
