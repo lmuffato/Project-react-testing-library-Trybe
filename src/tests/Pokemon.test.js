@@ -28,10 +28,10 @@ describe('The Requirement 6 Tests', () => {
       const weightOnScreen = getByTestId(pw).textContent;
       const imgOnScreen = getByRole('img');
 
-      expect(allPokemons[i][0]).toContain(nameOnScreen);
-      expect(allPokemons[i][1]).toContain(typeOnScreen);
-      expect(weightOnScreen).toContain(allPokemons[i][2]);
-      expect(weightOnScreen).toContain(allPokemons[i][3]);
+      expect(allPokemons[i][0]).toBe(nameOnScreen);
+      expect(allPokemons[i][1]).toBe(typeOnScreen);
+      expect(weightOnScreen)
+        .toBe(`Average weight: ${allPokemons[i][2]} ${allPokemons[i][3]}`);
       expect(allPokemons[i][4]).toBe(imgOnScreen.src);
       expect(imgOnScreen.alt).toBe(`${allPokemons[i][0]} sprite`);
 
