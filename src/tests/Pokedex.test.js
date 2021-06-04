@@ -36,7 +36,7 @@ describe('Testes do requisito 5', () => {
 
     expect(highlighted[0].textContent).toBe('Fire');
 
-    fireEvent.click(getByTestId(''));
+    fireEvent.click(getByText(/All/i));
     do {
       fireEvent.click(getByTestId(pokemonType));
     } while (highlighted[0].textContent !== 'Dragon');
