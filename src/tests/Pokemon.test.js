@@ -6,110 +6,111 @@ import pokemons from '../data';
 
 describe('The Requirement 6 Tests', () => {
   const pn = 'pokemon-name';
+  const pt = 'pokemon-type';
+  const pw = 'pokemon-weight';
+  const nextP = 'next-pokemon';
 
   it('The Pokemon"s name is renderized on screen', () => {
     const { getByText, getByRole, getByTestId } = renderWithRouter(<App />);
 
-    fireEvent.click(getByText(/Home/i));
+    fireEvent.click(getByText(/All/i));
 
-    const nam = getByTestId(pn);
-    const typ = getByTestId('pokemon-type');
-    const weight = pokemons.map((p) => {
-      if (p.name === nam.textContent) {
-        return [
-          p.averageWeight.value,
-          p.averageWeight.measurementUnit,
-          p.image,
-          p.name,
-        ];
-      }
-      return undefined;
-    });
-    const w = getByTestId('pokemon-weight');
-    const img = getByRole('img').src;
-    const altImg = getByRole('img').alt;
-    expect(nam).not.toBeNull();
-    expect(nam.textContent).toBe('Pikachu');
-    expect(typ.textContent).toBe('Electric');
-    expect(w.textContent).toContain(weight[0][0]);
-    expect(img).toBe(weight[0][2]);
-    expect(altImg).toContain('sprite');
-    expect(altImg).toContain(weight[0][3]);
+    const allPokemons = pokemons.map((type) => [
+      type.name,
+      type.type,
+      type.averageWeight.value,
+      type.averageWeight.measurementUnit,
+      type.image,
+    ]);
+    allPokemons.forEach((event, i) => {
+      const nameOnScreen = getByTestId(pn).textContent;
+      const typeOnScreen = getByTestId(pt).textContent;
+      const weightOnScreen = getByTestId(pw).textContent;
+      const imgOnScreen = getByRole('img');
 
-    fireEvent.click(getByText(/Fire/i));
-    expect(nam.textContent).toBe('Charmander');
-    expect(typ.textContent).toBe('Fire');
-    const weight2 = pokemons.map((p2) => {
-      if (p2.name === nam.textContent) {
-        return [
-          p2.averageWeight.value,
-          p2.averageWeight.measurementUnit,
-          p2.image,
-          p2.name,
-        ];
-      }
-      return undefined;
+      expect(allPokemons[i][0]).toContain(nameOnScreen);
+      expect(allPokemons[i][1]).toContain(typeOnScreen);
+      expect(weightOnScreen).toContain(allPokemons[i][2]);
+      expect(weightOnScreen).toContain(allPokemons[i][3]);
+      expect(allPokemons[i][4]).toBe(imgOnScreen.src);
+      expect(imgOnScreen.alt).toBe(`${allPokemons[i][0]} sprite`);
+
+      fireEvent.click(getByTestId(nextP));
     });
-    const w2 = getByTestId('pokemon-weight');
-    const img2 = getByRole('img').src;
-    const altImg2 = getByRole('img').alt;
-    expect(w2.textContent).toContain(weight2[1][0]);
-    expect(img2).toBe(weight2[1][2]);
-    expect(altImg2).toContain('sprite');
-    expect(altImg2).toContain(weight2[1][3]);
   });
 
   it('The Pokemon renderized on screen has a link "more details" on', () => {
-    const { getByTestId, getByText, history } = renderWithRouter(<App />);
+    const { getByTestId, getByText } = renderWithRouter(<App />);
 
-    const nam = getByTestId(pn);
-    const idPath = pokemons.find((id) => {
-      if (id.name === nam.textContent) {
-        return id;
-      }
-      return undefined;
-    }).id;
-    fireEvent.click(getByText(/More details/i));
-    const path = history.location.pathname;
-    expect(path).toBe(`/pokemons/${idPath}`);
+    const allPokemons = pokemons.map((type) => [
+      type.name,
+    ]);
+
+    allPokemons.forEach(() => {
+      const link = getByText('More details');
+      const card = getByTestId(pw).nextSibling;
+
+      expect(link.textContent).toContain(card.textContent);
+      expect(card.href).toBe(link.href);
+
+      fireEvent.click(getByTestId(nextP));
+    });
   });
 
   it('After clicked on the link "more details", the user is redirectioned to', () => {
     const { getByText, getByTestId } = renderWithRouter(<App />);
 
     const path = '/pokemons/';
-    const href = getByText(/More details/i);
-    const nam = getByTestId(pn);
-    const idPath = pokemons.find((id2) => {
-      if (id2.name === nam.textContent) {
-        return id2;
-      }
-      return undefined;
-    }).id;
 
-    expect(href.href).toContain(`${path}${idPath}`);
+    const allPokemons = pokemons.map((e) => [
+      e.name,
+    ]);
 
-    fireEvent.click(getByText(/Fire/i));
+    allPokemons.forEach(() => {
+      const href = getByText(/More details/i);
+      const nam = getByTestId(pn);
+      const idPath = pokemons.find((id2) => {
+        if (id2.name === nam.textContent) {
+          return id2;
+        }
+        return undefined;
+      }).id;
 
-    const href2 = getByText(/More details/i);
-    const nam2 = getByTestId(pn);
-    const idPath2 = pokemons.find((id3) => {
-      if (id3.name === nam2.textContent) {
-        return id3;
-      }
-      return undefined;
-    }).id;
+      expect(href.href).toContain(`${path}${idPath}`);
 
-    expect(href2.href).toContain(`${path}${idPath2}`);
+      fireEvent.click(getByTestId(nextP));
+    });
   });
 
   it('The URL Pokemons Details page contains "id"', () => {
-    const { getByText, history } = renderWithRouter(<App />);
+    const { getByText, getByTestId, history } = renderWithRouter(<App />);
 
-    fireEvent.click(getByText(/More details/i));
-    const path = history.location.pathname;
+    const allPokemons = pokemons.map((e2) => [
+      e2.name,
+    ]);
 
-    expect(path).toContain('/pokemons/');
+    fireEvent.click(getByText(/All/i));
+    let i = 0;
+    allPokemons.forEach(() => {
+      fireEvent.click(getByText(/More details/i));
+
+      const path = history.location.pathname;
+      const nam = getByTestId(pn);
+      const idPokemon = pokemons.find((id3) => {
+        if (id3.name === nam.textContent) {
+          return id3;
+        }
+        return undefined;
+      }).id;
+
+      expect(path).toContain(`/pokemons/${idPokemon}`);
+
+      i += 1;
+      fireEvent.click(getByText(/Home/i));
+      for (let j = 0; j < i; j += 1) {
+        fireEvent.click(getByTestId(nextP));
+      }
+    });
   });
 
   it('There is a star icon within card of'
