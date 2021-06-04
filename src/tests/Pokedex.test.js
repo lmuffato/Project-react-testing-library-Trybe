@@ -17,13 +17,13 @@ describe('tests `Pokedex` component ', () => {
   test('contains a button with the text `Próximo pokémon`', () => {
     renderWithRouter(<App />);
     const buttonText = screen.getByTestId('next-pokemon');
-    expect(buttonText).toHaveTextContent(`Próximo pokémon`);
+    expect(buttonText).toHaveTextContent('Próximo pokémon');
   });
 
   test('contains pokemon type buttons', () => {
     renderWithRouter(<App />);
     const buttonType = screen.getAllByTestId('pokemon-type-button');
-    expect(buttonType[1]).toHaveTextContent(`Fire`);
+    expect(buttonType[1]).toHaveTextContent('Fire');
   });
 
   test('have reset pokemon type button', () => {
