@@ -115,6 +115,6 @@ describe('Testes do requisito 5', () => {
     const dragonPoke = getByText(/Dragon/i);
     userEvent.click(dragonPoke);
     expect(btnNext).toBeDisabled();
+    /* source: https://github.com/tryber/sd-010-a-project-react-testing-library/pull/116/files */
   });
 });
-/* source: https://github.com/tryber/sd-010-a-project-react-testing-library/pull/116/files */
