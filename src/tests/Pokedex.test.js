@@ -73,3 +73,9 @@ test('should disable next button when only have 1 poke type', () => {
   const nextPokemon = screen.getByTestId('next-pokemon');
   expect(nextPokemon).toBeDisabled();
 });
+
+test('should all poke types buttons to be definied', () => {
+  render(<App />, { wrapper: MemoryRouter });
+  const typesButton = screen.getAllByTestId('pokemon-type-button');
+  expect(typesButton).toBeDefined();
+});
