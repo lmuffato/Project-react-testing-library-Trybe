@@ -86,7 +86,7 @@ describe('A página de detalhes deve exibir a imagem e os detalhes do pokemon.',
   it('Deve exibir a imagem do pokemon".', () => {
     const { history, getByAltText } = renderWithRouter(<App />);
     history.push(pokemonPikachu.url);
-    const pokemonImgAltText = getByAltText('Pikachu sprite');
+    const pokemonImgAltText = getByAltText(`${pokemonPikachu.name} sprite`);
     expect(pokemonImgAltText.src.includes('.png')).toBe(true); // A imagem deve ser do tipo ".png"
     expect(pokemonImgAltText.src).toBe(pokemonPikachu.imgPath);
   });
