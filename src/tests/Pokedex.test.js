@@ -18,8 +18,8 @@ describe('Testa os elementos do componente Pokedex', () => {
   it('Testa se os botões de tipo tem o data-testid="pokemon-type-button"', () => {
     const { getAllByTestId } = renderWithRouter(<App />);
     const buttonsTestIdFind = getAllByTestId('pokemon-type-button');
-    const numberTypesButtons = 7;
-    expect(buttonsTestIdFind.length).toBe(numberTypesButtons);
+    const allTypes = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
+    expect(buttonsTestIdFind.length).toBe(allTypes.length);
   });
 
   it('Testa o botão para ir para o próximo pokemon.', () => {
