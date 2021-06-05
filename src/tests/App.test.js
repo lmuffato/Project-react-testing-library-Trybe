@@ -4,15 +4,15 @@ import React from 'react';
 import App from '../App';
 import RenderWithRouter from './RenderWithRouter';
 
-describe('renderiza pokedx na tela', () => {
-  test('Pokédex é renderizada ao carregar a aplicação', () => {
+describe('Testa se o componente <App.js /> é renderizado', () => {
+  test('Testa se o Pokédex é renderizada ao carregar a aplicação', () => {
     const { history } = RenderWithRouter(<App />);
     const { pathname } = history.location;
 
     expect(pathname).toBe('/');
   });
 
-  test('busca os links de navegação', () => {
+  test('Testa se os links de navegação são renderizados na tela', () => {
     const { getAllByRole } = RenderWithRouter(<App />);
     const navLinks = getAllByRole('link');
     expect(navLinks[0]).toHaveTextContent('Home');
@@ -21,8 +21,8 @@ describe('renderiza pokedx na tela', () => {
   });
 });
 
-describe('testa links de navegação', () => {
-  test('testa se /home é redirecionado', () => {
+describe('Teste dos links de navegação', () => {
+  test('Testa se /home é redirecionado ao ser clicado', () => {
     const { history } = RenderWithRouter(<App />);
     const { pathname } = history.location;
     const home = screen.getByRole('link', {
@@ -32,7 +32,7 @@ describe('testa links de navegação', () => {
     expect(pathname).toBe('/');
   });
 
-  test('testa se /about é redirecionado', () => {
+  test('Testa se /about é redirecionado ao ser clicado', () => {
     const { history } = RenderWithRouter(<App />);
     const about = screen.getByRole('link', {
       name: /about/i,
@@ -42,7 +42,7 @@ describe('testa links de navegação', () => {
     expect(pathname).toBe('/about');
   });
 
-  test('testa se /favoritePokemons é redirecionado', () => {
+  test('Testa se /favoritePokemons é redirecionado ao ser clicado', () => {
     const { history } = RenderWithRouter(<App />);
     const favorite = screen.getByRole('link', {
       name: /favorite/i,
@@ -52,7 +52,7 @@ describe('testa links de navegação', () => {
     expect(pathname).toBe('/favorites');
   });
 
-  test('testa se a página  not found é renderizada', () => {
+  test('Testa se a página  not found é renderizada', () => {
     const { history } = RenderWithRouter(<App />);
     history.push('/página não encontra');
     const pageNotFound = screen.getByText('Page requested not found');
