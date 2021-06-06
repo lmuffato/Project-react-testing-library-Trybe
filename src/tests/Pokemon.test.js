@@ -42,11 +42,11 @@ describe('Teste sobre o componente Pokémon.', () => {
     expect(tipo.length).toBe(2);
   });
 
-  // it('O peso médio deve ser exibido.', () => {
-  //   const { getByText } = renderWithRouter(<App />);
-  //   const peso = getByText(/Average weight: 6.0 kg/i);
-  //   expect(peso).toBeInTheDocument();
-  // });
+  it('O peso médio deve ser exibido.', () => {
+    const { getByText } = renderWithRouter(<App />);
+    const peso = getByText(/Average weight: 6.0 kg/i);
+    expect(peso).toBeInTheDocument();
+  });
 
   // it('A imagem do Pokémon de ser exibida.', () => {
   //   const { getByAltText } = renderWithRouter(<App />);
