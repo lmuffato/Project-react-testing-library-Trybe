@@ -48,12 +48,12 @@ describe('Teste sobre o componente Pokémon.', () => {
     expect(peso).toBeInTheDocument();
   });
 
-  // it('A imagem do Pokémon de ser exibida.', () => {
-  //   const { getByAltText } = renderWithRouter(<App />);
-  //   const imagem = getByAltText(`${pikachu.name} sprite`);
-  //   expect(imagem).toBeInTheDocument();
-  //   expect(imagem).toHaveAttribute('src', `${pikachu.image}`);
-  // });
+  it('A imagem do Pokémon de ser exibida.', () => {
+    const { getByAltText } = renderWithRouter(<App />);
+    const imagem = getByAltText(`${pikachu.name} sprite`);
+    expect(imagem).toBeInTheDocument();
+    expect(imagem).toHaveAttribute('src', `${pikachu.image}`);
+  });
 
   // it('Testa o link detalhes do Card.', () => {
   //   const { history, getByRole } = renderWithRouter(<App />);
