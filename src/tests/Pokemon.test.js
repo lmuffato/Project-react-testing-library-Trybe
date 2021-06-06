@@ -55,15 +55,14 @@ describe('Teste sobre o componente Pokémon.', () => {
     expect(imagem).toHaveAttribute('src', `${pikachu.image}`);
   });
 
-  // it('Testa o link detalhes do Card.', () => {
-  //   const { history, getByRole } = renderWithRouter(<App />);
-  //   const link = getByRole('link', { name: /more details/i });
-  //   expect(link).toBeInTheDocument();
-  //   userEvent.click(link);
-
-  //   const { pathname } = history.location;
-  //   expect(pathname).toBe('/pokemons/25');
-  // });
+  it('Testa o link detalhes do Card.', () => {
+    const { history, getByRole } = renderWithRouter(<App />);
+    const link = getByRole('link', { name: /more details/i });
+    expect(link).toBeInTheDocument();
+    userEvent.click(link);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/pokemons/25');
+  });
 
   // it('Teste icone de estrela de favorito.', () => {
   //   renderWithRouter(<Pokemon pokemon={ pikachu } isFavorite />);
