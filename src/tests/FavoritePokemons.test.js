@@ -3,7 +3,7 @@ import renderWithRouter from '../renderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
 
 describe('tests FavoritePokemons.js', () => {
-  test('verifies if the page contains the headinf "Favorite pokémons"', () => {
+  test('verifies if the page contains the heading "Favorite pokémons"', () => {
     const { getByRole } = renderWithRouter(<FavoritePokemons />);
     const expectedHeading = getByRole('heading', {
       name: 'Favorite pokémons',
