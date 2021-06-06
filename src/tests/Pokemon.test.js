@@ -64,11 +64,11 @@ describe('Teste sobre o componente Pokémon.', () => {
     expect(pathname).toBe('/pokemons/25');
   });
 
-  // it('Teste icone de estrela de favorito.', () => {
-  //   renderWithRouter(<Pokemon pokemon={ pikachu } isFavorite />);
-  //   const image = screen.getByRole('img', {
-  //     name: /pikachu is marked as favorite/i });
-  //   expect(image).toHaveAttribute('src', '/star-icon.svg');
-  //   expect(image).toHaveAttribute('alt', `${pikachu.name} is marked as favorite`);
-  // });
+  it('Teste icone de estrela de favorito.', () => {
+    renderWithRouter(<Pokemon pokemon={ pikachu } isFavorite />);
+    const image = screen.getByRole('img', {
+      name: /pikachu is marked as favorite/i });
+    expect(image).toHaveAttribute('src', '/star-icon.svg');
+    expect(image).toHaveAttribute('alt', `${pikachu.name} is marked as favorite`);
+  });
 });
