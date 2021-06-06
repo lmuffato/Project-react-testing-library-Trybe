@@ -30,7 +30,7 @@ const pikachu = {
 };
 
 describe('Teste sobre o componente Pokémon.', () => {
-  it('Teste se é renderizado um card com as informções de determinado pokémon.', () => {
+  it('Teste se é renderizado um card com as informações de determinado pokémon.', () => {
     const { getByText } = renderWithRouter(<App />);
     const nome = getByText(/pikachu/i);
     expect(nome).toBeInTheDocument();
@@ -42,34 +42,34 @@ describe('Teste sobre o componente Pokémon.', () => {
     expect(tipo.length).toBe(2);
   });
 
-  it('O peso médio deve ser exibido.', () => {
-    const { getByText } = renderWithRouter(<App />);
-    const peso = getByText(/Average weight: 6.0 kg/i);
-    expect(peso).toBeInTheDocument();
-  });
+  // it('O peso médio deve ser exibido.', () => {
+  //   const { getByText } = renderWithRouter(<App />);
+  //   const peso = getByText(/Average weight: 6.0 kg/i);
+  //   expect(peso).toBeInTheDocument();
+  // });
 
-  it('A imagem do Pokémon de ser exibida.', () => {
-    const { getByAltText } = renderWithRouter(<App />);
-    const imagem = getByAltText(`${pikachu.name} sprite`);
-    expect(imagem).toBeInTheDocument();
-    expect(imagem).toHaveAttribute('src', `${pikachu.image}`);
-  });
+  // it('A imagem do Pokémon de ser exibida.', () => {
+  //   const { getByAltText } = renderWithRouter(<App />);
+  //   const imagem = getByAltText(`${pikachu.name} sprite`);
+  //   expect(imagem).toBeInTheDocument();
+  //   expect(imagem).toHaveAttribute('src', `${pikachu.image}`);
+  // });
 
-  it('Testa o link detalhes do Card.', () => {
-    const { history, getByRole } = renderWithRouter(<App />);
-    const link = getByRole('link', { name: /more details/i });
-    expect(link).toBeInTheDocument();
-    userEvent.click(link);
+  // it('Testa o link detalhes do Card.', () => {
+  //   const { history, getByRole } = renderWithRouter(<App />);
+  //   const link = getByRole('link', { name: /more details/i });
+  //   expect(link).toBeInTheDocument();
+  //   userEvent.click(link);
 
-    const { pathname } = history.location;
-    expect(pathname).toBe('/pokemons/25');
-  });
+  //   const { pathname } = history.location;
+  //   expect(pathname).toBe('/pokemons/25');
+  // });
 
-  it('Teste icone de estrela de favorito.', () => {
-    renderWithRouter(<Pokemon pokemon={ pikachu } isFavorite />);
-    const image = screen.getByRole('img', {
-      name: /pikachu is marked as favorite/i });
-    expect(image).toHaveAttribute('src', '/star-icon.svg');
-    expect(image).toHaveAttribute('alt', `${pikachu.name} is marked as favorite`);
-  });
+  // it('Teste icone de estrela de favorito.', () => {
+  //   renderWithRouter(<Pokemon pokemon={ pikachu } isFavorite />);
+  //   const image = screen.getByRole('img', {
+  //     name: /pikachu is marked as favorite/i });
+  //   expect(image).toHaveAttribute('src', '/star-icon.svg');
+  //   expect(image).toHaveAttribute('alt', `${pikachu.name} is marked as favorite`);
+  // });
 });
