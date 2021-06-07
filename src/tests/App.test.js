@@ -1,7 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
-import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
 
 describe('Página principal', () => {

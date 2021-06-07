@@ -13,7 +13,7 @@ describe('teste da pagina not found', () => {
 
   it('Imagem', () => {
     renderWithRouter(<NotFound />);
-    const image = screen.getByAltText('Pikachu crying because the page requested was not found');
+    const image = screen.getByAltText('The page requested was not found');
 
     expect(image.getAttribute('src')).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
