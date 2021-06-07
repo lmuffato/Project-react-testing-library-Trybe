@@ -1,8 +1,8 @@
 import React from 'react';
-import { MemoryRouter, Router } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { createMemoryHistory } from 'history';
+import renderWithRouter from '../components/renderWithRouter ';
 import App from '../App';
 
 test('renders a reading with the text `Pokédex`', () => {
@@ -62,13 +62,6 @@ describe('testa o componente <App.js />', () => {
   });
 });
 
-const renderWithRouter = (component) => {
-  const history = createMemoryHistory();
-  return ({
-    ...render(<Router history={ history }>{component}</Router>), history,
-  });
-};
-
 describe('Test if renders a not found page when doesnt find a correct way', () => {
   it('renders not found text', () => {
     const { getByText, history } = renderWithRouter(<App />);
@@ -77,5 +70,3 @@ describe('Test if renders a not found page when doesnt find a correct way', () =
     expect(notFoundText).toBeInTheDocument();
   });
 });
-
-export default renderWithRouter;
