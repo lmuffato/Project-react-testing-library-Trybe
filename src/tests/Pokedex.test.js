@@ -24,8 +24,8 @@ describe('5. Teste o componente <Pokedex.js />', () => {
   });
   // "data-testid" SEM VALOR ('') copiado da função "Inspecionar" do Google Chrome
   it('Testa se Pokédex contém um botão "ALL" para resetar o filtro', () => {
-    const { getByTestId } = renderWithRouter(<App />);
-    const botaoAll = getByTestId('');
+    const { getByRole } = renderWithRouter(<App />);
+    const botaoAll = getByRole('button', { name: /All/i });
     userEvent.click(botaoAll);
     expect(botaoAll).toHaveTextContent('All');
     expect(botaoAll).toBeInTheDocument();
