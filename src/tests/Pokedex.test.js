@@ -18,6 +18,7 @@ describe('5. Teste o componente <Pokedex.js />', () => {
   it('Testa se exibe outro Pokémon quando o botão "Próximo Pokémon" é clicado', () => {
     const { getByTestId } = renderWithRouter(<App />);
     const idBotao = getByTestId('next-pokemon');
+    userEvent.click(idBotao);
     expect(idBotao).toBeInTheDocument();
     expect(idBotao).toHaveTextContent('Próximo pokémon');
   });
@@ -26,8 +27,8 @@ describe('5. Teste o componente <Pokedex.js />', () => {
     const { getByTestId } = renderWithRouter(<App />);
     const botaoAll = getByTestId('');
     userEvent.click(botaoAll);
-    expect(botaoAll).toBeInTheDocument();
     expect(botaoAll).toHaveTextContent('All');
+    expect(botaoAll).toBeInTheDocument();
   });
   // "data-testid" com valor "pokemon-type-button" copiado da função "Inspecionar" do Google Chrome
   it('Testa se existe um botão de filtro para cada tipo de Pokémon', () => {
