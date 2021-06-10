@@ -3,6 +3,7 @@ import { MemoryRouter, Router } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import App from '../App';
+import About from '../components/About';
 
 describe('Tests of Requeriment 1', () => {
   test('renders a reading with the text `Pokédex`', () => {
@@ -17,16 +18,15 @@ describe('Tests of Requeriment 1', () => {
     expect(heading).toBeInTheDocument();
   });
 
-  test('testando se rota esta em /', () => {
-    const history = createMemoryHistory();
-    history.push('/');
-
-    const { container } = render(
-      <Router history={ history }>
+  test('renders a reading with the text `about`', () => {
+    render(
+      <MemoryRouter>
         <App />
-      </Router>,
+      </MemoryRouter>,
     );
-
-    expect(container.innerHTML).toMatch(/Pokédex/i);
+    const heading = screen.getByRole('link', {
+      name: /about/i,
+    });
+    expect(heading).toBeInTheDocument();
   });
 });
