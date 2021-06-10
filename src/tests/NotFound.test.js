@@ -10,7 +10,6 @@ test('verifica implementação do componente Not Found', () => {
   history.push('/pagina/nao-encontrada');
   const notFound = getByRole('heading', {
     level: 2,
-    // Nessa parte fiz como foi sugerido no próprio erro do test.
     name: 'Page requested not found Crying emoji',
   });
   expect(notFound).toBeInTheDocument();
