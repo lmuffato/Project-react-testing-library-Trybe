@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/dom';
-import renderWithRouter from '../renderWithRouter';
+import renderWithRouter from '../components/renderWithRouter';
 import pokemons from '../data';
 import App from '../App';
 

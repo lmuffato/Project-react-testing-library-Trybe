@@ -1,5 +1,5 @@
 import React from 'react';
-import renderWithRouter from '../renderWithRouter';
+import renderWithRouter from '../components/renderWithRouter';
 import About from '../components/About';
 
 test('Testando se a página contém as informações sobre a Pokédex', () => {
