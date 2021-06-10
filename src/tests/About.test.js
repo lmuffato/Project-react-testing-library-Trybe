@@ -23,7 +23,7 @@ test('Testando se a página contém dois parágrafos com texto sobre a Pokédex'
   const one2 = 'a digital encyclopedia containing all Pokémons';
   const paragOne = getByText(`${one1} ${one2}`);
 
-  const two1 = 'One can filter Pokémons by type,';
+  const two1 = 'One can filter Pokémons by type,';  
   const two2 = 'and see more details for each one of them';
   const paragTwo = getByText(`${two1} ${two2}`);
 
