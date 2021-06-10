@@ -1,9 +1,7 @@
 import React from 'react';
-import { MemoryRouter, Router } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
 import App from '../App';
-import About from '../components/About';
 
 describe('Tests of Requeriment 1', () => {
   test('renders a reading with the text `Pokédex`', () => {
@@ -18,15 +16,25 @@ describe('Tests of Requeriment 1', () => {
     expect(heading).toBeInTheDocument();
   });
 
-  test('renders a reading with the text `about`', () => {
+  test('testing link with text ABOUT', () => {
     render(
       <MemoryRouter>
         <App />
       </MemoryRouter>,
     );
-    const heading = screen.getByRole('link', {
+    const about = screen.getByRole('link', {
       name: /about/i,
     });
-    expect(heading).toBeInTheDocument();
+    expect(about).toBeInTheDocument();
+  });
+
+  test('testing link with text HOME', () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    const home = screen.getByRole('link', {name: /home/i });
+    expect(home).toBeInTheDocument();
   });
 });
