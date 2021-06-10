@@ -34,7 +34,17 @@ describe('Tests of Requeriment 1', () => {
         <App />
       </MemoryRouter>,
     );
-    const home = screen.getByRole('link', {name: /home/i });
+    const home = screen.getByRole('link', { name: /home/i });
     expect(home).toBeInTheDocument();
+  });
+
+  test('testing link with text FAVORITE POKÉMONS', () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    const favorite = screen.getByRole('link', { name: /favorite pokémons/i });
+    expect(favorite).toBeInTheDocument();
   });
 });
