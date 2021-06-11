@@ -36,8 +36,6 @@ describe('Requirement 5', () => {
     expect(pikachu).toBeInTheDocument();
     const filterButton = getAllByTestId('pokemon-type-button');
     expect(filterButton[1]).toHaveTextContent('Fire');
-    /* userEvent.click(allButton);
-    expect(pikachu).toBeInTheDocument(); */
   });
 
   test('If the Pokédex has reset filter button', () => {
