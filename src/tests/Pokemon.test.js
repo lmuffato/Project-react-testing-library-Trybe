@@ -1,6 +1,6 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import renderWithRouter from './RenderWithRouter';
+import renderWithRouter from './renderWithRouter';
 import App from '../App';
 import pokemons from '../data';
 
