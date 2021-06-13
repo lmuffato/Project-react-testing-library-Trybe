@@ -1,7 +1,7 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
-import renderWithRouter from './renderWithRouter.test';
+import renderWithRouter from './renderWithRouter';
 
 describe('Testa componentes do app', () => {
   test('renderiza a pagina com `Pokédex`', () => {
@@ -62,7 +62,6 @@ describe('Testa componentes do app', () => {
     expect(heading).toBeInTheDocument();
   });
 
-  expect(getByText('Encountered pokémons')).toBeInTheDocument();
   it('redireciona para a pagina 404 quando busca invalida', () => {
     const { getByText, history } = renderWithRouter(<App />);
     history.push('/pagina/error-404/');
