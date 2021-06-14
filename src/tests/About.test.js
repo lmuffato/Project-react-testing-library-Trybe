@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { About } from '../components';
 
-describe('Testing the component <About />', () => {
+describe('testing the component <About />', () => {
   test('text information about pokédex', () => {
     render(
       <BrowserRouter>
@@ -51,8 +51,10 @@ describe('Testing the component <About />', () => {
       </BrowserRouter>,
     );
 
-    const altText = screen.getByRole('img');
+    const img = screen.getByRole('img');
     const src = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
-    expect(altText.src).toBe(src);
+    expect(img.src).toBe(src);
   });
 });
+
+// ref https://medium.com/@drake_beth/how-to-test-images-in-react-a70053b1634a
