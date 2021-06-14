@@ -57,11 +57,3 @@ describe('testing the <FavoritePokemons', () => {
     expect(notFoundText).toBeInTheDocument();
   });
 });
-
-// describe('testing the component X', () => {
-//     test('', () => {});
-//     test('', () => {});
-//     test('', () => {});
-//     test('', () => {});
-//     test('', () => {});
-//   });
