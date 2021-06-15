@@ -4,7 +4,7 @@ import { createMemoryHistory } from 'history';
 import { render } from '@testing-library/react';
 
 // Solução encontrada no conteúdo da Trybe
-const renderWithRouter = () => {
+const renderWithRouter = (component) => {
   const history = createMemoryHistory();
   return ({ ...render(<Router history={ history }>{ component }</Router>), history });
 };
