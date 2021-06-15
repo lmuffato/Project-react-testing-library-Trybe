@@ -5,7 +5,7 @@ import renderWithRouter from '../renderWithRouter';
 import pokemons from '../data';
 
 describe('Pokemon.js tests', () => {
-  const moreDetails = 'More details'
+  const moreDetails = 'More details';
   it('render card content', () => {
     const { getByText, getByAltText } = renderWithRouter(<App />);
     const details = getByText(moreDetails);
@@ -24,7 +24,7 @@ describe('Pokemon.js tests', () => {
   it('verify nav', () => {
     const { history, getByText } = renderWithRouter(<App />);
     const getBtn = getByText(moreDetails);
-    userEvent.click(getBtn);  
+    userEvent.click(getBtn);
     const { pathname } = history.location;
     expect(pathname).toBe(`/pokemons/${pokemons[0].id}`);
   });
