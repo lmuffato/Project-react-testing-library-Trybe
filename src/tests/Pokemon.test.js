@@ -5,9 +5,10 @@ import renderWithRouter from '../renderWithRouter';
 import pokemons from '../data';
 
 describe('Pokemon.js tests', () => {
+  const moreDetails = 'More details'
   it('render card content', () => {
     const { getByText, getByAltText } = renderWithRouter(<App />);
-    const details = getByText('More details');
+    const details = getByText(moreDetails);
     const defaultPokemon = pokemons[0];
     userEvent.click(details);
     const pokemonName = getByText(defaultPokemon.name);
@@ -22,7 +23,7 @@ describe('Pokemon.js tests', () => {
 
   it('verify nav', () => {
     const { history, getByText } = renderWithRouter(<App />);
-    const getBtn = getByText('More details');
+    const getBtn = getByText(moreDetails);
     userEvent.click(getBtn);  
     const { pathname } = history.location;
     expect(pathname).toBe(`/pokemons/${pokemons[0].id}`);
@@ -30,7 +31,7 @@ describe('Pokemon.js tests', () => {
 
   it('verify marked as favorites', () => {
     const { getByRole, getByText, getByAltText } = renderWithRouter(<App />);
-    const details = getByText('More details');
+    const details = getByText(moreDetails);
     userEvent.click(details);
     const bookmarked = getByRole('checkbox');
     userEvent.click(bookmarked);
