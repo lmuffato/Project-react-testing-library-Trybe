@@ -25,3 +25,4 @@ describe('Testa o component About', () => {
 // Referências:
 // Como acessar uma imagem e testar o seu src: https://stackoverflow.com/questions/60509527/jestreact-native-testing-library-how-to-test-an-image-src
 // Como testar se há 2 parágrafos na página: https://github.com/tryber/sd-010-a-project-react-testing-library/pull/107/commits/3bc08bd2cbc943fb05955dedda6b4730f5231e18
+// Entendendo alguns requisitos: https://github.com/tryber/sd-010-a-project-react-testing-library/pull/78/commits/c8d8efb20a97f8bb8d90c4fa5e4473adb869a291
