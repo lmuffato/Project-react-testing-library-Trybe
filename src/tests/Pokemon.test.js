@@ -37,4 +37,14 @@ describe('Nome do teste', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/pokemons/25');
   });
+
+  test('Teste se existe um ícone de estrela nos Pokémons favoritados', () => {
+    const { getByAltText, getByRole, history } = RenderWithRouter(<App />);
+    history.push('/pokemons/25');
+    const butaunzin = getByRole('checkbox');
+    userEvent.click(butaunzin);
+    const estrelaTexto = getByAltText(/Pikachu is marked as favorite/i);
+    const estrelinha = '/star-icon.svg';
+    expect(estrelaTexto.src).toMatch(estrelinha);
+  });
 });
