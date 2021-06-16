@@ -1,6 +1,8 @@
 import React from 'react';
+import userEvent from '@testing-library/user-event';
 import App from '../App';
 import RenderWithRouter from './RenderWithRouter';
+import pokemons from '../data';
 
 describe('Nome do teste', () => {
   test('Teste se é renderizado um card com as informações de determinado pokémon', () => {
@@ -18,5 +20,21 @@ describe('Nome do teste', () => {
     const imagem = getByAltText('Pikachu sprite');
     expect(imagem.src).toBe('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
     expect(imagem).toBeInTheDocument();
+  });
+
+  test('Teste se o card do Pokémon indicado na Pokédex contém um link', () => {
+    const { history, getByText } = RenderWithRouter(<App />);
+    const getBtn = getByText('More details');
+    userEvent.click(getBtn);
+    const { pathname } = history.location;
+    expect(pathname).toBe(`/pokemons/${pokemons[0].id}`);
+  });
+
+  test('Teste se ao clicar no link de navegação do Pokémon, é feito o redir', () => {
+    const { getByRole, history } = RenderWithRouter(<App />);
+    const buttonDetails = getByRole('link', { name: /more details/i });
+    userEvent.click(buttonDetails);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/pokemons/25');
   });
 });
