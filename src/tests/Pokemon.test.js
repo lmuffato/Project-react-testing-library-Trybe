@@ -2,7 +2,7 @@ import React from 'react';
 import App from '../App';
 import RenderWithRouter from './RenderWithRouter';
 
-describe('', () => {
+describe('Nome do teste', () => {
   test('Teste se é renderizado um card com as informações de determinado pokémon', () => {
     const { getByTestId, getByAltText } = RenderWithRouter(<App />);
 
