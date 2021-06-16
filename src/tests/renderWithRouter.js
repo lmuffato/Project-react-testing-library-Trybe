@@ -1,15 +1,15 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
-import { MemoryRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 
 function renderWithRouter(component) {
   const historyMock = createMemoryHistory();
 
   const renderObject = render(
-    <MemoryRouter history={ historyMock }>
+    <Router history={ historyMock }>
       {component}
-    </MemoryRouter>,
+    </Router>,
   );
 
   return {
