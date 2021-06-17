@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
-describe('About component', () => {
+describe('Favorite Pokemons component', () => {
   test('Contains paragraph No favorite pokemon found', async () => {
     const {
       getByText,
