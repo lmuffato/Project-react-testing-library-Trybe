@@ -5,6 +5,7 @@ import { Pokedex } from '../components';
 import renderWithRouter from './RenderWithRouter';
 import pokemons from '../data';
 
+// código realizado em parceria com Anderson Silva
 const favoritePokemons = () => {
   const x = {};
   pokemons.forEach((pokemon) => {

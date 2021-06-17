@@ -3,6 +3,7 @@ import { screen } from '@testing-library/react';
 import { FavoritePokemons } from '../components';
 import renderWithRouter from './RenderWithRouter';
 
+// código realizado em parceria com Anderson Silva
 describe('Testes pagina favorite pokemons', () => {
   test('teste se exibe testo padrao', () => {
     renderWithRouter(<FavoritePokemons
