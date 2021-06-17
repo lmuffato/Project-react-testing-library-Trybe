@@ -30,7 +30,7 @@ describe('Tests the home page', () => {
         <About />
       </MemoryRouter>,
     );
-    expect(screen.getAllByTestId('about-info').length).toBe(2);
+    expect(screen.getAllByText(/Pokémons/i)).toHaveLength(2);
   });
 
   test('deve renderizar uma imagem com URL específica', () => {
