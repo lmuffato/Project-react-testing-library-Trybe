@@ -85,5 +85,3 @@ test('Applications links redirect correctely', async () => {
   expect(pathname).toEqual('/pagina-nao-definida');
   expect(textNotFound).toBeInTheDocument();
 });
-
-
