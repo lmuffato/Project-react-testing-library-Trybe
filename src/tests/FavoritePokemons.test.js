@@ -4,7 +4,7 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('Favorite Pokemons component', () => {
-  test('Contains paragraph No favorite pokemon found', async () => {
+  test('Contains paragraph No favorite pokemon found', () => {
     const {
       getByText,
       history,
@@ -15,7 +15,7 @@ describe('Favorite Pokemons component', () => {
     expect(Nofavorite).toBeInTheDocument();
   });
 
-  test('Contains favorite pokemon cards', async () => {
+  test('Contains favorite pokemon cards', () => {
     const {
       getByText,
       getByLabelText,

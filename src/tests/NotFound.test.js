@@ -3,7 +3,7 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('notFound component', () => {
-  test('Contains heading h2 notFound', async () => {
+  test('Contains heading h2 notFound', () => {
     const {
       getByRole,
       history,
@@ -17,7 +17,7 @@ describe('notFound component', () => {
     expect(heading2).toBeInTheDocument();
   });
 
-  test('Contains image link notFound', async () => {
+  test('Contains image link notFound', () => {
     const {
       getByAltText,
       history,

@@ -21,7 +21,7 @@ describe('About component', () => {
     expect(paragraphs2).toBeInTheDocument();
   });
 
-  test('Contains heading h2 in about', async () => {
+  test('Contains heading h2 in about', () => {
     const {
       getByText,
       getByRole,
@@ -40,7 +40,7 @@ describe('About component', () => {
     expect(aboutText).toBeInTheDocument();
   });
 
-  test('Contains image link in about', async () => {
+  test('Contains image link in about', () => {
     const {
       getByText,
       getByAltText,
