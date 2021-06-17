@@ -4,6 +4,7 @@ import { screen } from '@testing-library/react';
 import Pokemon from '../components/Pokemon';
 import renderWithRouter from './RenderWithRouter';
 
+// Trecho do código baseado na solução de Eduardo Costa
 const pikachu = {
   id: 25,
   name: 'Pikachu',
@@ -60,9 +61,18 @@ describe('test component pokemom', () => {
       name: /more details/i,
     });
     userEvent.click(link);
-
     const { pathname } = history.location;
-    // console.log('poke', pathname);
     expect(pathname).toBe('/pokemons/25');
+  });
+
+  // trecho do codigo baseado na solução encontrada por Eduardo Costa
+  test('Test icon', () => {
+    renderWithRouter(<Pokemon pokemon={ pikachu } isFavorite />);
+
+    const img = screen.getByRole('img', {
+      name: /pikachu is marked as favorite/i,
+    });
+    expect(img).toHaveAttribute('src', '/star-icon.svg');
+    expect(img).toHaveAttribute('alt', 'Pikachu is marked as favorite');
   });
 });
