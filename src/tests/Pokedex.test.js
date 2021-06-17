@@ -59,7 +59,8 @@ describe('Pokedex component tests', () => {
     const buttonArray = queryAllByTestId(/pokemon-type-button/i);
     const buttonCheck = buttonArray[3];
     userEvent.click(buttonCheck);
-    const pokemonCheck = getByTestId(/pokemonType/i);
+    const pokemonCheck = getByTestId('pokemon-type');
+    console.log(pokemonCheck);
     expect(buttonCheck.innerHTML).toBe(pokemonCheck.innerHTML);
   });
   it('renders Pokedex component, Reset em click button "all"', () => {
@@ -71,7 +72,7 @@ describe('Pokedex component tests', () => {
     );
     const nextButton = getByTestId(/next-pokemon/i);
     const allButton = getByRole('button', { name: /all/i });
-    const poketype = getByTestId('pokemonType');
+    const poketype = getByTestId('pokemon-type');
     const firstPoke = poketype.innerHTML;
     userEvent.click(nextButton);
     expect(poketype.innerHTML).not.toBe(firstPoke);

@@ -18,7 +18,7 @@ describe('NotFound component tests', () => {
     userEvent.click(getByText(/home/i));
     expect(history.location.pathname).toBe('/');
     const pokeName = getByTestId(/pokemon-name/i);
-    const pokeType = getByTestId(/pokemonType/i);
+    const pokeType = getByTestId('pokemon-type');
     const pokeweight = getByTestId(/pokemon-weight/i);
     const pokeSprite = getByRole('img');
     let pokeCheck = pokeName;
