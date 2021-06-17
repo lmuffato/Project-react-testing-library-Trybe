@@ -3,38 +3,37 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { screen } from '@testing-library/react';
 import App from '../App';
-import { PokemonDetails } from '../components';
 import renderWithRouter from './RenderWithRouter';
 
+const pokemon = [{
+  id: 25,
+  name: 'Pikachu',
+  type: 'Electric',
+  averageWeight: {
+    value: '6.0',
+    measurementUnit: 'kg',
+  },
+  image: 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
+  moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)',
+  foundAt: [
+    {
+      location: 'Kanto Viridian Forest',
+      map: 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png',
+    },
+    {
+      location: 'Kanto Power Plant',
+      map: 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
+    },
+  ],
+  summary: 'This intelligent Pokémon roasts hard'
+    + 'berries with electricity to make them tender enough to eat.',
+}];
 describe('testando component details pokemons', () => {
   test('test detalhes component', () => {
     const { getByText,
       getAllByRole,
       getByRole,
-      getByLabelText } = renderWithRouter(<App 
-        pokemons={ [{
-          id: 25,
-          name: 'Pikachu',
-          type: 'Electric',
-          averageWeight: {
-            value: '6.0',
-            measurementUnit: 'kg',
-          },
-          image: 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
-          moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)',
-          foundAt: [
-            {
-              location: 'Kanto Viridian Forest',
-              map: 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png',
-            },
-            {
-              location: 'Kanto Power Plant',
-              map: 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
-            },
-          ],
-          summary: 'This intelligent Pokémon roasts hard'
-          + 'berries with electricity to make them tender enough to eat.',
-        }] } />);
+      getByLabelText } = renderWithRouter(<App pokemons={ pokemon } />);
 
     const textButton = getByText(/more details/i);
     userEvent.click(textButton);
