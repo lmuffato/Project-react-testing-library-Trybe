@@ -64,7 +64,7 @@ describe('Tests the Pokedex main page', () => {
     const all = screen.getByRole('button', {
       name: /all/i,
     });
-    expect(screen.getByTestId(''));
+    // expect(screen.getByTestId(''));
     userEvent.click(all);
     expect(screen.getByText('Pikachu'));
     const next = screen.getByRole('button', {
@@ -88,38 +88,40 @@ describe('Tests the Pokedex main page', () => {
 
   test('tests if there is a button for each type of pokémon', () => {
     renderWithRouter(<App />);
-    const allBtn = screen.getByRole('button', {
-      name: /^all$/i,
-    });
-    expect(allBtn).toBeInTheDocument();
-    const electricBtn = screen.getByRole('button', {
-      name: /^electric$/i,
-    });
-    expect(electricBtn).toBeInTheDocument();
-    const fireBtn = screen.getByRole('button', {
-      name: /^fire$/i,
-    });
-    expect(fireBtn).toBeInTheDocument();
-    const bugBtn = screen.getByRole('button', {
-      name: /^bug$/i,
-    });
-    expect(bugBtn).toBeInTheDocument();
-    const poisonBtn = screen.getByRole('button', {
-      name: /^poison$/i,
-    });
-    expect(poisonBtn).toBeInTheDocument();
-    const psychicBtn = screen.getByRole('button', {
-      name: /^psychic$/i,
-    });
-    expect(psychicBtn).toBeInTheDocument();
-    const normalBtn = screen.getByRole('button', {
-      name: /^normal$/i,
-    });
-    expect(normalBtn).toBeInTheDocument();
-    const dragonBtn = screen.getByRole('button', {
-      name: /^dragon$/i,
-    });
-    expect(dragonBtn).toBeInTheDocument();
+    const numberOfFilters = 7;
+    expect(screen.getAllByTestId('pokemon-type-button')).toHaveLength(numberOfFilters);
+    // const allBtn = screen.getByRole('button', {
+    //   name: /^all$/i,
+    // });
+    // expect(allBtn).toBeInTheDocument();
+    // const electricBtn = screen.getByRole('button', {
+    //   name: /^electric$/i,
+    // });
+    // expect(electricBtn).toBeInTheDocument();
+    // const fireBtn = screen.getByRole('button', {
+    //   name: /^fire$/i,
+    // });
+    // expect(fireBtn).toBeInTheDocument();
+    // const bugBtn = screen.getByRole('button', {
+    //   name: /^bug$/i,
+    // });
+    // expect(bugBtn).toBeInTheDocument();
+    // const poisonBtn = screen.getByRole('button', {
+    //   name: /^poison$/i,
+    // });
+    // expect(poisonBtn).toBeInTheDocument();
+    // const psychicBtn = screen.getByRole('button', {
+    //   name: /^psychic$/i,
+    // });
+    // expect(psychicBtn).toBeInTheDocument();
+    // const normalBtn = screen.getByRole('button', {
+    //   name: /^normal$/i,
+    // });
+    // expect(normalBtn).toBeInTheDocument();
+    // const dragonBtn = screen.getByRole('button', {
+    //   name: /^dragon$/i,
+    // });
+    // expect(dragonBtn).toBeInTheDocument();
   });
 
   test('button disabled', () => {
