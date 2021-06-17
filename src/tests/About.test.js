@@ -7,6 +7,7 @@ describe('tests for the About component', () => {
     render(<About />);
     const heading = screen.getByText('About Pokédex');
     expect(heading).toBeInTheDocument();
+    expect(heading.tagName).toBe('H2');
   });
 
   it('Test if the page contains two paragraphs with text about Pokédex', () => {

@@ -7,6 +7,7 @@ describe('tests for the NotFound component', () => {
     render(<NotFound />);
     const heading = screen.getByText('Page requested not found');
     expect(heading).toBeInTheDocument();
+    expect(heading.tagName).toBe('H2');
   });
 
   it('test if it contains an image', () => {
