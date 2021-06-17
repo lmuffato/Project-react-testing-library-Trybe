@@ -17,7 +17,9 @@ describe('Pokedex component', () => {
     });
     expect(heading2).toBeInTheDocument();
   });
+});
 
+describe('Pokedex component', () => {
   test('click next pokemon button', () => {
     const {
       getByText,
@@ -33,7 +35,10 @@ describe('Pokedex component', () => {
     const averageBefore = averageWeightSplit[1];
 
     const nextPokemon = getByTestId(/next-pokemon/i);
+    const nextPokemonText = getByText(/Próximo pokémon/i);
+    expect(nextPokemonText).toBeInTheDocument();
     expect(nextPokemon).toBeInTheDocument();
+
     userEvent.click(nextPokemon);
 
     const averageWeightNext = getByText(/Average weight:/i);
@@ -128,5 +133,29 @@ describe('Pokedex component', () => {
 
     const typeDragon = typePokemonButton[6];
     expect(typeDragon.innerHTML).toBe('Dragon');
+  });
+
+  test('Test button next pokemon first pokemon', () => {
+    const {
+      getByText,
+      getByTestId,
+      history,
+    } = renderWithRouter(<App />);
+    history.push('/');
+
+    const nextButton = getByTestId(/next-pokemon/i);
+    expect(nextButton).toBeInTheDocument();
+    userEvent.click(nextButton);
+    userEvent.click(nextButton);
+    userEvent.click(nextButton);
+    userEvent.click(nextButton);
+    userEvent.click(nextButton);
+    userEvent.click(nextButton);
+    userEvent.click(nextButton);
+    userEvent.click(nextButton);
+    userEvent.click(nextButton);
+
+    const pokemonPrevious = getByText(/Average weight:/i).previousSibling.previousSibling;
+    expect(pokemonPrevious.innerHTML).toBe('Pikachu');
   });
 });
