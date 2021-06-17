@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { screen } from '@testing-library/react';
 import Pokemon from '../components/Pokemon';
 import renderWithRouter from './RenderWithRouter';
+import App from '../App';
 
 // Trecho do código baseado na solução de Eduardo Costa
 const pikachu = {
@@ -74,5 +75,18 @@ describe('test component pokemom', () => {
     });
     expect(img).toHaveAttribute('src', '/star-icon.svg');
     expect(img).toHaveAttribute('alt', 'Pikachu is marked as favorite');
+  });
+
+  test('Test link do card pokemon ', () => {
+    renderWithRouter(<App />);
+
+    const button = screen.getByRole('button', {
+      name: /All/i,
+    });
+    userEvent.click(button);
+    const linkDetails = screen.getByRole('link', {
+      name: /more details/i,
+    });
+    expect(linkDetails.href).toBe('http://localhost/pokemons/25');
   });
 });
