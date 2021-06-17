@@ -32,7 +32,7 @@ describe('Pokedex component', () => {
     const averageWeightSplit = averageWeight.innerHTML.split(':');
     const averageBefore = averageWeightSplit[1];
 
-    const nextPokemon = getByTestId('next-pokemon');
+    const nextPokemon = getByTestId(/next-pokemon/i);
     expect(nextPokemon).toBeInTheDocument();
     userEvent.click(nextPokemon);
 
