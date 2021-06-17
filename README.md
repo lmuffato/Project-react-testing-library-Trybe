@@ -1,40 +1,3 @@
-### Termos de acordo
-
-Ao iniciar este projeto, você concorda com as diretrizes do Código de Ética e Conduta e do Manual da Pessoa Estudante da Trybe.
-
-# Boas vindas ao repositório do projeto de testes com a React Testing Library!
-
-Você já usa o GitHub diariamente para desenvolver os exercícios, certo? Agora, para desenvolver os projetos, você deverá seguir as instruções a seguir. Fique atento a cada passo, e se tiver qualquer dúvida, nos envie por _Slack_! #vqv 🚀
-
-Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu projeto a partir deste repositório, utilizando uma branch específica e um _Pull Request_ para colocar seus códigos.
-
-# Sumário
-
-  - [Habilidades](#habilidades)
-  - [Entregáveis](#entregáveis)
-    - [O que deverá ser desenvolvido](#o-que-deverá-ser-desenvolvido)
-    - [Desenvolvimento](#desenvolvimento)
-    - [Data de entrega](#data-de-entrega)
-  - [Instruções para entregar seu projeto](#instruções-para-entregar-seu-projeto)
-    - [Antes de começar a desenvolver](#antes-de-começar-a-desenvolver)
-    - [Durante o desenvolvimento](#durante-o-desenvolvimento)
-    - [Como desenvolver](#como-desenvolver)
-      - [Linter](#linter)
-      - [Testes](#testes)
-      - [Quem testa os testes?](#quem-testa-os-testes)
-  - [Requisitos do projeto](#requisitos-do-projeto)
-    - [Lista de requisitos](#lista-de-requisitos)
-      - [1. Teste o componente `<App.js />`](#1-teste-o-componente-appjs-)
-      - [2. Teste o componente `<About.js />`](#2-teste-o-componente-aboutjs-)
-      - [3. Teste o componente `<FavoritePokemons.js />`](#3-teste-o-componente-favoritepokemonsjs-)
-      - [4. Teste o componente `<NotFound.js />`](#4-teste-o-componente-notfoundjs-)
-      - [5. Teste o componente `<Pokedex.js />`](#5-teste-o-componente-pokedexjs-)
-      - [6. Teste o componente `<Pokemon.js />`](#6-teste-o-componente-pokemonjs-)
-      - [7. Teste o componente `<PokemonDetails.js />`](#7-teste-o-componente-pokemondetailsjs-)
-      - [Quer fazer mais? Temos algumas sugestões!](#quer-fazer-mais-temos-algumas-sugestões)
-- [Depois de terminar o desenvolvimento](#depois-de-terminar-o-desenvolvimento)
-- [Revisando um pull request](#revisando-um-pull-request)
-- [Avisos Finais](#avisos-finais)
 
 # Habilidades
 
@@ -52,84 +15,14 @@ Neste projeto, verificamos se voce é capaz de:
 
 * Testar inputs.
 
-# Entregáveis
 
-Para entregar o seu projeto você deverá criar um Pull Request neste repositório.
 
-Lembre-se que você pode consultar nosso conteúdo sobre
-[Git & GitHub](https://course.betrybe.com/intro/git/) sempre que precisar!
-
-## O que deverá ser desenvolvido
-
-Nesse projeto você escreverá testes para uma aplicação React.
 
 ## Desenvolvimento
 
 Este repositório já contém uma aplicação React criada e configurada. Após clonar o projeto e instalar as dependências (mais sobre isso abaixo), você não precisará realizar nenhuma configuração adicional. Você deverá utilizar [`Jest`](https://jestjs.io/) e a biblioteca [`React Testing Library`](https://testing-library.com/) (também já instaladas e configuradas) para escrever os testes. Note que a aplicação contém uma implementação completa de todos os requisitos da Pokédex. Seu trabalho será, para cada requisito listado a seguir, escrever testes que garantam sua corretude. Cuidado com [testes _falsos positivos_](https://talkingabouttesting.com/2015/08/04/falsos-negativos-falsos-positivos-verdadeiros-negativos-e-verdadeiros-positivos/). Falsos positivos serão desconsiderados na avaliação.
 
-## Data de entrega
 
-  - Serão `2` dias de projeto.
-  - Data de entrega para avaliação final do projeto: `02/06/2021 - 14:00h`.
-
-# Instruções para entregar seu projeto
-
-### Antes de começar a desenvolver:
-
-1. Clone o repositório
-  * `git clone https://github.com/tryber/sd-010-a-project-react-testing-library.git`.
-  * Entre na pasta do repositório que você acabou de clonar:
-    * `cd sd-010-a-project-react-testing-library`
-
-2. Instale as dependências
-  * `npm install`
-
-3. Crie uma branch a partir da branch `master`
-  * Verifique que você está na branch `master`
-    * Exemplo: `git branch`
-  * Se não estiver, mude para a branch `master`
-    * Exemplo: `git checkout master`
-  * Agora crie uma branch para qual você vai submeter os `commits` do seu projeto
-    * Você deve criar uma branch no seguinte formato: `nome-de-usuario-nome-do-projeto`
-    * Exemplo: `git checkout -b joaozinho-react-testing`
-
-4. Adicione um teste para algum dos requisitos do projeto. Por exemplo, para o requisito #1, adicione em `App.test.js`:
-
-```javascript
-test('shows the Pokédex when the route is `/`', () => {
-  const { getByText } = render(
-    <MemoryRouter initialEntries={['/']}>
-      <App />
-    </MemoryRouter>,
-  );
-
-  expect(getByText('Encountered pokémons')).toBeInTheDocument();
-});
-```
-
-5. Adicione as mudanças ao _stage_ do Git e faça um `commit`
-  * Verifique que as mudanças ainda não estão no _stage_
-    * Exemplo: `git status` (deve aparecer listado o arquivo _src/last.js_ em vermelho)
-  * Adicione o arquivo alterado ao _stage_ do Git
-      * Exemplo:
-        * `git add .` (adicionando todas as mudanças - _que estavam em vermelho_ - ao stage do Git)
-        * `git status` (deve aparecer listado o arquivo _src/last.js_ em verde)
-  * Faça o `commit` inicial
-      * Exemplo:
-        * `git commit -m 'iniciando o projeto. VAMOS COM TUDO :rocket:'` (fazendo o primeiro commit)
-        * `git status` (deve aparecer uma mensagem tipo _nothing to commit_ )
-
-6. Adicione a sua branch com o novo `commit` ao repositório remoto
-  * Usando o exemplo anterior: `git push -u origin joaozinho-react-testing`
-
-7. Crie um novo `Pull Request` _(PR)_
-  * Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/sd-010-a-project-react-testing-library/pulls)
-  * Clique no botão verde _"New pull request"_
-  * Clique na caixa de seleção _"Compare"_ e escolha a sua branch **com atenção**
-  * Clique no botão verde _"Create pull request"_
-  * Adicione uma descrição para o _Pull Request_ e clique no botão verde _"Create pull request"_
-  * **Não se preocupe em preencher mais nada por enquanto!**
-  * Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-010-a-project-react-testing-library/pulls) e confira que o seu _Pull Request_ está criado
 
 ---
 
@@ -141,14 +34,6 @@ test('shows the Pokédex when the route is `/`', () => {
 
 * Lembre-se de sempre após um (ou alguns) `commits` atualizar o repositório remoto
 
-* Os comandos que você utilizará com mais frequência são:
-  1. `git status` _(para verificar o que está em vermelho - fora do stage - e o que está em verde - no stage)_
-  2. `git add` _(para adicionar arquivos ao stage do Git)_
-  3. `git commit` _(para criar um commit com os arquivos que estão no stage do Git)_
-  5. `git push -u nome-da-branch` _(para enviar o commit para o repositório remoto na primeira vez que fizer o `push` de uma nova branch)_
-  4. `git push` _(para enviar o commit para o repositório remoto após o passo anterior)_
-
----
 
 # Como desenvolver
 
@@ -158,19 +43,7 @@ test('shows the Pokédex when the route is `/`', () => {
   Como assim? Pense da seguinte forma: nosso avaliador vai navegar por toda a aplicação da Pokédex e vai fazer várias mudanças no código dela **para que ela quebre e pare de funcionar**. Em seguida ele vai rodar seus testes. Caso seus testes não acusem que aplicação está com problemas o avaliador não vai aprovar aquele requisito! Se, para todas as alterações que o avaliador fizer no código da aplicação, os seus testes acusarem problemas, tudo será aprovado! O avaliador garante, portanto, que seus testes testam a aplicação da Pokédex como se deve!
   Na linguagem do avaliador, dizemos que cada mudança que o avaliador faz na sua aplicação é um **mutante**. O avaliador cria vários mutantes e seus testes **devem matar todos!** Se algum mutante sobreviver, temos problemas. Certo? Vamos aos requisitos então!
 
-## Linter
 
-  Para garantir a qualidade do código, vamos utilizar neste projeto os linters `ESLint` e `StyleLint`.
-  Assim o código estará alinhado com as boas práticas de desenvolvimento, sendo mais legível
-  e de fácil manutenção! Para rodá-los localmente no projeto, execute os comandos abaixo:
-
-  ```bash
-    npm run lint
-    npm run lint:styles
-  ```
-
-⚠️ **PULL REQUESTS COM ISSUES DE LINTER NÃO SERÃO AVALIADAS.
-ATENTE-SE PARA RESOLVÊ-LAS ANTES DE FINALIZAR O DESENVOLVIMENTO!** ⚠️
 
 ## Testes
 
