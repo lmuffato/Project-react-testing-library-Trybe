@@ -2,7 +2,7 @@ import React from 'react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
-describe('App component', () => {
+describe('About component', () => {
   test('Contains 2 paragraphs in about', async () => {
     const {
       getByText,
