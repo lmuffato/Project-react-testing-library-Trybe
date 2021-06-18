@@ -27,12 +27,12 @@ describe('requisito 1', () => {
     const favoriteLink = screen.getByRole('link', {
       name: 'Favorite Pokémons',
     });
-  
+
     expect(homeLink).toBeInTheDocument();
     expect(aboutLink).toBeInTheDocument();
     expect(favoriteLink).toBeInTheDocument();
   });
-  
+
   test('testando o redirecionamento dos links', () => {
     const historyMock = createBrowserHistory();
     render(
@@ -49,7 +49,7 @@ describe('requisito 1', () => {
     const favorito = screen.getByRole('link', {
       name: 'Favorite Pokémons',
     });
-  
+
     const funcLink = (link) => {
       userEvent.click(link);
       return historyMock.location.pathname;
@@ -57,12 +57,12 @@ describe('requisito 1', () => {
 
     const homePathname = funcLink(home);
     expect(homePathname).toEqual('/');
-  
+
     const aboutPathname = funcLink(about);
     expect(aboutPathname).toEqual('/about');
-  
+
     const favoritePathname = funcLink(favorito);
     expect(favoritePathname).toEqual('/favorites');
-  
+
   });
 })

@@ -3,8 +3,6 @@ import { screen } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
-// abstração: 
-
 describe('requisito 3', () => {
   test('testando favorite pokemon ', () => {
     const { history } = renderWithRouter(<App />);
@@ -19,8 +17,7 @@ describe('requisito 3', () => {
     history.push('/pokemons/25');
     const input = screen.getByLabelText('Pokémon favoritado?');
     expect(input).toBeInTheDocument();
-
   });
-})
+});
 
 // npx stryker run ./stryker/FavoritePokemons.conf.json

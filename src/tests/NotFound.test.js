@@ -21,6 +21,6 @@ describe('requisito 4', () => {
 
     expect(image.src).toEqual(giphy);
   });
-})
+});
 
 // npx stryker run ./stryker/NotFound.conf.json
