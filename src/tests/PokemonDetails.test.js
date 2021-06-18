@@ -4,16 +4,23 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import RenderWithRouter from './RenderWithRouter';
 
+// Fonte: https://github.com/tryber/sd-010-a-project-react-testing-library/pull/63/files
+
 describe('Teste o componente PokemonDetails.js', () => {
   test('as infos detalhadas do Pokémon selec são mostradas na tela', () => {
-    RenderWithRouter(<App />);
+    const detalhezin = /This intelligent Pokémon roasts/i;
+    const { getByText } = RenderWithRouter(<App />);
     const detalhes = screen.getByText(/More Details/i);
     expect(detalhes).toBeInTheDocument();
-
     userEvent.click(detalhes);
-
     const pokDetalhes = screen.getByText(/Pikachu details/i);
     expect(pokDetalhes).toBeInTheDocument();
+    const sumary = getByText('Summary');
+    expect(sumary).toBeInTheDocument();
+    const sumaryText = getByText(detalhezin);
+    expect(sumaryText).toBeInTheDocument();
+    const botaunzin = getByText('Pokémon favoritado?');
+    expect(botaunzin).toBeInTheDocument(detalhezin);
   });
 
   // Fonte: https://github.com/tryber/sd-010-a-project-react-testing-library/pull/60/files
