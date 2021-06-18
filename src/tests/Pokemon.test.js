@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
-describe('Pokedex component', () => {
+describe('Pokemon component', () => {
   test('Contains card pokemon', () => {
     const {
       getByText,
@@ -26,7 +26,7 @@ describe('Pokedex component', () => {
     expect(image.src).toContain(url);
   });
 
-  test('Contains card pokemon', () => {
+  test('Contains card page favorite', () => {
     const {
       getByText,
       getByAltText,
