@@ -8,8 +8,8 @@ describe('Try favorites pokemons', () => {
     const { getByRole } = renderWithRouter(
       <FavoritePokemons pokemons={ pokemons } />,
     );
-    const favorito = getByRole('heading', { level: 2 });
-    expect(favorito).toHaveTextContent(/favorite pokémons/i);
+    const favorite = getByRole('heading', { level: 2 });
+    expect(favorite).toHaveTextContent(/favorite pokémons/i);
   });
 
   test('Test if render favorite pokemons', () => {
