@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import RenderWithRouter from './RenderWithRouter';
@@ -7,25 +7,32 @@ import RenderWithRouter from './RenderWithRouter';
 describe('Teste o componente PokemonDetails.js', () => {
   test('as infos detalhadas do Pokémon selec são mostradas na tela', () => {
     RenderWithRouter(<App />);
-    const detailsLink = screen.getByText(/More Details/i);
-    expect(detailsLink).toBeInTheDocument();
+    const detalhes = screen.getByText(/More Details/i);
+    expect(detalhes).toBeInTheDocument();
 
-    userEvent.click(detailsLink);
+    userEvent.click(detalhes);
 
-    const pokeDetails = screen.getByText(/Pikachu details/i);
-    expect(pokeDetails).toBeInTheDocument();
+    const pokDetalhes = screen.getByText(/Pikachu details/i);
+    expect(pokDetalhes).toBeInTheDocument();
   });
 
+  // Fonte: https://github.com/tryber/sd-010-a-project-react-testing-library/pull/60/files
+  // https://github.com/tryber/sd-010-a-project-react-testing-library/pull/61/files
+
   test('existe na pág uma seção com os mapas contendo as loc do pokémon', () => {
-    const { getByRole, getAllByAltText } = RenderWithRouter(<App />);
-    const moreDetailsButton = getByRole('link', { name: /more details/i });
-    userEvent.click(moreDetailsButton);
-    const pikachuLocationsImg = getAllByAltText(/pikachu location/i);
-    expect(pikachuLocationsImg[0]).toBeInTheDocument();
-    expect(pikachuLocationsImg[0].src).toContain('https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
-    expect(pikachuLocationsImg[1]).toBeInTheDocument();
-    expect(pikachuLocationsImg[1].src).toContain('https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
-    expect(pikachuLocationsImg.length).toBe(2);
+    RenderWithRouter(<App />);
+    const detalhes = 'More details';
+    const pokName = 'pokemon-name';
+    const moreDetailsLink = screen.getByRole('link', { name: detalhes });
+    fireEvent.click(moreDetailsLink);
+    const pkmName = screen.getByTestId(pokName).innerHTML;
+    const textoHeading = `Game Locations of ${pkmName}`;
+    const heading = screen.getByRole('heading', { level: 2, name: textoHeading });
+    expect(heading).toBeInTheDocument();
+    const loc = screen.getAllByAltText(`${pkmName} location`);
+    expect(loc).toHaveLength(2);
+    expect(loc[0]).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
+    expect(loc[1]).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
   });
 
   test('suário pode favoritar um pokémon através da página de detalhes', () => {
