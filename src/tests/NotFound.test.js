@@ -1,7 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import renderWithRouter from '../render/renderWithRouter';
-
 import NotFound from '../components/NotFound';
 
 describe('Test page notFound', () => {
