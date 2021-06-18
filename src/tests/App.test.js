@@ -63,6 +63,5 @@ describe('requisito 1', () => {
 
     const favoritePathname = funcLink(favorito);
     expect(favoritePathname).toEqual('/favorites');
-
   });
-})
+});
