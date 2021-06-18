@@ -1,8 +1,7 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import App from '../App';
 import renderWithRouter from './renderWithRouter';
+import App from '../App';
 
 // abstração: 
 
@@ -11,7 +10,7 @@ describe('requisito 3', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/favorites');
     const noFavoriteMsg = screen.getByText('No favorite pokemon found');
-    //verifica se a mensagem aparece
+    // verifica se a mensagem aparece
     expect(noFavoriteMsg).toBeInTheDocument();
   });
 
@@ -23,4 +22,5 @@ describe('requisito 3', () => {
 
   });
 })
+
 // npx stryker run ./stryker/FavoritePokemons.conf.json

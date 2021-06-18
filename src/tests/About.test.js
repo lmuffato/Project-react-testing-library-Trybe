@@ -32,4 +32,4 @@ describe('requisito 2', () => {
 
     expect(imageSoruce).toEqual(source);
   });
-})
+});
