@@ -35,9 +35,9 @@ describe('testes do componente App.js', () => {
     const linkAbout = getByRole('link', { name: /about/i });
     const linkFavorite = getByRole('link', { name: /favorite pokémons/i });
 
-    expect(getByRole(linkHome)).toBeInTheDocument();
-    expect(getByRole(linkAbout)).toBeInTheDocument();
-    expect(getByRole(linkFavorite)).toBeInTheDocument();
+    expect(linkHome).toBeInTheDocument();
+    expect(linkAbout).toBeInTheDocument();
+    expect(linkFavorite).toBeInTheDocument();
   });
 
   it('Teste o redirecionamento dos links em App', () => {
@@ -52,15 +52,15 @@ describe('testes do componente App.js', () => {
     const linkFavorite = getByRole('link', { name: /favorite pokémons/i });
 
     fireEvent.click(linkHome);
-    expect(getByText('Encountered pokémons')).toBeInTheDocument();
+    expect('Encountered pokémons').toBeInTheDocument();
     expect(pathname).toBe('/');
 
     fireEvent.click(linkAbout);
-    expect(getByText('About Pokédex')).toBeInTheDocument();
+    expect('About Pokédex').toBeInTheDocument();
     expect(pathname).toBe('/about');
 
     fireEvent.click(linkFavorite);
-    expect(getByText('Favorite pokémons')).toBeInTheDocument();
+    expect('Favorite pokémons').toBeInTheDocument();
     expect(pathname).toBe('/favorite');
   });
 
