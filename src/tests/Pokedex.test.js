@@ -44,6 +44,10 @@ describe('requisito 5 gigante', () => {
     renderWithRouter(<App />);
     const btnFire = screen
       .getByRole('button', { name: 'Fire' });
+      
+    userEvent.click(btnFire);
+    const charmander = screen.getByText('Charmander');
+    expect(charmander).toBeInTheDocument();
   });
   test('Testa se a Pokédex contém um botão de resetar o filtro', () => {
     renderWithRouter(<App />);
