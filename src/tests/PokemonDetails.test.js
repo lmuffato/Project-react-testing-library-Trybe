@@ -17,7 +17,7 @@ describe('requisito 7', () => {
     const { history } = renderWithRouter(<App />);
     const { name, id, summary } = getPokemonById('25');
     const link = screen.getByRole('link', { name: 'More details' });
-    history.push(`/pokemons/25`);
+    history.push(`/pokemons/${id}`);
     expect(link.href).toMatch(`/pokemons/${id}`);
     userEvent.click(link);
     expect(screen.getByRole('heading', { name: `${name} Details` })).toBeInTheDocument();
