@@ -38,7 +38,7 @@ describe('tests on component <Pokedex />', () => {
     expect(textHome).toBeInTheDocument();
   });
 
-  test('click on Proximo pokémon should render next pokemon list'
+  test('click on Proximo pokémon render next pokemon list'
   + 'and last pokemon skips to first on list', () => {
     renderWithRouter(<App />);
 
