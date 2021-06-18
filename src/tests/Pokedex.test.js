@@ -44,30 +44,26 @@ describe('requisito 5 gigante', () => {
     renderWithRouter(<App />);
     const btnFire = screen
       .getByRole('button', { name: 'Fire' });
-      
     userEvent.click(btnFire);
     const charmander = screen.getByText('Charmander');
     expect(charmander).toBeInTheDocument();
   });
   test('Testa se a Pokédex contém um botão de resetar o filtro', () => {
     renderWithRouter(<App />);
-
     const btnAll = screen.getByRole('button', { name: 'All' });
     expect(btnAll).toBeInTheDocument();
-
     const btnFire = screen
       .getByRole('button', { name: 'Fire' });
     userEvent.click(btnFire);
     const charmander = screen.getByText('Charmander');
     expect(charmander).toBeInTheDocument();
-
     userEvent.click(btnAll);
     const pikachu = screen.getByText('Pikachu');
     expect(pikachu).toBeInTheDocument();
-
     renderWithRouter(<App />);
     expect(pikachu).toBeInTheDocument();
   });
+
   test('Teste se é criado, dinamicamente, um botão de filtro', () => {
     renderWithRouter(<App />);
 
