@@ -41,27 +41,23 @@ describe('testes do componente App.js', () => {
   });
 
   it('Teste o redirecionamento dos links em App', () => {
-    const { getByRole } = render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
-    const { history: { location: { pathname } } } = renderWithRouter(<App />);
-    const linkHome = getByRole('link', { name: /home/i });
-    const linkAbout = getByRole('link', { name: /about/i });
-    const linkFavorite = getByRole('link', { name: /favorite pokémons/i });
+    const { getByText } = renderWithRouter(<App />);
+    // const { history: { location: { pathname } } } = renderWithRouter(<App />);
+    const linkHome = getByText(/home/i);
+    const linkAbout = getByText(/about/i);
+    const linkFavorite = getByText(/favorite pokémons/i);
 
     fireEvent.click(linkHome);
-    expect('Encountered pokémons').toBeInTheDocument();
-    expect(pathname).toBe('/');
+    expect(getByText('Encountered pokémons')).toBeInTheDocument();
+    // expect(pathname).toBe('/');
 
     fireEvent.click(linkAbout);
-    expect('About Pokédex').toBeInTheDocument();
-    expect(pathname).toBe('/about');
+    expect(getByText('About Pokédex')).toBeInTheDocument();
+    // expect(pathname).toBe('/about');
 
     fireEvent.click(linkFavorite);
-    expect('Favorite pokémons').toBeInTheDocument();
-    expect(pathname).toBe('/favorite');
+    expect(getByText('Favorite pokémons')).toBeInTheDocument();
+    // expect(pathname).toBe('/favorites');
   });
 
   it('Teste com URL desconhecida', () => {
