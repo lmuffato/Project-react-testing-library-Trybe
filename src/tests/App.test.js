@@ -54,7 +54,7 @@ describe('Testes de redirecionamento.', () => {
   it('Testa se o app é redirecionado à página Not Found.', () => {
     const { getByText, history } = renderWithRouter(<App />);
     history.push('/pagina/inexistente/');
-    const noFound = getByText(/Not Found/i);
-    expect(noFound).toBeInTheDocument();
+    const notFound = getByText(/Not Found/i);
+    expect(notFound).toBeInTheDocument();
   });
 });
