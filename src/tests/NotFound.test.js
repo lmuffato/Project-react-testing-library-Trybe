@@ -2,7 +2,7 @@ import React from 'react';
 import renderWithRouter from '../renderWithRouter';
 import { NotFound } from '../components';
 
-describe('testes dos componente Not Found', () => {
+describe('testes do componente Not Found', () => {
   it('Testa se página contém um heading h2 com o texto Page requested not found ', () => {
     const { getByText } = renderWithRouter(<NotFound />);
     const textNotFound = getByText(/page requested not found/i);
