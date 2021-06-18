@@ -81,3 +81,4 @@ describe('requisito 5 gigante', () => {
 });
 
 // npx stryker run ./stryker/Pokedex.conf.json
+// referencia de logica, usada pelo tiago;
