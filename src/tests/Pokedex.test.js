@@ -41,64 +41,15 @@ describe('tests on component <Pokedex />', () => {
   test('click on Proximo pokémon should render next pokemon list'
   + 'and last pokemon skips to first on list', () => {
     renderWithRouter(<App />);
-    let currentIndex = 0;
-
-    const simulatedNext = () => {
-      const newIndex = (currentIndex + 1) % pokemonsNameList().length;
-      currentIndex = newIndex;
-    };
 
     const botaoProximo = screen.getByRole('button', { name: /próximo pokémon/i });
 
-    const initial = screen.getByText('Pikachu');
-    expect(initial).toBeInTheDocument();
+    pokemonsNameList().forEach((pokemon) => {
+      expect(screen.getByText(pokemon)).toBeInTheDocument();
+      userEvent.click(botaoProximo);
+    });
 
-    userEvent.click(botaoProximo);
-    simulatedNext();
-
-    const second = screen.getByText(pokemonsNameList()[currentIndex]);
-    expect(second).toBeInTheDocument();
-
-    userEvent.click(botaoProximo);
-    simulatedNext();
-
-    const third = screen.getByText(pokemonsNameList()[currentIndex]);
-    expect(third).toBeInTheDocument();
-
-    userEvent.click(botaoProximo);
-    simulatedNext();
-
-    const fourth = screen.getByText(pokemonsNameList()[currentIndex]);
-    expect(fourth).toBeInTheDocument();
-
-    userEvent.click(botaoProximo);
-    simulatedNext();
-
-    const fifth = screen.getByText(pokemonsNameList()[currentIndex]);
-    expect(fifth).toBeInTheDocument();
-
-    userEvent.click(botaoProximo);
-    simulatedNext();
-
-    const sixth = screen.getByText(pokemonsNameList()[currentIndex]);
-    expect(sixth).toBeInTheDocument();
-
-    userEvent.click(botaoProximo);
-    simulatedNext();
-
-    const seventh = screen.getByText(pokemonsNameList()[currentIndex]);
-    expect(seventh).toBeInTheDocument();
-
-    userEvent.click(botaoProximo);
-    simulatedNext();
-
-    const eigth = screen.getByText(pokemonsNameList()[currentIndex]);
-    expect(eigth).toBeInTheDocument();
-
-    userEvent.click(botaoProximo);
-    simulatedNext();
-
-    expect(initial).toBeInTheDocument();
+    expect(screen.getByText(pokemonsNameList()[0])).toBeInTheDocument();
   });
 
   test('renders pokemon cards one by one', () => {
