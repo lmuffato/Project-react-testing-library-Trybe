@@ -1,35 +1,42 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import { Router } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
-import userEvent from '@testing-library/user-event';
-import Pokemon from '../components/Pokemon';
-import pokemons from '../data';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-test('Tests Pokemon', () => {
-  const pikachu = pokemons[0];
-  const { id, name, type, image, averageWeight: { value, measurementUnit } } = pikachu;
-  const history = createBrowserHistory();
-  const { getByText, getByRole } = render(
-    <Router history={ history }>
-      <Pokemon pokemon={ pikachu } isFavorite />
-    </Router>,
+import { pokemonType } from '../types';
+
+const Pokemon = ({ pokemon, showDetailsLink, isFavorite }) => {
+  const { averageWeight, id, image, name, type } = pokemon;
+  const { measurementUnit, value } = averageWeight;
+
+  return (
+    <div>
+      <div>
+        <p data-testid="pokemon-name">{`${name}`}</p>
+        <p data-testid="pokemon-type">{`${type}`}</p>
+        <p data-testid="pokemon-weight">
+          {`Average weight: ${value} ${measurementUnit}`}
+        </p>
+        {showDetailsLink && <Link to={ `pokemons/${id}` }>More details</Link>}
+      </div>
+      <img src={ `${image}` } alt={ `${name} sprite` } />
+      {isFavorite && (
+        <img
+          src="/star-icon.svg"
+          alt={ `${name} is marked as favorite` }
+        />
+      )}
+    </div>
   );
-  expect(getByText(name)).toBeInTheDocument();
-  expect(getByText(type)).toBeInTheDocument();
-  expect(
-    getByText(`Average weight: ${value} ${measurementUnit}`),
-  ).toBeInTheDocument();
+};
 
-  const pokeImg = getByRole('img', { name: `${name} sprite` });
-  expect(pokeImg).toHaveAttribute('src', image);
+Pokemon.propTypes = {
+  isFavorite: PropTypes.bool.isRequired,
+  pokemon: pokemonType.isRequired,
+  showDetailsLink: PropTypes.bool,
+};
 
-  const moreDetailsBtn = getByRole('link', { name: 'More details' });
-  expect(moreDetailsBtn).toHaveAttribute('href', `/pokemons/${id}`);
+Pokemon.defaultProps = {
+  showDetailsLink: true,
+};
 
-  userEvent.click(moreDetailsBtn);
-  expect(history.location.pathname).toBe(`/pokemons/${id}`);
-
-  const favoriteStar = getByRole('img', { name: `${name} is marked as favorite` });
-  expect(favoriteStar).toHaveAttribute('src', '/star-icon.svg');
-});
+export default Pokemon;
