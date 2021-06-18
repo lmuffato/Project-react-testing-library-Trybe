@@ -5,7 +5,7 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('Exemplos de teste.', () => {
-  test('renders a reading with the text `Pokédex`', () => {
+  it('renders a reading with the text `Pokédex`', () => {
     const { getByText } = render(
       <MemoryRouter>
         <App />
@@ -15,7 +15,7 @@ describe('Exemplos de teste.', () => {
     expect(heading).toBeInTheDocument();
   });
 
-  test('shows the Pokédex when the route is `/`', () => {
+  it('shows the Pokédex when the route is `/`', () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={ ['/'] }>
         <App />
@@ -23,6 +23,15 @@ describe('Exemplos de teste.', () => {
     );
 
     expect(getByText('Encountered pokémons')).toBeInTheDocument();
+  });
+});
+
+describe('teste do header fixo do app.', () => {
+  it('testa se o topo do app contém um conjunto fixo de links de navegação.', () => {
+    const { getByRole } = renderWithRouter(<App />);
+    expect(getByRole('link', { name: 'Home' })).toBeInTheDocument();
+    expect(getByRole('link', { name: 'About' })).toBeInTheDocument();
+    expect(getByRole('link', { name: 'Favorite Pokémons' })).toBeInTheDocument();
   });
 });
 
