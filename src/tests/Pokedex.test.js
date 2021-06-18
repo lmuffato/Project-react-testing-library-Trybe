@@ -4,7 +4,6 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
-
 describe('requisito 5 gigante', () => {
   const nextPokemon = 'next-pokemon';
 
@@ -30,7 +29,6 @@ describe('requisito 5 gigante', () => {
     const dragonair = screen.getByText('Dragonair');
     expect(dragonair).toBeInTheDocument();
     userEvent.click(botton);
-
   });
 
   test('Testa se é aparece apenas um Pokémon por vez', () => {
@@ -42,12 +40,10 @@ describe('requisito 5 gigante', () => {
     const charmander = screen.getByText('Charmander');
     expect(charmander).toBeInTheDocument();
   });
-
   test('Testa se a Pokédex possui os botões para filtrar', () => {
     renderWithRouter(<App />);
     const btnFire = screen
       .getByRole('button', { name: 'Fire' });
-
   });
   test('Testa se a Pokédex contém um botão de resetar o filtro', () => {
     renderWithRouter(<App />);
@@ -82,7 +78,6 @@ describe('requisito 5 gigante', () => {
     const btnAll = screen.getByRole('button', { name: 'All' });
     expect(btnAll).toBeVisible();
   });
-
 });
 
 // npx stryker run ./stryker/Pokedex.conf.json
