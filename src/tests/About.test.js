@@ -15,6 +15,7 @@ describe('Testes do componente About.', () => {
   it('Teste se a página contém link de imagem de uma Pokédex', () => {
     const { getByRole } = renderWithRouter(<About />);
     const imagePokedex = getByRole('img');
-    expect(imagePokedex).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+    expect(imagePokedex).toHaveAttribute('src',
+      'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 });
